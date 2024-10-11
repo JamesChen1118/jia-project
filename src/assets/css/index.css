@@ -92,9 +92,10 @@ body {
 
 .banner-title {
     position: absolute;
-    top: 200px;
+    top: 350px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
 }
 
 .banner h3 {
@@ -109,13 +110,13 @@ body {
 }
 
 .banner p {
-    position: absolute;
     color: rgb(237, 105, 52);
     word-spacing: 1.8rem;
     letter-spacing: 5px;
     font-size: 2.5rem;
     font-style: italic;
     text-align: center;
+    margin-top: 80px;
 }
 
 
@@ -231,10 +232,10 @@ body {
 
 /* ----------- NEEEEWWWWW NEWS ----------- */
 .newsArea {
-    position: relative;
-    z-index: 2;
-    padding: 40px 0 125px;
-    background: #0a0909;
+    margin: 100px auto;
+    /* padding: 40px 0 125px; */
+    border: 3px solid #b89881;
+    width: 80%;
 }
 
 .newsArea .wrap {
@@ -387,7 +388,6 @@ body {
 .menuList {
     width: 80%;
     margin: 0 auto;
-    border: 1px solid brown;
 }
 
 .menuList .menuRow {
