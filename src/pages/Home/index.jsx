@@ -1,4 +1,5 @@
 import "./index.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -7,25 +8,25 @@ const Home = () => {
       <div className="header">
         <nav>
           <h2 className="logo">
-            <a href="#">J I A</a>
+            <Link to="/">J I A</Link>
           </h2>
           <ul className="nav-list">
             <li className="nav-item">
-              <a href="#">關於JIA</a>
+              <Link to="/about">關於JIA</Link>
             </li>
             <li className="nav-item">
-              <a href="#">最新消息</a>
+              <Link to="/news">最新消息</Link>
             </li>
             <li className="nav-item">
-              <a id="bookingBtn" href="#">
+              <Link to="/booking" id="bookingBtn">
                 我要預訂
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a href="#">菜單底JIA</a>
+              <Link to="/menu">菜單底JIA</Link>
             </li>
             <li className="nav-item">
-              <a href="#">聯繫我JIA</a>
+              <Link to="/contact">聯繫我JIA</Link>
             </li>
           </ul>
           <div className="nav-btn">
