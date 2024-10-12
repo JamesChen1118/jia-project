@@ -120,8 +120,6 @@ body {
 }
 
 
-
-
 /* ---------- Navbar 訂位醒目按鈕 ---------- */
 #bookingBtn {
     padding: 10px 20px;
@@ -129,15 +127,17 @@ body {
     border-radius: 0.75rem;
     font-weight: 500;
     color: black;
-    transition: color .7s, font-weight .7s, letter-spacing .7s, padding .7s;
+    transition: color .7s, font-weight .7s, letter-spacing .7s, transform .7s ease, padding .7s;
 }
 
 #bookingBtn:hover {
     color: whitesmoke;
     font-weight: 900;
     letter-spacing: 3px;
-    padding: 15px 25px;
+    transform: scale(1.1);
+    padding: 10px 30px;
 }
+
 
 /* ---------- About 餐廳簡介區域 ---------- */
 .about {
