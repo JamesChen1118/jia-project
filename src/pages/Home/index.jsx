@@ -1,12 +1,8 @@
-import Header from "@/components/Layout/Header";
 import "./index.css";
-// import { Link } from "react-router-dom";
-import Layout from "@/components/Layout";
 
 const Home = () => {
   return (
-    <Layout>
-      <Header></Header>
+    <>
       {/* <!-- ---------About 餐廳簡介區域 --------- --> */}
       <div className="about">
         <div className="about-text">
@@ -168,7 +164,7 @@ const Home = () => {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </Layout>
+    </>
   );
 };
 
