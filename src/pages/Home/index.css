@@ -1,0 +1,344 @@
+/* ---------- About 餐廳簡介區域 ---------- */
+.about {
+    text-align: center;
+    height: 30rem;
+    margin: 10rem;
+}
+
+.about-title {
+    display: block;
+    color: whitesmoke;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: 3rem;
+}
+
+
+.about-text {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-text p {
+    width: 350px;
+    line-height: 1.6;
+    color: rgb(255, 170, 13);
+    word-spacing: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    margin-left: 150px;
+}
+
+.about-text p a {
+    text-decoration: none;
+    color: rgb(237, 105, 52);
+}
+
+.about-text img {
+    width: 25rem;
+    height: 30rem;
+}
+
+
+
+/* ---------- News 最新消息區域 ---------- */
+.news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10rem;
+}
+
+.news h2 {
+    display: block;
+    color: whitesmoke;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    letter-spacing: 3rem;
+}
+
+.news-tab {
+    border: 1px solid ghostwhite;
+    width: 70%;
+    padding: 50px;
+}
+
+.news-tab ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.news-tab ul li {
+    border-bottom: 1px solid ghostwhite;
+    width: 100%;
+    line-height: 3;
+    text-align: center;
+    transition: color .7s, word-spacing .7s;
+
+}
+
+.news-tab ul li:hover {
+    color: rgb(255, 170, 13);
+    word-spacing: 10px;
+}
+
+
+/* ----------- NEEEEWWWWW NEWS ----------- */
+.newsArea {
+    margin: 100px auto;
+    /* padding: 40px 0 125px; */
+    border: 3px solid #b89881;
+    width: 80%;
+}
+
+.newsArea .wrap {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+    transform: translateY(40px);
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.newsArea .wrap.is-inview {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.newsArea .wrap.is-inview .newsList {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.newsArea .titleBox .titleEn {
+    max-width: 600px;
+}
+
+.newsArea .newsList {
+    padding-top: 50px;
+    max-width: 980px;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+    transform: translateY(40px);
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
+}
+
+.newsArea .newsItem {
+    border-bottom: 1px solid rgba(184, 152, 129, 0.3);
+}
+
+.newsArea .newsItem:hover .Txt .top::after,
+.newsArea .newsItem.open .Txt .top::after {
+    width: 100%;
+}
+
+.newsArea .item {
+    cursor: pointer;
+}
+
+.newsArea .Txt {
+    color: #fff;
+}
+
+.newsArea .Txt .top {
+    position: relative;
+    padding: 20px;
+    padding-left: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.newsArea .Txt .top::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    right: 30px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.newsArea .Txt .top::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 1px;
+    width: 0;
+    background: #b89881;
+}
+
+.newsArea .Txt .dateBox {
+    font-family: "Crimson Text", serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9a9a9a;
+    width: 120px;
+}
+
+.newsArea .Txt .title {
+    padding-left: 15px;
+    padding-right: 25px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 1.4px;
+}
+
+.newsArea .Txt .bottom {
+    padding: 40px 20px;
+    padding-left: 25px;
+    display: none;
+    border-top: 1px solid rgba(184, 152, 129, 0.3);
+    cursor: auto;
+}
+
+.newsArea .Txt .textEditor .textBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.newsArea .Txt .textEditor .textBox .text,
+.newsArea .Txt .textEditor .textBox .Img {
+    width: 50%;
+}
+
+.newsArea .Txt .textEditor .textBox .text {
+    padding-right: 25px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+.newsArea .Txt .textEditor .textBox .Img {
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+.newsArea .Txt .textEditor .textBox .Img img {
+    display: block;
+}
+
+/* ---------- Menu 菜單展示區域 ---------- */
+.menuList {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.menuList .menuRow {
+    display: flex;
+    margin: 0 -8px;
+}
+
+.menuList .menuItem {
+    width: 8.3333%;
+    padding: 0 8px;
+}
+
+.menu-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ---------- Reservation 訂位區域 ---------- */
+
+.index-booking {
+    position: relative;
+    background-position: 50%;
+    min-height: 70vh;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-booking a {
+    position: absolute;
+    z-index: 5;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgb(255, 170, 13);
+    border-radius: 12px;
+    font-weight: 500;
+    color: black;
+    transition: color .7s, font-weight .7s, letter-spacing .7s, padding .7s;
+}
+
+.index-booking a:hover {
+    color: whitesmoke;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 15px 25px;
+}
+
+.index-booking img {
+    opacity: 0.3;
+    max-height: 75vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/* ---------- Location 餐廳資訊區域 ---------- */
+
+.map {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px;
+}
+
+.map-text {
+    width: 500px;
+    line-height: 3;
+    color: rgb(255, 170, 13);
+    word-spacing: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    margin: 50px 75px;
+    text-align: center;
+}
+
+.map-text p {
+    border-bottom: 1px dotted rgb(255, 170, 13);
+}
+
+.map iframe {
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.75);
+    width: 700px;
+}
+
+.map iframe:hover {
+    box-shadow: 10px 15px 30px 0px rgba(0, 0, 0, 0.75);
+}

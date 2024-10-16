@@ -4,49 +4,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="wrapper">
-      {/* <!-- --------- Navbar 導覽列  --------- --> */}
-      <div className="header">
-        <nav>
-          <h2 className="logo">
-            <Link to="/">J I A</Link>
-          </h2>
-          <ul className="nav-list">
-            <li className="nav-item">
-              <Link to="/about">關於JIA</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/news">最新消息</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/booking" id="bookingBtn">
-                我要預訂
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/menu">菜單底JIA</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contact">聯繫我JIA</Link>
-            </li>
-          </ul>
-          <div className="nav-btn">
-            <button className="icon-login" type="button">
-              登入
-            </button>
-            <button className="icon-tran" type="button">
-              翻譯
-            </button>
-          </div>
-        </nav>
-      </div>
-      <div className="banner">
-        <div className="banner-title">
-          <h3>JIA</h3>
-          <p>Modern Creative Izakaya</p>
-        </div>
-        <img src="/src/assets/images/home/banner-1.png" alt="" />
-      </div>
-
       {/* <!-- ---------About 餐廳簡介區域 --------- --> */}
       <div className="about">
         <div className="about-text">
@@ -235,23 +192,6 @@ const Home = () => {
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-      </div>
-
-      {/* <!-- --------- Footer 區域 --------- --> */}
-      <div className="footer">
-        <h2 className="footer-logo">J I A</h2>
-        <p>&copy; JIA 2024 - Modern Creative Izakaya</p>
-        <div className="footer-media">
-          <a href="#">
-            <i className="fa fa-facebook"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-instagram"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-twitter"></i>
-          </a>
-        </div>
       </div>
     </div>
   );
