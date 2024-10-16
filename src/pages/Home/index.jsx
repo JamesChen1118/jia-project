@@ -1,9 +1,12 @@
+import Header from "@/components/Layout/Header";
 import "./index.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import Layout from "@/components/Layout";
 
 const Home = () => {
   return (
-    <div className="wrapper">
+    <Layout>
+      <Header></Header>
       {/* <!-- ---------About 餐廳簡介區域 --------- --> */}
       <div className="about">
         <div className="about-text">
@@ -109,35 +112,7 @@ const Home = () => {
         </ul>
       </div>
 
-      {/* <!-- --------- News 最新消息區域 --------- --> */}
-      <div className="news">
-        <h2>最新消息</h2>
-        <div className="news-tab">
-          <ul>
-            <li className="newsItem1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus, laboriosam.
-            </li>
-            <li className="newsItem2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus, laboriosam.
-            </li>
-            <li className="newsItem3">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus, laboriosam.
-            </li>
-            <li className="newsItem4">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus, laboriosam.
-            </li>
-            <li className="newsItem5">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Necessitatibus, laboriosam.
-            </li>
-          </ul>
-        </div>
-      </div>
-      {/* <!-- --------- NEWWWWWWWWWWWWW NEWS區域 --------- --> */}
+      {/* <!-- ---------  News 最新消息區域 --------- --> */}
       <div className="newsArea">
         <div className="newsItem">
           <div className="item">
@@ -193,7 +168,7 @@ const Home = () => {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </div>
+    </Layout>
   );
 };
 
