@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import "./index.css";
+import Layout from "@/components/Layout";
 
 const Home = () => {
   return (
-    <>
+    <Layout>
       {/* <!-- ---------About 餐廳簡介區域 --------- --> */}
       <div className="about">
         <div className="about-text">
@@ -159,12 +161,11 @@ const Home = () => {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28914.047024814867!2d121.52479947431641!3d25.059315120000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab8d9d238e55%3A0x3c19f236bf0fecac!2z5Y-w5YyX5biC5rCR55Sf56S-5Y2A5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1726976862072!5m2!1szh-TW!2stw"
           width="1100"
           height="450"
-          allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </>
+    </Layout>
   );
 };
 

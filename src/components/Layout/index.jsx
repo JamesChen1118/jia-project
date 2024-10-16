@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Layout = ({ children }) => {
   return (
     <div className="wrapper">
@@ -36,7 +38,7 @@ const Layout = ({ children }) => {
           </div>
         </nav>
       </div>
-      {children}
+
       {/* --------------- Banner 頁首大圖區域 ---------------*/}
       <div className="banner">
         <div className="banner-title">
@@ -45,7 +47,7 @@ const Layout = ({ children }) => {
         </div>
         <img src="/src/assets/images/home/banner-1.png" alt="" />
       </div>
-
+      {children}
       {/* --------------- Footer 頁尾區域 ---------------*/}
       <div className="footer">
         <h2 className="footer-logo">J I A</h2>
