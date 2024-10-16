@@ -1,53 +1,48 @@
-import { Link } from "react-router-dom";
-
+// import { Link } from "react-router-dom";
+import Layout from "@/components/Layout";
+import "./index.css";
 const Reservation = () => {
   return (
-    <>
-      <div className="wrapper">
-        {/* <!-- --------- Navbar 導覽列  --------- --> */}
-        <div className="header">
-          <nav>
-            <h2 className="logo">
-              <Link to="/">J I A</Link>
-            </h2>
-            <ul className="nav-list">
-              <li className="nav-item">
-                <Link to="/about">關於JIA</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/news">最新消息</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/booking" id="bookingBtn">
-                  我要預訂
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/menu">菜單底JIA</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact">聯繫我JIA</Link>
-              </li>
-            </ul>
-            <div className="nav-btn">
-              <button className="icon-login" type="button">
-                登入
-              </button>
-              <button className="icon-tran" type="button">
-                翻譯
-              </button>
-            </div>
-          </nav>
-        </div>
-        <div className="banner">
-          <div className="banner-title">
-            <h3>JIA</h3>
-            <p>Modern Creative Izakaya</p>
+    <Layout>
+      <div className="reservation-section">
+        <div className="reservation-form">
+          <div className="form-name">
+            <label>訂位大名 :</label>
+            <input type="text" placeholder="請填寫姓名" />
           </div>
-          <img src="/src/assets/images/home/banner-1.png" alt="" />
+          <div className="form-date">
+            <label>訂位日期 :</label>
+            <input type="date" />
+          </div>
+          <div className="form-time">
+            <label>訂位時段 :</label>
+            <input type="time" />
+          </div>
+          <div className="form-name">
+            <label>電子信箱 :</label>
+            <input type="email" placeholder="請填寫信箱" />
+          </div>
+          <div className="form-name">
+            <label>連絡電話 :</label>
+            <input type="number" placeholder="請填寫手機號碼" />
+          </div>
+          <div className="form-select">
+            <label>訂位人數 :</label>
+            <select name="select" id="#">
+              <option value="1">1 位</option>
+              <option value="2">2 位</option>
+              <option value="3">3 位</option>
+              <option value="4">4 位</option>
+            </select>
+          </div>
+
+          <button className="form-btn">確認送出</button>
+        </div>
+        <div className="reservation-img">
+          <img src="./images/booking/reservation.jpg" alt="" />
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 
