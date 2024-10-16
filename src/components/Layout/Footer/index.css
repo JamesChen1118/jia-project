@@ -1,0 +1,19 @@
+/* ---------- Footer 區域 ---------- */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background: rgb(26, 26, 26);
+    color: rgb(255, 170, 13);
+    height: 150px;
+    font-size: 18px;
+}
+
+
+.footer-logo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: rgb(255, 170, 13);
+}
