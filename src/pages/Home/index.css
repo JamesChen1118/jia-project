@@ -188,30 +188,10 @@
 
 /* ----------- NEWS 最新消息區域 ----------- */
 .newsArea {
-    margin: 100px auto;
-    /* padding: 40px 0 125px; */
+    margin: 200px auto;
     border: 3px solid #b89881;
-    width: 80%;
-}
-
-.newsArea .wrap {
-    opacity: 0;
-    -webkit-transform: translateY(40px);
-    transform: translateY(40px);
-    -webkit-transition-delay: 0.5s;
-    transition-delay: 0.5s;
-}
-
-.newsArea .wrap.is-inview {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
-
-.newsArea .wrap.is-inview .newsList {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+    width: 50%;
+    cursor: pointer;
 }
 
 .newsArea .titleBox .titleEn {
@@ -234,15 +214,6 @@
     border-bottom: 1px solid rgba(184, 152, 129, 0.3);
 }
 
-.newsArea .newsItem:hover .Txt .top::after,
-.newsArea .newsItem.open .Txt .top::after {
-    width: 100%;
-}
-
-.newsArea .item {
-    cursor: pointer;
-}
-
 .newsArea .Txt {
     color: #fff;
 }
@@ -250,29 +221,27 @@
 .newsArea .Txt .top {
     position: relative;
     padding: 20px;
-    padding-left: 25px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
+    text-align: center;
+    border-bottom: 1px dotted #b89881;
+}
+
+.newsArea .Txt .top:last-child {
+    border-bottom: none;
 }
 
 .newsArea .Txt .top::before {
     content: "";
     position: absolute;
     top: 40%;
-    right: 30px;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+    right: 50px;
     display: block;
-    width: 8px;
-    height: 8px;
-    border-right: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgb(255, 170, 13);
+    border-bottom: 2px solid rgb(255, 170, 13);
+    transform: rotate(-45deg);
 }
 
 .newsArea .Txt .top::after {
@@ -302,6 +271,7 @@
     font-weight: 300;
     line-height: 1.5;
     letter-spacing: 1.4px;
+    list-style: none;
 }
 
 .newsArea .Txt .bottom {

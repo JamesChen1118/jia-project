@@ -54,8 +54,55 @@ const Home = () => {
                 <div className="dateBox">
                   <div className="date">Nov.15.2024</div>
                 </div>
-
-                <h3 className="title">11月活動限定，生啤買一送一 ~!!!</h3>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
+              </div>
+              <div className="top">
+                <div className="dateBox">
+                  <div className="date">Nov.15.2024</div>
+                </div>
+                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
               </div>
             </div>
           </div>
