@@ -119,8 +119,8 @@
 /* ---------- About 餐廳簡介區域 ---------- */
 .about {
     text-align: center;
-    height: 30rem;
-    margin: 10rem;
+    height: 500px;
+    margin: 150px;
 }
 
 .about-title {
@@ -162,57 +162,35 @@
 
 
 
-/* ---------- News 最新消息區域 ---------- */
-.news {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10rem;
-}
-
-.news h2 {
-    display: block;
-    color: whitesmoke;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 600;
-    font-size: 2rem;
-    margin-bottom: 5rem;
-    letter-spacing: 3rem;
-}
-
-.news-tab {
-    border: 1px solid ghostwhite;
-    width: 70%;
-    padding: 50px;
-}
-
-.news-tab ul {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.news-tab ul li {
-    border-bottom: 1px solid ghostwhite;
-    width: 100%;
-    line-height: 3;
-    text-align: center;
-    transition: color .7s, word-spacing .7s;
-
-}
-
-.news-tab ul li:hover {
-    color: rgb(255, 170, 13);
-    word-spacing: 10px;
-}
-
-
-/* ----------- NEEEEWWWWW NEWS ----------- */
-.newsArea {
-    margin: 100px auto;
-    /* padding: 40px 0 125px; */
-    border: 3px solid #b89881;
+/* ---------- Menu 菜單展示區域 ---------- */
+.menuList {
     width: 80%;
+    margin: 0 auto;
+}
+
+.menuList .menuRow {
+    display: flex;
+    margin: 0 -8px;
+}
+
+.menuList .menuItem {
+    width: 8.3333%;
+    padding: 0 8px;
+}
+
+.menu-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ----------- NEWS 最新消息區域 ----------- */
+.newsArea {
+    margin: 200px auto;
+    border: 3px solid #b89881;
+    width: 50%;
 }
 
 .newsArea .wrap {
@@ -360,30 +338,6 @@
 .newsArea .Txt .textEditor .textBox .Img img {
     display: block;
 }
-
-/* ---------- Menu 菜單展示區域 ---------- */
-.menuList {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.menuList .menuRow {
-    display: flex;
-    margin: 0 -8px;
-}
-
-.menuList .menuItem {
-    width: 8.3333%;
-    padding: 0 8px;
-}
-
-.menu-img {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    display: block;
-}
-
 
 /* ---------- Reservation 訂位區域 ---------- */
 

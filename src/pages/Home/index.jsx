@@ -28,7 +28,7 @@ const Home = () => {
             <br />
             officiis recusandae reprehenderit dolore laudantium libero dolorem.
             <br />
-            <a href="#">more</a>
+            <Link to="/About">more</Link>
           </p>
           <img src="/src/assets/images/home/Izakaya-1.png" alt="" />
         </div>
@@ -81,7 +81,7 @@ const Home = () => {
 
       {/* <!-- --------- Reservation 訂位區域 --------- --> */}
       <div className="index-booking">
-        <a href="#">歡迎回J I A</a>
+        <Link to="/Booking">歡迎回J I A</Link>
         <img src="/src/assets/images/home/Izakaya-2.jpg" alt="" />
       </div>
 
