@@ -49,7 +49,7 @@ const Home = () => {
       <div className="newsArea">
         <div className="newsItem">
           <div className="item">
-            <div className="Txt">
+            <div className="new-item">
               <div className="top">
                 <div className="dateBox">
                   <div className="date">Nov.15.2024</div>

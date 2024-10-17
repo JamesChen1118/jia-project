@@ -156,8 +156,8 @@
 }
 
 .about-text img {
-    width: 25rem;
-    height: 30rem;
+    width: 400px;
+    height: 500px;
 }
 
 
@@ -165,7 +165,7 @@
 /* ---------- Menu 菜單展示區域 ---------- */
 .menuList {
     width: 80%;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .menuList .menuRow {
@@ -193,117 +193,61 @@
     width: 50%;
 }
 
-.newsArea .wrap {
-    opacity: 0;
-    -webkit-transform: translateY(40px);
-    transform: translateY(40px);
-    -webkit-transition-delay: 0.5s;
-    transition-delay: 0.5s;
-}
-
-.newsArea .wrap.is-inview {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
-
-.newsArea .wrap.is-inview .newsList {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
-
-.newsArea .titleBox .titleEn {
-    max-width: 600px;
-}
-
-.newsArea .newsList {
-    padding-top: 50px;
-    max-width: 980px;
-    width: 100%;
-    margin: 0 auto;
-    opacity: 0;
-    -webkit-transform: translateY(40px);
-    transform: translateY(40px);
-    -webkit-transition-delay: 1s;
-    transition-delay: 1s;
-}
-
-.newsArea .newsItem {
-    border-bottom: 1px solid rgba(184, 152, 129, 0.3);
-}
-
-.newsArea .newsItem:hover .Txt .top::after,
-.newsArea .newsItem.open .Txt .top::after {
-    width: 100%;
-}
-
 .newsArea .item {
     cursor: pointer;
 }
 
-.newsArea .Txt {
+.new-item {
     color: #fff;
 }
 
-.newsArea .Txt .top {
+.newsArea .new-item .top {
     position: relative;
     padding: 20px;
-    padding-left: 25px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    text-align: center;
     align-items: center;
 }
 
-.newsArea .Txt .top::before {
+.newsArea .new-item .top::before {
     content: "";
     position: absolute;
-    top: 40%;
+    top: 35%;
     right: 30px;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
     display: block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-right: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.newsArea .Txt .top::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block;
-    height: 1px;
-    width: 0;
-    background: #b89881;
+.top:hover {
+    /* transform: scale(1.05); */
 }
 
-.newsArea .Txt .dateBox {
+
+.newsArea .new-item .dateBox {
     font-family: "Crimson Text", serif;
-    font-size: 14px;
+    font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #9a9a9a;
     width: 120px;
 }
 
-.newsArea .Txt .title {
+
+
+.newsArea .new-item .title {
     padding-left: 15px;
     padding-right: 25px;
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 20px;
+    font-weight: bold;
     line-height: 1.5;
     letter-spacing: 1.4px;
 }
 
-.newsArea .Txt .bottom {
+.newsArea .new-item .bottom {
     padding: 40px 20px;
     padding-left: 25px;
     display: none;
@@ -311,18 +255,18 @@
     cursor: auto;
 }
 
-.newsArea .Txt .textEditor .textBox {
+.newsArea .new-item .textEditor .textBox {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
 
-.newsArea .Txt .textEditor .textBox .text,
-.newsArea .Txt .textEditor .textBox .Img {
+.newsArea .new-item .textEditor .textBox .text,
+.newsArea .new-item .textEditor .textBox .Img {
     width: 50%;
 }
 
-.newsArea .Txt .textEditor .textBox .text {
+.newsArea .new-item .textEditor .textBox .text {
     padding-right: 25px;
     font-size: 14px;
     font-weight: 300;
@@ -330,12 +274,12 @@
     letter-spacing: 0.5px;
 }
 
-.newsArea .Txt .textEditor .textBox .Img {
+.newsArea .new-item .textEditor .textBox .Img {
     padding-left: 25px;
     padding-right: 15px;
 }
 
-.newsArea .Txt .textEditor .textBox .Img img {
+.newsArea .new-item .textEditor .textBox .Img img {
     display: block;
 }
 
