@@ -3,7 +3,7 @@
 
 .header {
     position: fixed;
-    news-title: 0;
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 3;
@@ -69,7 +69,7 @@
 
 .banner-title {
     position: absolute;
-    news-title: 350px;
+    top: 350px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -93,7 +93,7 @@
     font-size: 2.5rem;
     font-style: italic;
     text-align: center;
-    margin-news-title: 80px;
+    margin-top: 80px;
 }
 
 
@@ -187,74 +187,157 @@
 
 
 /* ----------- NEWS 最新消息區域 ----------- */
-.news-section {
-    margin: 200px auto;
+.newsArea {
+    margin: 100px auto;
+    /* padding: 40px 0 125px; */
     border: 3px solid #b89881;
-    width: 50%;
+    width: 80%;
+}
+
+.newsArea .wrap {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+    transform: translateY(40px);
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.newsArea .wrap.is-inview {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.newsArea .wrap.is-inview .newsList {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.newsArea .titleBox .titleEn {
+    max-width: 600px;
+}
+
+.newsArea .newsList {
+    padding-top: 50px;
+    max-width: 980px;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+    transform: translateY(40px);
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
+}
+
+.newsArea .newsItem {
+    border-bottom: 1px solid rgba(184, 152, 129, 0.3);
+}
+
+.newsArea .newsItem:hover .Txt .top::after,
+.newsArea .newsItem.open .Txt .top::after {
+    width: 100%;
+}
+
+.newsArea .item {
     cursor: pointer;
 }
 
-
-.news-item {
+.newsArea .Txt {
     color: #fff;
 }
 
-.news-section .news-item .news-title {
+.newsArea .Txt .top {
     position: relative;
     padding: 20px;
+    padding-left: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
-.news-section .news-item .news-title::before {
+.newsArea .Txt .top::before {
     content: "";
     position: absolute;
-    news-title: 35%;
+    top: 40%;
     right: 30px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-right: 1px solid #fff;
     border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.news-title:hover {
-    /* transform: scale(1.05); */
+.newsArea .Txt .top::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 1px;
+    width: 0;
+    background: #b89881;
 }
 
-
-.news-section .news-item .news-date {
+.newsArea .Txt .dateBox {
     font-family: "Crimson Text", serif;
-    font-size: 20px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #9a9a9a;
     width: 120px;
 }
 
-
-
-.news-section .news-item {
+.newsArea .Txt .title {
     padding-left: 15px;
     padding-right: 25px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 300;
     line-height: 1.5;
     letter-spacing: 1.4px;
 }
 
-.news-section .news-item .bottom {
+.newsArea .Txt .bottom {
     padding: 40px 20px;
     padding-left: 25px;
     display: none;
+    border-top: 1px solid rgba(184, 152, 129, 0.3);
     cursor: auto;
 }
 
+.newsArea .Txt .textEditor .textBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
 
-.news-section .news-item {
+.newsArea .Txt .textEditor .textBox .text,
+.newsArea .Txt .textEditor .textBox .Img {
     width: 50%;
+}
+
+.newsArea .Txt .textEditor .textBox .text {
+    padding-right: 25px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+.newsArea .Txt .textEditor .textBox .Img {
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+.newsArea .Txt .textEditor .textBox .Img img {
+    display: block;
 }
 
 /* ---------- Reservation 訂位區域 ---------- */
