@@ -1,10 +1,9 @@
-import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
 import "./index.css";
 
 const Order = () => {
   return (
-    <Layout>
+    <>
       <div className="main">
         {/* <!-- /* --------- Sidebar 商品分類 --------- */}
         <div className="sidebar">
@@ -460,7 +459,7 @@ const Order = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

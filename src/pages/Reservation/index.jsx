@@ -1,9 +1,9 @@
-// import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import "./index.css";
+
 const Reservation = () => {
   return (
-    <Layout>
+    <>
       <div className="reservation-section">
         <div className="reservation-form">
           <div className="form-name">
@@ -42,7 +42,7 @@ const Reservation = () => {
           <img src="./images/booking/reservation.jpg" alt="" />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
