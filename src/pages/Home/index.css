@@ -3,7 +3,7 @@
 
 .header {
     position: fixed;
-    top: 0;
+    news-title: 0;
     left: 0;
     width: 100%;
     z-index: 3;
@@ -69,7 +69,7 @@
 
 .banner-title {
     position: absolute;
-    top: 350px;
+    news-title: 350px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -93,7 +93,7 @@
     font-size: 2.5rem;
     font-style: italic;
     text-align: center;
-    margin-top: 80px;
+    margin-news-title: 80px;
 }
 
 
@@ -187,21 +187,19 @@
 
 
 /* ----------- NEWS 最新消息區域 ----------- */
-.newsArea {
+.news-section {
     margin: 200px auto;
     border: 3px solid #b89881;
     width: 50%;
-}
-
-.newsArea .item {
     cursor: pointer;
 }
 
-.new-item {
+
+.news-item {
     color: #fff;
 }
 
-.newsArea .new-item .top {
+.news-section .news-item .news-title {
     position: relative;
     padding: 20px;
     display: flex;
@@ -209,10 +207,10 @@
     align-items: center;
 }
 
-.newsArea .new-item .top::before {
+.news-section .news-item .news-title::before {
     content: "";
     position: absolute;
-    top: 35%;
+    news-title: 35%;
     right: 30px;
     display: block;
     width: 10px;
@@ -222,12 +220,12 @@
     transform: rotate(45deg);
 }
 
-.top:hover {
+.news-title:hover {
     /* transform: scale(1.05); */
 }
 
 
-.newsArea .new-item .dateBox {
+.news-section .news-item .news-date {
     font-family: "Crimson Text", serif;
     font-size: 20px;
     text-transform: uppercase;
@@ -238,7 +236,7 @@
 
 
 
-.newsArea .new-item .title {
+.news-section .news-item {
     padding-left: 15px;
     padding-right: 25px;
     font-size: 20px;
@@ -247,40 +245,16 @@
     letter-spacing: 1.4px;
 }
 
-.newsArea .new-item .bottom {
+.news-section .news-item .bottom {
     padding: 40px 20px;
     padding-left: 25px;
     display: none;
-    border-top: 1px solid rgba(184, 152, 129, 0.3);
     cursor: auto;
 }
 
-.newsArea .new-item .textEditor .textBox {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
 
-.newsArea .new-item .textEditor .textBox .text,
-.newsArea .new-item .textEditor .textBox .Img {
+.news-section .news-item {
     width: 50%;
-}
-
-.newsArea .new-item .textEditor .textBox .text {
-    padding-right: 25px;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.8;
-    letter-spacing: 0.5px;
-}
-
-.newsArea .new-item .textEditor .textBox .Img {
-    padding-left: 25px;
-    padding-right: 15px;
-}
-
-.newsArea .new-item .textEditor .textBox .Img img {
-    display: block;
 }
 
 /* ---------- Reservation 訂位區域 ---------- */

@@ -46,35 +46,13 @@ const Home = () => {
       </div>
 
       {/* <!-- ---------  News 最新消息區域 --------- --> */}
-      <div className="newsArea">
-        <div className="newsItem">
-          <div className="item">
-            <div className="new-item">
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-
-                <h3 className="title">11月活動限定，生啤買一送一 ~!!!</h3>
-              </div>
-
-              <div className="bottom">
-                <div className="textEditor">
-                  <div className="textBox">
-                    <div className="text">
-                      <div dir="auto">
-                        <a href="#">訂位連結</a>
-                        <a href="#">活動資訊</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="Img">
-                    <img title="" alt="" />
-                  </div>
-                </div>
-              </div>
+      <div className="news-section">
+        <div className="news-list">
+          <div className="news-item">
+            <div className="news-title">
+              <div className="news-date">Nov.15.2024</div>
             </div>
+            <h3 className="title">11月活動限定，生啤買一送一 ~!!!</h3>
           </div>
         </div>
       </div>
