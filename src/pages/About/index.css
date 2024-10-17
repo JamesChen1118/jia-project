@@ -1,0 +1,10 @@
+.container {
+    width: 100%;
+    border: 1px solid red;
+    height: 500px;
+    margin: 200px auto;
+}
+
+p {
+    font-size: 32px;
+}

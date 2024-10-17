@@ -28,9 +28,9 @@ const Header = () => {
           </li>
         </ul>
         <div className="nav-btn">
-          <button className="icon-login" type="button">
+          <Link to="/login" className="icon-login" type="button">
             登入
-          </button>
+          </Link>
           <button className="icon-tran" type="button">
             翻譯
           </button>
