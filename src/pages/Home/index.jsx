@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 
 const Home = () => {
   return (
-    <Layout>
+    <>
       {/* <!-- ---------About 餐廳簡介區域 --------- --> */}
       <div className="about">
         <div className="about-text">
@@ -165,7 +165,7 @@ const Home = () => {
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-    </Layout>
+    </>
   );
 };
 

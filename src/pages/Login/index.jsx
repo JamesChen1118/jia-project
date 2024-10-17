@@ -1,52 +1,80 @@
 import { Link } from "react-router-dom";
+import "./index";
+import "./index.css";
 
 const Login = () => {
   return (
     <>
-      <div className="wrapper">
-        {/* <!-- --------- Navbar 導覽列  --------- --> */}
-        <div className="header">
-          <nav>
-            <h2 className="logo">
-              <Link to="/">J I A</Link>
-            </h2>
-            <ul className="nav-list">
-              <li className="nav-item">
-                <Link to="/about">關於JIA</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/news">最新消息</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/booking" id="bookingBtn">
-                  我要預訂
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/menu">菜單底JIA</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact">聯繫我JIA</Link>
-              </li>
-            </ul>
-            <div className="nav-btn">
-              <button className="icon-login" type="button">
-                登入
-              </button>
-              <button className="icon-tran" type="button">
-                翻譯
-              </button>
-            </div>
-          </nav>
-        </div>
-        <div className="banner">
-          <div className="banner-title">
-            <h3>JIA</h3>
-            <p>Modern Creative Izakaya</p>
+      <div className="container">
+        <div className="form-container">
+          <div className="button-group">
+            <div id="btn"></div>
+            <button type="button" className="switch-btn" onclick="log()">
+              登入頁面
+            </button>
+            <button type="button" className="switch-btn" onclick="reg()">
+              註冊頁面
+            </button>
           </div>
-          <img src="/src/assets/images/home/banner-1.png" alt="" />
+
+          <form id="login" className="input-group">
+            <input
+              type="text"
+              className="input-text"
+              placeholder="請輸入帳號"
+              required
+            />
+            <input
+              type="text"
+              className="input-text"
+              placeholder="請輸入密碼"
+              required
+            />
+            <input type="checkbox" className="remember-box" />
+            <span>記住密碼</span>
+            <button type="submit" className="submit-btn">
+              登入
+            </button>
+          </form>
+
+          <form id="register" className="input-group">
+            <input
+              type="text"
+              className="input-text"
+              placeholder="請填寫帳號"
+              required
+            />
+            <input
+              type="number"
+              className="input-text"
+              placeholder="請填寫手機號碼"
+              required
+            />
+            <input
+              type="email"
+              className="input-text"
+              placeholder="請填寫信箱"
+              required
+            />
+            <input
+              type="password"
+              className="input-text"
+              placeholder="請填寫密碼"
+              required
+            />
+            <input
+              type="password"
+              className="input-text"
+              placeholder="再次輸入密碼"
+              required
+            />
+            <button type="submit" className="submit-btn">
+              註冊
+            </button>
+          </form>
         </div>
       </div>
+      <script src="index.js"></script>
     </>
   );
 };

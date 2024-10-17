@@ -1,0 +1,155 @@
+/* ---------- Login頁面 ---------- */
+
+.container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgb(52, 51, 51);
+    background: radial-gradient(circle, rgba(52, 51, 51, 1) 4%, rgba(82, 80, 80, 1) 40%, rgba(56, 54, 54, 1) 74%);
+}
+
+.form-container {
+    position: relative;
+    width: 600px;
+    height: 700px;
+    margin: 10% auto;
+    background-color: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.button-group {
+    width: 300px;
+    margin: 70px auto;
+    position: relative;
+    background-color: rgba(255, 255, 255, .2);
+    box-shadow: 0 0 25px 5px #0000003b;
+    border-radius: 30px;
+}
+
+.switch-btn {
+    position: relative;
+    padding: 12px 32px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-weight: 400;
+    font-size: 20px;
+    transition: .3s ease;
+}
+
+.switch-btn:hover {
+    transform: scale(1.2);
+    font-weight: bolder;
+}
+
+#btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background: whitesmoke;
+    border-radius: 30px;
+    transition: .5s;
+    box-shadow: 2px 1px 5px rgba(255, 255, 255, .3);
+
+}
+
+.input-group {
+    position: absolute;
+    top: 150px;
+    width: 350px;
+    transition: .5s ease;
+}
+
+.input-text {
+    width: 100%;
+    padding: 15px 0;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    outline: none;
+    background: transparent;
+    font-size: 20px;
+    color: rgb(207, 148, 10);
+    background-color: rgba(255, 255, 255, .2);
+    box-shadow: -1px -1px 5px rgba(255, 255, 255, .9);
+    transition: box-shadow 0.3s ease;
+}
+
+.input-text:focus {
+    box-shadow: -1px -1px 5px rgba(255, 69, 0, .5);
+    border: 1px solid orangered;
+}
+
+input::placeholder {
+    font-size: 20px;
+    color: aliceblue;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    -moz-appearance: textfield;
+}
+
+
+.submit-btn {
+    width: 40%;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 10% auto;
+    color: black;
+    background: #fff;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    transition: .3s ease;
+    font-size: 25px;
+    font-weight: bolder;
+    box-shadow: 2px 1px 5px rgba(255, 255, 255, .3);
+
+}
+
+.submit-btn:hover {
+    background-color: transparent;
+    color: whitesmoke;
+    border: 2px solid white;
+}
+
+.remember-box {
+    margin: 50px 20px 50px 0;
+}
+
+span {
+    color: #777;
+    font-size: 15px;
+    position: absolute;
+    bottom: 175px;
+    color: whitesmoke;
+}
+
+
+#login {
+    margin: 70px auto;
+    left: 110px;
+}
+
+
+#register {
+    /* margin: 15px auto; */
+    left: 650px;
+}
