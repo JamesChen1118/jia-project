@@ -22,7 +22,7 @@
 }
 
 .reservation-form {
-    width: 400px;
+    /* width: 400px; */
     margin-right: 150px;
     box-sizing: border-box;
     color: rgb(255, 170, 13);
@@ -44,16 +44,74 @@
 }
 
 .seating-grid {
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 300px;
     margin: 200px auto;
-    background: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(10px);
+    background-image: url('https://images.unsplash.com/photo-1704135520525-f6d7bb8d1129?q=80&w=1858&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-color: rgba(255, 245, 245, 0.723);
+    background-blend-mode: overlay;
     border-radius: 20px;
     display: grid;
-    place-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 1px;
+}
 
+.grid-item {
+    box-sizing: border-box;
+    width: 100%;
+    color: rgb(255, 170, 13);
+    border-radius: 10px;
+    background: transparent;
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.table-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url('./reservation/seat-2-1.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 170, 13);
+    font-weight: bold;
+    font-size: 36px;
+    text-shadow:
+    1px 1px 0 rgba(0, 0, 0, 0.8), 
+    -1px -1px 0 rgba(0, 0, 0, 0.8),
+    -1px 1px 0 rgba(0, 0, 0, 0.8), 
+    1px -1px 0 rgba(0, 0, 0, 0.8), 
+    2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.table-four {
+    background-image: url('./reservation/table-4.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 170, 13);
+    font-weight: bold;
+    font-size: 36px;
+    text-shadow:
+    1px 1px 0 rgba(0, 0, 0, 0.8), 
+    -1px -1px 0 rgba(0, 0, 0, 0.8),
+    -1px 1px 0 rgba(0, 0, 0, 0.8), 
+    1px -1px 0 rgba(0, 0, 0, 0.8), 
+    2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .form-name {
@@ -138,4 +196,8 @@ select:focus {
 .form-btn:hover {
     transform: scale(1.1);
     background-color: rgb(230, 150, 10);
+}
+
+label{
+    margin-right: 50px;
 }
