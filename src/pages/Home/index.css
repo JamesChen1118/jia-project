@@ -225,6 +225,7 @@
     align-items: center;
     text-align: center;
     border-bottom: 1px dotted #b89881;
+    transition: color 0.5s, background 0.5s;
 }
 
 .newsArea .Txt .top:last-child {
@@ -252,7 +253,13 @@
     display: block;
     height: 1px;
     width: 0;
-    background: #b89881;
+}
+
+.newsArea .Txt .top:hover {
+    background: #e9ba985d;
+    color: rgb(255, 170, 13);
+    /* font-size: 20px;
+    font-weight: bold; */
 }
 
 .newsArea .Txt .dateBox {
