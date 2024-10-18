@@ -1,13 +1,13 @@
 /* ---------- Footer 區域 ---------- */
-.footer {
+footer {
+    padding: 20px;
+    height: 150px;
+    font-size: 18px;
+    color: rgb(255, 170, 13);
+    background: rgb(26, 26, 26);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
-    background: rgb(26, 26, 26);
-    color: rgb(255, 170, 13);
-    height: 150px;
-    font-size: 18px;
 }
 
 
