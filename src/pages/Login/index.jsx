@@ -73,7 +73,6 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <script src="index.js"></script>
     </>
   );
 };

@@ -55,59 +55,6 @@ const Order = () => {
               </a>
             </li>
           </ul>
-
-          {/* <!-- /* --------- best-sellers 商品分類 --------- */}
-
-          <div className="best-sellers">
-            <h3 id="product-title">排行榜商品</h3>
-            <div className="best-sellers-list">
-              <div className="best-sellers-item">
-                <img
-                  className="showcase-img-box"
-                  src="https://picsum.photos/id/684/80/80"
-                  alt=""
-                />
-                <div className="product-content">
-                  <a href="#" className="product-title">
-                    <h3>鮪魚握壽司</h3>
-                  </a>
-                  <div className="product-price">
-                    <p>$80.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="best-sellers-item">
-                <img
-                  className="showcase-img-box"
-                  src="https://picsum.photos/id/684/80/80"
-                  alt=""
-                />
-                <div className="product-content">
-                  <a href="#" className="product-title">
-                    <h3>鮪魚握壽司</h3>
-                  </a>
-                  <div className="product-price">
-                    <p>$80.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="best-sellers-item">
-                <img
-                  className="showcase-img-box"
-                  src="https://picsum.photos/id/684/80/80"
-                  alt=""
-                />
-                <div className="product-content">
-                  <a href="#" className="product-title">
-                    <h3>鮪魚握壽司</h3>
-                  </a>
-                  <div className="product-price">
-                    <p>$80.00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* <!-- /* --------- product 商品 --------- */}

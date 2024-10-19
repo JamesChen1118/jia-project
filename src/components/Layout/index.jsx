@@ -9,10 +9,12 @@ const Layout = () => {
     <div className="wrapper">
       <Header />
       <Banner />
-      <div className="main" />
+      <main className="main" />
       <Outlet />
+      {/* </main> */}
       <Footer />
     </div>
+      
   );
 };
 

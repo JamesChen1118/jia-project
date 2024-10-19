@@ -56,7 +56,7 @@
 .nav-btn {}
 
 /* --------- Banner 區域  ---------  */
-.banner {
+/* .banner {
     position: relative;
 }
 
@@ -65,16 +65,16 @@
     height: 80vh;
     opacity: 0.4;
     object-fit: cover;
-}
-
+} */
+/* 
 .banner-title {
     position: absolute;
     top: 350px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-}
-
+} */
+/* 
 .banner h3 {
     position: relative;
     color: rgb(255, 170, 13);
@@ -84,8 +84,8 @@
     font-style: italic;
     text-align: center;
     letter-spacing: 2.5rem;
-}
-
+} */
+/* 
 .banner p {
     color: rgb(237, 105, 52);
     word-spacing: 1.8rem;
@@ -95,7 +95,7 @@
     text-align: center;
     margin-top: 80px;
 }
-
+ */
 
 
 

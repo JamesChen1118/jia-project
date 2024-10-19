@@ -1,20 +1,17 @@
 /* ---------- Login頁面 ---------- */
 
 .container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgb(52, 51, 51);
-    background: radial-gradient(circle, rgba(52, 51, 51, 1) 4%, rgba(82, 80, 80, 1) 40%, rgba(56, 54, 54, 1) 74%);
+    margin: 200px auto;
 }
 
 .form-container {
     position: relative;
     width: 600px;
     height: 700px;
-    margin: 10% auto;
+    margin: 0 auto;
     background-color: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .2);
+    border: 3px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
     padding: 10px;
     border-radius: 20px;
@@ -85,8 +82,11 @@
 
 .input-text:focus {
     box-shadow: -1px -1px 5px rgba(255, 69, 0, .5);
-    border: 1px solid orangered;
+    border: 2px solid rgb(255, 170, 13);
+    color: rgb(255, 170, 13);
 }
+
+
 
 input::placeholder {
     font-size: 20px;
@@ -125,9 +125,9 @@ input {
 }
 
 .submit-btn:hover {
-    background-color: transparent;
+    background-color: rgb(255, 170, 13);
     color: whitesmoke;
-    border: 2px solid white;
+    border: 2px solid rgb(185, 107, 51);
 }
 
 .remember-box {
@@ -150,6 +150,5 @@ span {
 
 
 #register {
-    /* margin: 15px auto; */
     left: 650px;
 }
