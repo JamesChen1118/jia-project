@@ -1,7 +1,7 @@
 import "./index.css";
 import ProductCard from "@/components/ProductItem";
 
-// TODO: 之後後端傳進來
+// TODO: 之後接後端傳的商品
 const categories = [
   {
     id: 1,
@@ -38,6 +38,10 @@ const categories = [
   {
     id: 9,
     name: "飲料",
+  },
+  {
+    id: 10,
+    name: "全部",
   },
 ];
 

@@ -35,6 +35,7 @@ const Home = () => {
       </div>
 
       {/* <!-- --------- Menu 菜單展示區域 --------- --> */}
+      {/* //TODO Menu展示動畫 */}
       <div className="menuList">
         <ul className="menuRow">
           {menuItemImg.map((item) => (
@@ -116,6 +117,7 @@ const Home = () => {
       </div>
 
       {/* <!-- --------- Location 餐廳資訊區域 --------- --> */}
+     {/* //TODO Media icon  */}
       <div className="map">
         <div className="map-text">
           <p>地址: 台北市松山區民生東路五段163-1號</p>
