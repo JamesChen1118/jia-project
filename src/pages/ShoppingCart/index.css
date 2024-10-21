@@ -8,25 +8,44 @@
 .cart {
     margin: 0 50px;
     padding: 20px;
-    width: 80%;
+    width: 100%;
 }
 
-.cart a {
-    display: block;
-    color: rgb(255, 170, 13);
-    margin-bottom: 15px;
+.cart-top {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.backOrder {
+    display: inline-block;
+    color: rgb(255, 147, 59);
+    margin-right: 250px;
     text-decoration: none;
+    transition: color .5s, letter-spacing .5s;
 }
 
+.backOrder:hover {
+    border-bottom: 2px dotted rgb(255, 170, 13);
+    transform: scale(1.05);
+    letter-spacing: 1px;
+    color: rgb(255, 190, 77);
+}
 
 .cart-title {
+    display: inline-block;
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bolder;
     color: rgb(255, 170, 13);
     text-shadow: 1px 1px 3px #726e6e;
-    border-top: 1px dotted #ccc;
     padding: 30px 0;
+}
+
+.line {
+    margin: -15px auto 20px;
+    height: 1px;
+    border: 2px dotted rgb(255, 170, 13);
 }
 
 
@@ -50,14 +69,19 @@
     padding: 10px;
 }
 
-.item-name,
-.item-price {
+.item-name {
     font-size: 20px;
     font-weight: bolder;
     color: rgb(245, 222, 180);
     text-shadow: 1px 1px 5px #403f3f;
 }
 
+.item-price {
+    font-weight: bolder;
+    text-shadow: 1px 1px 3px #403f3f;
+    color: rgb(255, 170, 13);
+    font-size: 22px;
+}
 
 .cart-btn {
     display: flex;
@@ -101,7 +125,7 @@
 .item-num {
     font-size: 20px;
     font-weight: bolder;
-    color: rgb(255, 170, 13);
+    color: #0736b8;
     line-height: 20px;
     margin: 0 10px;
     padding: 3px 10px;
@@ -110,39 +134,74 @@
     border-radius: 5px;
 }
 
+.total-box {
+    font-size: 28px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 3px #403f3f;
+    color: rgb(255, 170, 13);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-text {
+    letter-spacing: 2px;
+    margin-right: 25px;
+}
+
+.total-price {
+    letter-spacing: 15px;
+    text-decoration: underline double rgb(255, 170, 13);
+    text-decoration-skip-ink: none;
+}
+
 
 
 .checkoutBox {
-    margin: 0 50px;
-    width: 70%;
     background-color: rgba(255, 255, 255, .3);
     border: 3px solid rgba(255, 255, 255, .2);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
     border-radius: 20px;
-}
-
-.checkItem {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 20px;
 }
 
 
-.checkItem label {
+.check-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bolder;
     color: rgb(255, 170, 13);
     text-shadow: 1px 1px 3px #726e6e;
 }
 
+.ccBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-number {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.check-number label {
+    white-space: nowrap;
+    margin-right: 10px;
+    letter-spacing: 1px;
+}
+
+.checkNum {
+    text-align: center;
+}
 
 
+.cc-info {
+    display: flex;
+}
 
-/* .line {
-    margin: 100px auto 0;
-    height: 1px;
-    background-color: #726e6e;
-    border: 3px dotted #ccc;
-} */
+.ccv-check {}
+
+.checkOut-btn {}
