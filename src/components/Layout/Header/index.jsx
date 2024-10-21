@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faCircleUser } from "@fortawesome/free-solid-svg-icons"; 
+import { faEnvelope, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -31,6 +31,9 @@ const Header = () => {
         </ul>
         <div className="nav-btn">
           <Link to="/login" className="icon-login" type="button">
+            <FontAwesomeIcon icon={faCircleUser} />
+          </Link>{" "}
+          <Link to="/shoppingcart" className="icon-login" type="button">
             <FontAwesomeIcon icon={faCircleUser} />
           </Link>
           <button className="icon-tran" type="button">

@@ -55,31 +55,6 @@
 }
 
 
-/* --------- best-sellers 商品分類 --------- */
-.best-sellers {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    color: rgb(228, 170, 77);
-}
-
-.best-sellers-item {
-    display: flex;
-    margin: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.showcase-img {
-    width: 50px;
-}
-
-.showcase-title {
-    font-size: 20px;
-    color: #fff;
-}
-
-
 /* --------- product 商品分類 --------- */
 
 .product-list {

@@ -24,27 +24,27 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/About",
+        path: "/about",
         element: <About />,
       },
       {
-        path: "/Booking",
+        path: "/booking",
         element: <Booking />,
       },
       {
-        path: "/Contact",
+        path: "/contact",
         element: <Contact />,
       },
       {
-        path: "/Login",
+        path: "/login",
         element: <Login />,
       },
       {
-        path: "/News",
+        path: "/news",
         element: <News />,
       },
       {
-        path: "/Menu",
+        path: "/menu",
         element: <Menu />,
       },
       {
@@ -52,15 +52,15 @@ const router = createBrowserRouter([
         element: <NotFound />,
       },
       {
-        path: "/Order",
+        path: "/order",
         element: <Order />,
       },
       {
-        path: "/Reservation",
+        path: "/reservation",
         element: <Reservation />,
       },
       {
-        path: "/ShoppingCart",
+        path: "/shoppingCart",
         element: <ShoppingCart />,
       },
     ],
