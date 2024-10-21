@@ -13,10 +13,10 @@ const ShoppingCart = () => {
             </Link>
             <h1 className="cart-title">購物車品項</h1>
           </div>
-          <div className="line">.</div>
+          <hr className="line" />
 
           <div class="cart-list">
-            <div class="cart-item">
+            <div className="cart-item">
               <img src="https://picsum.photos/id/684/600/400" alt="" />
               <div class="item-name">鮪魚壽司</div>
               <div class="item-price">$ 48</div>
@@ -58,7 +58,7 @@ const ShoppingCart = () => {
           </div>
           <div className="total-box">
             <label htmlFor="" className="total-text">
-              總金額 :{" "}
+              總金額 :
             </label>
             <label type="number" className="total-price">
               $0
@@ -67,38 +67,80 @@ const ShoppingCart = () => {
         </div>
         <div className="checkoutBox">
           <div className="check-title">信用卡付款資訊</div>
+          <hr className="line" />
           <div className="ccBox">
             <div className="check-number">
               <label htmlFor="">信用卡卡號:</label>
-              <input className="checkNum1" type="password" required></input>
-              <input className="checkNum2" type="password" required></input>
-              <input className="checkNum3" type="password" required></input>
-              <input className="checkNum4" type="password" required></input>
+              <input
+                className="checkNum"
+                type="password"
+                maxLength="4"
+                pattern="\d{4}"
+                autocomplete="off"
+                required
+              ></input>
+              <input
+                className="checkNum"
+                type="password"
+                maxLength="4"
+                pattern="\d{4}"
+                autocomplete="off"
+                required
+              ></input>
+              <input
+                className="checkNum"
+                type="password"
+                maxLength="4"
+                pattern="\d{4}"
+                autocomplete="off"
+                required
+              ></input>
+              <input
+                className="checkNum"
+                type="password"
+                maxLength="4"
+                pattern="\d{4}"
+                autocomplete="off"
+                required
+              ></input>
             </div>
             <div className="cc-info">
               <div class="cc-time">
                 <label>有效日期:</label>
                 <input
                   type="text"
-                  className="cc-year"
+                  id="cc-year"
                   placeholder="年份"
+                  maxLength="4"
+                  pattern="\d{4}"
+                  inputmode="numeric"
+                  autocomplete="off"
                   required
                 />
                 <input
                   type="text"
-                  className="cc-month"
+                  id="cc-month"
                   placeholder="月份"
+                  maxLength="2"
+                  pattern="\d{2}"
+                  inputmode="numeric"
+                  autocomplete="off"
                   required
                 />
-                <button className="date-picker">選擇</button>
+
+                {/* <button className="date-picker">選擇</button> */}
               </div>
             </div>
             <div className="ccv-check">
               <label className="ccv-title">檢查碼:</label>
               <input
                 type="text"
-                className="ccv-number"
+                id="ccv-number"
                 placeholder="請輸入"
+                maxLength="3"
+                pattern="\d{3}"
+                inputmode="numeric"
+                autocomplete="off"
                 required
               ></input>
             </div>

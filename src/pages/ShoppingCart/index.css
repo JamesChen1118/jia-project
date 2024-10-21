@@ -2,13 +2,12 @@
     display: flex;
     align-items: stretch;
     padding: 20px;
-    margin: 0 100px 500px;
+    margin: 0 50px 500px;
 }
 
 .cart {
-    margin: 0 50px;
-    padding: 20px;
-    width: 100%;
+    margin: 0 100px;
+    width: 50%;
 }
 
 .cart-top {
@@ -39,14 +38,16 @@
     font-weight: bolder;
     color: rgb(255, 170, 13);
     text-shadow: 1px 1px 3px #726e6e;
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 .line {
-    margin: -15px auto 20px;
+    margin: -5px auto 10px;
     height: 1px;
-    border: 2px dotted rgb(255, 170, 13);
+    border: none;
+    border-top: 2px dotted rgb(255, 170, 13);
 }
+
 
 
 .cart-item {
@@ -54,7 +55,7 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 0 10px;
     box-shadow: 0 10px 20px #5555;
     border-radius: 20px;
@@ -135,6 +136,7 @@
 }
 
 .total-box {
+    margin-top: 20px;
     font-size: 28px;
     font-weight: bolder;
     text-shadow: 1px 1px 3px #403f3f;
@@ -161,7 +163,8 @@
     border: 3px solid rgba(255, 255, 255, .2);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
+    margin-top: -15px;
 }
 
 
@@ -171,37 +174,172 @@
     font-weight: bolder;
     color: rgb(255, 170, 13);
     text-shadow: 1px 1px 3px #726e6e;
-}
-
-.ccBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
 }
 
 .check-number {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
     gap: 10px;
 }
 
 .check-number label {
     white-space: nowrap;
     margin-right: 10px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px #646464;
+    color: rgb(255, 170, 13);
+    font-size: 20px;
+    font-weight: bolder;
 }
 
 .checkNum {
+    width: 80px;
     text-align: center;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(255, 170, 13);
+    outline: none;
+    font-size: 24px;
+    color: rgb(255, 170, 13);
+    letter-spacing: 5px;
+}
+
+.checkNum:focus {
+    color: rgb(255, 170, 13);
+    border: 2px solid rgb(255, 170, 13);
 }
 
 
-.cc-info {
+.ccBox {
     display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
-.ccv-check {}
+.check-number,
+.cc-info,
+.ccv-check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    gap: 10px;
+}
 
-.checkOut-btn {}
+.check-number label,
+.cc-info label,
+.ccv-check label {
+    white-space: nowrap;
+    margin-right: 10px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px #646464;
+    color: rgb(255, 170, 13);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+
+.checkNum {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(255, 170, 13);
+    outline: none;
+    font-size: 20px;
+    color: rgb(255, 170, 13);
+    letter-spacing: 5px;
+}
+
+.checkNum:focus,
+#cc-year:focus,
+#cc-month:focus,
+#ccv-number:focus {
+    color: rgb(255, 170, 13);
+    border: 2px solid rgb(255, 170, 13);
+}
+
+#cc-year,
+#cc-month,
+#ccv-number {
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(255, 170, 13);
+    outline: none;
+    font-size: 18px;
+    color: rgb(255, 170, 13);
+    letter-spacing: 5px;
+    margin: 0 10px;
+}
+
+.cc-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 
+.date-picker {
+    font-size: 18px;
+    padding: 5px 10px;
+    background: rgb(255, 170, 13);
+    border-radius: 10px;
+    border: 1px solid rgb(255, 170, 13);
+    font-weight: 700;
+    color: black;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+
+.date-picker:active {
+    transform: scale(0.9);
+    background-color: rgb(255, 120, 0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.date-picker:hover {
+    background-color: rgb(255, 120, 0);
+    color: #f0e68c;
+    border-color: rgb(255, 120, 0);
+} */
+
+
+.checkOut-btn {
+    font-size: 18px;
+    margin: 40px 0 35px;
+    padding: 10px 20px;
+    background: rgb(255, 170, 13);
+    border-radius: 0.75rem;
+    border: 1px solid rgb(255, 170, 13);
+    font-weight: 700;
+    color: black;
+    outline: none;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    align-self: center;
+}
+
+.checkOut-btn:hover {
+    background-color: rgb(255, 120, 0);
+    color: #f0e68c;
+    border-color: rgb(255, 120, 0);
+}
+
+.checkOut-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#cc-year::placeholder,
+#cc-month::placeholder,
+#ccv-number::placeholder {
+    color: rgb(255, 120, 0);
+}
