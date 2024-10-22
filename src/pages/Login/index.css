@@ -9,20 +9,22 @@
     width: 600px;
     height: 700px;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, .1);
-    border: 3px solid rgba(255, 255, 255, .2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(41, 40, 40, .7);
+    /* 深色背景 */
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     padding: 10px;
     border-radius: 20px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .button-group {
     width: 300px;
     margin: 70px auto;
     position: relative;
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 170, 13, .2);
+    /* 使用聯絡表單的顏色 */
     box-shadow: 0 0 25px 5px #0000003b;
     border-radius: 30px;
 }
@@ -37,6 +39,8 @@
     font-weight: 400;
     font-size: 20px;
     transition: .3s ease;
+    color: rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
 }
 
 .switch-btn:hover {
@@ -50,11 +54,11 @@
     left: 0;
     width: 150px;
     height: 100%;
-    background: whitesmoke;
+    background: rgba(255, 170, 13, 0.9);
+    /* 使用聯絡表單的顏色 */
     border-radius: 30px;
     transition: .5s;
-    box-shadow: 2px 1px 5px rgba(255, 255, 255, .3);
-
+    box-shadow: 2px 1px 5px rgba(255, 255, 255, 0.3);
 }
 
 .input-group {
@@ -69,13 +73,14 @@
     padding: 15px 0;
     margin: 10px 0;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
     text-align: center;
     outline: none;
-    background: transparent;
+    background: rgba(255, 255, 255, .2);
     font-size: 20px;
-    color: rgb(207, 148, 10);
-    background-color: rgba(255, 255, 255, .2);
+    color: rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
     box-shadow: -1px -1px 5px rgba(255, 255, 255, .9);
     transition: box-shadow 0.3s ease;
 }
@@ -83,17 +88,17 @@
 .input-text:focus {
     box-shadow: -1px -1px 5px rgba(255, 69, 0, .5);
     border: 2px solid rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
     color: rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
 }
-
-
 
 .input-text::placeholder {
     font-size: 20px;
-    color: aliceblue;
+    color: rgba(255, 170, 13, 0.7);
+    /* 更柔和的顏色 */
     text-align: center;
 }
-
 
 .submit-btn {
     width: 40%;
@@ -102,7 +107,8 @@
     display: block;
     margin: 10% auto;
     color: black;
-    background: #fff;
+    background: rgb(255, 170, 13);
+    /* 使用聯絡表單的顏色 */
     border: 0;
     outline: none;
     border-radius: 30px;
@@ -110,12 +116,12 @@
     transition: .3s ease;
     font-size: 25px;
     font-weight: bolder;
-    box-shadow: 2px 1px 5px rgba(255, 255, 255, .3);
-
+    box-shadow: 2px 1px 5px rgba(255, 255, 255, 0.3);
 }
 
 .submit-btn:hover {
-    background-color: rgb(255, 170, 13);
+    background-color: rgb(255, 120, 0);
+    /* 更改為聯絡表單的顏色 */
     color: whitesmoke;
     border: 2px solid rgb(185, 107, 51);
 }
@@ -132,12 +138,10 @@ span {
     color: whitesmoke;
 }
 
-
 #login {
     margin: 70px auto;
     left: 110px;
 }
-
 
 #register {
     left: 650px;
