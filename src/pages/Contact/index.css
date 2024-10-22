@@ -1,0 +1,155 @@
+.contact-form {
+    width: 70%;
+    height: 700px;
+    margin: -50px auto 150px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    align-items: stretch;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.contact-left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px 0 0 20px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    align-items: center;
+}
+
+.contact-right {
+    width: 40%;
+    border-radius: 0 20px 20px 0;
+    background: #292828;
+    border: 1px solid rgba(255, 255, 255, .2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+.contact-right img {
+    padding: 0px 20px;
+    border-radius: 20px 100px 20px 100px;
+}
+
+.contact-right p {
+    color: rgb(255, 170, 13);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #201e1e;
+}
+
+
+.contact-title {
+    font-size: 28px;
+    margin: 20px;
+    padding: 5px;
+    color: rgb(255, 170, 13);
+    letter-spacing: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #201e1e;
+    border-bottom: 7px double rgb(255, 120, 0);
+}
+
+
+.contact-name,
+.contact-phone,
+.contact-email,
+.contact-subject,
+.contact-type,
+.contact-content {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 80%;
+    text-align: center;
+    background-color: transparent;
+    border-radius: 15px 0 15px 0;
+    border: 1px solid rgb(255, 170, 13);
+    outline: none;
+    font-size: 18px;
+    color: rgb(255, 170, 13);
+    letter-spacing: 5px;
+}
+
+.contact-left .contact-name::placeholder,
+.contact-left .contact-phone::placeholder,
+.contact-left .contact-email::placeholder,
+.contact-left .contact-subject::placeholder,
+.contact-left .contact-content::placeholder {
+    color: rgb(255, 120, 0);
+}
+
+.contact-left .contact-type {
+    color: rgb(255, 120, 0);
+}
+
+/* 選項樣式 */
+.contact-left .contact-type option {
+    background-color: transparent;
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    /* 增加選項內距 */
+}
+
+/* hover 時選項的浮起效果 */
+.contact-left .contact-type option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    /* 增加陰影 */
+}
+
+
+
+
+
+.contact-btn {
+    font-size: 18px;
+    margin: 40px 0 35px;
+    padding: 10px 20px;
+    background: rgb(255, 170, 13);
+    border-radius: 0.75rem;
+    border: 1px solid rgb(255, 170, 13);
+    font-weight: 700;
+    color: black;
+    outline: none;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    align-self: center;
+}
+
+.contact-btn:hover {
+    background-color: rgb(255, 120, 0);
+    color: #f0e68c;
+    border-color: rgb(255, 120, 0);
+}
+
+.contact-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.contact-map {
+    margin: -50px auto 200px;
+    outline: none;
+    box-shadow: 3px 3px 15px #000000;
+    transition: .5s all ease-in-out;
+}
+
+.contact-map:hover {
+    box-shadow: 3px 3px 15px #e69539;
+}

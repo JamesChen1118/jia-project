@@ -15,7 +15,7 @@
     backdrop-filter: blur(20px);
     padding: 10px;
     border-radius: 20px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .button-group {
@@ -88,20 +88,10 @@
 
 
 
-input::placeholder {
+.input-text::placeholder {
     font-size: 20px;
     color: aliceblue;
     text-align: center;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input {
-    -moz-appearance: textfield;
 }
 
 
