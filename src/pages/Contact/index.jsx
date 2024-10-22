@@ -1,32 +1,77 @@
 import { Link } from "react-router-dom";
 import "./index.css";
+import Select from "react-select";
+
+const options = [
+  { value: "booking", label: "訂位詢問" },
+  { value: "feedback", label: "服務意見" },
+  { value: "collaboration", label: "活動合作" },
+  { value: "receipt", label: "收據相關" },
+  { value: "private-event", label: "包場需求" },
+  { value: "customized", label: "客製洽談" },
+  { value: "other", label: "其他" },
+];
+
+const customSelectStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderRadius: "15px 0 15px 0",
+    border: "1px solid rgb(255, 170, 13)",
+    backgroundColor: "transparent",
+    color: "rgb(255, 170, 13)",
+    textAlign: "center",
+    "&:hover": {
+      border: "1px solid rgb(255, 170, 13)",
+    },
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "rgb(255, 170, 13)",
+    textAlign: "center",
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: "rgb(255, 120, 0)",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    borderRadius: "15px 0 15px 0",
+    border: "1px solid rgb(255, 170, 13)",
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // 添加背景顏色
+  }),
+  option: (provided, { isFocused }) => ({
+    ...provided,
+    backgroundColor: isFocused
+      ? "rgba(255, 170, 13, 0.5)"
+      : "rgba(255, 255, 255)",
+    color: "black",
+  }),
+};
 
 const Contact = () => {
   return (
     <>
       <div className="contact-form">
         <div className="contact-left">
-          <h1 className="contact-title">聯絡我們</h1>{" "}
-          <input className="contact-name" placeholder="請填寫姓名" />{" "}
+          <h1 className="contact-title">聯絡我們</h1>
+          <input className="contact-name" placeholder="請填寫姓名" />
           <input className="contact-phone" placeholder="請填寫手機號碼" />
           <input
             className="contact-email"
             placeholder="請填寫聯絡信箱"
             required
           />
-          <input className="contact-subject" placeholder="請填寫聯絡主旨" />
-          <select className="contact-type" required>
-            <option className="contact-option" value="" disabled selected>
-              請選擇信件主旨
-            </option>
-            <option value="booking">訂位詢問</option>
-            <option value="feedback">服務意見</option>
-            <option value="collaboration">活動合作</option>
-            <option value="receipt">收據相關</option>
-            <option value="private-event">包場需求</option>
-            <option value="customized">客製洽談</option>
-            <option value="other">其他</option>
-          </select>
+
+          <div className="contact-row">
+            <input className="contact-subject" placeholder="請填寫信件主旨" />
+            <Select
+              options={options}
+              placeholder="請選擇類型"
+              className="contact-select"
+              styles={customSelectStyles}
+            />
+          </div>
+
           <textarea
             className="contact-content"
             rows="5"
@@ -35,9 +80,9 @@ const Contact = () => {
             required
           ></textarea>
           <button className="contact-btn">送出</button>
-        </div>{" "}
+        </div>
         <div className="contact-right">
-          <img src="https://picsum.photos/id/684/600/400" alt="" />{" "}
+          <img src="https://picsum.photos/id/684/600/400" alt="" />
           <p>地址: 台北市松山區民生東路五段163-1號</p>
           <p>電話: (02)2388-8888</p>
           <p>Email: contact@jiaizakaya.com</p>
