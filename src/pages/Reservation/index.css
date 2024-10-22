@@ -87,11 +87,11 @@
     font-weight: bold;
     font-size: 36px;
     text-shadow:
-    1px 1px 0 rgba(0, 0, 0, 0.8), 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8), 
-    1px -1px 0 rgba(0, 0, 0, 0.8), 
-    2px 2px 4px rgba(0, 0, 0, 0.5); 
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .table-four {
@@ -107,11 +107,11 @@
     font-weight: bold;
     font-size: 36px;
     text-shadow:
-    1px 1px 0 rgba(0, 0, 0, 0.8), 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8), 
-    1px -1px 0 rgba(0, 0, 0, 0.8), 
-    2px 2px 4px rgba(0, 0, 0, 0.5); 
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .form-name {
@@ -198,6 +198,6 @@ select:focus {
     background-color: rgb(230, 150, 10);
 }
 
-label{
+label {
     margin-right: 50px;
 }
