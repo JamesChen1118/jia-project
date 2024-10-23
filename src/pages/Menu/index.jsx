@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 const menuItems = [
@@ -95,6 +95,19 @@ const Menu = () => {
     setOpenImageId(openImageId === id ? null : id);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".img")) {
+        setOpenImageId(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="wrapper">
       <div className="imgs-parent">
@@ -103,20 +116,23 @@ const Menu = () => {
             key={item.id}
             className={`img ${openImageId === item.id ? "open" : ""}`}
             style={{ backgroundImage: `url(${item.imageUrl})` }}
-            onClick={() => handleImageClick(item.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleImageClick(item.id);
+            }}
           >
             {openImageId === item.id && (
               <div className="menu-box">
-                <div className="menu-listTitle">{item.title}</div>
+                <h3 className="menu-listTitle">{item.title}</h3>
                 <div className="menu-list">
                   <img
                     src={item.imageUrl}
-                    className="menu-listImg"
                     alt={item.title}
+                    className="menu-listImg"
                   />
                   <div className="menu-listItem">
-                    <div className="menu-listContent">{item.description}</div>
-                    <div className="menu-listPrice">{item.price}</div>
+                    <p className="menu-listContent">{item.description}</p>
+                    <p className="menu-listPrice">{item.price}</p>
                     <a href="#" className="toMenu">
                       前往菜單
                     </a>
