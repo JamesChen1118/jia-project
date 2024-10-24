@@ -17,8 +17,8 @@
   background-position: center;
   cursor: pointer;
   transition:
-    transform 0.3s var(--transition),
-    filter 0.3s var(--transition),
+    transform 1.25s var(--transition),
+    filter 3s var(--transition),
     width 0.3s var(--transition);
   position: relative;
   filter: blur(.5);
@@ -97,7 +97,6 @@
   filter: inherit;
   z-index: 1;
   margin: 0 0.45vw;
-  transition: all 0.3s var(--transition);
 }
 
 .menu-box {
@@ -114,92 +113,68 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
 .open .menu-box {
   opacity: 1;
-  transition: opacity 0.2s ease 0.1s;
-}
-
-.menu-image {
-  width: 80%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  object-fit: cover;
 }
 
 .menu-listTitle {
   color: rgb(255, 170, 13);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 8px;
   text-align: center;
 }
 
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-listImg {
+  width: 80%;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.menu-listItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-listContent {
+  color: rgb(255, 130, 13);
+  font-size: 14.4px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
 .menu-listPrice {
   color: bisque;
-  font-size: 18px;
+  font-size: 19.2px;
   font-weight: bold;
-  text-align: center;
+  margin-bottom: 8px;
+}
+
+.toMenu {
+  color: rgb(255, 170, 13);
+  text-decoration: none;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.toMenu:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .hidden {
   display: none;
-}
-
-/* 新增輪播容器樣式 */
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-/* 輪播按鈕樣式 */
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.carousel-button.left {
-  left: 10px;
-}
-
-.carousel-button.right {
-  right: 10px;
-}
-
-/* 下方菜單展示區域 */
-.menu-display {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.menu-item {
-  width: 22%;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.menu-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
 }

@@ -1,20 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import Menu from "../Menu"; // 導入 Menu 組件
 import "./index.css";
-
-const menuItemImg = [
-  "https://picsum.photos/id/684/120/700",
-  "https://picsum.photos/id/685/120/700",
-  "https://picsum.photos/id/686/120/700",
-  "https://picsum.photos/id/687/120/700",
-  "https://picsum.photos/id/688/120/700",
-  "https://picsum.photos/id/689/120/700",
-  "https://picsum.photos/id/690/120/700",
-  "https://picsum.photos/id/691/120/700",
-  "https://picsum.photos/id/692/120/700",
-  "https://picsum.photos/id/693/120/700",
-  "https://picsum.photos/id/694/120/700",
-  "https://picsum.photos/id/695/120/700",
-];
 
 const Home = () => {
   return (
@@ -35,15 +22,8 @@ const Home = () => {
       </div>
 
       {/* <!-- --------- Menu 菜單展示區域 --------- --> */}
-      {/* //TODO Menu展示動畫 */}
       <div className="menuList">
-        <ul className="menuRow">
-          {menuItemImg.map((item) => (
-            <li key={item} className="menuItem">
-              <img className="menu-img" src={item} alt="菜單圖片" />
-            </li>
-          ))}
-        </ul>
+        <Menu />
       </div>
 
       {/* <!-- ---------  News 最新消息區域 --------- --> */}
@@ -117,7 +97,7 @@ const Home = () => {
       </div>
 
       {/* <!-- --------- Location 餐廳資訊區域 --------- --> */}
-     {/* //TODO Media icon  */}
+      {/* //TODO Media icon  */}
       <div className="map">
         <div className="map-text">
           <p>地址: 台北市松山區民生東路五段163-1號</p>
