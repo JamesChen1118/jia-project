@@ -43,61 +43,61 @@ const Reservation = () => {
         <button className="form-btn">確認送出</button>
       </div>
   
-      <div class="reservation-seating">
+      <div className="reservation-seating">
 
-<div class="seating-grid">
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">A1</div>
+<div className="seating-grid">
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">A1</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">A2</div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">A2</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">A3</div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">A3</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
+    <div className="grid-item"></div>
+    <div className="grid-item">
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
+    <div className="grid-item"></div>
+    <div className="grid-item">
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">B1</div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">B1</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">B2</div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">B2</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item">
-        <div class="table-img">B3</div>
+    <div className="grid-item"></div>
+    <div className="grid-item">
+        <div className="table-img">B3</div>
     </div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="table-four">C1</div>
-    <div class="grid-item"></div>
-    <div class="table-four">C2</div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="table-four">C1</div>
+    <div className="grid-item"></div>
+    <div className="table-four">C2</div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
+    <div className="grid-item"></div>
 </div>
 </div>
 

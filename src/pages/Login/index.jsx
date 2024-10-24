@@ -47,7 +47,7 @@ const Login = () => {
             required
           />
           <input type="checkbox" className="remember-box" />
-          <span>記住密碼</span>
+          <span className="remember-text">記住帳號</span>
           <button type="submit" className="submit-btn">
             登入
           </button>
@@ -65,7 +65,7 @@ const Login = () => {
             required
           />
           <input
-            type="number"
+            type="text"
             className="input-text"
             placeholder="請填寫手機號碼"
             required
