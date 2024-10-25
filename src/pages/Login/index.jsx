@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+import "../../components/Buttons/buttons.css";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);

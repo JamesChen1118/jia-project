@@ -36,7 +36,7 @@
     outline: none;
     font-weight: 400;
     font-size: 20px;
-    transition:all .4s ease-in-out;
+    transition: all .4s ease-in-out;
     color: rgb(255, 170, 13);
 }
 
@@ -91,41 +91,9 @@
     text-align: center;
 }
 
-.submit-btn {
-    width: 40%;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: block;
-    margin: 10% auto;
-    color: black;
-    background: rgb(255, 170, 13);
-    border: 0;
-    outline: none;
-    border-radius: 30px;
-    border: 2px solid transparent;
-    transition: .3s ease;
-    font-size: 25px;
-    font-weight: bolder;
-    box-shadow: 2px 1px 5px rgba(255, 255, 255, 0.3);
-}
-
-.submit-btn:hover {
-    background-color: rgb(255, 120, 0);
-    color: whitesmoke;
-    border: 2px solid rgb(185, 107, 51);
-}
-
-
-.submit-btn:active {
-    transform: scale(0.9);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-
 .remember-box {
     margin: 50px 20px 50px 0;
 }
-
 
 
 #login {
@@ -141,19 +109,19 @@
 .remember-box {
     appearance: none;
     margin: 50px 20px 50px 0;
-    width: 20px; 
-    height: 20px; 
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-    border: 2px solid rgb(255, 170, 13); 
-    border-radius: 5px;    
+    border: 2px solid rgb(255, 170, 13);
+    border-radius: 5px;
 }
 
 .remember-box:checked {
-    background-color: rgb(255, 170, 13); 
+    background-color: rgb(255, 170, 13);
 }
 
-.remember-text{
-    color: rgb(255, 170, 13); 
+.remember-text {
+    color: rgb(255, 170, 13);
     font-size: 17px;
     position: absolute;
     right: 245px;

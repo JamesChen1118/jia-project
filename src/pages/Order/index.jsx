@@ -1,3 +1,4 @@
+import "@/components/Buttons/buttons.css";
 import "./index.css";
 import ProductCard from "@/components/ProductItem";
 
