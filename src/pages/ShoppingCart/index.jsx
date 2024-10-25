@@ -5,8 +5,8 @@ import "./index.css";
 const ShoppingCart = () => {
   return (
     <>
-      <div class="checkoutList">
-        <div class="cart">
+      <div className="checkoutList">
+        <div className="cart">
           <div className="cart-top">
             <Link to="/order" className="backOrder">
               繼續選購
@@ -15,11 +15,11 @@ const ShoppingCart = () => {
           </div>
           <hr className="line" />
 
-          <div class="cart-list">
+          <div className="cart-list">
             <div className="cart-item">
               <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div class="item-name">鮪魚壽司</div>
-              <div class="item-price">$ 48</div>
+              <div className="item-name">鮪魚壽司</div>
+              <div className="item-price">$ 48</div>
               <div className="cart-btn">
                 <button className="btnMinus">-</button>
                 <label className="item-num" type="number">
@@ -29,10 +29,10 @@ const ShoppingCart = () => {
                 <button className="btnDel">x</button>
               </div>
             </div>
-            <div class="cart-item">
+            <div className="cart-item">
               <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div class="item-name">鮪魚壽司</div>
-              <div class="item-price">$ 48</div>
+              <div className="item-name">鮪魚壽司</div>
+              <div className="item-price">$ 48</div>
               <div className="cart-btn">
                 <button className="btnMinus">-</button>
                 <label className="item-num" type="number">
@@ -42,10 +42,10 @@ const ShoppingCart = () => {
                 <button className="btnDel">x</button>
               </div>
             </div>
-            <div class="cart-item">
+            <div className="cart-item">
               <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div class="item-name">鮪魚壽司</div>
-              <div class="item-price">$ 48</div>
+              <div className="item-name">鮪魚壽司</div>
+              <div className="item-price">$ 48</div>
               <div className="cart-btn">
                 <button className="btnMinus">-</button>
                 <label className="item-num" type="number">
@@ -76,7 +76,7 @@ const ShoppingCart = () => {
                 type="password"
                 maxLength="4"
                 pattern="\d{4}"
-                autocomplete="off"
+                autoComplete="off"
                 required
               ></input>
               <input
@@ -84,7 +84,7 @@ const ShoppingCart = () => {
                 type="password"
                 maxLength="4"
                 pattern="\d{4}"
-                autocomplete="off"
+                autoComplete="off"
                 required
               ></input>
               <input
@@ -92,7 +92,7 @@ const ShoppingCart = () => {
                 type="password"
                 maxLength="4"
                 pattern="\d{4}"
-                autocomplete="off"
+                autoComplete="off"
                 required
               ></input>
               <input
@@ -100,12 +100,12 @@ const ShoppingCart = () => {
                 type="password"
                 maxLength="4"
                 pattern="\d{4}"
-                autocomplete="off"
+                autoComplete="off"
                 required
               ></input>
             </div>
             <div className="cc-info">
-              <div class="cc-time">
+              <div className="cc-time">
                 <label>有效日期:</label>
                 <input
                   type="text"
@@ -113,8 +113,8 @@ const ShoppingCart = () => {
                   placeholder="年份"
                   maxLength="4"
                   pattern="\d{4}"
-                  inputmode="numeric"
-                  autocomplete="off"
+                  inputMode="numeric"
+                  autoComplete="off"
                   required
                 />
                 <input
@@ -123,8 +123,8 @@ const ShoppingCart = () => {
                   placeholder="月份"
                   maxLength="2"
                   pattern="\d{2}"
-                  inputmode="numeric"
-                  autocomplete="off"
+                  inputMode="numeric"
+                  autoComplete="off"
                   required
                 />
 
@@ -139,8 +139,8 @@ const ShoppingCart = () => {
                 placeholder="請輸入"
                 maxLength="3"
                 pattern="\d{3}"
-                inputmode="numeric"
-                autocomplete="off"
+                inputMode="numeric"
+                autoComplete="off"
                 required
               ></input>
             </div>
