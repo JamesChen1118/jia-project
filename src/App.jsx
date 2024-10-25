@@ -5,7 +5,12 @@ import About from "@/pages/About";
 import Booking from "@/pages/Booking";
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <RouterProvider router={router}>
+      {" "}
+      <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    </RouterProvider>
+  );
 }
 
 export default App;

@@ -149,9 +149,6 @@ const Menu = ({ limit }) => {
             )}
           </div>
         ))}
-      </div>{" "}
-      <div className="bg-blue-500 text-white p-4 rounded-lg">
-        這是一個使用 Tailwind 樣式的 div
       </div>
     </div>
   );
