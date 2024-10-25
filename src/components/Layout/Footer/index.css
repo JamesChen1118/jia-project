@@ -17,3 +17,24 @@ footer {
     font-size: 2rem;
     color: rgb(255, 170, 13);
 }
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.icon-btn {
+    color: whitesmoke;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    color: rgb(255, 170, 13);
+    transform: scale(1.1);
+}

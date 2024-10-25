@@ -1,23 +1,29 @@
 import { Link } from "react-router-dom";
 import "./index.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <h2 className="footer-logo">J I A</h2>
       <p>&copy; JIA 2024 - Modern Creative Izakaya</p>
-      <div className="footer-media">
-        <Link to="#">
-          <i className="fa fa-facebook"></i>
+      <div className="social-icons">
+        <Link to="#" className="icon-btn">
+          <FontAwesomeIcon icon={faFacebookF} />
         </Link>
-        <Link to="#">
-          <i className="fa fa-instagram"></i>
+        <Link to="#" className="icon-btn">
+          <FontAwesomeIcon icon={faInstagram} />
         </Link>
-        <Link to="#">
-          <i className="fa fa-twitter"></i>
+        <Link to="#" className="icon-btn">
+          <FontAwesomeIcon icon={faTwitter} />
         </Link>
       </div>
-    </div>
+    </footer>
   );
 };
 

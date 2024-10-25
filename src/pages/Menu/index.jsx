@@ -95,7 +95,7 @@ const menuItems = [
   },
   {
     id: 14,
-    imageUrl: "https://picsum.photos/id/697/600/400",
+    imageUrl: "https://picsum.photos/id/677/600/400",
     title: "蒜香炒飯",
     description: "香噴噴的蒜香炒飯，每一粒米飯都充滿蒜香味。",
     price: "$40",
@@ -149,6 +149,9 @@ const Menu = ({ limit }) => {
             )}
           </div>
         ))}
+      </div>{" "}
+      <div className="bg-blue-500 text-white p-4 rounded-lg">
+        這是一個使用 Tailwind 樣式的 div
       </div>
     </div>
   );

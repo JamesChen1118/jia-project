@@ -1,7 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import "./index.css";
+import "@/components/Layout/Header/index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleUser,
+  faShoppingCart,
+  faLanguage,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -30,14 +35,15 @@ const Header = () => {
           </li>
         </ul>
         <div className="nav-btn">
-          <Link to="/login" className="icon-login" type="button">
-            <FontAwesomeIcon icon={faCircleUser} />
-          </Link>{" "}
-          <Link to="/shoppingcart" className="icon-login" type="button">
+          <Link to="/login" className="icon-btn" type="button">
             <FontAwesomeIcon icon={faCircleUser} />
           </Link>
-          <button className="icon-tran" type="button">
-            翻譯
+          <Link to="/shoppingCart" className="icon-btn" type="button">
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </Link>
+          <button className="icon-btn" type="button">
+            <FontAwesomeIcon icon={faLanguage} />
+            <span className="icon-text"></span>
           </button>
         </div>
       </nav>

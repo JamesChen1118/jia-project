@@ -11,29 +11,29 @@
     font-size: 64px;
     font-family: Verdana;
     font-weight: bolder;
-    letter-spacing: 5px;.booking-btn {
-        border: 3px solid #bbaf48;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 400px;
-        height: 400px;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
-            -5px -5px 10px rgba(255, 255, 255, 0.1);
-        background: linear-gradient(135deg, #e7dc74 0%, #a1973e 50%, #ccc375 100%);
-        background-clip: padding-box;
-        transition: background 0.8s, box-shadow 0.7s;
-        color: #31312f;
-        text-decoration: none;
-    }
-    
-    .booking-btn:hover {
-        color: aliceblue;
-        box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4),
-            -5px -5px 15px rgba(255, 255, 255, 0.2);
-        transition: background 0.8s ease, box-shadow 0.8s ease, transform 0.8s, coolor .8s ease;
-        transform: scale(1.1);
-    }
-    
+    letter-spacing: 5px;
+}
 
+.booking-btn {
+    border: 3px solid #bbaf48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+        -5px -5px 10px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #e7dc74 0%, #a1973e 50%, #ccc375 100%);
+    background-clip: padding-box;
+    transition: background 0.8s, box-shadow 0.7s;
+    color: #31312f;
+    text-decoration: none;
+}
 
+.booking-btn:hover {
+    color: aliceblue;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4),
+        -5px -5px 15px rgba(255, 255, 255, 0.2);
+    transition: background 0.8s ease, box-shadow 0.8s ease, transform 0.8s, coolor .8s ease;
+    transform: scale(1.1);
+}

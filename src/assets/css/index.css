@@ -1,4 +1,7 @@
 @import './reset.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     box-sizing: border-box;
@@ -9,10 +12,4 @@ body {
     background: rgb(52, 51, 51);
     background: radial-gradient(circle, rgba(52, 51, 51, 1) 4%, rgba(82, 80, 80, 1) 40%, rgba(56, 54, 54, 1) 74%);
     font-size: 16px;
-}
-
-html,
-body {
-    width: 100%;
-    width: 100%;
 }
