@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Menu from "../Menu"; // 導入 Menu 組件
+import Menu from "../Menu";
 import "./index.css";
+import NewsItem from "@/components/NewsItem";
 
 const Home = () => {
   return (
@@ -27,68 +28,7 @@ const Home = () => {
       </div>
 
       {/* <!-- ---------  News 最新消息區域 --------- --> */}
-      <div className="newsArea">
-        <div className="newsItem">
-          <div className="item">
-            <div className="Txt">
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-              <div className="top">
-                <div className="dateBox">
-                  <div className="date">Nov.15.2024</div>
-                </div>
-                <li className="title">11月活動限定，生啤買一送一 ~!!!</li>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NewsItem />
 
       {/* <!-- --------- Reservation 訂位區域 --------- --> */}
       <div className="index-booking">
@@ -97,7 +37,6 @@ const Home = () => {
       </div>
 
       {/* <!-- --------- Location 餐廳資訊區域 --------- --> */}
-      {/* //TODO Media icon  */}
       <div className="map">
         <div className="map-text">
           <p>地址: 台北市松山區民生東路五段163-1號</p>
@@ -109,7 +48,7 @@ const Home = () => {
           width="1100"
           height="450"
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
     </>
