@@ -12,6 +12,7 @@ import {
   Order,
   Reservation,
   ShoppingCart,
+  Member,
 } from "@/pages";
 
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/shoppingCart",
         element: <ShoppingCart />,
+      },
+      {
+        path: "/member",
+        element: <Member />,
       },
     ],
   },

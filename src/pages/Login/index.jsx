@@ -1,13 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 import "./index.css";
 import "../../components/Buttons/buttons.css";
-import axios from "axios";
+import { userApi } from "@/api/user";
+import { setToken, getToken } from "@/utils/auth";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleSwitch = (type) => {
     setIsLogin(type === "login");
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      message.warning("請輸入使用者名稱或密碼");
+      return;
+    }
+
+    userApi
+      .login(username, password)
+      .then(({ token }) => {
+        setToken(token);
+        navigate("/");
+        message.success("登入成功");
+      })
+      .catch((err) => {
+        message.error("使用者名稱或密碼錯誤");
+        console.error(err);
+      });
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    message.info("註冊功能尚未實現");
   };
 
   return (
@@ -35,18 +73,23 @@ const Login = () => {
           id="login"
           className="input-group"
           style={{ left: isLogin ? "110px" : "-530px" }}
+          onSubmit={handleLogin}
         >
           <input
             type="text"
             className="input-text"
             placeholder="請輸入帳號"
             required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             className="input-text"
             placeholder="請輸入密碼"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input type="checkbox" className="remember-box" />
           <span className="remember-text">記住帳號</span>
@@ -59,6 +102,7 @@ const Login = () => {
           id="register"
           className="input-group"
           style={{ left: isLogin ? "650px" : "120px" }}
+          onSubmit={handleRegister}
         >
           <input
             type="text"
