@@ -1,0 +1,93 @@
+.member-container {
+    width: 80%;
+    display: flex;
+    margin: 120px auto;
+    background-color: #292828;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.member-sidebar {
+    width: 20%;
+    padding: 30px;
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#member-title {
+    font-size: 30px;
+    font-weight: bolder;
+    color: rgb(255, 170, 13);
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #bbaf48;
+}
+
+.member-categories {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.member-option {
+    margin-top: 35px;
+    padding: 10px 20px;
+    background: rgb(255, 170, 13);
+    border-radius: 0.75rem;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.member-option:hover,
+.member-option.active {
+    background-color: #f0a500;
+    color: whitesmoke;
+    font-weight: 900;
+    transform: scale(1.05);
+}
+
+.member-content {
+    width: 80%;
+    padding: 30px;
+    color: white;
+}
+
+.member-content h3 {
+    color: rgb(255, 170, 13);
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(255, 170, 13);
+    padding-bottom: 10px;
+}
+
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.member-table th,
+.member-table td {
+    border: 1px solid rgba(255, 170, 13, 0.3);
+    padding: 12px;
+    text-align: left;
+}
+
+.member-table th {
+    background-color: rgba(255, 170, 13, 0.2);
+    color: rgb(255, 170, 13);
+    font-weight: bold;
+}
+
+.member-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.member-table tr:hover {
+    background-color: rgba(255, 170, 13, 0.1);
+}
