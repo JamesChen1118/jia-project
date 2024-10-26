@@ -5,19 +5,20 @@ import "./index.css";
 // TODO購物車畫面待設計
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "鮪魚壽司", price: 48, quantity: 1 },
-    { id: 2, name: "鮪魚壽司", price: 48, quantity: 1 },
-    { id: 3, name: "鮪魚壽司", price: 48, quantity: 1 },
+    { id: 1, name: "鮪魚壽司", price: 48, numbers: 1 },
+    { id: 2, name: "鮪魚壽司", price: 48, numbers: 1 },
+    { id: 3, name: "鮪魚壽司", price: 48, numbers: 1 },
   ]);
 
-  const updateQuantity = (id, change) => {
-    setCartItems(
-      cartItems.map((item) =>
+  const updateNumber = (id, change) => {
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.map((item) =>
         item.id === id
-          ? { ...item, quantity: Math.max(0, item.quantity + change) }
+          ? { ...item, numbers: Math.max(0, item.numbers + change) }
           : item
-      )
-    );
+      );
+      return updatedItems.filter((item) => item.numbers > 0);
+    });
   };
 
   const removeItem = (id) => {
@@ -25,7 +26,7 @@ const ShoppingCart = () => {
   };
 
   const totalAmount = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.price * item.numbers,
     0
   );
 
@@ -50,14 +51,14 @@ const ShoppingCart = () => {
                 <div className="cart-btn">
                   <button
                     className="btnMinus"
-                    onClick={() => updateQuantity(item.id, -1)}
+                    onClick={() => updateNumber(item.id, -1)}
                   >
                     -
                   </button>
-                  <label className="item-num">{item.quantity}</label>
+                  <label className="item-num">{item.numbers}</label>
                   <button
                     className="btnAdd"
-                    onClick={() => updateQuantity(item.id, 1)}
+                    onClick={() => updateNumber(item.id, 1)}
                   >
                     +
                   </button>
