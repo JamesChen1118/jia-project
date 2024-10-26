@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import "../../components/Buttons/buttons.css";
@@ -27,6 +27,9 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const btnRef = useRef(null);
+  const loginFormRef = useRef(null);
+  const registerFormRef = useRef(null);
 
   useEffect(() => {
     const token = getToken();
@@ -35,21 +38,38 @@ const Login = () => {
     }
   }, [navigate]);
 
-  const handleLogin = async (e) => {
+  useEffect(() => {
+    if (btnRef.current && loginFormRef.current && registerFormRef.current) {
+      if (isLoginForm) {
+        btnRef.current.style.left = "0";
+        loginFormRef.current.style.left = "110px";
+        registerFormRef.current.style.left = "650px";
+      } else {
+        btnRef.current.style.left = "150px";
+        loginFormRef.current.style.left = "-400px";
+        registerFormRef.current.style.left = "110px";
+      }
+    }
+  }, [isLoginForm]);
+
+  const handleLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {
       message.warning("請輸入使用者名稱或密碼");
       return;
     }
-    try {
-      const { token } = await userApi.login(username, password);
-      setToken(token);
-      navigate("/");
-      message.success("登入成功");
-    } catch (err) {
-      message.error("使用者名稱或密碼錯誤");
-      console.error(err);
-    }
+
+    userApi
+      .login(username, password)
+      .then(({ token }) => {
+        setToken(token);
+        message.success("歡迎回JIA~~~");
+        navigate("/");
+      })
+      .catch((err) => {
+        message.error("使用者名稱或密碼錯誤");
+        console.error(err);
+      });
   };
 
   const handleRegister = (e) => {
@@ -62,7 +82,7 @@ const Login = () => {
     <div className="container">
       <div className="form-container">
         <div className="button-group">
-          <div id="login-btn"></div>
+          <div id="btn" ref={btnRef}></div>
           <button
             type="button"
             className="switch-btn"
@@ -79,68 +99,75 @@ const Login = () => {
           </button>
         </div>
 
-        {isLoginForm ? (
-          <form onSubmit={handleLogin} id="login" className="input-group">
-            <input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              type="text"
-              className="input-text"
-              placeholder="請輸入帳號"
-            />
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              className="input-text"
-              placeholder="請輸入密碼"
-            />
-            <div className="remember-box">
-              <input type="checkbox" className="remember-checkbox" />
-              <span className="remember-text">記住帳號</span>
-            </div>
+        <form
+          onSubmit={handleLogin}
+          id="login"
+          className="input-group"
+          ref={loginFormRef}
+        >
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            className="input-text"
+            placeholder="請輸入帳號"
+          />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="input-text"
+            placeholder="請輸入密碼"
+          />
+          <div className="remember-box">
+            <input type="checkbox" className="remember-checkbox" />
+            <span className="remember-text">記住帳號</span>
+          </div>
+          <button type="submit" className="submit-btn">
+            登入
+          </button>
+        </form>
 
-            <button type="submit" className="submit-btn">
-              登入
-            </button>
-          </form>
-        ) : (
-          <form onSubmit={handleRegister} id="register" className="input-group">
-            <input
-              type="text"
-              className="input-text"
-              placeholder="請填寫帳號"
-              required
-            />
-            <input
-              type="number"
-              className="input-text"
-              placeholder="請填寫手機號碼"
-              required
-            />
-            <input
-              type="email"
-              className="input-text"
-              placeholder="請填寫信箱"
-              required
-            />
-            <input
-              type="password"
-              className="input-text"
-              placeholder="請填寫密碼"
-              required
-            />
-            <input
-              type="password"
-              className="input-text"
-              placeholder="再次輸入密碼"
-              required
-            />
-            <button type="submit" className="submit-btn">
-              註冊
-            </button>
-          </form>
-        )}
+        <form
+          onSubmit={handleRegister}
+          id="register"
+          className="input-group"
+          ref={registerFormRef}
+        >
+          <input
+            type="text"
+            className="input-text"
+            placeholder="請填寫帳號"
+            required
+          />
+          <input
+            type="number"
+            className="input-text"
+            placeholder="請填寫手機號碼"
+            required
+          />
+          <input
+            type="email"
+            className="input-text"
+            placeholder="請填寫信箱"
+            required
+          />
+          <input
+            type="password"
+            className="input-text"
+            placeholder="請填寫密碼"
+            required
+          />
+          <input
+            type="password"
+            className="input-text"
+            placeholder="再次輸入密碼"
+            required
+          />
+          <button type="submit" className="submit-btn">
+            註冊
+          </button>
+        </form>
       </div>
     </div>
   );

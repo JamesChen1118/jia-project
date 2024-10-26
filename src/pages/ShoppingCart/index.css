@@ -113,13 +113,20 @@
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
     background-color: rgb(226, 99, 99);
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
 }
 
 .btnDel:hover {
     background-color: rgb(227, 62, 62);
-    color: rgb(253, 244, 244)
+    color: rgb(253, 244, 244);
 }
 
 .item-num {
