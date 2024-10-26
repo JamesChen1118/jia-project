@@ -9,6 +9,7 @@ import NotFound from "@/pages/NotFound";
 import Order from "@/pages/Order";
 import Reservation from "@/pages/Reservation";
 import ShoppingCart from "@/pages/ShoppingCart";
+import Member from "@/pages/Member";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   Order,
   Reservation,
   ShoppingCart,
+  Member,
 };
