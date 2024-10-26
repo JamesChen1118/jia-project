@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Menu from "../Menu";
 import "./index.css";
 import NewsItem from "@/components/NewsItem";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* About 餐廳簡介區域 */}
@@ -16,9 +18,12 @@ const Home = () => {
             <br />
             officiis recusandae reprehenderit dolore laudantium libero dolorem.
             <br />
-            <Link to="/About" className="text-[#ed6934] no-underline">
+            <span
+              onClick={() => navigate("/About")}
+              className="text-[#ed6934] no-underline cursor-pointer"
+            >
               more
-            </Link>
+            </span>
           </p>
           <img
             src="/src/assets/images/home/Izakaya-1.png"
@@ -38,12 +43,12 @@ const Home = () => {
 
       {/* Reservation 訂位區域 */}
       <div className="index-booking">
-        <Link
-          to="/Booking"
+        <button
+          onClick={() => navigate("/Booking")}
           className="absolute z-10 text-center py-2.5 px-5 bg-[#ffaa0d] rounded-xl font-medium text-black transition-all duration-700 hover:text-white hover:font-black hover:tracking-wider hover:py-3.5 hover:px-6"
         >
           歡迎回J I A
-        </Link>
+        </button>
         <img
           src="/src/assets/images/home/Izakaya-2.jpg"
           alt=""

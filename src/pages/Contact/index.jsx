@@ -1,54 +1,10 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
-import Select from "react-select";
-
-const options = [
-  { value: "booking", label: "訂位詢問" },
-  { value: "feedback", label: "服務意見" },
-  { value: "collaboration", label: "活動合作" },
-  { value: "receipt", label: "收據相關" },
-  { value: "private-event", label: "包場需求" },
-  { value: "customized", label: "客製洽談" },
-  { value: "other", label: "其他" },
-];
-
-const customSelectStyles = {
-  control: (provided) => ({
-    ...provided,
-    borderRadius: "15px 0 15px 0",
-    border: "1px solid rgb(255, 170, 13)",
-    backgroundColor: "transparent",
-    color: "rgb(255, 170, 13)",
-    textAlign: "center",
-    "&:hover": {
-      border: "1px solid rgb(255, 170, 13)",
-    },
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    color: "rgb(255, 170, 13)",
-    textAlign: "center",
-  }),
-  placeholder: (provided) => ({
-    ...provided,
-    color: "rgb(255, 120, 0)",
-  }),
-  menu: (provided) => ({
-    ...provided,
-    borderRadius: "15px 0 15px 0",
-    border: "1px solid rgb(255, 170, 13)",
-    backgroundColor: "rgba(255, 255, 255, 0.9)", // 添加背景顏色
-  }),
-  option: (provided, { isFocused }) => ({
-    ...provided,
-    backgroundColor: isFocused
-      ? "rgba(255, 170, 13, 0.5)"
-      : "rgba(255, 255, 255)",
-    color: "black",
-  }),
-};
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="contact-form">
@@ -62,15 +18,7 @@ const Contact = () => {
             required
           />
 
-          <div className="contact-row">
-            <input className="contact-subject" placeholder="請填寫信件主旨" />
-            <Select
-              options={options}
-              placeholder="請選擇類型"
-              className="contact-select"
-              styles={customSelectStyles}
-            />
-          </div>
+          <input className="contact-subject" placeholder="請填寫信件主旨" />
 
           <textarea
             className="contact-content"
@@ -79,7 +27,9 @@ const Contact = () => {
             placeholder="請填寫內容"
             required
           ></textarea>
-          <button className="contact-btn">送出</button>
+          <button className="contact-btn" onClick={() => navigate("/Booking")}>
+            送出
+          </button>
         </div>
         <div className="contact-right">
           <img src="https://picsum.photos/id/684/600/400" alt="" />

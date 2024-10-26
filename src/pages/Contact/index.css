@@ -59,17 +59,10 @@
     border-bottom: 7px double rgb(255, 120, 0);
 }
 
-.contact-row {
-    display: flex;
-    justify-content: space-evenly;
-    width: 80%;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
 .contact-name,
 .contact-phone,
 .contact-email,
+.contact-subject,
 .contact-content {
     font-size: 18px;
     margin-bottom: 20px;
@@ -80,31 +73,18 @@
     border-radius: 15px 0 15px 0;
     border: 1px solid rgb(255, 170, 13);
     outline: none;
-    font-size: 18px;
     color: rgb(255, 170, 13);
     letter-spacing: 5px;
 }
 
-
-.contact-subject,
-.contact-select {
-    font-size: 18px;
-    width: 50%;
-    text-align: center;
-    background-color: transparent;
-    border-radius: 15px 0 15px 0;
-    border: 1px solid rgb(255, 170, 13);
-    outline: none;
-    font-size: 18px;
-    color: rgb(255, 170, 13);
+.contact-content {
+    resize: vertical;
 }
 
-
-.contact-left .contact-row .contact-select::placeholder,
-.contact-left .contact-row .contact-subject::placeholder,
 .contact-left .contact-name::placeholder,
 .contact-left .contact-phone::placeholder,
 .contact-left .contact-email::placeholder,
+.contact-left .contact-subject::placeholder,
 .contact-left .contact-content::placeholder {
     color: rgb(255, 120, 0);
 }
