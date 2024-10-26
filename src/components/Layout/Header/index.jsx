@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleUser,
   faShoppingCart,
-  faLanguage,
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -78,7 +78,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
           <button className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer">
-            <FontAwesomeIcon icon={faLanguage} />
+            <FontAwesomeIcon icon={faGlobe} />
             <span className="icon-text"></span>
           </button>
         </div>

@@ -1,8 +1,34 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
 
 // TODO購物車畫面待設計
 const ShoppingCart = () => {
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "鮪魚壽司", price: 48, quantity: 1 },
+    { id: 2, name: "鮪魚壽司", price: 48, quantity: 1 },
+    { id: 3, name: "鮪魚壽司", price: 48, quantity: 1 },
+  ]);
+
+  const updateQuantity = (id, change) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(0, item.quantity + change) }
+          : item
+      )
+    );
+  };
+
+  const removeItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
     <>
       <div className="checkoutList">
@@ -16,53 +42,38 @@ const ShoppingCart = () => {
           <hr className="line" />
 
           <div className="cart-list">
-            <div className="cart-item">
-              <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div className="item-name">鮪魚壽司</div>
-              <div className="item-price">$ 48</div>
-              <div className="cart-btn">
-                <button className="btnMinus">-</button>
-                <label className="item-num" type="number">
-                  0
-                </label>
-                <button className="btnAdd">+</button>
-                <button className="btnDel">x</button>
+            {cartItems.map((item) => (
+              <div key={item.id} className="cart-item">
+                <img src="https://picsum.photos/id/684/600/400" alt="" />
+                <div className="item-name">{item.name}</div>
+                <div className="item-price">$ {item.price}</div>
+                <div className="cart-btn">
+                  <button
+                    className="btnMinus"
+                    onClick={() => updateQuantity(item.id, -1)}
+                  >
+                    -
+                  </button>
+                  <label className="item-num">{item.quantity}</label>
+                  <button
+                    className="btnAdd"
+                    onClick={() => updateQuantity(item.id, 1)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btnDel"
+                    onClick={() => removeItem(item.id)}
+                  >
+                    x
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="cart-item">
-              <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div className="item-name">鮪魚壽司</div>
-              <div className="item-price">$ 48</div>
-              <div className="cart-btn">
-                <button className="btnMinus">-</button>
-                <label className="item-num" type="number">
-                  0
-                </label>
-                <button className="btnAdd">+</button>
-                <button className="btnDel">x</button>
-              </div>
-            </div>
-            <div className="cart-item">
-              <img src="https://picsum.photos/id/684/600/400" alt="" />
-              <div className="item-name">鮪魚壽司</div>
-              <div className="item-price">$ 48</div>
-              <div className="cart-btn">
-                <button className="btnMinus">-</button>
-                <label className="item-num" type="number">
-                  0
-                </label>
-                <button className="btnAdd">+</button>
-                <button className="btnDel">x</button>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="total-box">
-            <label htmlFor="" className="total-text">
-              總金額 :
-            </label>
-            <label type="number" className="total-price">
-              $0
-            </label>
+            <label className="total-text">總金額 :</label>
+            <label className="total-price">$ {totalAmount}</label>
           </div>
         </div>
         <div className="checkoutBox">
