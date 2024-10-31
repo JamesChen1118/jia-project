@@ -13,11 +13,28 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { message } from "antd";
 import { getToken, removeToken } from "@/utils/auth";
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
+import { useUserStore } from "@/store/lang.js";
+
+const languageList = {
+  zh: "zh_TW",
+  en: "en_US",
+};
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { language, setLanguage } = useUserStore();
+
+  const changeLanguage = () => {
+    const newLang =
+      language === languageList.zh ? languageList.en : languageList.zh;
+    i18n.changeLanguage(newLang);
+    setLanguage(newLang);
+  };
 
   useEffect(() => {
     const token = getToken();
@@ -57,7 +74,7 @@ const Header = () => {
               onClick={() => navigate("/about")}
               className="text-white hover:text-main-color-yellow no-underline"
             >
-              關於JIA
+              {t("About")}
             </button>
           </li>
           <li className="nav-item px-10 text-xl">
@@ -65,7 +82,7 @@ const Header = () => {
               onClick={() => navigate("/news")}
               className="text-white hover:text-main-color-yellow no-underline"
             >
-              最新消息
+              {t("News")}
             </button>
           </li>
           <li className="nav-item px-10 text-xl">
@@ -74,7 +91,7 @@ const Header = () => {
               id="bookingBtn"
               className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black"
             >
-              我要預訂
+              {t("Booking")}
             </Link>
           </li>
           <li className="nav-item px-10 text-xl">
@@ -82,7 +99,7 @@ const Header = () => {
               onClick={() => navigate("/menu")}
               className="text-white hover:text-main-color-yellow no-underline"
             >
-              菜單底JIA
+              {t("Menu")}
             </button>
           </li>
           <li className="nav-item px-10 text-xl">
@@ -90,7 +107,7 @@ const Header = () => {
               onClick={() => navigate("/contact")}
               className="text-white hover:text-main-color-yellow no-underline"
             >
-              來信我JIA
+              {t("Contact")}
             </button>
           </li>
         </ul>
@@ -115,13 +132,13 @@ const Header = () => {
                         className={dropdownItem}
                       >
                         <FontAwesomeIcon icon={faUser} className="mr-2" />
-                        會員中心
+                        {t("Member")}
                       </button>
                     </li>
                     <li>
                       <button onClick={handleLogout} className={dropdownItem}>
                         <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-                        登出
+                        {t("Logout")}
                       </button>
                     </li>
                   </>
@@ -135,7 +152,7 @@ const Header = () => {
                       className={dropdownItem}
                     >
                       <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
-                      登入
+                      {t("Login")}
                     </button>
                   </li>
                 )}
@@ -148,9 +165,13 @@ const Header = () => {
           >
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
-          <button className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer">
+          <button
+            onClick={changeLanguage}
+            className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+          >
             <FontAwesomeIcon icon={faGlobe} />
             <span className="icon-text"></span>
+            {language === languageList.zh ? "En" : "繁中"}
           </button>
         </div>
       </nav>

@@ -13,6 +13,10 @@ const resources = {
         translation: zh_TW,
     },
 };
+
+
+const userState = localStorage.getItem('lang')
+
 i18n.use(initReactI18next).init({
     resources,
     fallbackLng: 'en_US',
