@@ -1,9 +1,9 @@
 import { initReactI18next } from 'react-i18next';
-
-import en_US from './locales/en_US.json';
-import zh_TW from './locales/zh_TW.json';
-
 import i18n from 'i18next';
+
+import en_US from './lang/en_US.json';
+import zh_TW from './lang/zh_TW.json';
+
 
 const resources = {
     en_US: {

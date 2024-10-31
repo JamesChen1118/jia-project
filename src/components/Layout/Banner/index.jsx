@@ -5,7 +5,7 @@ const Banner = () => {
     <div className="banner">
       <div className="banner-title">
         <h3>JIA</h3>
-        <p>Modern Creative Izakaya</p>
+        <p>現代創作居酒屋</p>
       </div>
       <img src="/src/assets/images/home/banner-1.png" alt="" />
     </div>

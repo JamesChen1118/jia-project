@@ -90,7 +90,7 @@ const Header = () => {
               onClick={() => navigate("/contact")}
               className="text-white hover:text-main-color-yellow no-underline"
             >
-              聯繫我JIA
+              來信我JIA
             </button>
           </li>
         </ul>
