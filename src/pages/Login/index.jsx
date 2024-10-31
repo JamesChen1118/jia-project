@@ -6,22 +6,6 @@ import { userApi } from "@/api/user.js";
 import { setToken, getToken } from "@/utils/auth.js";
 import "./index.css";
 
-// api => 網址: HTTP協議+域名+路徑+PORT+查詢字串
-// api => 協議+請求域名(資料庫)+路徑(拿什麼)+請求方法+(請求體)
-
-// JWT => 登入狀況 => 登入核心: 是否有 token
-// 表單驗證 => 前端帳密給後端 => 後端到資料庫確認身份 => token傳給前端
-// 前端將token存在本地(localStorage, cookie)
-// zustand
-
-// zustand
-// 翻譯
-// express + 不會開資料庫 => 開server串好 獲取產品的 api
-// 外帶: 分類 加入產品 移除產品 購物車(總金額、付款方式) 信用卡
-// 內用: 訂位資訊 選訂位 + 資料庫
-
-// 查詢外帶訂單(待做)
-
 const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [username, setUsername] = useState("");

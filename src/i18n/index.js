@@ -20,7 +20,7 @@ const userState = localStorage.getItem('lang')
 i18n.use(initReactI18next).init({
     resources,
     fallbackLng: 'en_US',
-    lng: 'zh_TW',
+    lng: userState ? JSON.parse(userState).state.language : 'zh_TW',
     interpolation: {
         escapeValue: false,
     },
