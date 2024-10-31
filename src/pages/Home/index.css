@@ -424,12 +424,14 @@
 }
 
 .map iframe {
-    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.75);
     width: 700px;
+    outline: none;
+    box-shadow: 3px 3px 15px #000000;
+    transition: 0.5s all ease-in-out;
 }
 
 .map iframe:hover {
-    box-shadow: 10px 15px 30px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 15px #e69539;
 }
 
 

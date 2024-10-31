@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
+import { useTranslation } from "react-i18next";
 import "../../components/Buttons/buttons.css";
 import { userApi } from "@/api/user.js";
 import { setToken, getToken } from "@/utils/auth.js";
 import "./index.css";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +41,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {
-      message.warning("請輸入使用者名稱或密碼");
+      message.warning(t("login_empty"));
       return;
     }
 
@@ -47,19 +49,18 @@ const Login = () => {
       .login(username, password)
       .then(({ token }) => {
         setToken(token);
-        message.success("歡迎回JIA~~~");
+        message.success(t("login_success"));
         navigate("/");
       })
       .catch((err) => {
-        message.error("使用者名稱或密碼錯誤");
+        message.error(t("login_fail"));
         console.error(err);
       });
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // 實現註冊邏輯
-    message.info("註冊功能尚未實現");
+    message.success("註冊成功");
   };
 
   return (

@@ -1,10 +1,13 @@
 {
   "About": "About",
-  "最新消息": "News",
-  "我要預訂": "Booking",
-  "菜單底JIA": "Menu",
-  "來信我JIA": "Contact",
-  "現代 ": "Modern ",
-  "創作 ": "Creative ",
-  "居酒屋": "Izakaya"
+  "News": "News",
+  "Booking": "Booking",
+  "Menu": "Menu",
+  "Contact": "Contact",
+  "Modern ": "Modern ",
+  "Creative ": "Creative ",
+  "Izakaya": "Izakaya",
+  "login_empty": "Login failed, please check your input",
+  "login_success": "Welcome back to JIA ~~~",
+  "login_fail": "Invalid username or password"
 }

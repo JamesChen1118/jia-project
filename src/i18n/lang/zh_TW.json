@@ -6,5 +6,8 @@
   "Contact": "來信我JIA",
   "Modern ": "現代",
   "Creative ": "創作",
-  "Izakaya": "居酒屋"
+  "Izakaya": "居酒屋",
+  "login_empty": "請輸入使用者名稱&密碼",
+  "login_success": "歡迎回JIA~~~",
+  "login_fail": "使用者名稱或密碼錯誤"
 }

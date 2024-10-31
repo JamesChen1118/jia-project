@@ -11,10 +11,8 @@ const Layout = () => {
       <Banner />
       <main className="main" />
       <Outlet />
-      {/* </main> */}
       <Footer />
     </div>
-      
   );
 };
 
