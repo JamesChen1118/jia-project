@@ -55,7 +55,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0, display: "inline-block" }}
               transition={{
                 duration: 0.5,
-                delay: 2,
+                delay: 2.5,
                 ease: "easeInOut",
               }}
               whileHover={{ scale: 1.05 }}
@@ -71,22 +71,22 @@ const Home = () => {
             className="w-[400px] h-[500px] object-cover"
             initial={{
               opacity: 0,
-              x: -150, // 從左側開始
-              scale: 0.8, // 稍微縮小
+              x: -180,
+              scale: 0.7,
             }}
             whileInView={{
               opacity: 1,
-              x: 0, // 滑到原位
-              scale: 1, // 恢復原始大小
+              x: 0,
+              scale: 1,
             }}
             transition={{
-              duration: 1,
-              ease: [0.6, 0.01, -0.05, 0.95], // 自定義緩動函數
-              opacity: { duration: 1.5 }, // 透明度動畫時間
+              duration: 1.5,
+              ease: [0.6, 0.01, -0.05, 0.95],
+              opacity: { duration: 1.5 },
               x: {
                 type: "spring",
-                damping: 20, // 彈簧阻尼
-                stiffness: 100, // 彈簧剛度
+                damping: 20,
+                stiffness: 50,
               },
             }}
             viewport={{ once: false, amount: 0.5 }}
@@ -155,15 +155,51 @@ const Home = () => {
           className="w-[550px] leading-[3] text-main-color-yellow tracking-[5px] 
                       font-georgia text-2xl mx-[75px] my-[50px] text-center"
         >
-          <p className="border-b border-dotted border-main-color-yellow">
+          <motion.p
+            className="border-b border-dotted border-main-color-yellow"
+            initial={{
+              opacity: 0,
+              y: 50, // 從下方 50px 的位置開始
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0, // 移動到原始位置
+            }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 0, // 第一個元素沒有延遲
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          >
             地址: 台北市松山區民生東路五段163-1號
-          </p>
-          <p className="border-b border-dotted border-main-color-yellow">
+          </motion.p>
+          <motion.p
+            className="border-b border-dotted border-main-color-yellow"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 0.2, // 第二個元素延遲 0.2 秒
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          >
             電話: (02)2388-8888
-          </p>
-          <p className="border-b border-dotted border-main-color-yellow">
+          </motion.p>
+          <motion.p
+            className="border-b border-dotted border-main-color-yellow"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 0.4, // 第三個元素延遲 0.4 秒
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          >
             Email: contact@jiaizakaya.com
-          </p>
+          </motion.p>
         </div>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28914.047024814867!2d121.52479947431641!3d25.059315120000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab8d9d238e55%3A0x3c19f236bf0fecac!2z5Y-w5YyX5biC5rCR55Sf56S-5Y2A5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1726976862072!5m2!1szh-TW!2stw"
