@@ -6,11 +6,11 @@ const Banner = () => {
   const { t } = useTranslation();
   return (
     <div className="relative">
-      <div className="absolute top-[350px] left-1/2 -translate-x-1/2 z-2">
-        <h3 className="relative text-main-color-yellow font-georgia text-8xl font-bold italic text-center tracking-[2.5rem]">
+      <div className="absolute top-[350px] left-1/2 -translate-x-1/2 z-10">
+        <h3 className="relative text-main-color-yellow font-georgia text-8xl font-bold italic text-center tracking-[40px]">
           JIA
         </h3>
-        <p className="text-[rgb(237,105,52)] text-4xl italic text-center mt-20 tracking-[5px] word-spacing-[1.8rem]">
+        <p className="text-main-color-orange text-4xl italic text-center mt-20 tracking-[5px] space-x-[28px]">
           {language === "zh_TW" ? "現代 " : t("Modern ")}
           {language === "zh_TW" ? "創作 " : t("Creative ")}
           {language === "zh_TW" ? "居酒屋" : t("Izakaya")}
