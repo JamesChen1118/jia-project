@@ -1,6 +1,8 @@
 import "@/components/Buttons/buttons.css";
 import "./index.css";
+import { productsApi } from "@/api/product.js";
 import ProductCard from "@/components/ProductItem";
+import { useEffect, useState } from "react";
 
 // TODO: 之後接後端傳的商品
 const categories = [
@@ -84,7 +86,19 @@ const foods = [
   },
 ];
 
+const products = await productsApi();
+
 const Order = () => {
+  const getCategories = async () => {
+    const data = await productApi.getCategories();
+    setCategories(data);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    filterProducts("全部");
+    getCategories();
+  }, []);
   return (
     <div className="main">
       <div className="sidebar">
