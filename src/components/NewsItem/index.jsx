@@ -19,22 +19,21 @@ const NewsItem = ({ itemNumber }) => {
     : newsItems;
 
   return (
-    <div className="max-w-4xl mx-auto px-4">
-      <div className="bg-transparent-light rounded-lg p-8 shadow-custom">
+    <div className="w-1/2 mx-auto border-3 border-news-border cursor-pointer">
+      <div className="bg-transparent-light p-8 rounded-lg">
         <div className="space-y-4">
           {displayedItems.map((item, index) => (
             <div
               key={index}
-              className="flex items-center gap-8 p-4 border-b border-news-border hover:bg-news-hover transition-all duration-300 cursor-pointer"
+              className="relative flex items-center p-5 border-b border-dotted border-news-border group hover:bg-news-hover transition-all duration-300"
             >
-              <div className="w-48 shrink-0">
-                <div className="font-crimson text-main-color-yellow text-lg">
-                  {item.date}
-                </div>
+              <div className="w-[120px] font-crimson text-news-text-gray text-sm tracking-letterSpacing-1 uppercase">
+                {item.date}
               </div>
-              <div className="flex-1 text-main-text-white text-lg list-none hover:text-main-color-yellow transition-colors duration-300">
+              <div className="flex-1 pl-4 pr-6 text-main-text-white text-sm font-light leading-relaxed tracking-wider list-none group-hover:text-main-color-yellow">
                 {item.title}
               </div>
+              <div className="absolute right-[50px] top-[40%] w-[10px] h-[10px] border-r-2 border-b-2 border-main-color-yellow rotate-[-45deg]"></div>
             </div>
           ))}
         </div>
