@@ -1,11 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/lang.js";
 
-const Banner = () => {
+const Banner = ({
+  backgroundImage = "/src/assets/images/home/banner-1.png",
+}) => {
   const { language } = useUserStore();
   const { t } = useTranslation();
   return (
-    <div className="relative">
+    <div className="relative mt-24 mb-[150px] lg:mb-[100px] md:mb-[75px] sm:mb-[50px]">
+      {" "}
       <div className="absolute top-[350px] left-1/2 -translate-x-1/2 z-10">
         <h3 className="relative text-main-color-yellow font-georgia text-8xl font-bold italic text-center tracking-letterSpacing-40">
           JIA
@@ -17,7 +20,7 @@ const Banner = () => {
         </p>
       </div>
       <img
-        src="/src/assets/images/home/banner-1.png"
+        src={backgroundImage}
         alt=""
         className="w-full h-[80vh] opacity-40 object-cover"
       />

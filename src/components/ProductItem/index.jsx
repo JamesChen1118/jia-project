@@ -2,7 +2,7 @@ const ProductItem = ({ image, category, name, price }) => {
   return (
     <div className="bg-[rgb(120,117,117)] rounded-[10px] overflow-hidden shadow-[0_0_5px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_10px_rgba(0,0,0,0.1)]">
       <div>
-        <img src={image} alt="" className="w-full h-auto" />
+        <img src={image} alt={name} className="w-full h-[250px] object-cover" />
         <div className="p-5">
           <h3 className="block text-xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5">
             {category}
