@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -18,11 +20,39 @@ export default {
         'main-text-white': 'whitesmoke',
         'news-border': '#b89881',
         'news-text-gray': '#9a9a9a',
+        'cart-orange': 'rgb(255, 147, 59)',
+        'cart-orange-hover': 'rgb(255, 190, 77)',
+        'cart-bg': '#b6acace1',
+        'cart-text': 'rgb(245, 222, 180)',
+        'cart-delete': 'rgb(226, 99, 99)',
+        'cart-delete-hover': 'rgb(227, 62, 62)',
+        'cart-count': '#0736b8',
       },
       backgroundColor: {
         'transparent-dark': 'rgba(26, 26, 26, 0.7)',
         'transparent-light': 'rgba(255, 255, 255, 0.2)',
         'news-hover': '#e9ba985d',
+        'login-bg': 'rgba(41,40,40,0.7)',
+        'btn-bg': 'rgba(161,167,142,0.2)',
+        'input-bg': 'rgba(255,255,255,0.2)',
+        'product-bg': 'rgb(120,117,117)',
+        'button-bg': 'rgb(245,222,180)',
+        'button-hover': 'rgba(255,170,13,0.8)',
+        'checkout-bg': 'rgba(255, 255, 255, .3)',
+        'member-bg': '#292828',
+        'member-hover': 'rgba(255, 170, 13, 0.1)',
+        'member-even': 'rgba(255, 255, 255, 0.05)',
+        'member-header': 'rgba(255, 170, 13, 0.2)',
+      },
+      textColor: {
+        'product-category': 'rgb(240,201,130)',
+        'product-count': '#3e0de0',
+      },
+      borderColor: {
+        'product-input': 'rgba(255,170,13,0.5)',
+        'category-border': '#bbaf48',
+        'cart-border': 'rgba(255, 255, 255, .2)',
+        'member-border': 'rgba(255, 170, 13, 0.3)',
       },
       transitionDelay: {
         '1000': '1000ms',
@@ -36,6 +66,11 @@ export default {
       boxShadow: {
         'custom': '0 4px 15px rgba(0, 0, 0, 0.5)',
         'custom-hover': '2px 2px 15px rgb(230, 149, 57)',
+        'login': '0 4px 15px rgba(0,0,0,0.5)',
+        'btn': '0 0 25px 5px #0000003b',
+        'btn-hover': '2px 1px 5px rgba(255,255,255,0.3)',
+        'input': '-1px -1px 5px rgba(255,255,255,0.9)',
+        'input-focus': '-1px -1px 5px rgba(255,69,0,0.5)',
       },
       letterSpacing: {
         'letterSpacing-1': '1px',
@@ -43,6 +78,8 @@ export default {
         'letterSpacing-5': '5px',
         'letterSpacing-40': '40px',
         'letterSpacing-48': '48px',
+        'cart': '2px',
+        'cart-total': '15px',
       },
       minHeight: {
         '30vh': '30vh',
@@ -64,7 +101,50 @@ export default {
       backgroundPosition: {
         '40': '40%',
       },
+      blur: {
+        'xs': '0.5px',
+      },
+      backdropBlur: {
+        '10': '10px',
+      },
+      backgroundImage: {
+        'menu-gradient': 'linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.7))',
+      },
+      transitionTimingFunction: {
+        'custom-bezier': 'cubic-bezier(0.1, 0.7, 0, 1)',
+      },
+      perspective: {
+        '960': '960px',
+      },
+      rotate: {
+        '35': '35deg',
+        '40': '40deg',
+        '25': '25deg',
+      },
+      translate: {
+        '278': '278px',
+        '236': '236.32px',
+        '155': '155.68px',
+        '66': '66.72px',
+        '17': '17.6px',
+      },
+      textShadow: {
+        'cart': '1px 1px 3px #726e6e',
+        'cart-item': '1px 1px 5px #403f3f',
+        'member': '2px 2px 5px #646464',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 }

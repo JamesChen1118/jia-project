@@ -43,7 +43,7 @@ const Header = () => {
     removeToken();
     setIsLoggedIn(false);
     setShowDropdown(false);
-    message.success("您已登出，歡迎下次光臨!");
+    message.success("登出成功，歡迎下次光臨!");
     navigate("/login");
   };
 
@@ -81,13 +81,12 @@ const Header = () => {
             </button>
           </li>
           <li className="px-10 text-xl">
-            <Link
-              to="/booking"
-              id="bookingBtn"
-              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-[3px] hover:scale-110 hover:px-[30px] hover:py-[10px]"
+            <button
+              onClick={() => navigate("/booking")}
+              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110 hover:px-[30px] hover:py-[10px]"
             >
               {t("Booking")}
-            </Link>
+            </button>
           </li>
           <li className="px-10 text-xl">
             <button

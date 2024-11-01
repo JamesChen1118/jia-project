@@ -1,11 +1,12 @@
 import React from "react";
-import NewsItem from "../../components/NewsItem";
-import "./index.css";
+import NewsItem from "@/components/NewsItem";
 
 const News = () => {
   return (
-    <div className="newsPage">
-      <h1 className="newsTitle">最新消息</h1>
+    <div className="w-full min-h-60vh px-4 py-8">
+      <h1 className="text-4xl font-bold text-center text-main-color-orange mb-8">
+        最新消息
+      </h1>
       <NewsItem />
     </div>
   );
