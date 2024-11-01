@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "@/components/Layout/Header/index.css";
-import "@/components/Buttons/buttons.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleUser,
@@ -54,13 +52,10 @@ const Header = () => {
     window.scrollTo(0, 0);
   };
 
-  const dropdownItem =
-    "block px-4 py-2 text-base text-white hover:text-main-color-yellow hover:underline hover:decoration-main-color-yellow cursor-pointer w-full text-left transition-all duration-500 ease-in-out";
-
   return (
-    <div className="header fixed top-0 left-0 w-full z-10">
+    <div className="fixed top-0 left-0 w-full z-10 transition-opacity duration-500 ease-in-out">
       <nav className="px-5 w-full h-24 flex justify-between items-center bg-[rgba(26,26,26,0.7)]">
-        <h2 className="logo pl-[60px]">
+        <h2 className="pl-[60px]">
           <button
             onClick={handleLogoClick}
             className="text-main-color-yellow no-underline font-sans font-bold text-2xl"
@@ -68,8 +63,8 @@ const Header = () => {
             J I A
           </button>
         </h2>
-        <ul className="nav-list flex">
-          <li className="nav-item px-10 text-xl">
+        <ul className="flex">
+          <li className="px-10 text-xl">
             <button
               onClick={() => navigate("/about")}
               className="text-white hover:text-main-color-yellow no-underline"
@@ -77,7 +72,7 @@ const Header = () => {
               {t("About")}
             </button>
           </li>
-          <li className="nav-item px-10 text-xl">
+          <li className="px-10 text-xl">
             <button
               onClick={() => navigate("/news")}
               className="text-white hover:text-main-color-yellow no-underline"
@@ -85,16 +80,16 @@ const Header = () => {
               {t("News")}
             </button>
           </li>
-          <li className="nav-item px-10 text-xl">
+          <li className="px-10 text-xl">
             <Link
               to="/booking"
               id="bookingBtn"
-              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black"
+              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-[3px] hover:scale-110 hover:px-[30px] hover:py-[10px]"
             >
               {t("Booking")}
             </Link>
           </li>
-          <li className="nav-item px-10 text-xl">
+          <li className="px-10 text-xl">
             <button
               onClick={() => navigate("/menu")}
               className="text-white hover:text-main-color-yellow no-underline"
@@ -102,7 +97,7 @@ const Header = () => {
               {t("Menu")}
             </button>
           </li>
-          <li className="nav-item px-10 text-xl">
+          <li className="px-10 text-xl">
             <button
               onClick={() => navigate("/contact")}
               className="text-white hover:text-main-color-yellow no-underline"
@@ -111,16 +106,16 @@ const Header = () => {
             </button>
           </li>
         </ul>
-        <div className="nav-btn flex items-center">
+        <div className="flex items-center">
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+              className="text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
             >
               <FontAwesomeIcon icon={faCircleUser} />
             </button>
             {showDropdown && (
-              <ul className="absolute right-0 mt-2 w-48 bg-[rgba(26,26,26,0.7)] rounded-md shadow-lg py-1 z-10">
+              <ul className="absolute right-0 mt-2 w-48 bg-[rgba(26,26,26,0.7)] border border-[#ddd] rounded-md shadow-lg py-1 z-10">
                 {isLoggedIn ? (
                   <>
                     <li>
@@ -129,14 +124,17 @@ const Header = () => {
                           navigate("/member");
                           setShowDropdown(false);
                         }}
-                        className={dropdownItem}
+                        className="block px-4 py-2 text-base text-white hover:text-main-color-yellow hover:bg-[#e5e7eb] cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
                       >
                         <FontAwesomeIcon icon={faUser} className="mr-2" />
                         {t("Member")}
                       </button>
                     </li>
                     <li>
-                      <button onClick={handleLogout} className={dropdownItem}>
+                      <button
+                        onClick={handleLogout}
+                        className="block px-4 py-2 text-base text-white hover:text-main-color-yellow hover:bg-[#e5e7eb] cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
+                      >
                         <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
                         {t("Logout")}
                       </button>
@@ -149,7 +147,7 @@ const Header = () => {
                         navigate("/login");
                         setShowDropdown(false);
                       }}
-                      className={dropdownItem}
+                      className="block px-4 py-2 text-base text-white hover:text-main-color-yellow hover:bg-[#e5e7eb] cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
                     >
                       <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
                       {t("Login")}
@@ -161,16 +159,16 @@ const Header = () => {
           </div>
           <Link
             to="/shoppingCart"
-            className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+            className="text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
           >
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
           <button
             onClick={changeLanguage}
-            className="icon-btn text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+            className="text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
           >
             <FontAwesomeIcon icon={faGlobe} />
-            <span className="icon-text"></span>
+            <span></span>
             {language === languageList.zh ? "En" : "繁中"}
           </button>
         </div>
