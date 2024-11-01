@@ -1,5 +1,3 @@
-import "@/components/Buttons/buttons.css";
-import "./index.css";
 import ProductCard from "@/components/ProductItem";
 import { productApi } from "@/api/product.js";
 import { useEffect, useState } from "react";
@@ -32,23 +30,25 @@ const Order = () => {
   }, []);
 
   return (
-    <div className="main">
-      <div className="sidebar">
-        <h2 id="product-title">商品分類</h2>
-        <ul className="product-categories">
+    <div className="w-[80%] flex mx-auto mt-[120px]">
+      <div className="w-[20%] h-[2000px] bg-[#333] rounded-[15px] p-[30px] text-white">
+        <h2 className="text-[30px] font-bold text-main-color-yellow text-center py-5 border-b border-[#bbaf48]">
+          商品分類
+        </h2>
+        <ul className="mt-[15px] list-none text-center">
           {categories.map((category) => (
             <li
               key={category.id}
-              className="categories-btn"
               onClick={() => filterProducts(category.name)}
+              className="mt-[35px] inline-block px-20 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black text-2xl transition-all duration-700 ease-in-out hover:text-white hover:font-black hover:tracking-[3px] hover:scale-110 cursor-pointer"
             >
               {category.name}
             </li>
           ))}
         </ul>
       </div>
-      <div className="product-list">
-        <div className="product-grid">
+      <div className="w-[80%] ml-[30px]">
+        <div className="grid grid-cols-4 gap-[30px]">
           {products.map((product) => (
             <ProductCard
               key={product.id}
