@@ -38,7 +38,7 @@ const Home = () => {
               variants={textAnimation}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: false, amount: 0.5 }}
             >
               {text.split("").map((char, index) => (
                 <motion.span key={index} variants={letterAnimation}>
@@ -69,13 +69,27 @@ const Home = () => {
             src="/src/assets/images/home/Izakaya-1.png"
             alt=""
             className="w-[400px] h-[500px] object-cover"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{
-              duration: 1.5,
-              ease: "easeOut",
+            initial={{
+              opacity: 0,
+              x: -150, // 從左側開始
+              scale: 0.8, // 稍微縮小
             }}
-            viewport={{ once: true, amount: 0.5 }}
+            whileInView={{
+              opacity: 1,
+              x: 0, // 滑到原位
+              scale: 1, // 恢復原始大小
+            }}
+            transition={{
+              duration: 1,
+              ease: [0.6, 0.01, -0.05, 0.95], // 自定義緩動函數
+              opacity: { duration: 1.5 }, // 透明度動畫時間
+              x: {
+                type: "spring",
+                damping: 20, // 彈簧阻尼
+                stiffness: 100, // 彈簧剛度
+              },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
           />
         </div>
       </div>
@@ -101,22 +115,23 @@ const Home = () => {
       </motion.div>
 
       {/* Reservation 訂位區域 */}
-      <motion.div
-        className="relative mx-auto mb-[150px] min-h-[30vh] w-full font-georgia font-semibold text-4xl flex justify-center items-center bg-40 overflow-hidden"
-        style={{ y: 0 }}
-        whileInView={{
-          y: [-100, 100],
-          transition: {
-            type: "spring",
-            duration: 1.5,
-            bounce: 0.3,
-          },
-        }}
-        viewport={{ once: false, amount: "all" }}
-      >
+      <div className="relative mx-auto mb-[150px] min-h-[50vh] w-full font-georgia font-semibold text-4xl flex justify-center items-center">
+        {/* 背景圖片容器 */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/src/assets/images/home/Izakaya-2.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+            opacity: 0.5,
+          }}
+        ></div>
+
+        {/* 按鈕 */}
         <motion.button
           onClick={() => navigate("/Booking")}
-          className="absolute z-10 py-2.5 px-5 bg-main-color-yellow rounded-xl
+          className="relative z-20 py-2.5 px-5 bg-main-color-yellow rounded-xl
                    font-medium text-black transition-all duration-700
                    hover:text-white hover:font-black hover:tracking-wider
                    hover:py-3.5 hover:px-6"
@@ -132,18 +147,12 @@ const Home = () => {
         >
           歡迎回J I A
         </motion.button>
-
-        <img
-          src="/src/assets/images/home/Izakaya-2.jpg"
-          alt=""
-          className="opacity-20 max-h-60vh w-full h-full object-cover"
-        />
-      </motion.div>
+      </div>
 
       {/* Location 餐廳資訊區域 */}
       <div className="flex justify-evenly items-center p-[50px]">
         <div
-          className="w-[500px] leading-[3] text-main-color-yellow tracking-[5px] 
+          className="w-[550px] leading-[3] text-main-color-yellow tracking-[5px] 
                       font-georgia text-2xl mx-[75px] my-[50px] text-center"
         >
           <p className="border-b border-dotted border-main-color-yellow">
