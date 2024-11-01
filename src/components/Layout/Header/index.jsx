@@ -8,6 +8,8 @@ import {
   faSignInAlt,
   faSignOutAlt,
   faUser,
+  faBars,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { message } from "antd";
 import { getToken, removeToken } from "@/utils/auth";
@@ -23,6 +25,7 @@ const languageList = {
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { language, setLanguage } = useUserStore();
@@ -55,7 +58,7 @@ const Header = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-10 transition-all duration-500 ease-in-out">
       <nav className="px-5 w-full h-24 flex justify-between items-center bg-transparent-dark">
-        <h2 className="pl-[60px]">
+        <h2 className="pl-[60px] md:pl-[30px] sm:pl-5">
           <button
             onClick={handleLogoClick}
             className="text-main-color-yellow no-underline font-verdana font-bold text-2xl"
@@ -63,7 +66,13 @@ const Header = () => {
             J I A
           </button>
         </h2>
-        <ul className="flex">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden text-main-text-white text-2xl p-2 hover:text-main-color-yellow"
+        >
+          <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
+        </button>
+        <ul className="hidden lg:flex">
           <li className="px-10 text-xl">
             <button
               onClick={() => navigate("/about")}
@@ -105,11 +114,70 @@ const Header = () => {
             </button>
           </li>
         </ul>
-        <div className="flex items-center">
+        <div
+          className={`
+          fixed top-24 left-0 w-full bg-transparent-dark transform transition-transform duration-300 ease-in-out lg:hidden
+          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+        >
+          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
+            <li className="w-full text-center">
+              <button
+                onClick={() => {
+                  navigate("/about");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3"
+              >
+                {t("About")}
+              </button>
+            </li>
+            <li className="w-full text-center">
+              <button
+                onClick={() => {
+                  navigate("/news");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3"
+              >
+                {t("News")}
+              </button>
+            </li>
+            <li className="w-full text-center">
+              <button
+                onClick={() => {
+                  navigate("/booking");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black
+                         hover:tracking-letterSpacing-3 hover:scale-110 mx-auto"
+              >
+                {t("Booking")}
+              </button>
+            </li>
+            <li className="px-10 text-xl">
+              <button
+                onClick={() => navigate("/menu")}
+                className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              >
+                {t("Menu")}
+              </button>
+            </li>
+            <li className="px-10 text-xl">
+              <button
+                onClick={() => navigate("/contact")}
+                className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              >
+                {t("Contact")}
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="flex items-center gap-4">
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="text-main-text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+              className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
             >
               <FontAwesomeIcon icon={faCircleUser} />
             </button>
@@ -158,17 +226,18 @@ const Header = () => {
           </div>
           <Link
             to="/shoppingCart"
-            className="text-main-text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+            className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
           >
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
           <button
             onClick={changeLanguage}
-            className="text-main-text-white text-2xl p-1.5 transition-all duration-300 ease-in-out hover:text-main-color-yellow hover:scale-110 cursor-pointer"
+            className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
           >
             <FontAwesomeIcon icon={faGlobe} />
-            <span></span>
-            {language === languageList.zh ? "En" : "繁中"}
+            <span className="ml-1">
+              {language === languageList.zh ? "En" : "繁中"}
+            </span>
           </button>
         </div>
       </nav>
