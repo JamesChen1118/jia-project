@@ -2,23 +2,20 @@ import axios from "axios";
 
 export const productsApi = async () => {
   const getProducts = async () => {
-    const data = await axios.get("/api/products");
+    const response = await axios.get("/api/products");
     return response.data;
   };
   return getProducts;
 };
 
-
-
-
 const products = [
   {
     id: 1,
-    name: "鮪魚壽司",
-    category: "壽司",
-    price: 80,
-    image:
-      "https://plus.unsplash.com/premium_photo-1664472644125-f12aecccdd52?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "炸雞",
+    price: 180,
+    description: "香脆可口的炸雞",
+    image: "/src/assets/images/products/fried-chicken.jpg",
+    categoryId: 1
   },
   {
     id: 2,

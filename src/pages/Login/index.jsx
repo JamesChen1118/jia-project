@@ -58,11 +58,6 @@ const Login = () => {
       });
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    message.success("註冊成功");
-  };
-
   return (
     <div className="container">
       <div className="form-container">

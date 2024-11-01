@@ -26,6 +26,5 @@
 
 .dropdown-item:hover {
     color: rgb(255, 170, 13);
-    /* 假設這是您的 main-color-yellow */
     background-color: #e5e7eb;
 }
