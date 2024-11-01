@@ -24,14 +24,8 @@ export default {
         'transparent-light': 'rgba(255, 255, 255, 0.2)',
         'news-hover': '#e9ba985d',
       },
-      transitionProperty: {
-        'all': 'all',
-      },
       transitionDelay: {
         '1000': '1000ms',
-      },
-      scale: {
-        '110': '1.1',
       },
       spacing: {
         '100': '100px',
@@ -50,9 +44,6 @@ export default {
         'letterSpacing-40': '40px',
         'letterSpacing-48': '48px',
       },
-      borderWidth: {
-        '3': '3px',
-      },
       minHeight: {
         '30vh': '30vh',
         '60vh': '60vh',
@@ -68,12 +59,7 @@ export default {
       },
       height: {
         '500': '500px',
-      },
-      lineHeight: {
-        'extra-loose': '3',
-      },
-      translate: {
-        '40': '40px',
+        '80vh': '80vh',
       },
       backgroundPosition: {
         '40': '40%',
