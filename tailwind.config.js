@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
@@ -129,9 +129,10 @@ export default {
         '17': '17.6px',
       },
       textShadow: {
-        'cart': '1px 1px 3px #726e6e',
+        'cart': '1px 1px 2px #403f3f',
         'cart-item': '1px 1px 5px #403f3f',
         'member': '2px 2px 5px #646464',
+        'cart-hover': '1px 1px 3px #b67729',
       },
     },
   },

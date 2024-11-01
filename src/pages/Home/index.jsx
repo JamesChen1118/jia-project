@@ -2,32 +2,80 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Menu from "../Menu";
 import NewsItem from "@/components/NewsItem";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const text =
+    "我們靜立於台北喧囂的角落，提供充滿溫度的美食和溫馨的服務，奔波了一天，辛苦了!快回JIA~";
+
+  const textAnimation = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.04,
+      },
+    },
+  };
+
+  const letterAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
 
   return (
     <>
       {/* About 餐廳簡介區域 */}
       <div className="text-center h-[500px] my-[150px]">
         <div className="flex flex-row-reverse justify-center items-center">
-          <p className="w-[350px] leading-relaxed text-main-color-yellow text-2xl font-georgia ml-[150px] space-y-6">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque
-            harum atque quae
-            <br />
-            officiis recusandae reprehenderit dolore laudantium libero dolorem.
-            <br />
-            <span
-              onClick={() => navigate("/About")}
-              className="text-main-color-orange cursor-pointer hover:underline"
+          <motion.div className="w-[580px] leading-loose text-main-color-yellow text-3xl font-georgia ml-[200px] space-y-6">
+            <motion.p
+              variants={textAnimation}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
             >
-              more
-            </span>
-          </p>
-          <img
+              {text.split("").map((char, index) => (
+                <motion.span key={index} variants={letterAnimation}>
+                  {char}
+                </motion.span>
+              ))}
+            </motion.p>
+            <motion.button
+              onClick={() => navigate("/About")}
+              className="inline-block px-8 py-3 text-2xl text-main-color-orange 
+              transition-all duration-300 hidden italic
+              text-shadow-cart hover:text-shadow-cart-hover"
+              initial={{ opacity: 0, y: 20, display: "none" }}
+              animate={{ opacity: 1, y: 0, display: "inline-block" }}
+              transition={{
+                duration: 0.5,
+                delay: 2,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              JIA裡看看
+            </motion.button>
+          </motion.div>
+
+          <motion.img
             src="/src/assets/images/home/Izakaya-1.png"
             alt=""
             className="w-[400px] h-[500px] object-cover"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{
+              duration: 1.5,
+              ease: "easeOut",
+            }}
+            viewport={{ once: true, amount: 0.5 }}
           />
         </div>
       </div>
@@ -38,27 +86,59 @@ const Home = () => {
       </div>
 
       {/* News 最新消息區域 */}
-      <div className="my-[200px]">
+      <motion.div
+        className="my-[200px]"
+        initial={{ rotateX: 90, opacity: 0 }}
+        whileInView={{ rotateX: 0, opacity: 1 }}
+        transition={{
+          duration: 1,
+          ease: "easeOut",
+          delay: 0.2,
+        }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
         <NewsItem />
-      </div>
+      </motion.div>
 
       {/* Reservation 訂位區域 */}
-      <div className="relative mx-auto mb-[150px] min-h-[30vh] w-full font-georgia font-semibold text-4xl flex justify-center items-center bg-40">
-        <button
+      <motion.div
+        className="relative mx-auto mb-[150px] min-h-[30vh] w-full font-georgia font-semibold text-4xl flex justify-center items-center bg-40 overflow-hidden"
+        style={{ y: 0 }}
+        whileInView={{
+          y: [-100, 100],
+          transition: {
+            type: "spring",
+            duration: 1.5,
+            bounce: 0.3,
+          },
+        }}
+        viewport={{ once: false, amount: "all" }}
+      >
+        <motion.button
           onClick={() => navigate("/Booking")}
           className="absolute z-10 py-2.5 px-5 bg-main-color-yellow rounded-xl
                    font-medium text-black transition-all duration-700
                    hover:text-white hover:font-black hover:tracking-wider
                    hover:py-3.5 hover:px-6"
+          animate={{
+            y: [-20, 20],
+          }}
+          transition={{
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 2,
+            ease: "easeInOut",
+          }}
         >
           歡迎回J I A
-        </button>
+        </motion.button>
+
         <img
           src="/src/assets/images/home/Izakaya-2.jpg"
           alt=""
-          className="opacity-20 max-h-60vh w-full object-cover"
+          className="opacity-20 max-h-60vh w-full h-full object-cover"
         />
-      </div>
+      </motion.div>
 
       {/* Location 餐廳資訊區域 */}
       <div className="flex justify-evenly items-center p-[50px]">
