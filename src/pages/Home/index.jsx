@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import NewsItem from "@/components/NewsItem";
 import "@/components/Menu3D/index.css";
+import Menu3D from "@/components/Menu3D";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,50 +30,6 @@ const Home = () => {
     },
   };
 
-  // 直接定義菜單項目
-  const menuItems = [
-    {
-      id: 1,
-      imageUrl: "https://picsum.photos/id/684/600/400",
-      title: "鮪魚壽司",
-      description: "新鮮的鮪魚搭配壽司飯，口感滑嫩。",
-      price: "$50",
-    },
-    {
-      id: 2,
-      imageUrl: "https://picsum.photos/id/685/600/400",
-      title: "炭雞串",
-      description: "經典的炭烤雞串，外焦內嫩，醬汁香濃。",
-      price: "$40",
-    },
-    {
-      id: 3,
-      imageUrl: "https://picsum.photos/id/686/600/400",
-      title: "炸蝦天婦羅",
-      description: "酥脆的炸蝦，搭配特製天婦羅醬。",
-      price: "$60",
-    },
-    {
-      id: 4,
-      imageUrl: "https://picsum.photos/id/687/600/400",
-      title: "牛肉壽喜燒",
-      description: "嫩滑牛肉與新鮮蔬菜，配上甜美醬汁。",
-      price: "$80",
-    },
-    {
-      id: 5,
-      imageUrl: "https://picsum.photos/id/688/600/400",
-      title: "章魚燒",
-      description: "外酥內軟的章魚燒，搭配美味的醬汁與海苔。",
-      price: "$30",
-    },
-  ];
-
-  const handleImageClick = (id) => {
-    setOpenImageId(openImageId === id ? null : id);
-  };
-
-  // 上下翻頁動畫設定
   const pageVariants = {
     initial: {
       rotateX: 90,
@@ -85,7 +42,7 @@ const Home = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.43, 0.13, 0.23, 0.96], // 自定義緩動效果
+        ease: [0.43, 0.13, 0.23, 0.96],
       },
     },
     exit: {
@@ -166,40 +123,7 @@ const Home = () => {
 
       {/* Menu 菜單展示區域 */}
       <div className="w-4/5 mx-auto mt-[350px]">
-        <div className="wrapper">
-          <div className="img-box">
-            {menuItems.map((item) => (
-              <div
-                key={item.id}
-                className={`img ${openImageId === item.id ? "open" : ""}`}
-                style={{ backgroundImage: `url(${item.imageUrl})` }}
-                onClick={() => handleImageClick(item.id)}
-              >
-                {openImageId === item.id && (
-                  <div className="menu-box">
-                    <div className="menu-listTitle">{item.title}</div>
-                    <div className="menu-list">
-                      <img
-                        src={item.imageUrl}
-                        className="menu-listImg"
-                        alt={item.title}
-                      />
-                      <div className="menu-listItem">
-                        <div className="menu-listContent">
-                          {item.description}
-                        </div>
-                        <div className="menu-listPrice">{item.price}</div>
-                        <a href="/menu" className="toMenu">
-                          前往菜單
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Menu3D limit={12} />
       </div>
 
       {/* News 最新消息區域 */}
