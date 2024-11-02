@@ -1,42 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { newsApi } from "@/api/news";
 
-const newsItems = [
-  { date: "Nov.15.2024", title: "11月活動限定，生啤買一送一 ~!!!" },
-  { date: "Dec.01.2024", title: "冬季新菜單上市，快來品嚐!" },
-  { date: "Jan.05.2025", title: "新年特別優惠，訂位即送精美禮品" },
-  { date: "Nov.15.2024", title: "11月活動限定，生啤買一送一 ~!!!" },
-  { date: "Dec.01.2024", title: "冬季新菜單上市，快來品嚐!" },
-  { date: "Jan.05.2025", title: "新年特別優惠，訂位即送精美禮品" },
-  { date: "Nov.15.2024", title: "11月活動限定，生啤買一送一 ~!!!" },
-  { date: "Dec.01.2024", title: "冬季新菜單上市，快來品嚐!" },
-  { date: "Jan.05.2025", title: "新年特別優惠，訂位即送精美禮品" },
-  { date: "Jan.05.2025", title: "新年特別優惠，訂位即送精美禮品" },
-];
+const NewsItem = () => {
+  const [news, setNews] = useState([]);
 
-const NewsItem = ({ itemNumber }) => {
-  const displayedItems = itemNumber
-    ? newsItems.slice(0, itemNumber)
-    : newsItems;
+  useEffect(() => {
+    const fetchNews = async () => {
+      const data = await newsApi.getNews();
+      setNews(data);
+    };
+
+    fetchNews();
+  }, []);
 
   return (
-    <div className="w-1/2 mx-auto border-3 border-news-border cursor-pointer">
-      <div className="bg-transparent-light p-8 rounded-lg">
-        <div className="space-y-4">
-          {displayedItems.map((item, index) => (
-            <div
-              key={index}
-              className="relative flex items-center p-5 border-b border-dotted border-news-border group hover:bg-news-hover transition-all duration-300"
-            >
-              <div className="w-[120px] font-crimson text-news-text-gray text-sm tracking-letterSpacing-1 uppercase">
-                {item.date}
-              </div>
-              <div className="flex-1 pl-4 pr-6 text-main-text-white text-sm font-light leading-relaxed tracking-wider list-none group-hover:text-main-color-yellow">
-                {item.title}
-              </div>
-              <div className="absolute right-[50px] top-[40%] w-[10px] h-[10px] border-r-2 border-b-2 border-main-color-yellow rotate-[-45deg]"></div>
+    <div className="w-3/5 mx-auto">
+      <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden">
+        {news.map((item) => (
+          <motion.div
+            key={item.id}
+            className="grid grid-cols-12 gap-4 p-6 border-b border-main-color-yellow
+                       hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="col-span-3 text-news-text-gray">{item.date}</div>
+            <div className="col-span-3 text-main-color-yellow font-bold">
+              {item.title}
             </div>
-          ))}
-        </div>
+            <div className="col-span-6 text-main-text-white">
+              {item.content}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
