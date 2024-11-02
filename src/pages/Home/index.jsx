@@ -82,7 +82,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0, display: "inline-block" }}
               transition={{
                 duration: 0.5,
-                delay: 2.5,
+                delay: 2.3,
                 ease: "easeInOut",
               }}
               whileHover={{ scale: 1.05 }}

@@ -61,7 +61,9 @@ const Header = () => {
         <h2 className="pl-[60px] md:pl-[30px] sm:pl-5">
           <button
             onClick={handleLogoClick}
-            className="text-main-color-yellow no-underline font-verdana font-bold text-2xl"
+            className="text-main-color-yellow no-underline font-verdana font-bold text-4xl 
+                       transition-all duration-300 ease-in-out
+                       hover:text-shadow-lg hover:scale-110"
           >
             J I A
           </button>
@@ -72,43 +74,79 @@ const Header = () => {
         >
           <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
         </button>
-        <ul className="hidden lg:flex">
-          <li className="px-10 text-xl">
+        <ul className="hidden lg:flex items-center justify-center">
+          <li className="px-10 text-xl flex items-center">
             <button
               onClick={() => navigate("/about")}
-              className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              className="text-main-text-white hover:text-main-color-yellow no-underline 
+                         transition-all duration-300 ease-in-out relative
+                         before:absolute before:bottom-0 before:left-[50%] 
+                         before:w-0 before:h-0.5 before:bg-main-color-yellow
+                         before:transition-all before:duration-300
+                         hover:before:w-[50%]
+                         after:absolute after:bottom-0 after:right-[50%] 
+                         after:w-0 after:h-0.5 after:bg-main-color-yellow
+                         after:transition-all after:duration-300
+                         hover:after:w-[50%]"
             >
               {t("About")}
             </button>
           </li>
-          <li className="px-10 text-xl">
+          <li className="px-10 text-xl flex items-center">
             <button
               onClick={() => navigate("/news")}
-              className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              className="text-main-text-white hover:text-main-color-yellow no-underline 
+                         transition-all duration-300 ease-in-out relative
+                         before:absolute before:bottom-0 before:left-[50%] 
+                         before:w-0 before:h-0.5 before:bg-main-color-yellow
+                         before:transition-all before:duration-300
+                         hover:before:w-[50%]
+                         after:absolute after:bottom-0 after:right-[50%] 
+                         after:w-0 after:h-0.5 after:bg-main-color-yellow
+                         after:transition-all after:duration-300
+                         hover:after:w-[50%]"
             >
               {t("News")}
             </button>
           </li>
-          <li className="px-10 text-xl">
+          <li className="px-10 text-xl flex items-center">
             <button
               onClick={() => navigate("/booking")}
-              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110 hover:px-[30px] hover:py-[10px]"
+              className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110 hover:px-[30px] hover:py-[10px] hover:shadow-lg"
             >
               {t("Booking")}
             </button>
           </li>
-          <li className="px-10 text-xl">
+          <li className="px-10 text-xl flex items-center">
             <button
               onClick={() => navigate("/menu")}
-              className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              className="text-main-text-white hover:text-main-color-yellow no-underline 
+                         transition-all duration-300 ease-in-out relative
+                         before:absolute before:bottom-0 before:left-[50%] 
+                         before:w-0 before:h-0.5 before:bg-main-color-yellow
+                         before:transition-all before:duration-300
+                         hover:before:w-[50%]
+                         after:absolute after:bottom-0 after:right-[50%] 
+                         after:w-0 after:h-0.5 after:bg-main-color-yellow
+                         after:transition-all after:duration-300
+                         hover:after:w-[50%]"
             >
               {t("Menu")}
             </button>
           </li>
-          <li className="px-10 text-xl">
+          <li className="px-10 text-xl flex items-center">
             <button
               onClick={() => navigate("/contact")}
-              className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+              className="text-main-text-white hover:text-main-color-yellow no-underline 
+                         transition-all duration-300 ease-in-out relative
+                         before:absolute before:bottom-0 before:left-[50%] 
+                         before:w-0 before:h-0.5 before:bg-main-color-yellow
+                         before:transition-all before:duration-300
+                         hover:before:w-[50%]
+                         after:absolute after:bottom-0 after:right-[50%] 
+                         after:w-0 after:h-0.5 after:bg-main-color-yellow
+                         after:transition-all after:duration-300
+                         hover:after:w-[50%]"
             >
               {t("Contact")}
             </button>
@@ -121,52 +159,82 @@ const Header = () => {
         `}
         >
           <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
-            <li className="w-full text-center">
+            <li className="w-full text-center flex items-center justify-center">
               <button
                 onClick={() => {
                   navigate("/about");
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3"
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3
+                           transition-all duration-300 ease-in-out relative
+                           before:absolute before:bottom-0 before:left-[50%] 
+                           before:w-0 before:h-0.5 before:bg-main-color-yellow
+                           before:transition-all before:duration-300
+                           hover:before:w-[50%]
+                           after:absolute after:bottom-0 after:right-[50%] 
+                           after:w-0 after:h-0.5 after:bg-main-color-yellow
+                           after:transition-all after:duration-300
+                           hover:after:w-[50%]"
               >
                 {t("About")}
               </button>
             </li>
-            <li className="w-full text-center">
+            <li className="w-full text-center flex items-center justify-center">
               <button
                 onClick={() => {
                   navigate("/news");
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3"
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3
+                           transition-all duration-300 ease-in-out relative
+                           before:absolute before:bottom-0 before:left-[50%] 
+                           before:w-0 before:h-0.5 before:bg-main-color-yellow
+                           before:transition-all before:duration-300
+                           hover:before:w-[50%]
+                           after:absolute after:bottom-0 after:right-[50%] 
+                           after:w-0 after:h-0.5 after:bg-main-color-yellow
+                           after:transition-all after:duration-300
+                           hover:after:w-[50%]"
               >
                 {t("News")}
               </button>
             </li>
-            <li className="w-full text-center">
+            <li className="w-full text-center flex items-center justify-center">
               <button
                 onClick={() => {
-                  navigate("/booking");
+                  navigate("/menu");
                   setIsMobileMenuOpen(false);
                 }}
-                className="px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black
-                         hover:tracking-letterSpacing-3 hover:scale-110 mx-auto"
-              >
-                {t("Booking")}
-              </button>
-            </li>
-            <li className="px-10 text-xl">
-              <button
-                onClick={() => navigate("/menu")}
-                className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3
+                           transition-all duration-300 ease-in-out relative
+                           before:absolute before:bottom-0 before:left-[50%] 
+                           before:w-0 before:h-0.5 before:bg-main-color-yellow
+                           before:transition-all before:duration-300
+                           hover:before:w-[50%]
+                           after:absolute after:bottom-0 after:right-[50%] 
+                           after:w-0 after:h-0.5 after:bg-main-color-yellow
+                           after:transition-all after:duration-300
+                           hover:after:w-[50%]"
               >
                 {t("Menu")}
               </button>
             </li>
-            <li className="px-10 text-xl">
+            <li className="w-full text-center flex items-center justify-center">
               <button
-                onClick={() => navigate("/contact")}
-                className="text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out"
+                onClick={() => {
+                  navigate("/contact");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3
+                           transition-all duration-300 ease-in-out relative
+                           before:absolute before:bottom-0 before:left-[50%] 
+                           before:w-0 before:h-0.5 before:bg-main-color-yellow
+                           before:transition-all before:duration-300
+                           hover:before:w-[50%]
+                           after:absolute after:bottom-0 after:right-[50%] 
+                           after:w-0 after:h-0.5 after:bg-main-color-yellow
+                           after:transition-all after:duration-300
+                           hover:after:w-[50%]"
               >
                 {t("Contact")}
               </button>
