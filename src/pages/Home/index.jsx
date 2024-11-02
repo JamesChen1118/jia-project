@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Menu from "../Menu";
-import NewsItem from "@/components/NewsItem";
 import { motion } from "framer-motion";
+import NewsItem from "@/components/NewsItem";
+import "@/components/Menu3D/index.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [openImageId, setOpenImageId] = useState(null);
 
   const text =
     "我們靜立於台北喧囂的角落，提供充滿溫度的美食和溫馨的服務，奔波了一天，辛苦了!快回JIA~";
@@ -25,6 +26,75 @@ const Home = () => {
     visible: {
       opacity: 1,
       y: 0,
+    },
+  };
+
+  // 直接定義菜單項目
+  const menuItems = [
+    {
+      id: 1,
+      imageUrl: "https://picsum.photos/id/684/600/400",
+      title: "鮪魚壽司",
+      description: "新鮮的鮪魚搭配壽司飯，口感滑嫩。",
+      price: "$50",
+    },
+    {
+      id: 2,
+      imageUrl: "https://picsum.photos/id/685/600/400",
+      title: "炭雞串",
+      description: "經典的炭烤雞串，外焦內嫩，醬汁香濃。",
+      price: "$40",
+    },
+    {
+      id: 3,
+      imageUrl: "https://picsum.photos/id/686/600/400",
+      title: "炸蝦天婦羅",
+      description: "酥脆的炸蝦，搭配特製天婦羅醬。",
+      price: "$60",
+    },
+    {
+      id: 4,
+      imageUrl: "https://picsum.photos/id/687/600/400",
+      title: "牛肉壽喜燒",
+      description: "嫩滑牛肉與新鮮蔬菜，配上甜美醬汁。",
+      price: "$80",
+    },
+    {
+      id: 5,
+      imageUrl: "https://picsum.photos/id/688/600/400",
+      title: "章魚燒",
+      description: "外酥內軟的章魚燒，搭配美味的醬汁與海苔。",
+      price: "$30",
+    },
+  ];
+
+  const handleImageClick = (id) => {
+    setOpenImageId(openImageId === id ? null : id);
+  };
+
+  // 上下翻頁動畫設定
+  const pageVariants = {
+    initial: {
+      rotateX: 90,
+      opacity: 0,
+      y: 50,
+    },
+    animate: {
+      rotateX: 0,
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.43, 0.13, 0.23, 0.96], // 自定義緩動效果
+      },
+    },
+    exit: {
+      rotateX: -90,
+      opacity: 0,
+      y: -50,
+      transition: {
+        duration: 0.5,
+      },
     },
   };
 
@@ -96,20 +166,53 @@ const Home = () => {
 
       {/* Menu 菜單展示區域 */}
       <div className="w-4/5 mx-auto mt-[350px]">
-        <Menu />
+        <div className="wrapper">
+          <div className="img-box">
+            {menuItems.map((item) => (
+              <div
+                key={item.id}
+                className={`img ${openImageId === item.id ? "open" : ""}`}
+                style={{ backgroundImage: `url(${item.imageUrl})` }}
+                onClick={() => handleImageClick(item.id)}
+              >
+                {openImageId === item.id && (
+                  <div className="menu-box">
+                    <div className="menu-listTitle">{item.title}</div>
+                    <div className="menu-list">
+                      <img
+                        src={item.imageUrl}
+                        className="menu-listImg"
+                        alt={item.title}
+                      />
+                      <div className="menu-listItem">
+                        <div className="menu-listContent">
+                          {item.description}
+                        </div>
+                        <div className="menu-listPrice">{item.price}</div>
+                        <a href="/menu" className="toMenu">
+                          前往菜單
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* News 最新消息區域 */}
       <motion.div
-        className="my-[200px]"
-        initial={{ rotateX: 90, opacity: 0 }}
-        whileInView={{ rotateX: 0, opacity: 1 }}
-        transition={{
-          duration: 1,
-          ease: "easeOut",
-          delay: 0.2,
+        className="my-[200px] perspective-1000"
+        initial="initial"
+        whileInView="animate"
+        exit="exit"
+        variants={pageVariants}
+        style={{
+          transformStyle: "preserve-3d",
+          transformOrigin: "center center",
         }}
-        viewport={{ once: false, amount: 0.3 }}
       >
         <NewsItem />
       </motion.div>
@@ -159,16 +262,16 @@ const Home = () => {
             className="border-b border-dotted border-main-color-yellow"
             initial={{
               opacity: 0,
-              y: 50, // 從下方 50px 的位置開始
+              y: 50,
             }}
             whileInView={{
               opacity: 1,
-              y: 0, // 移動到原始位置
+              y: 0,
             }}
             transition={{
               duration: 0.8,
               ease: "easeOut",
-              delay: 0, // 第一個元素沒有延遲
+              delay: 0,
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
@@ -181,7 +284,7 @@ const Home = () => {
             transition={{
               duration: 0.8,
               ease: "easeOut",
-              delay: 0.2, // 第二個元素延遲 0.2 秒
+              delay: 0.3,
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
@@ -194,7 +297,7 @@ const Home = () => {
             transition={{
               duration: 0.8,
               ease: "easeOut",
-              delay: 0.4, // 第三個元素延遲 0.4 秒
+              delay: 0.6,
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
