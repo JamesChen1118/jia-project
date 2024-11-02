@@ -1,16 +1,16 @@
-import server from "@/api/server";
+import server from "./server";
 
 export const productApi = {
     getProducts: async () => {
-        const { data } = await server.get("/api/products");
+        const { data } = await server.get("/products");
         return data;
     },
     searchProducts: async (category) => {
-        const { data } = await server.get(`/api/products/${category}`);
+        const { data } = await server.get(`/products/${category}`);
         return data;
     },
     getCategories: async () => {
-        const { data } = await server.get("/api/categories");
+        const { data } = await server.get("/categories");
         return data;
     },
 };
