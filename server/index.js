@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import products from "./data/products.js";
-import categories from "./data/categories.js";
+import asyncHandler from "express-async-handler";
+import Product from "./models/product.js";
+import Category from "./models/category.js";
 import news from "./data/newsItem.js";
 import connectDB from "./config/db.js";
 
