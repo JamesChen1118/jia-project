@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import products from "./data/products.js";
 import categories from "./data/categories.js";
 import news from "./data/newsItem.js";
+import connectDB from "./config/db.js";
 
 dotenv.config();
+connectDB();
 const app = express();
 
 app.get("/products/:category", (req, res) => {
