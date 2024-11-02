@@ -4,10 +4,38 @@
   "Booking": "我要預訂",
   "Menu": "菜單底JIA",
   "Contact": "來信我JIA",
-  "Modern ": "現代",
-  "Creative ": "創作",
+  "Modern": "現代 ",
+  "Creative": "創作 ",
   "Izakaya": "居酒屋",
   "login_empty": "請輸入使用者名稱&密碼",
   "login_success": "歡迎回JIA~~~",
-  "login_fail": "使用者名稱或密碼錯誤"
+  "login_fail": "使用者名稱或密碼錯誤",
+
+  "news": {
+    "title": "最新消息",
+    "newsTitle": {
+      "newsItem1": "新菜單上架",
+      "newsItem2": "周年慶優惠",
+      "newsItem3": "特別活動",
+      "newsItem4": "清酒品飲之夜",
+      "newsItem5": "主廚季節性Omakase",
+      "newsItem6": "黃金週慶典",
+      "newsItem7": "父親節特別活動",
+      "newsItem8": "歡樂時光",
+      "newsItem9": "夏日祭典盛宴",
+      "newsItem10": "卡拉OK之夜"
+    },
+    "content": {
+      "newsItem1": "即將推出春季新菜單，帶來全新的美食體驗！",
+      "newsItem2": "JIA居酒屋三周年，全餐點享85折優惠！",
+      "newsItem3": "每週三女士之夜，女性顧客可享特別優惠！",
+      "newsItem4": "本週六特別舉辦清酒品飲會，品嚐限定清酒！",
+      "newsItem5": "限時一週，體驗主廚精選的季節Omakase料理！",
+      "newsItem6": "與我們共度黃金週，全餐點享九折優惠！",
+      "newsItem7": "父親節帶爸爸來用餐，享免費清酒品嘗！",
+      "newsItem8": "每週一至週五下午5-7點，歡樂時光飲品半價！",
+      "newsItem9": "慶祝夏日祭典，享用特製美食並有現場表演！",
+      "newsItem10": "每週五卡拉OK之夜！盡情歡唱並享受專屬飲品優惠！"
+    }
+  }
 }

@@ -4,10 +4,38 @@
   "Booking": "Booking",
   "Menu": "Menu",
   "Contact": "Contact",
-  "Modern ": "Modern ",
-  "Creative ": "Creative ",
+  "Modern": "Modern ",
+  "Creative": "Creative ",
   "Izakaya": "Izakaya",
   "login_empty": "Login failed, please check your input",
   "login_success": "Welcome back to JIA ~~~",
-  "login_fail": "Invalid username or password"
+  "login_fail": "Invalid username or password",
+
+  "news": {
+    "title": "News",
+    "newsTitle": {
+      "newsItem1": "New Menu Launch",
+      "newsItem2": "Anniversary Special",
+      "newsItem3": "Special Event",
+      "newsItem4": "Sake Tasting Night",
+      "newsItem5": "Chef's Seasonal Omakase",
+      "newsItem6": "Golden Week Celebration",
+      "newsItem7": "Father's Day Special",
+      "newsItem8": "Happy Hour",
+      "newsItem9": "Summer Festival Feast",
+      "newsItem10": "Karaoke Night"
+    },
+    "content": {
+      "newsItem1": "The new spring menu will be available soon, bringing a new gourmet experience!",
+      "newsItem2": "JIA Izakaya's third anniversary, 15% off on all meals!",
+      "newsItem3": "Every Wednesday Ladies Night, female customers enjoy special discounts!",
+      "newsItem4": "Join us for a special Sake Tasting event this Saturday with limited edition sake varieties!",
+      "newsItem5": "Experience a seasonal omakase menu curated by our chef for one week only!",
+      "newsItem6": "Celebrate Golden Week with us and enjoy 10% off all dishes!",
+      "newsItem7": "Bring your dad for a special dinner and enjoy a complimentary sake sampler on Father's Day!",
+      "newsItem8": "Join us every weekday from 5-7 PM for half-price drinks during Happy Hour!",
+      "newsItem9": "Celebrate the season with our Summer Matsuri Feast, featuring special dishes and live entertainment!",
+      "newsItem10": "Every Friday night is Karaoke Night! Sing your favorite songs and enjoy exclusive drink specials!"
+    }
+  }
 }
