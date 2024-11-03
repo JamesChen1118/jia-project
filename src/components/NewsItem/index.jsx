@@ -4,24 +4,38 @@ import { newsApi } from "@/api/news";
 import { useTranslation } from "react-i18next";
 
 const NewsItem = () => {
-  const [news, setNews] = useState([]);
+  const [newsItems, setNewsItems] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
     const fetchNews = async () => {
-      const data = await newsApi.getNews();
-      setNews(data);
+      try {
+        const data = await newsApi.getNews();
+        if (Array.isArray(data)) {
+          setNewsItems(data);
+        } else {
+          console.error("News data is not an array:", data);
+          setNewsItems([]);
+        }
+      } catch (error) {
+        console.error("Error fetching news:", error);
+        setNewsItems([]);
+      }
     };
 
     fetchNews();
   }, []);
 
+  if (newsItems.length === 0) {
+    return <div className="w-4/5 mx-auto text-center">載入中...</div>;
+  }
+
   return (
     <div className="w-4/5 mx-auto">
       <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden">
-        {news.map((item, index) => (
+        {newsItems.map((item, index) => (
           <motion.div
-            key={item.id}
+            key={index}
             className="grid grid-cols-12 gap-4 p-4 border-b border-main-color-yellow
                        hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
@@ -30,10 +44,10 @@ const NewsItem = () => {
           >
             <div className="col-span-3 text-news-text-gray">{item.date}</div>
             <div className="col-span-3 text-main-color-yellow font-bold">
-              {t(`news.newsTitle.newsItem${index + 1}`)}
+              {item.title}
             </div>
             <div className="col-span-6 text-main-text-white">
-              {t(`news.content.newsItem${index + 1}`)}
+              {item.content}
             </div>
           </motion.div>
         ))}

@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import products from "@server/data/products";
+import { productApi } from "@/api/product.js";
 import "@/components/Menu3D/index.css";
 import "@/assets/css/index.css";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
+  const [menuItems, setMenuItems] = useState([]);
 
-  const selectedProducts = products.slice(0, 12);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await productApi.searchProducts("全部");
+        const selectedProducts = products.slice(0, 12);
 
-  const menuItems = selectedProducts.map((product) => ({
-    id: product.id,
-    imageUrl: product.image,
-    title: product.name,
-    price: `$${product.price}`,
-  }));
+        const formattedMenuItems = selectedProducts.map((product) => ({
+          id: product._id,
+          imageUrl: product.image,
+          title: product.name,
+          price: `$${product.price}`,
+          description: product.description,
+        }));
+
+        setMenuItems(formattedMenuItems);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleImageClick = (id) => {
     setOpenImageId(openImageId === id ? null : id);

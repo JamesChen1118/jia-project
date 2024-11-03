@@ -6,7 +6,9 @@ export const productApi = {
         return data;
     },
     searchProducts: async (category) => {
-        const { data } = await server.get(`/products/${category}`);
+        const { data } = await server.get(`/products`, {
+            params: { category }
+        });
         return data;
     },
     getCategories: async () => {
