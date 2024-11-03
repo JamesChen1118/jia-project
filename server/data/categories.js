@@ -18,13 +18,13 @@ const categories = [
     name: "燒烤",
   },
   {
-    name: "小品",
-  },
-  {
     name: "定食",
   },
   {
     name: "甜點",
+  },
+  {
+    name: "飲品",
   },
 ];
 

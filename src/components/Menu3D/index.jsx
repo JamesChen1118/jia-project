@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
+import i18n from "@/i18n";
 import "@/components/Menu3D/index.css";
 import "@/assets/css/index.css";
 
@@ -22,6 +23,7 @@ const Menu3D = () => {
           id: product._id,
           imageUrl: product.image,
           title: product.name,
+          category: i18n.t(`categories.${product.category}`),
           price: `$${product.price}`,
           description: product.description,
         }));
@@ -36,6 +38,16 @@ const Menu3D = () => {
     };
 
     fetchProducts();
+
+    const handleLanguageChange = () => {
+      fetchProducts();
+    };
+
+    i18n.on("languageChanged", handleLanguageChange);
+
+    return () => {
+      i18n.off("languageChanged", handleLanguageChange);
+    };
   }, []);
 
   if (loading) return <div>載入中...</div>;
@@ -66,10 +78,12 @@ const Menu3D = () => {
                     alt={item.title}
                   />
                   <div className="menu-listItem">
-                    <div className="menu-listContent">{item.description}</div>
+                    <div className="menu-listContent">
+                      {item.category} - {item.description}
+                    </div>
                     <div className="menu-listPrice">{item.price}</div>
                     <NavLink to="/menu" className="toMenu">
-                      前往菜單
+                      {i18n.t("Menu")}
                     </NavLink>
                   </div>
                 </div>

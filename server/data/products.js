@@ -204,9 +204,9 @@ const products = [
     image: "https://images.pexels.com/photos/2098143/pexels-photo-2098143.jpeg?auto=compress&cs=tinysrgb&w=800&h=600",
   },
   {
-    name: "梅子蘇打",
+    name: "清酒",
     category: "飲品",
-    price: 55,
+    price: 80,
     image: "https://images.pexels.com/photos/2098098/pexels-photo-2098098.jpeg?auto=compress&cs=tinysrgb&w=800&h=600",
   },
 ];

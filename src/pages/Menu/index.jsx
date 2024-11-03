@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import products from "../../../server/data/products";
+import i18n from "@/i18n";
 
 const Menu = () => {
   const groupedProducts = products.reduce((acc, product) => {
@@ -14,7 +15,7 @@ const Menu = () => {
   return (
     <div className="w-[70%] mx-auto mt-[100px] mb-[150px]">
       {Object.entries(groupedProducts).map(([category, items]) => (
-        <div key={category} className="mb-12">
+        <div key={`category-${category}`} className="mb-12">
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -24,22 +25,19 @@ const Menu = () => {
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
             }}
           >
-            {category}
-            {/* 添加雙底線元素 */}
+            {i18n.t(`categories.${category}`)}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 border-b-4 border-double border-main-color-yellow" />
           </motion.h2>
 
-          {/* 該分類下的菜品列表 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {items.map((item, index) => (
+            {items.map((item) => (
               <motion.div
-                key={item.id}
+                key={`${category}-${item.name}-${item._id || item.id}`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeInOut",
-                  delay: index * 0.1,
                 }}
                 viewport={{ once: false, amount: 0.3 }}
                 className="flex items-center bg-white/10 p-6 rounded-2xl hover:bg-white/20 transition-all

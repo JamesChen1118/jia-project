@@ -1,33 +1,27 @@
-// 連結資料庫
 import connectDB from "./config/db.js";
-// 導入初始資料
-import products from "./data/products.js";
-import categories from "./data/categories.js";
-// 導入模型
-import Product from "./models/product.js";
 import Category from "./models/category.js";
+import Product from "./models/product.js";
+import categories from "./data/categories.js";
+import products from "./data/products.js";
 
 connectDB();
 
-const deleteData = async () => {
+const importData = async () => {
     try {
-        await Product.deleteMany();
+        // 清除舊資料
         await Category.deleteMany();
-        console.log("data is deleted.");
-    } catch (error) {
-        console.log(error);
-    }
-};
+        await Product.deleteMany();
 
-const importSeedData = async () => {
-    try {
-        await deleteData();
+        // 導入新資料
         await Category.insertMany(categories);
         await Product.insertMany(products);
-        console.log("seed data is done.");
+
+        console.log("資料導入成功");
+        process.exit();
     } catch (error) {
-        console.log(error);
+        console.error("資料導入錯誤:", error);
+        process.exit(1);
     }
 };
 
-importSeedData();
+importData();
