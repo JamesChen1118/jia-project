@@ -7,11 +7,15 @@ import "@/assets/css/index.css";
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const products = await productApi.searchProducts("全部");
+        console.log("Fetched products:", products);
         const selectedProducts = products.slice(0, 12);
 
         const formattedMenuItems = selectedProducts.map((product) => ({
@@ -25,11 +29,18 @@ const Menu3D = () => {
         setMenuItems(formattedMenuItems);
       } catch (error) {
         console.error("Failed to fetch products:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
+
+  if (loading) return <div>載入中...</div>;
+  if (error) return <div>錯誤: {error}</div>;
+  if (!menuItems.length) return <div>沒有商品資料</div>;
 
   const handleImageClick = (id) => {
     setOpenImageId(openImageId === id ? null : id);
