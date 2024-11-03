@@ -37,5 +37,17 @@
       "newsItem9": "Celebrate the season with our Summer Matsuri Feast, featuring special dishes and live entertainment!",
       "newsItem10": "Every Friday night is Karaoke Night! Sing your favorite songs and enjoy exclusive drink specials!"
     }
+  },
+
+  "categories": {
+    "全部": "All",
+    "生食": "Sashimi",
+    "壽司": "Sushi",
+    "海鮮": "Seafood",
+    "炸物": "Fried",
+    "燒烤": "BBQ",
+    "定食": "Set Meal",
+    "甜點": "Dessert",
+    "飲品": "Drinks"
   }
 }

@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { newsApi } from "@/api/news";
-import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 
 const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
-  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const data = await newsApi.getNews();
         if (Array.isArray(data)) {
-          setNewsItems(data);
+          const translatedNews = data.map((item, index) => ({
+            ...item,
+            title: i18n.t(`news.newsTitle.newsItem${index + 1}`),
+            content: i18n.t(`news.content.newsItem${index + 1}`),
+          }));
+          setNewsItems(translatedNews);
         } else {
           console.error("News data is not an array:", data);
           setNewsItems([]);
@@ -24,6 +28,16 @@ const NewsItem = () => {
     };
 
     fetchNews();
+
+    const handleLanguageChange = () => {
+      fetchNews();
+    };
+
+    i18n.on("languageChanged", handleLanguageChange);
+
+    return () => {
+      i18n.off("languageChanged", handleLanguageChange);
+    };
   }, []);
 
   if (newsItems.length === 0) {

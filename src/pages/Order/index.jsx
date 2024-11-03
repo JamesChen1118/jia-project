@@ -1,8 +1,10 @@
 import ProductCard from "@/components/ProductItem";
 import { productApi } from "@/api/product.js";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
+  const { t } = useTranslation();
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -30,11 +32,11 @@ const Order = () => {
         <ul className="mt-[15px] list-none text-center">
           {categories.map((category) => (
             <li
-              key={category.id}
+              key={category._id}
               onClick={() => filterProducts(category.name)}
               className="mt-[35px] inline-block px-20 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black text-2xl transition-all duration-700 ease-in-out hover:text-white hover:font-black hover:tracking-[3px] hover:scale-110 cursor-pointer"
             >
-              {category.name}
+              {t(`categories.${category.name}`)}
             </li>
           ))}
         </ul>
@@ -43,11 +45,9 @@ const Order = () => {
         <div className="grid grid-cols-4 gap-[30px]">
           {products.map((product) => (
             <ProductCard
-              key={product.id}
+              key={product._id}
               image={product.image}
-              category={
-                categories.find((c) => c.id === product.categoryId)?.name
-              }
+              category={product.category}
               name={product.name}
               price={product.price}
               description={product.description}
