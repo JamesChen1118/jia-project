@@ -123,7 +123,7 @@ const Home = () => {
 
       {/* Menu 菜單展示區域 */}
       <div className="w-4/5 mx-auto mt-[350px]">
-        <Menu3D limit={12} />
+        <Menu3D />
       </div>
 
       {/* News 最新消息區域 */}

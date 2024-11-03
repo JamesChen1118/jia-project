@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
 import i18n from "@/i18n";
 import "@/components/Menu3D/index.css";
-import "@/assets/css/index.css";
+// import "@/assets/css/index.css";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
@@ -15,7 +15,7 @@ const Menu3D = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const products = await productApi.searchProducts("全部");
+        const products = await productApi.searchProducts("all");
         console.log("Fetched products:", products);
         const selectedProducts = products.slice(0, 12);
 
@@ -23,9 +23,9 @@ const Menu3D = () => {
           id: product._id,
           imageUrl: product.image,
           title: product.name,
-          category: i18n.t(`categories.${product.category}`),
+          category: product.category,
           price: `$${product.price}`,
-          description: product.description,
+          description: product.description || "",
         }));
 
         setMenuItems(formattedMenuItems);
