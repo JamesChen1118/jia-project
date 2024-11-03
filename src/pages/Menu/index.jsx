@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import products from "../../../server/data/products";
 import i18n from "@/i18n";
+import ProductModal from "@/components/ProductModal";
 
 const Menu = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const groupedProducts = products.reduce((acc, product) => {
     if (!acc[product.category]) {
       acc[product.category] = [];
@@ -40,8 +44,14 @@ const Menu = () => {
                   ease: "easeInOut",
                 }}
                 viewport={{ once: false, amount: 0.3 }}
-                className="flex items-center bg-white/10 p-6 rounded-2xl hover:bg-white/20 transition-all
-                          shadow-[0_4px_12px_rgba(0,0,0,0.25)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)]"
+                className="flex items-center bg-white/10 p-6 rounded-2xl 
+                          hover:bg-white/20 transition-all cursor-pointer
+                          shadow-[0_4px_12px_rgba(0,0,0,0.25)] 
+                          hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)]"
+                onClick={() => {
+                  setSelectedProduct(item);
+                  setIsModalOpen(true);
+                }}
               >
                 <img
                   src={item.image}
@@ -61,6 +71,15 @@ const Menu = () => {
           </div>
         </div>
       ))}
+
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProduct(null);
+        }}
+        product={selectedProduct}
+      />
     </div>
   );
 };
