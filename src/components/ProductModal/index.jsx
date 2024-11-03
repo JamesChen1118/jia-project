@@ -4,6 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ProductModal = ({ isOpen, onClose, product }) => {
   if (!product) return null;
+
   const { image, name, category, price, description } = product;
 
   return (
@@ -57,8 +58,12 @@ const ProductModal = ({ isOpen, onClose, product }) => {
           {name}
         </h2>
         <h3 className="text-2xl text-main-color-orange mb-4">{category}</h3>
-        <p className="text-lg mb-4 text-gray-300 leading-relaxed">
-          {description || "暫無商品描述"}
+        <p
+          className="text-lg mb-4 text-gray-300 leading-relaxed
+                    bg-black/20 p-4 rounded-lg
+                    border border-main-color-yellow/20"
+        >
+          {description || "主廚精選料理!!!"}
         </p>
         <p className="text-2xl font-bold text-main-color-yellow">${price}</p>
       </div>

@@ -32,7 +32,7 @@ const Order = () => {
         <ul className="mt-[15px] list-none text-center">
           {categories.map((category) => (
             <li
-              key={category._id}
+              key={category.name}
               onClick={() => filterProducts(category.name)}
               className="mt-[35px] inline-block px-20 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black text-2xl transition-all duration-700 ease-in-out hover:text-white hover:font-black hover:tracking-[3px] hover:scale-110 cursor-pointer"
             >
@@ -43,13 +43,14 @@ const Order = () => {
       </div>
       <div className="w-[80%] ml-[30px]">
         <div className="grid grid-cols-4 gap-[30px]">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <ProductCard
-              key={product._id}
+              key={product._id || `product-${index}`}
               image={product.image}
               category={product.category}
               name={product.name}
               price={product.price}
+              description={product.description}
             />
           ))}
         </div>

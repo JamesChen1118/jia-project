@@ -19,6 +19,11 @@ const productSchema = new Schema({
         type: Number,
         required: true,
     },
+    description: {
+        type: String,
+        required: false,
+        default: "主廚精選料理!!!"
+    }
 });
 
 export default mongoose.model("Product", productSchema);
