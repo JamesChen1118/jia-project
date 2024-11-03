@@ -40,14 +40,15 @@
   },
 
   "categories": {
-    "全部": "All",
-    "生食": "Sashimi",
-    "壽司": "Sushi",
-    "海鮮": "Seafood",
-    "炸物": "Fried",
-    "燒烤": "BBQ",
-    "定食": "Set Meal",
-    "甜點": "Dessert",
-    "飲品": "Drinks"
-  }
+    "all": "All",
+    "sashimi": "Sashimi",
+    "sushi": "Sushi",
+    "seafood": "Seafood",
+    "tempura": "Tempura",
+    "yakitori": "Yakitori",
+    "teishoku": "Teishoku",
+    "dessert": "Dessert",
+    "drink": "Drinks"
+  },
+  "categoryTitle": "Categories"
 }

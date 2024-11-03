@@ -6,10 +6,11 @@ export const productApi = {
         return data;
     },
     searchProducts: async (category) => {
-        const { data } = await server.get(`/products`, {
-            params: { category }
-        });
-        return data;
+        const { data } = await server.get("/products");
+        if (category === "all") {
+            return data;
+        }
+        return data.filter(product => product.category === category);
     },
     getCategories: async () => {
         const { data } = await server.get("/categories");

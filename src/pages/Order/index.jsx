@@ -19,7 +19,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    filterProducts("全部");
+    filterProducts("all");
     getCategories();
   }, []);
 
@@ -27,7 +27,7 @@ const Order = () => {
     <div className="w-[80%] flex mx-auto mt-[120px]">
       <div className="w-[20%] h-[2000px] bg-[#333] rounded-[15px] p-[30px] text-white">
         <h2 className="text-[30px] font-bold text-main-color-yellow text-center py-5 border-b border-[#bbaf48]">
-          商品分類
+          {t("categoryTitle")}
         </h2>
         <ul className="mt-[15px] list-none text-center">
           {categories.map((category) => (
@@ -50,7 +50,6 @@ const Order = () => {
               category={product.category}
               name={product.name}
               price={product.price}
-              description={product.description}
             />
           ))}
         </div>
