@@ -66,9 +66,13 @@ const Home = () => {
   return (
     <>
       {/* About 餐廳簡介區域 */}
-      <div className="text-center h-[500px] my-[150px] px-4 lg:px-0">
-        <div className="flex flex-col lg:flex-row-reverse justify-center items-center">
-          <motion.div className="w-full lg:w-[500px] leading-loose text-main-color-yellow text-xl md:text-2xl lg:text-3xl font-georgia lg:ml-[200px] space-y-6 mb-8 lg:mb-0">
+      <div className="text-center min-h-[500px] my-[100px] lg:my-[150px] px-4 lg:px-0">
+        <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-8 lg:gap-0">
+          <motion.div
+            className="w-full lg:w-[580px] leading-loose text-main-color-yellow 
+                                text-xl md:text-2xl lg:text-3xl font-georgia 
+                                lg:ml-[200px] space-y-6"
+          >
             <motion.p
               variants={textAnimation}
               initial="hidden"
@@ -110,12 +114,33 @@ const Home = () => {
             src="/src/assets/images/home/Izakaya-1.png"
             alt=""
             className="w-[300px] md:w-[350px] lg:w-[400px] h-auto lg:h-[500px] object-cover"
+            initial={{
+              opacity: 0,
+              x: -180,
+              scale: 0.7,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1.5,
+              ease: [0.6, 0.01, -0.05, 0.95],
+              opacity: { duration: 1.5 },
+              x: {
+                type: "spring",
+                damping: 20,
+                stiffness: 50,
+              },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
           />
         </div>
       </div>
 
       {/* Menu 菜單展示區域 */}
-      <div className="w-[90%] md:w-[85%] lg:w-4/5 mx-auto mt-[200px] lg:mt-[350px]">
+      <div className="w-[90%] md:w-[85%] lg:w-4/5 mx-auto mt-[250px] lg:mt-[350px]">
         <Menu3D />
       </div>
 
