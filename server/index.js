@@ -13,20 +13,24 @@ const app = express();
 app.use(express.json());
 
 app.get("/products", asyncHandler(async (req, res) => {
-    const { category } = req.query;
-
     try {
+        const { category } = req.query;
         let products;
+
         if (!category || category === "全部") {
             products = await Product.find({});
         } else {
             products = await Product.find({ category });
         }
+
         console.log('Fetched products:', products);
         res.json(products);
     } catch (error) {
         console.error("Error fetching products:", error);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({
+            message: "Server error",
+            error: error.message
+        });
     }
 }));
 
@@ -37,7 +41,10 @@ app.get("/categories", asyncHandler(async (req, res) => {
         res.json(categories);
     } catch (error) {
         console.error("Error fetching categories:", error);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({
+            message: "Server error",
+            error: error.message
+        });
     }
 }));
 
@@ -47,20 +54,26 @@ app.get("/news", (req, res) => {
         res.json(news);
     } catch (error) {
         console.error('Error sending news:', error);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({
+            message: "Server error",
+            error: error.message
+        });
     }
 });
 
 const PORT = process.env.PORT || 1999;
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 }).on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        console.log(`Port ${PORT} is busy, trying ${PORT + 1}`);
-        server.listen(PORT + 1);
-    } else {
-        console.error('Server error:', err);
-    }
+    console.error('Server error:', err);
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({
+        message: "Something broke!",
+        error: err.message
+    });
 });
 

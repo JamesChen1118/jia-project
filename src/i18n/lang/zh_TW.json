@@ -10,6 +10,10 @@
   "login_empty": "請輸入使用者名稱&密碼",
   "login_success": "歡迎回JIA~~~",
   "login_fail": "使用者名稱或密碼錯誤",
+  "Member": "會員中心",
+  "Login": "登入",
+  "Logout": "登出",
+  "Cart": "購物車",
 
   "news": {
     "title": "最新消息",
@@ -52,5 +56,16 @@
   },
   "categoryTitle": "商品分類",
 
-  "toMenu": "菜單底JIA"
+  "toMenu": "菜單底JIA",
+
+  "home": {
+    "slogan": "我們靜立於台北喧囂的角落，\n提供充滿溫度的美食\n以及溫馨的服務，\n奔波了一天，辛苦了!\n快回JIA~",
+    "contact": {
+      "address": "地址: 台北市松山區民生東路五段163-1號",
+      "phone": "電話: (02)2388-8888",
+      "email": "Email: contact@jiaizakaya.com"
+    },
+    "backToJia": "JIA裡看看",
+    "bookingBtn": "歡迎回JIA"
+  }
 }

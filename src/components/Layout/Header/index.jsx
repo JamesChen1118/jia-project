@@ -223,7 +223,7 @@ const Header = () => {
                 className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
               >
                 <FontAwesomeIcon icon={faGlobe} />
-                {language === languageList.zh ? "English" : "繁體中文"}
+                {language === languageList.zh ? "En" : "繁中"}
               </button>
             </li>
           </ul>

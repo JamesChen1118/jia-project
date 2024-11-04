@@ -10,6 +10,10 @@
   "login_empty": "Login failed, please check your input",
   "login_success": "Welcome back to JIA ~~~",
   "login_fail": "Invalid username or password",
+  "Member": "Member",
+  "Login": "Login",
+  "Logout": "Logout",
+  "Cart": "Cart",
 
   "news": {
     "title": "News",
@@ -52,5 +56,16 @@
   },
   "categoryTitle": "Categories",
 
-  "toMenu": "View Menu"
+  "toMenu": "View Menu",
+
+  "home": {
+    "slogan": "Standing quietly in a corner of bustling Taipei,\nWe offer heartwarming cuisine\nand cozy service.\nHad a long day? You must be tired!\nWelcome back to JIA~",
+    "contact": {
+      "address": "Address: No. 163-1, Sec. 5, Minsheng E. Rd., Songshan Dist., Taipei City",
+      "phone": "Tel: (02)2388-8888",
+      "email": "Email: contact@jiaizakaya.com"
+    },
+    "backToJia": "Visit JIA",
+    "bookingBtn": "Welcome to JIA"
+  }
 }

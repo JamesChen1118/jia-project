@@ -17,9 +17,6 @@ const Home = () => {
   const [openImageId, setOpenImageId] = useState(null);
   const { t } = useTranslation();
 
-  const text =
-    "我們靜立於台北喧囂的角落，\n提供充滿溫度的美食\n以及溫馨的服務，\n奔波了一天，辛苦了!\n快回JIA~";
-
   const textAnimation = {
     hidden: { opacity: 1 },
     visible: {
@@ -79,16 +76,20 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
             >
-              {text.split("\n").map((line, index) => (
-                <React.Fragment key={index}>
-                  {line.split("").map((char, charIndex) => (
-                    <motion.span key={charIndex} variants={letterAnimation}>
-                      {char}
-                    </motion.span>
-                  ))}
-                  {index !== text.split("\n").length - 1 && <br />}
-                </React.Fragment>
-              ))}
+              {t("home.slogan")
+                .split("\n")
+                .map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line.split("").map((char, charIndex) => (
+                      <motion.span key={charIndex} variants={letterAnimation}>
+                        {char}
+                      </motion.span>
+                    ))}
+                    {index !== t("home.slogan").split("\n").length - 1 && (
+                      <br />
+                    )}
+                  </React.Fragment>
+                ))}
             </motion.p>
 
             <motion.button
@@ -106,7 +107,7 @@ const Home = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              JIA裡看看
+              {t("home.backToJia")}
             </motion.button>
           </motion.div>
 
@@ -191,7 +192,7 @@ const Home = () => {
             ease: "easeInOut",
           }}
         >
-          歡迎回J I A
+          {t("home.bookingBtn")}
         </motion.button>
       </div>
 
@@ -219,7 +220,7 @@ const Home = () => {
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            地址: 台北市松山區民生東路五段163-1號
+            {t("home.contact.address")}
           </motion.p>
           <motion.p
             className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
@@ -232,7 +233,7 @@ const Home = () => {
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            電話: (02)2388-8888
+            {t("home.contact.phone")}
           </motion.p>
           <motion.p
             className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
@@ -245,7 +246,7 @@ const Home = () => {
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            Email: contact@jiaizakaya.com
+            {t("home.contact.email")}
           </motion.p>
         </div>
         <iframe
