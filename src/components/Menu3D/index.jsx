@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
 import i18n from "@/i18n";
 import "@/components/Menu3D/index.css";
-// import "@/assets/css/index.css";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
@@ -16,7 +15,6 @@ const Menu3D = () => {
       try {
         setLoading(true);
         const products = await productApi.searchProducts("all");
-        console.log("Fetched products:", products);
         const selectedProducts = products.slice(0, 12);
 
         const formattedMenuItems = selectedProducts.map((product) => ({
@@ -38,25 +36,14 @@ const Menu3D = () => {
     };
 
     fetchProducts();
-
-    const handleLanguageChange = () => {
-      fetchProducts();
-    };
-
-    i18n.on("languageChanged", handleLanguageChange);
-
-    return () => {
-      i18n.off("languageChanged", handleLanguageChange);
-    };
   }, []);
-
-  if (loading) return <div>載入中...</div>;
-  if (error) return <div>錯誤: {error}</div>;
-  if (!menuItems.length) return <div>沒有商品資料</div>;
 
   const handleImageClick = (id) => {
     setOpenImageId(openImageId === id ? null : id);
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="wrapper">

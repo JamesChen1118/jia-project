@@ -46,11 +46,11 @@ const NewsItem = () => {
 
   return (
     <div className="w-4/5 mx-auto">
-      <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden">
+      <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden p-5">
         {newsItems.map((item, index) => (
           <motion.div
             key={index}
-            className="grid grid-cols-12 gap-4 p-4 border-b border-main-color-yellow
+            className="grid grid-cols-12 gap-4 p-5 border-b border-main-color-yellow
                        hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -146,8 +146,12 @@ const Home = () => {
 
       {/* News 最新消息區域 */}
       <motion.div
-        className="my-[100px] md:my-[150px] lg:my-[200px] perspective-1000"
-        // ... motion 屬性保持不變 ...
+        className="p-40 md:my-[150px] lg:my-[200px] perspective-1000"
+        variants={pageVariants}
+        initial="initial"
+        whileInView="animate"
+        exit="exit"
+        viewport={{ once: false, amount: 0.5 }}
       >
         <NewsItem />
       </motion.div>
