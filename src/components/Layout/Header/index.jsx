@@ -74,7 +74,10 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out">
+    <div
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
+      ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+    >
       <nav className="px-5 w-full h-24 flex justify-between items-center bg-black">
         <h2 className="pl-[60px] md:pl-[30px] sm:pl-5">
           <button
@@ -148,7 +151,7 @@ const Header = () => {
                   className={
                     item.special
                       ? "text-black bg-main-color-yellow px-8 py-2 rounded-xl text-xl w-auto mx-4 transition-all duration-300 ease-in-out hover:scale-105"
-                      : "text-main-text-white hover:text-main-color-yellow text-xl w-full py-3 transition-all duration-300 ease-in-out relative before:absolute before:bottom-0 before:left-[50%] before:w-0 before:h-0.5 before:bg-main-color-yellow before:transition-all before:duration-300 hover:before:w-[50%] after:absolute after:bottom-0 after:right-[50%] after:w-0 after:h-0.5 after:bg-main-color-yellow after:transition-all after:duration-300 hover:after:w-[50%]"
+                      : "text-main-text-white hover:text-main-color-yellow text-xl w-full py-3 transition-all duration-300 ease-in-out"
                   }
                 >
                   {t(item.name)}

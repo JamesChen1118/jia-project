@@ -18,7 +18,7 @@ const Home = () => {
   const { t } = useTranslation();
 
   const text =
-    "我們靜立於台北喧囂的角落，提供充滿溫度的美食和溫馨的服務，奔波了一天，辛苦了!快回JIA~";
+    "我們靜立於台北喧囂的角落，\n提供充滿溫度的美食\n以及溫馨的服務，\n奔波了一天，辛苦了!\n快回JIA~";
 
   const textAnimation = {
     hidden: { opacity: 1 },
@@ -68,27 +68,48 @@ const Home = () => {
       {/* About 餐廳簡介區域 */}
       <div className="text-center h-[500px] my-[150px] px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row-reverse justify-center items-center">
-          <motion.div className="w-full lg:w-[580px] leading-loose text-main-color-yellow text-xl md:text-2xl lg:text-3xl font-georgia lg:ml-[200px] space-y-6 mb-8 lg:mb-0">
+          <motion.div className="w-full lg:w-[500px] leading-loose text-main-color-yellow text-xl md:text-2xl lg:text-3xl font-georgia lg:ml-[200px] space-y-6 mb-8 lg:mb-0">
             <motion.p
               variants={textAnimation}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
             >
-              {text.split("").map((char, index) => (
-                <motion.span key={index} variants={letterAnimation}>
-                  {char}
-                </motion.span>
+              {text.split("\n").map((line, index) => (
+                <React.Fragment key={index}>
+                  {line.split("").map((char, charIndex) => (
+                    <motion.span key={charIndex} variants={letterAnimation}>
+                      {char}
+                    </motion.span>
+                  ))}
+                  {index !== text.split("\n").length - 1 && <br />}
+                </React.Fragment>
               ))}
             </motion.p>
-            {/* ... 按鈕部分保持不變 ... */}
+
+            <motion.button
+              onClick={() => navigate("/About")}
+              className="inline-block px-8 py-3 text-2xl text-main-color-orange 
+                        transition-all duration-300 hidden italic
+                        text-shadow-cart hover:text-shadow-cart-hover"
+              initial={{ opacity: 0, y: 20, display: "none" }}
+              animate={{ opacity: 1, y: 0, display: "inline-block" }}
+              transition={{
+                duration: 0.5,
+                delay: 2.3,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              JIA裡看看
+            </motion.button>
           </motion.div>
 
           <motion.img
             src="/src/assets/images/home/Izakaya-1.png"
             alt=""
             className="w-[300px] md:w-[350px] lg:w-[400px] h-auto lg:h-[500px] object-cover"
-            // ... motion 屬性保持不變 ...
           />
         </div>
       </div>
