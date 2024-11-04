@@ -50,5 +50,7 @@
     "dessert": "Dessert",
     "drink": "Drinks"
   },
-  "categoryTitle": "Categories"
+  "categoryTitle": "Categories",
+
+  "toMenu": "View Menu"
 }

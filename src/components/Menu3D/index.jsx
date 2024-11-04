@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
 import i18n from "@/i18n";
 import "@/components/Menu3D/index.css";
+import { useTranslation } from "react-i18next";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -64,7 +66,7 @@ const Menu3D = () => {
                     <div className="menu-listContent">{item.description}</div>
                     <div className="menu-listPrice">{item.price}</div>
                     <NavLink to="/menu" className="toMenu">
-                      {i18n.t("Menu")}
+                      {t("toMenu")}
                     </NavLink>
                   </div>
                 </div>
