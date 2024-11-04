@@ -74,20 +74,13 @@ const Header = () => {
   };
 
   return (
-    <div
-      className={`
-        fixed top-0 left-0 w-full z-10 
-        transition-all duration-500 ease-in-out
-        bg-black
-        transform
-        ${isVisible ? "translate-y-0" : "-translate-y-full"}
-      `}
-    >
-      <nav className="px-5 w-full h-24 flex justify-between items-center">
+    <div className="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out">
+      <nav className="px-5 w-full h-24 flex justify-between items-center bg-black">
         <h2 className="pl-[60px] md:pl-[30px] sm:pl-5">
           <button
             onClick={handleLogoClick}
-            className="text-main-color-yellow no-underline font-verdana font-bold text-4xl 
+            className="text-main-color-yellow no-underline font-verdana font-bold 
+                     text-4xl lg:text-3xl xl:text-4xl 
                      transition-all duration-300 ease-in-out
                      hover:text-shadow-lg hover:scale-110"
           >
@@ -102,7 +95,6 @@ const Header = () => {
           <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
         </button>
 
-        {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center justify-center">
           {[
             { name: "About", special: false },
@@ -111,13 +103,16 @@ const Header = () => {
             { name: "Menu", special: false },
             { name: "Contact", special: false },
           ].map((item) => (
-            <li key={item.name} className="px-10 text-xl flex items-center">
+            <li
+              key={item.name}
+              className="px-4 lg:px-6 xl:px-10 text-base lg:text-lg xl:text-xl flex items-center"
+            >
               <button
                 onClick={() => navigate(`/${item.name.toLowerCase()}`)}
                 className={
                   item.special
-                    ? "px-5 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110 hover:px-[30px] hover:py-[10px] hover:shadow-lg"
-                    : "text-main-text-white hover:text-main-color-yellow no-underline transition-all duration-300 ease-in-out relative before:absolute before:bottom-0 before:left-[50%] before:w-0 before:h-0.5 before:bg-main-color-yellow before:transition-all before:duration-300 hover:before:w-[50%] after:absolute after:bottom-0 after:right-[50%] after:w-0 after:h-0.5 after:bg-main-color-yellow after:transition-all after:duration-300 hover:after:w-[50%]"
+                    ? "px-4 lg:px-5 py-2 bg-main-color-yellow rounded-xl font-medium text-black text-base lg:text-lg xl:text-xl transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110"
+                    : "text-main-text-white hover:text-main-color-yellow text-base lg:text-lg xl:text-xl no-underline transition-all duration-300 ease-in-out relative before:absolute before:bottom-0 before:left-[50%] before:w-0 before:h-0.5 before:bg-main-color-yellow before:transition-all before:duration-300 hover:before:w-[50%] after:absolute after:bottom-0 after:right-[50%] after:w-0 after:h-0.5 after:bg-main-color-yellow after:transition-all after:duration-300 hover:after:w-[50%]"
                 }
               >
                 {t(item.name)}
@@ -126,44 +121,112 @@ const Header = () => {
           ))}
         </ul>
 
-        {/* Mobile Menu */}
         <div
           className={`
             fixed top-24 left-0 w-full bg-black/95 transform transition-transform duration-300 ease-in-out lg:hidden
             ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+            z-20
           `}
         >
           <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
-            {["About", "News", "Menu", "Contact"].map((item) => (
+            {[
+              { name: "About", special: false },
+              { name: "News", special: false },
+              { name: "Booking", special: true },
+              { name: "Menu", special: false },
+              { name: "Contact", special: false },
+            ].map((item) => (
               <li
-                key={item}
+                key={item.name}
                 className="w-full text-center flex items-center justify-center"
               >
                 <button
                   onClick={() => {
-                    navigate(`/${item.toLowerCase()}`);
+                    navigate(`/${item.name.toLowerCase()}`);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-main-text-white hover:text-main-color-yellow text-xl w-full py-3
-                           transition-all duration-300 ease-in-out relative
-                           before:absolute before:bottom-0 before:left-[50%] 
-                           before:w-0 before:h-0.5 before:bg-main-color-yellow
-                           before:transition-all before:duration-300
-                           hover:before:w-[50%]
-                           after:absolute after:bottom-0 after:right-[50%] 
-                           after:w-0 after:h-0.5 after:bg-main-color-yellow
-                           after:transition-all after:duration-300
-                           hover:after:w-[50%]"
+                  className={
+                    item.special
+                      ? "text-black bg-main-color-yellow px-8 py-2 rounded-xl text-xl w-auto mx-4 transition-all duration-300 ease-in-out hover:scale-105"
+                      : "text-main-text-white hover:text-main-color-yellow text-xl w-full py-3 transition-all duration-300 ease-in-out relative before:absolute before:bottom-0 before:left-[50%] before:w-0 before:h-0.5 before:bg-main-color-yellow before:transition-all before:duration-300 hover:before:w-[50%] after:absolute after:bottom-0 after:right-[50%] after:w-0 after:h-0.5 after:bg-main-color-yellow after:transition-all after:duration-300 hover:after:w-[50%]"
+                  }
                 >
-                  {t(item)}
+                  {t(item.name)}
                 </button>
               </li>
             ))}
+
+            <div className="w-4/5 h-px bg-main-color-yellow/30 my-4"></div>
+
+            {isLoggedIn ? (
+              <>
+                <li className="w-full text-center">
+                  <button
+                    onClick={() => {
+                      navigate("/member");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+                  >
+                    <FontAwesomeIcon icon={faUser} />
+                    {t("Member")}
+                  </button>
+                </li>
+                <li className="w-full text-center">
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+                  >
+                    <FontAwesomeIcon icon={faSignOutAlt} />
+                    {t("Logout")}
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="w-full text-center">
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+                >
+                  <FontAwesomeIcon icon={faSignInAlt} />
+                  {t("Login")}
+                </button>
+              </li>
+            )}
+
+            <li className="w-full text-center">
+              <Link
+                to="/shoppingCart"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+              >
+                <FontAwesomeIcon icon={faShoppingCart} />
+                {t("Cart")}
+              </Link>
+            </li>
+
+            <li className="w-full text-center">
+              <button
+                onClick={() => {
+                  changeLanguage();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+              >
+                <FontAwesomeIcon icon={faGlobe} />
+                {language === languageList.zh ? "English" : "繁體中文"}
+              </button>
+            </li>
           </ul>
         </div>
 
-        {/* Right Side Icons */}
-        <div className="flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
+        <div className="hidden lg:flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
