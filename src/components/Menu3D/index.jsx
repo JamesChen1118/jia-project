@@ -21,7 +21,6 @@ const Menu3D = () => {
           id: product._id,
           imageUrl: product.image,
           title: product.name,
-          category: product.category,
           price: `$${product.price}`,
           description: product.description || "",
         }));
@@ -41,9 +40,6 @@ const Menu3D = () => {
   const handleImageClick = (id) => {
     setOpenImageId(openImageId === id ? null : id);
   };
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="wrapper">
@@ -65,9 +61,7 @@ const Menu3D = () => {
                     alt={item.title}
                   />
                   <div className="menu-listItem">
-                    <div className="menu-listContent">
-                      {item.category} - {item.description}
-                    </div>
+                    <div className="menu-listContent">{item.description}</div>
                     <div className="menu-listPrice">{item.price}</div>
                     <NavLink to="/menu" className="toMenu">
                       {i18n.t("Menu")}
