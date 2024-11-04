@@ -51,9 +51,12 @@ app.get("/categories", asyncHandler(async (req, res) => {
 app.get("/news", (req, res) => {
     try {
         console.log('Sending news data:', news);
+        if (!news) {
+            throw new Error('News data is undefined');
+        }
         res.json(news);
     } catch (error) {
-        console.error('Error sending news:', error);
+        console.error("Error sending news:", error);
         res.status(500).json({
             message: "Server error",
             error: error.message
@@ -65,15 +68,21 @@ const PORT = process.env.PORT || 1999;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-}).on('error', (err) => {
-    console.error('Server error:', err);
 });
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error('Global error handler:', err);
     res.status(500).json({
-        message: "Something broke!",
+        message: "Something went wrong!",
         error: err.message
+    });
+});
+
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received. Closing server...');
+    app.close(() => {
+        console.log('Server closed');
+        process.exit(0);
     });
 });
 

@@ -33,21 +33,8 @@ const ProductItem = ({ image, category, name, price, description }) => {
           />
           <div className="p-5">
             <h3 className="block text-xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5">
-              {category}
+              {name}
             </h3>
-            <div className="group">
-              <h3
-                className="inline-block text-white text-2xl font-bold text-center p-1.5 
-                           transition-all duration-300 ease-in-out
-                           group-hover:text-main-color-yellow 
-                           group-hover:tracking-wider"
-              >
-                {name}
-              </h3>
-            </div>
-            <div className="text-main-color-yellow text-xl">
-              <p>${price}</p>
-            </div>
             <div
               className="quantity-controls flex items-center mt-2.5"
               onClick={(e) => e.stopPropagation()}

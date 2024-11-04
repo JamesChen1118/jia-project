@@ -1,19 +1,56 @@
 {
-  "About": "關於JIA",
-  "News": "最新消息",
-  "Booking": "我要預訂",
-  "Menu": "菜單底JIA",
-  "Contact": "來信我JIA",
-  "Modern": "現代 ",
-  "Creative": "創作 ",
-  "Izakaya": "居酒屋",
-  "login_empty": "請輸入使用者名稱&密碼",
-  "login_success": "歡迎回JIA~~~",
-  "login_fail": "使用者名稱或密碼錯誤",
-  "Member": "會員中心",
-  "Login": "登入",
-  "Logout": "登出",
-  "Cart": "購物車",
+  "header": {
+    "about": "關於JIA",
+    "news": "最新消息",
+    "booking": "我要預訂",
+    "menu": "菜單底JIA",
+    "contact": "來信我JIA",
+    "modern": "現代 ",
+    "creative": "創作 ",
+    "izakaya": "居酒屋",
+    "member": "會員中心",
+    "login": "登入",
+    "logout": "登出",
+    "cart": "購物車",
+    "language": {
+      "en": "En",
+      "zh": "繁中"
+    }
+  },
+
+  "home": {
+    "slogan": "我們靜立於台北喧囂的角落，\n提供充滿溫度的美食\n以及溫馨的服務，\n奔波了一天，辛苦了!\n快回JIA~",
+    "contact": {
+      "address": "地址: 台北市松山區民生東路五段163-1號",
+      "phone": "電話: (02)2388-8888",
+      "email": "Email: contact@jiaizakaya.com"
+    },
+    "backToJia": "JIA裡看看",
+    "welcomeButton": "歡迎回J I A",
+    "menu": {
+      "categoryTitle": "商品分類",
+      "toMenu": "菜單底JIA",
+      "categories": {
+        "全部": "全部",
+        "生食": "生食",
+        "壽司": "壽司",
+        "海鮮": "海鮮",
+        "炸物": "炸物",
+        "燒烤": "燒烤",
+        "定食": "定食",
+        "甜點": "甜點",
+        "飲品": "飲品"
+      }
+    }
+  },
+
+  "message": {
+    "login": {
+      "empty": "請輸入使用者名稱&密碼",
+      "success": "歡迎回JIA~~~",
+      "fail": "使用者名稱或密碼錯誤"
+    }
+  },
 
   "news": {
     "title": "最新消息",
@@ -40,32 +77,152 @@
       "newsItem8": "每週一至週五下午5-7點，歡樂時光飲品半價！",
       "newsItem9": "慶祝夏日祭典，享用特製美食並有現場表演！",
       "newsItem10": "每週五卡拉OK之夜！盡情歡唱並享受專屬飲品優惠！"
-    }
-  },
-
-  "categories": {
-    "all": "全部",
-    "sashimi": "生食",
-    "sushi": "壽司",
-    "seafood": "海鮮",
-    "tempura": "炸物",
-    "yakitori": "燒烤",
-    "teishoku": "定食",
-    "dessert": "甜點",
-    "drink": "飲品"
-  },
-  "categoryTitle": "商品分類",
-
-  "toMenu": "菜單底JIA",
-
-  "home": {
-    "slogan": "我們靜立於台北喧囂的角落，\n提供充滿溫度的美食\n以及溫馨的服務，\n奔波了一天，辛苦了!\n快回JIA~",
-    "contact": {
-      "address": "地址: 台北市松山區民生東路五段163-1號",
-      "phone": "電話: (02)2388-8888",
-      "email": "Email: contact@jiaizakaya.com"
     },
-    "backToJia": "JIA裡看看",
-    "bookingBtn": "歡迎回JIA"
+    "viewMore": "查看更多"
+  },
+
+  "products": {
+    "items": {
+      "productsItem1": {
+        "name": "刺身拼盤",
+        "description": "精選新鮮生魚片拼盤，搭配山葵與醬油"
+      },
+      "productsItem2": {
+        "name": "鮭魚刺身",
+        "description": "挪威空運鮭魚，入口即化的細緻口感"
+      },
+      "productsItem3": {
+        "name": "鯛魚刺身",
+        "description": "新鮮鯛魚片，清甜鮮美"
+      },
+      "productsItem4": {
+        "name": "竹筴魚刺身",
+        "description": "油脂豐富的竹筴魚，入口即化"
+      },
+      "productsItem5": {
+        "name": "干貝刺身",
+        "description": "北海道空運干貝，鮮甜可口"
+      },
+      "productsItem6": {
+        "name": "鮪魚壽司",
+        "description": "新鮮鮪魚搭配道地醋飯"
+      },
+      "productsItem7": {
+        "name": "蛋壽司",
+        "description": "新鮮雞蛋與醋飯的完美結合"
+      },
+      "productsItem8": {
+        "name": "鮭魚壽司",
+        "description": "挪威鮭魚與醋飯的絕妙搭配"
+      },
+      "productsItem9": {
+        "name": "黃瓜捲壽司",
+        "description": "清爽黃瓜與醋飯的絕妙組合"
+      },
+      "productsItem10": {
+        "name": "蝦壽司",
+        "description": "新鮮蝦與醋飯的完美結合"
+      },
+      "productsItem11": {
+        "name": "烤蛤蜊",
+        "description": "新鮮蛤蜊與蒜香醬油的絕妙搭配"
+      },
+      "productsItem12": {
+        "name": "海膽",
+        "description": "北海道空運海膽，鮮美可口"
+      },
+      "productsItem13": {
+        "name": "牡蠣",
+        "description": "新鮮牡蠣與檸檬汁的絕妙搭配"
+      },
+      "productsItem14": {
+        "name": "生蠔",
+        "description": "新鮮生蠔與檸檬汁的絕妙搭配"
+      },
+      "productsItem15": {
+        "name": "干貝",
+        "description": "北海道空運干貝，鮮甜可口"
+      },
+      "productsItem16": {
+        "name": "炸天婦羅",
+        "description": "天婦羅外酥內嫩，海鮮與麵衣的絕妙搭配"
+      },
+      "productsItem17": {
+        "name": "炸蝦",
+        "description": "新鮮蝦與麵衣的絕妙搭配"
+      },
+      "productsItem18": {
+        "name": "炸雞",
+        "description": "新鮮雞肉與麵衣的絕妙搭配"
+      },
+      "productsItem19": {
+        "name": "炸豆腐",
+        "description": "新鮮豆腐與麵衣的絕妙搭配"
+      },
+      "productsItem20": {
+        "name": "烤雞肉串",
+        "description": "新鮮雞肉與醬油的絕妙搭配"
+      },
+      "productsItem21": {
+        "name": "烤牛肉串",
+        "description": "新鮮牛肉與醬油的絕妙搭配"
+      },
+      "productsItem22": {
+        "name": "鯖魚定食",
+        "description": "新鮮鯖魚與醬油的絕妙搭配"
+      },
+      "productsItem23": {
+        "name": "豬排定食",
+        "description": "新鮮豬排與醬油的絕妙搭配"
+      },
+      "productsItem24": {
+        "name": "炸蝦定食",
+        "description": "新鮮蝦與醬油的絕妙搭配"
+      },
+      "productsItem25": {
+        "name": "牛肉定食",
+        "description": "新鮮牛肉與醬油的絕妙搭配"
+      },
+      "productsItem26": {
+        "name": "雞肉定食",
+        "description": "新鮮雞肉與醬油的絕妙搭配"
+      },
+      "productsItem27": {
+        "name": "抹茶冰淇淋",
+        "description": "京都抹茶粉製成，香甜可口"
+      },
+      "productsItem28": {
+        "name": "大福",
+        "description": "新鮮紅豆與糯米皮的絕妙搭配"
+      },
+      "productsItem29": {
+        "name": "抹茶奶酪",
+        "description": "京都抹茶粉製成，奶香濃郁"
+      },
+      "productsItem30": {
+        "name": "紅豆湯",
+        "description": "紅豆與水的絕妙搭配，甜而不膩"
+      },
+      "productsItem31": {
+        "name": "抹茶蛋糕",
+        "description": "京都抹茶粉製成，蛋糕鬆軟"
+      },
+      "productsItem32": {
+        "name": "抹茶拿鐵",
+        "description": "京都抹茶粉製成，香醇濃郁"
+      },
+      "productsItem33": {
+        "name": "日式煎茶",
+        "description": "靜岡產地直送，清香回甘"
+      },
+      "productsItem34": {
+        "name": "玄米茶",
+        "description": "玄米焙香與綠茶完美結合"
+      },
+      "productsItem35": {
+        "name": "清酒",
+        "description": "獨特米香，回甘持久"
+      }
+    }
   }
 }

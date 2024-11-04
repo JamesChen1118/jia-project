@@ -1,19 +1,56 @@
 {
-  "About": "About",
-  "News": "News",
-  "Booking": "Booking",
-  "Menu": "Menu",
-  "Contact": "Contact",
-  "Modern": "Modern ",
-  "Creative": "Creative ",
-  "Izakaya": "Izakaya",
-  "login_empty": "Login failed, please check your input",
-  "login_success": "Welcome back to JIA ~~~",
-  "login_fail": "Invalid username or password",
-  "Member": "Member",
-  "Login": "Login",
-  "Logout": "Logout",
-  "Cart": "Cart",
+  "header": {
+    "about": "About",
+    "news": "News",
+    "booking": "Booking",
+    "menu": "Menu",
+    "contact": "Contact",
+    "modern": "Modern ",
+    "creative": "Creative ",
+    "izakaya": "Izakaya",
+    "member": "Member",
+    "login": "Login",
+    "logout": "Logout",
+    "cart": "Cart",
+    "language": {
+      "en": "En",
+      "zh": "繁中"
+    }
+  },
+
+  "home": {
+    "slogan": "Standing quietly in a corner of bustling Taipei,\nwe offer heartwarming cuisine\nand cozy service.\nHad a long day? You must be tired!\nWelcome back to JIA~",
+    "contact": {
+      "address": "Address: No. 163-1, Sec. 5, Minsheng E. Rd., Songshan Dist., Taipei City",
+      "phone": "Tel: (02)2388-8888",
+      "email": "Email: contact@jiaizakaya.com"
+    },
+    "backToJia": "Visit JIA",
+    "welcomeButton": "Welcome to J I A",
+    "menu": {
+      "categoryTitle": "Categories",
+      "toMenu": "View Menu",
+      "categories": {
+        "全部": "All",
+        "生食": "Sashimi",
+        "壽司": "Sushi",
+        "海鮮": "Seafood",
+        "炸物": "Tempura",
+        "燒烤": "BBQ",
+        "定食": "Set Meal",
+        "甜點": "Dessert",
+        "飲品": "Drinks"
+      }
+    }
+  },
+
+  "message": {
+    "login": {
+      "empty": "Login failed, please check your input",
+      "success": "Welcome back to JIA ~~~",
+      "fail": "Invalid username or password"
+    }
+  },
 
   "news": {
     "title": "News",
@@ -40,32 +77,152 @@
       "newsItem8": "Join us every weekday from 5-7 PM for half-price drinks during Happy Hour!",
       "newsItem9": "Celebrate the season with our Summer Matsuri Feast, featuring special dishes and live entertainment!",
       "newsItem10": "Every Friday night is Karaoke Night! Sing your favorite songs and enjoy exclusive drink specials!"
-    }
-  },
-
-  "categories": {
-    "all": "All",
-    "sashimi": "Sashimi",
-    "sushi": "Sushi",
-    "seafood": "Seafood",
-    "tempura": "Tempura",
-    "yakitori": "Yakitori",
-    "teishoku": "Teishoku",
-    "dessert": "Dessert",
-    "drink": "Drinks"
-  },
-  "categoryTitle": "Categories",
-
-  "toMenu": "View Menu",
-
-  "home": {
-    "slogan": "Standing quietly in a corner of bustling Taipei,\nWe offer heartwarming cuisine\nand cozy service.\nHad a long day? You must be tired!\nWelcome back to JIA~",
-    "contact": {
-      "address": "Address: No. 163-1, Sec. 5, Minsheng E. Rd., Songshan Dist., Taipei City",
-      "phone": "Tel: (02)2388-8888",
-      "email": "Email: contact@jiaizakaya.com"
     },
-    "backToJia": "Visit JIA",
-    "bookingBtn": "Welcome to JIA"
+    "viewMore": "View More"
+  },
+
+  "products": {
+    "items": {
+      "productsItem1": {
+        "name": "Sashimi Platter",
+        "description": "Selected fresh sashimi platter with wasabi and soy sauce"
+      },
+      "productsItem2": {
+        "name": "Salmon Sashimi",
+        "description": "Norwegian air-flown salmon with melt-in-your-mouth texture"
+      },
+      "productsItem3": {
+        "name": "Sea Bream Sashimi",
+        "description": "Fresh sea bream slices, sweet and delicious"
+      },
+      "productsItem4": {
+        "name": "Horse Mackerel Sashimi",
+        "description": "Rich in oils, melts in your mouth"
+      },
+      "productsItem5": {
+        "name": "Scallop Sashimi",
+        "description": "Air-flown scallops from Hokkaido, fresh and sweet"
+      },
+      "productsItem6": {
+        "name": "Tuna Sushi",
+        "description": "Fresh tuna with authentic vinegared rice"
+      },
+      "productsItem7": {
+        "name": "Tamago Sushi",
+        "description": "Perfect combination of fresh egg and vinegared rice"
+      },
+      "productsItem8": {
+        "name": "Salmon Sushi",
+        "description": "Norwegian salmon perfectly paired with vinegared rice"
+      },
+      "productsItem9": {
+        "name": "Cucumber Roll",
+        "description": "Refreshing cucumber roll with vinegared rice"
+      },
+      "productsItem10": {
+        "name": "Shrimp Sushi",
+        "description": "Fresh shrimp perfectly paired with vinegared rice"
+      },
+      "productsItem11": {
+        "name": "Grilled Clams",
+        "description": "Fresh clams with garlic soy sauce"
+      },
+      "productsItem12": {
+        "name": "Sea Urchin",
+        "description": "Air-flown sea urchin from Hokkaido"
+      },
+      "productsItem13": {
+        "name": "Oysters",
+        "description": "Fresh oysters with lemon juice"
+      },
+      "productsItem14": {
+        "name": "Raw Oysters",
+        "description": "Fresh raw oysters with lemon juice"
+      },
+      "productsItem15": {
+        "name": "Scallops",
+        "description": "Air-flown scallops from Hokkaido"
+      },
+      "productsItem16": {
+        "name": "Tempura",
+        "description": "Crispy tempura with seafood and vegetables"
+      },
+      "productsItem17": {
+        "name": "Shrimp Tempura",
+        "description": "Fresh shrimp in crispy tempura batter"
+      },
+      "productsItem18": {
+        "name": "Chicken Tempura",
+        "description": "Fresh chicken in crispy tempura batter"
+      },
+      "productsItem19": {
+        "name": "Tofu Tempura",
+        "description": "Fresh tofu in crispy tempura batter"
+      },
+      "productsItem20": {
+        "name": "Chicken Yakitori",
+        "description": "Grilled chicken skewers with special sauce"
+      },
+      "productsItem21": {
+        "name": "Beef Yakitori",
+        "description": "Grilled beef skewers with special sauce"
+      },
+      "productsItem22": {
+        "name": "Mackerel Set",
+        "description": "Fresh mackerel set with rice and miso soup"
+      },
+      "productsItem23": {
+        "name": "Pork Cutlet Set",
+        "description": "Fresh pork cutlet set with rice and miso soup"
+      },
+      "productsItem24": {
+        "name": "Tempura Set",
+        "description": "Fresh tempura set with rice and miso soup"
+      },
+      "productsItem25": {
+        "name": "Beef Set",
+        "description": "Fresh beef set with rice and miso soup"
+      },
+      "productsItem26": {
+        "name": "Chicken Set",
+        "description": "Fresh chicken set with rice and miso soup"
+      },
+      "productsItem27": {
+        "name": "Matcha Ice Cream",
+        "description": "Made with Kyoto matcha powder, sweet and delicious"
+      },
+      "productsItem28": {
+        "name": "Daifuku",
+        "description": "Fresh red bean paste wrapped in mochi"
+      },
+      "productsItem29": {
+        "name": "Matcha Pudding",
+        "description": "Made with Kyoto matcha powder, rich and creamy"
+      },
+      "productsItem30": {
+        "name": "Red Bean Soup",
+        "description": "Sweet red bean soup, perfectly balanced"
+      },
+      "productsItem31": {
+        "name": "Matcha Cake",
+        "description": "Made with Kyoto matcha powder, soft and fluffy"
+      },
+      "productsItem32": {
+        "name": "Matcha Latte",
+        "description": "Made with Kyoto matcha powder, rich and aromatic"
+      },
+      "productsItem33": {
+        "name": "Japanese Sencha",
+        "description": "Direct from Shizuoka, fresh and sweet aftertaste"
+      },
+      "productsItem34": {
+        "name": "Genmaicha",
+        "description": "Perfect blend of roasted rice and green tea"
+      },
+      "productsItem35": {
+        "name": "Sake",
+        "description": "Unique rice aroma with long-lasting aftertaste"
+      }
+    }
   }
 }

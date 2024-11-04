@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import NewsItem from "@/components/NewsItem";
@@ -11,51 +11,62 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+import { newsApi } from "@/api/news";
+import i18n from "@/i18n/index";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [openImageId, setOpenImageId] = useState(null);
   const { t } = useTranslation();
+  const [newsItems, setNewsItems] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const data = await newsApi.getNews();
+        setNewsItems(data);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+        setNewsItems([]);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  const imageAnimation = {
+    initial: { opacity: 0, x: -50, scale: 0.8 },
+    whileInView: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut", // 使用標準的 easing 函數
+      },
+    },
+  };
 
   const textAnimation = {
-    hidden: { opacity: 1 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const letterAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const pageVariants = {
-    initial: {
-      rotateX: 90,
+    hidden: {
       opacity: 0,
       y: 50,
     },
-    animate: {
-      rotateX: 0,
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.43, 0.13, 0.23, 0.96],
-      },
-    },
-    exit: {
-      rotateX: -90,
-      opacity: 0,
-      y: -50,
-      transition: {
-        duration: 0.5,
+        duration: 0.08,
+        ease: "easeOut",
       },
     },
   };
@@ -67,8 +78,8 @@ const Home = () => {
         <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-8 lg:gap-0">
           <motion.div
             className="w-full lg:w-[580px] leading-loose text-main-color-yellow 
-                                text-xl md:text-2xl lg:text-3xl font-georgia 
-                                lg:ml-[200px] space-y-6"
+                      text-xl md:text-2xl lg:text-3xl font-georgia 
+                      lg:ml-[200px] space-y-6"
           >
             <motion.p
               variants={textAnimation}
@@ -140,7 +151,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Menu 菜單展示區域 */}
+      {/* Menu3D 區域 */}
       <div className="w-[90%] md:w-[85%] lg:w-4/5 mx-auto mt-[250px] lg:mt-[350px]">
         <Menu3D />
       </div>
@@ -148,10 +159,9 @@ const Home = () => {
       {/* News 最新消息區域 */}
       <motion.div
         className="p-40 md:my-[150px] lg:my-[200px] perspective-1000"
-        variants={pageVariants}
-        initial="initial"
-        whileInView="animate"
-        exit="exit"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: false, amount: 0.5 }}
       >
         <NewsItem />
@@ -160,11 +170,11 @@ const Home = () => {
       {/* Reservation 訂位區域 */}
       <div
         className="relative mx-auto mb-[150px] min-h-[50vh] w-full font-georgia font-semibold 
-                      text-2xl md:text-3xl lg:text-4xl flex justify-center items-center"
+                    text-2xl md:text-3xl lg:text-4xl flex justify-center items-center"
       >
         {/* 背景圖片容器 */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-[-1]"
           style={{
             backgroundImage: "url('/src/assets/images/home/Izakaya-2.jpg')",
             backgroundSize: "cover",
@@ -172,7 +182,7 @@ const Home = () => {
             backgroundAttachment: "fixed",
             opacity: 0.5,
           }}
-        ></div>
+        />
 
         {/* 按鈕 */}
         <motion.button
@@ -192,7 +202,7 @@ const Home = () => {
             ease: "easeInOut",
           }}
         >
-          {t("home.bookingBtn")}
+          {t("home.welcomeButton")}
         </motion.button>
       </div>
 

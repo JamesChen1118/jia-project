@@ -73,6 +73,17 @@ const Header = () => {
     setLanguage(newLang);
   };
 
+  const navItems = [
+    { name: "about", special: false },
+    { name: "news", special: false },
+    { name: "booking", special: true },
+    { name: "menu", special: false },
+    { name: "contact", special: false },
+  ].map((item) => ({
+    ...item,
+    translationKey: `header.${item.name}`,
+  }));
+
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
@@ -99,26 +110,20 @@ const Header = () => {
         </button>
 
         <ul className="hidden lg:flex items-center justify-center">
-          {[
-            { name: "About", special: false },
-            { name: "News", special: false },
-            { name: "Booking", special: true },
-            { name: "Menu", special: false },
-            { name: "Contact", special: false },
-          ].map((item) => (
+          {navItems.map((item) => (
             <li
               key={item.name}
               className="px-4 lg:px-6 xl:px-10 text-base lg:text-lg xl:text-xl flex items-center"
             >
               <button
-                onClick={() => navigate(`/${item.name.toLowerCase()}`)}
+                onClick={() => navigate(`/${item.name}`)}
                 className={
                   item.special
                     ? "px-4 lg:px-5 py-2 bg-main-color-yellow rounded-xl font-medium text-black text-base lg:text-lg xl:text-xl transition-all duration-700 ease-in-out hover:tracking-letterSpacing-3 hover:scale-110"
                     : "text-main-text-white hover:text-main-color-yellow text-base lg:text-lg xl:text-xl no-underline transition-all duration-300 ease-in-out relative before:absolute before:bottom-0 before:left-[50%] before:w-0 before:h-0.5 before:bg-main-color-yellow before:transition-all before:duration-300 hover:before:w-[50%] after:absolute after:bottom-0 after:right-[50%] after:w-0 after:h-0.5 after:bg-main-color-yellow after:transition-all after:duration-300 hover:after:w-[50%]"
                 }
               >
-                {t(item.name)}
+                {t(item.translationKey)}
               </button>
             </li>
           ))}
@@ -132,20 +137,14 @@ const Header = () => {
           `}
         >
           <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
-            {[
-              { name: "About", special: false },
-              { name: "News", special: false },
-              { name: "Booking", special: true },
-              { name: "Menu", special: false },
-              { name: "Contact", special: false },
-            ].map((item) => (
+            {navItems.map((item) => (
               <li
                 key={item.name}
                 className="w-full text-center flex items-center justify-center"
               >
                 <button
                   onClick={() => {
-                    navigate(`/${item.name.toLowerCase()}`);
+                    navigate(`/${item.name}`);
                     setIsMobileMenuOpen(false);
                   }}
                   className={
@@ -154,7 +153,7 @@ const Header = () => {
                       : "text-main-text-white hover:text-main-color-yellow text-xl w-full py-3 transition-all duration-300 ease-in-out"
                   }
                 >
-                  {t(item.name)}
+                  {t(item.translationKey)}
                 </button>
               </li>
             ))}
@@ -172,7 +171,7 @@ const Header = () => {
                     className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
                   >
                     <FontAwesomeIcon icon={faUser} />
-                    {t("Member")}
+                    {t("header.member")}
                   </button>
                 </li>
                 <li className="w-full text-center">
@@ -184,7 +183,7 @@ const Header = () => {
                     className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
                   >
                     <FontAwesomeIcon icon={faSignOutAlt} />
-                    {t("Logout")}
+                    {t("header.logout")}
                   </button>
                 </li>
               </>
@@ -198,7 +197,7 @@ const Header = () => {
                   className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
                 >
                   <FontAwesomeIcon icon={faSignInAlt} />
-                  {t("Login")}
+                  {t("header.login")}
                 </button>
               </li>
             )}
@@ -210,7 +209,7 @@ const Header = () => {
                 className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
               >
                 <FontAwesomeIcon icon={faShoppingCart} />
-                {t("Cart")}
+                {t("header.cart")}
               </Link>
             </li>
 
@@ -250,7 +249,7 @@ const Header = () => {
                         className="block px-4 py-2 text-base text-main-text-white hover:text-main-color-yellow hover:bg-transparent-light cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
                       >
                         <FontAwesomeIcon icon={faUser} className="mr-2" />
-                        {t("Member")}
+                        {t("header.member")}
                       </button>
                     </li>
                     <li>
@@ -259,7 +258,7 @@ const Header = () => {
                         className="block px-4 py-2 text-base text-main-text-white hover:text-main-color-yellow hover:bg-transparent-light cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
                       >
                         <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-                        {t("Logout")}
+                        {t("header.logout")}
                       </button>
                     </li>
                   </>
@@ -273,7 +272,7 @@ const Header = () => {
                       className="block px-4 py-2 text-base text-main-text-white hover:text-main-color-yellow hover:bg-transparent-light cursor-pointer w-full text-left transition-all duration-500 ease-in-out"
                     >
                       <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
-                      {t("Login")}
+                      {t("header.login")}
                     </button>
                   </li>
                 )}

@@ -1,11 +1,33 @@
 import { Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const ProductModal = ({ isOpen, onClose, product }) => {
+  const { t } = useTranslation();
+
   if (!product) return null;
 
-  const { image, name, category, price, description } = product;
+  // 找到對應的 productsItem 編號
+  const getProductIndex = (productName) => {
+    const productsList = [
+      "刺身拼盤",
+      "鮭魚刺身",
+      "鯛魚刺身",
+      "竹筴魚刺身",
+      "干貝刺身",
+      "鮪魚壽司",
+      "蛋壽司",
+      "鮭魚壽司",
+      "黃瓜捲壽司",
+      "蝦壽司",
+      // ... 其他商品名稱
+    ];
+    const index = productsList.indexOf(productName);
+    return index !== -1 ? index + 1 : 1;
+  };
+
+  const productIndex = getProductIndex(product.name);
 
   return (
     <Modal
@@ -49,23 +71,22 @@ const ProductModal = ({ isOpen, onClose, product }) => {
     >
       <div className="p-6">
         <img
-          src={image}
-          alt={name}
-          className="w-full h-[300px] object-cover rounded-lg mb-6 
-                   shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+          src={product.image}
+          alt={t(`products.items.productsItem${productIndex}.name`)}
+          className="w-full h-[300px] object-cover rounded-lg mb-6"
         />
-        <h2 className="text-3xl font-bold text-main-color-yellow mb-4 tracking-wider">
-          {name}
+        <h2 className="text-3xl font-bold text-main-color-yellow mb-4">
+          {t(`products.items.productsItem${productIndex}.name`)}
         </h2>
-        <h3 className="text-2xl text-main-color-orange mb-4">{category}</h3>
-        <p
-          className="text-lg mb-4 text-gray-300 leading-relaxed
-                    bg-black/20 p-4 rounded-lg
-                    border border-main-color-yellow/20"
-        >
-          {description || "主廚精選料理!!!"}
+        <h3 className="text-2xl text-main-color-orange mb-4">
+          {t(`home.menu.categories.${product.category}`)}
+        </h3>
+        <p className="text-lg mb-4 text-gray-300">
+          {t(`products.items.productsItem${productIndex}.description`)}
         </p>
-        <p className="text-2xl font-bold text-main-color-yellow">${price}</p>
+        <p className="text-2xl font-bold text-main-color-yellow">
+          ${product.price}
+        </p>
       </div>
     </Modal>
   );

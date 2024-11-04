@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import products from "../../../server/data/products";
-import i18n from "@/i18n";
+import { useTranslation } from "react-i18next";
 import ProductModal from "@/components/ProductModal";
 
 const Menu = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const groupedProducts = products.reduce((acc, product) => {
     if (!acc[product.category]) {
@@ -29,14 +30,14 @@ const Menu = () => {
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
             }}
           >
-            {i18n.t(`categories.${category}`)}
+            {t(`home.menu.categories.${category}`)}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 border-b-4 border-double border-main-color-yellow" />
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <motion.div
-                key={`${category}-${item.name}-${item._id || item.id}`}
+                key={`${category}-${item.name}-${index}`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -55,17 +56,17 @@ const Menu = () => {
               >
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt={t(`products.items.productsItem${index + 1}.name`)}
                   className="w-24 h-24 object-cover rounded-full shadow-md"
                 />
                 <div className="ml-6 flex-grow">
                   <h3 className="text-xl font-bold text-main-color-yellow">
-                    {item.name}
+                    {t(`products.items.productsItem${index + 1}.name`)}
                   </h3>
+                  <p className="text-2xl font-bold text-main-color-yellow">
+                    ${item.price}
+                  </p>
                 </div>
-                <p className="text-2xl font-bold text-main-color-yellow">
-                  ${item.price}
-                </p>
               </motion.div>
             ))}
           </div>

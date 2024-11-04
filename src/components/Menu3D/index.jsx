@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
-import i18n from "@/i18n";
-import "@/components/Menu3D/index.css";
 import { useTranslation } from "react-i18next";
 
 const Menu3D = () => {
@@ -16,15 +14,16 @@ const Menu3D = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const products = await productApi.searchProducts("all");
+        const products = await productApi.searchProducts("全部");
         const selectedProducts = products.slice(0, 12);
 
         const formattedMenuItems = selectedProducts.map((product) => ({
           id: product._id,
           imageUrl: product.image,
-          title: product.name,
+          title: t(`products.items.${product.name}.name`),
+          category: t(`home.menu.categories.${product.category}`),
           price: `$${product.price}`,
-          description: product.description || "",
+          description: t(`products.items.${product.name}.description`),
         }));
 
         setMenuItems(formattedMenuItems);
@@ -37,11 +36,14 @@ const Menu3D = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [t]);
 
   const handleImageClick = (id) => {
     setOpenImageId(openImageId === id ? null : id);
   };
+
+  if (loading) return <div>載入中...</div>;
+  if (error) return <div>錯誤: {error}</div>;
 
   return (
     <div className="wrapper">
@@ -63,10 +65,12 @@ const Menu3D = () => {
                     alt={item.title}
                   />
                   <div className="menu-listItem">
-                    <div className="menu-listContent">{item.description}</div>
+                    <div className="menu-listContent">
+                      {item.category} - {item.description}
+                    </div>
                     <div className="menu-listPrice">{item.price}</div>
                     <NavLink to="/menu" className="toMenu">
-                      {t("toMenu")}
+                      {t("home.menu.toMenu")}
                     </NavLink>
                   </div>
                 </div>

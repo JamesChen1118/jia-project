@@ -2,8 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from "path";
 
-const BACKEND_PORT = process.env.PORT || 1999;
-
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -13,16 +11,16 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      "/news": {
+        target: "http://localhost:1999",
+        changeOrigin: true
+      },
       "/products": {
-        target: `http://localhost:${BACKEND_PORT}`,
+        target: "http://localhost:1999",
         changeOrigin: true
       },
       "/categories": {
-        target: `http://localhost:${BACKEND_PORT}`,
-        changeOrigin: true
-      },
-      "/news": {
-        target: `http://localhost:${BACKEND_PORT}`,
+        target: "http://localhost:1999",
         changeOrigin: true
       }
     }
