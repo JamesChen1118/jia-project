@@ -27,7 +27,7 @@
     line-height: 2;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
-    font-size: 26px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -39,8 +39,8 @@
 .reservation-form .form-date input,
 .reservation-form .form-time input,
 .reservation-form .form-name input,
-.reservation-form .form-select select option{
-    border: 1px solid rgb(255, 170, 13);
+.reservation-form .form-name input::placeholder,
+.reservation-form .form-select select option {
     color: rgb(255, 170, 13);
     transition: all 0.3s ease;
 }
@@ -77,14 +77,15 @@
     position: relative;
 }
 
-.table-img {
+/* 將重複的樣式合併為共用樣式 */
+.table-img,
+.table-four {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background-image: url('./images/seat-2-1.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -100,48 +101,50 @@
         -1px 1px 0 rgba(0, 0, 0, 0.8),
         1px -1px 0 rgba(0, 0, 0, 0.8),
         2px 2px 4px rgba(0, 0, 0, 0.5);
-     transition: all .5s ease-in-out;   
+    transition: all .5s ease-in-out;
+}
+
+/* 個別設定不同的背景圖片 */
+.table-img {
+    border-radius: 50px;
+    background-image: url('@/assets/images/reservation/seat-2-1.png');
 }
 
 .table-four {
-    background-image: url('./images/table-4.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(255, 170, 13);
-    font-weight: bold;
-    font-size: 36px;
-    text-shadow:
-        1px 1px 0 rgba(0, 0, 0, 0.8),
-        -1px -1px 0 rgba(0, 0, 0, 0.8),
-        -1px 1px 0 rgba(0, 0, 0, 0.8),
-        1px -1px 0 rgba(0, 0, 0, 0.8),
-        2px 2px 4px rgba(0, 0, 0, 0.5);
-     transition: all .5s ease-in-out;   
-
-}
-
-.table-four:hover, .table-img:hover{
-    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
-transform: scale(1.3);
+    background-image: url('@/assets/images/reservation/table-4.png');
+    width: 100%;
 }
 
-.form-name {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+/* 其他共用的hover效果和狀態 */
+.table-four:hover,
+.table-img:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.3);
+}
+
+.table-img.reserved,
+.table-four.reserved {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.table-img.selected,
+.table-four.selected {
+    border: 2px solid rgb(255, 170, 13);
+    opacity: 1;
+    filter: brightness(50%);
+    background-color: transparent;
+    color: rgb(255, 170, 13);
 }
 
 .form-name,
 .form-date,
 .form-time,
 .form-select {
-    margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
 }
 
 input[type="text"],
@@ -152,13 +155,37 @@ input[type="number"],
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(255, 170, 13);
     border-radius: 5px;
     font-size: 20px;
     outline: none;
     background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: rgb(255, 170, 13);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* 移除number input的上下箭頭 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* 新增的並排樣式 */
+.form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-row>div {
+    flex: 1;
 }
 
 input:focus {
@@ -180,7 +207,6 @@ select:focus {
     box-shadow: -1px -1px 5px rgba(255, 69, 0, .5);
     border: 1px solid orangered;
 }
-
 
 .form-select {
     position: relative;
@@ -222,4 +248,47 @@ select:focus {
 
 label {
     margin-right: 50px;
+}
+
+/* 修改當有座位被選中時，其他座位變淡黑的樣式 */
+.has-selected .table-img:not(.selected),
+.has-selected .table-four:not(.selected) {
+    opacity: 0.3;
+    background-color: rgba(0, 0, 0, 0.7);
+    filter: brightness(50%);
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 確保選中的座位保持原來的樣式 */
+.table-img.selected,
+.table-four.selected {
+    border: 2px solid rgb(255, 170, 13);
+    opacity: 1;
+    filter: brightness(100%);
+    background-color: transparent;
+    color: rgb(255, 170, 13);
+}
+
+/* 確保 select 元素填滿容器 */
+.form-row select {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid rgb(255, 170, 13);
+    border-radius: 5px;
+    font-size: 20px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgb(255, 170, 13);
+    text-align: center;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* 確保選項的樣式也一致 */
+.form-row select option {
+    background-color: #333;
+    color: rgb(255, 170, 13);
+    padding: 10px;
 }

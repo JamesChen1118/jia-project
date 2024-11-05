@@ -1,17 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./index.css";
 
 const Booking = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="booking">
       <button onClick={() => navigate("/Order")} className="booking-btn">
-        外帶
+        {t("booking.takeout")}
       </button>
       <button onClick={() => navigate("/Reservation")} className="booking-btn">
-        內用
+        {t("booking.dineIn")}
       </button>
     </div>
   );

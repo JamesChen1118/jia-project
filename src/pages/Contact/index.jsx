@@ -1,41 +1,44 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./index.css";
 
 const Contact = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <>
       <div className="contact-form">
         <div className="contact-left">
-          <h1 className="contact-title">聯絡我們</h1>
-          <input className="contact-name" placeholder="請填寫姓名" />
-          <input className="contact-phone" placeholder="請填寫手機號碼" />
+          <h1 className="contact-title">{t("contact.title")}</h1>
+          <input className="contact-name" placeholder={t("contact.name")} />
+          <input className="contact-phone" placeholder={t("contact.phone")} />
           <input
             className="contact-email"
-            placeholder="請填寫聯絡信箱"
+            placeholder={t("contact.email")}
             required
           />
-
-          <input className="contact-subject" placeholder="請填寫信件主旨" />
-
+          <input
+            className="contact-subject"
+            placeholder={t("contact.subject")}
+          />
           <textarea
             className="contact-content"
             rows="5"
             cols="60"
-            placeholder="請填寫內容"
+            placeholder={t("contact.content")}
             required
           ></textarea>
           <button className="contact-btn" onClick={() => navigate("/Booking")}>
-            送出
+            {t("contact.submit")}
           </button>
         </div>
         <div className="contact-right">
           <img src="https://picsum.photos/id/684/600/400" alt="" />
-          <p>地址: 台北市松山區民生東路五段163-1號</p>
-          <p>電話: (02)2388-8888</p>
-          <p>Email: contact@jiaizakaya.com</p>
+          <p>{t("contact.address")}</p>
+          <p>{t("contact.phone_number")}</p>
+          <p>{t("contact.email_address")}</p>
         </div>
       </div>
       <iframe

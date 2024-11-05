@@ -35,9 +35,9 @@ const Menu = () => {
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {items.map((item, index) => (
+            {items.map((item) => (
               <motion.div
-                key={`${category}-${item.name}-${index}`}
+                key={`${category}-${item.name}`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -56,15 +56,15 @@ const Menu = () => {
               >
                 <img
                   src={item.image}
-                  alt={t(`products.items.productsItem${index + 1}.name`)}
+                  alt={t(`products.items.${item.name}.name`)}
                   className="w-24 h-24 object-cover rounded-full shadow-md"
                 />
                 <div className="ml-6 flex-grow">
                   <h3 className="text-xl font-bold text-main-color-yellow">
-                    {t(`products.items.productsItem${index + 1}.name`)}
+                    {t(`products.items.${item.name}.name`)}
                   </h3>
                   <p className="text-2xl font-bold text-main-color-yellow">
-                    ${item.price}
+                    ${t(`products.items.${item.name}.price`)}
                   </p>
                 </div>
               </motion.div>

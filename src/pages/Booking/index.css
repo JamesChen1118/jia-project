@@ -8,7 +8,7 @@
     align-items: center;
     text-align: center;
     padding: 350px 200px 500px 200px;
-    font-size: 64px;
+    font-size: 58px;
     font-family: Verdana;
     font-weight: bolder;
     letter-spacing: 5px;
@@ -16,6 +16,7 @@
 
 .booking-btn {
     border: 3px solid #bbaf48;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;

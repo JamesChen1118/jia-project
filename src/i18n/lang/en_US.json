@@ -224,5 +224,107 @@
         "description": "Unique rice aroma with long-lasting aftertaste"
       }
     }
+  },
+
+  "about": {
+    "title": "About Us",
+    "description1": "As city lights illuminate the evening, JIA quietly awaits you in a corner of Taipei.",
+    "description2": "Beyond the bustling streets, you'll find a warm sense of belonging.",
+    "description3": "We offer not just food, but cherish the story and heart behind each dish.",
+    "description4": "Our chef selects seasonal ingredients, creating Japanese-inspired delicacies with delicate techniques,",
+    "description5": "bringing you a dining experience that interweaves refinement with warmth.",
+    "description6": "Whether for a relaxing drink or sharing with loved ones, JIA is your ideal choice.",
+    "description7": "Here, you'll feel the warmth and comfort of home, allowing your tired soul a moment of respite.",
+    "description8": "If you yearn for a moment of tranquility, welcome back to JIA, sit down, savor slowly,",
+    "description9": "here is your little haven.",
+    "welcomeButton": "Welcome to JIA"
+  },
+
+  "contact": {
+    "title": "Contact Us",
+    "name": "Enter your name",
+    "phone": "Enter your phone number",
+    "email": "Enter your email",
+    "subject": "Enter subject",
+    "content": "Enter content",
+    "submit": "Submit",
+    "address": "Address: No. 163-1, Sec. 5, Minsheng E. Rd., Songshan Dist., Taipei City",
+    "phone_number": "Tel: (02)2388-8888",
+    "email_address": "Email: contact@jiaizakaya.com"
+  },
+
+  "booking": {
+    "takeout": "Take Out",
+    "dineIn": "Dine In"
+  },
+
+  "cart": {
+    "continue": "Continue Shopping",
+    "title": "Cart Items",
+    "total": "Total Amount",
+    "payment": {
+      "title": "Credit Card Payment",
+      "cardNumber": "Card Number",
+      "expiry": "Expiry Date",
+      "year": "Year",
+      "month": "Month",
+      "cvv": "CVV",
+      "confirm": "Confirm Payment"
+    }
+  },
+
+  "member": {
+    "title": "Member Center",
+    "info": "Member Info",
+    "orders": "Order History",
+    "history": "Purchase History",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "table": {
+      "orderNumber": "Order No.",
+      "date": "Date",
+      "amount": "Amount",
+      "status": "Status",
+      "productName": "Product",
+      "quantity": "Quantity"
+    }
+  },
+
+  "login": {
+    "title": "Login",
+    "register": "Register",
+    "username": "Enter Username",
+    "password": "Enter Password",
+    "submit": "Login",
+    "register_submit": "Register",
+    "remember": "Remember Me",
+    "register_form": {
+      "username": "Enter Username",
+      "phone": "Enter Phone Number",
+      "email": "Enter Email",
+      "password": "Enter Password",
+      "confirm_password": "Confirm Password"
+    },
+    "messages": {
+      "empty": "Please enter username and password",
+      "success": "Login successful",
+      "fail": "Login failed"
+    }
+  },
+
+  "reservation": {
+    "title": "Reservation Information",
+    "namePlaceholder": "Enter Your Name",
+    "selectTime": "Select Time",
+    "selectPeople": "Select Number of People",
+    "peopleCount": "{{count}} Person(s)",
+    "phonePlaceholder": "Enter Phone Number",
+    "emailPlaceholder": "Enter Email",
+    "tablePlaceholder": "Table Number",
+    "submit": "Submit"
   }
 }

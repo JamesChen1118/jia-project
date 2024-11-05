@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const fadeIn = {
     offscreen: { opacity: 0, y: 50 },
@@ -44,26 +46,20 @@ const About = () => {
           variants={slideLeft}
         >
           <p className="text-main-text-white text-2xl leading-loose tracking-letterSpacing-5">
-            當夜幕降臨城市的燈光漸亮，
+            {t("about.description1")}
             <br />
-            JIA靜靜地在台北的一隅等待著您。
+            {t("about.description2")}
             <br />
-            穿過喧鬧的街頭，您將感受到溫暖的歸屬感。
+            {t("about.description3")}
             <br />
-            我們不僅提供美食，
+            {t("about.description4")}
             <br />
-            更重視每道料理背後的心意與故事。
-            <br />
-            主廚精選當季食材，
-            <br />
-            以細膩手法創造充滿日式風情的美味，
-            <br />
-            帶來精緻與溫馨交織的用餐體驗。
+            {t("about.description5")}
           </p>
         </motion.div>
         <motion.img
           src="https://images.pexels.com/photos/5766238/pexels-photo-5766238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="溫馨的居酒屋內部"
+          alt={t("about.title")}
           className="w-[500px] h-[500px] object-cover rounded-lg shadow-custom"
           variants={slideRight}
         />
@@ -77,7 +73,7 @@ const About = () => {
       >
         <motion.img
           src="https://images.pexels.com/photos/1710001/pexels-photo-1710001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="傳統居酒屋外觀"
+          alt={t("about.title")}
           className="w-[500px] h-[500px] object-cover rounded-lg shadow-custom mr-[150px]"
           variants={slideLeft}
         />
@@ -86,20 +82,14 @@ const About = () => {
           variants={slideRight}
         >
           <p className="text-main-text-white text-2xl leading-loose tracking-letterSpacing-5 mb-12">
-            無論是小酌放鬆，或與親友共享，
+            {t("about.description6")}
             <br />
-            JIA都是您的理想選擇。
+            {t("about.description7")}
             <br />
-            在這裡，您會感受到如家般的溫暖與舒適，
+            {t("about.description8")}
             <br />
-            讓疲憊的心靈獲得片刻放鬆。
-            <br />
-            如果您渴望片刻寧靜，
-            <br />
-            歡迎回到JIA，坐下，慢慢品味，
-            <br />
-            這裡，是您的小小歸屬。
-          </p>{" "}
+            {t("about.description9")}
+          </p>
           <motion.button
             onClick={() => navigate("/Booking")}
             className="inline-block px-8 py-3 text-xl text-main-color-yellow border-2 border-main-color-yellow rounded-lg 
@@ -111,9 +101,9 @@ const About = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            歡迎回JIA
+            {t("about.welcomeButton")}
           </motion.button>
-        </motion.div>{" "}
+        </motion.div>
       </motion.div>
     </div>
   );

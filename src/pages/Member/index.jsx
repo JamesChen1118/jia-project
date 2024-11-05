@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./index.css";
 
 const Member = () => {
   const [memberTable, setmemberTable] = useState("info");
+  const { t } = useTranslation();
 
   const renderContent = () => {
     const memberInfo = {
@@ -10,20 +12,20 @@ const Member = () => {
         <table className="member-table">
           <tbody>
             <tr>
-              <td>姓名</td>
+              <td>{t("member.fields.name")}</td>
               <td>JAMES</td>
             </tr>
             <tr>
-              <td>電子郵件</td>
+              <td>{t("member.fields.email")}</td>
               <td>james@example.com</td>
             </tr>
             <tr>
-              <td>電話</td>
+              <td>{t("member.fields.phone")}</td>
               <td>0912345678</td>
             </tr>
             <tr>
-              <td>地址</td>
-              <td>台北市大安區忠孝東路四段216巷27弄5號</td>
+              <td>{t("member.fields.address")}</td>
+              <td>{t("contact.address")}</td>
             </tr>
           </tbody>
         </table>
@@ -32,10 +34,10 @@ const Member = () => {
         <table className="member-table">
           <thead>
             <tr>
-              <th>訂單編號</th>
-              <th>日期</th>
-              <th>金額</th>
-              <th>狀態</th>
+              <th>{t("member.table.orderNumber")}</th>
+              <th>{t("member.table.date")}</th>
+              <th>{t("member.table.amount")}</th>
+              <th>{t("member.table.status")}</th>
             </tr>
           </thead>
           <tbody>
@@ -43,13 +45,13 @@ const Member = () => {
               <td>JIA001</td>
               <td>2024-01-01</td>
               <td>NT$ 1,500</td>
-              <td>已完成</td>
+              <td>{t("member.table.status")}</td>
             </tr>
             <tr>
               <td>JIA002</td>
               <td>2024-01-01</td>
               <td>NT$ 2,000</td>
-              <td>處理中</td>
+              <td>{t("member.table.status")}</td>
             </tr>
           </tbody>
         </table>
@@ -58,27 +60,27 @@ const Member = () => {
         <table className="member-table">
           <thead>
             <tr>
-              <th>商品名稱</th>
-              <th>購買日期</th>
-              <th>數量</th>
-              <th>金額</th>
+              <th>{t("member.table.productName")}</th>
+              <th>{t("member.table.date")}</th>
+              <th>{t("member.table.quantity")}</th>
+              <th>{t("member.table.amount")}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>炙燒鮭魚握壽司</td>
+              <td>{t("products.items.productsItem8.name")}</td>
               <td>2023-04-20</td>
               <td>2</td>
               <td>NT$ 360</td>
             </tr>
             <tr>
-              <td>特選和牛燒肉</td>
+              <td>{t("products.items.productsItem21.name")}</td>
               <td>2023-05-05</td>
               <td>1</td>
               <td>NT$ 580</td>
             </tr>
             <tr>
-              <td>生啤酒（大）</td>
+              <td>{t("products.items.productsItem35.name")}</td>
               <td>2023-05-05</td>
               <td>2</td>
               <td>NT$ 320</td>
@@ -94,7 +96,7 @@ const Member = () => {
   return (
     <div className="member-container">
       <div className="member-sidebar">
-        <h2 id="member-title">會員中心</h2>
+        <h2 id="member-title">{t("member.title")}</h2>
         <ul className="member-categories">
           <li
             className={`member-option ${
@@ -102,7 +104,7 @@ const Member = () => {
             }`}
             onClick={() => setmemberTable("info")}
           >
-            會員資訊
+            {t("member.info")}
           </li>
           <li
             className={`member-option ${
@@ -110,7 +112,7 @@ const Member = () => {
             }`}
             onClick={() => setmemberTable("orders")}
           >
-            訂單查詢
+            {t("member.orders")}
           </li>
           <li
             className={`member-option ${
@@ -118,17 +120,17 @@ const Member = () => {
             }`}
             onClick={() => setmemberTable("history")}
           >
-            消費紀錄
+            {t("member.history")}
           </li>
         </ul>
       </div>
       <div className="member-content">
         <h3>
           {memberTable === "info"
-            ? "會員資訊"
+            ? t("member.info")
             : memberTable === "orders"
-            ? "訂單查詢"
-            : "消費紀錄"}
+            ? t("member.orders")
+            : t("member.history")}
         </h3>
         {renderContent()}
       </div>

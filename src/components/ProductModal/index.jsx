@@ -8,27 +8,6 @@ const ProductModal = ({ isOpen, onClose, product }) => {
 
   if (!product) return null;
 
-  // 找到對應的 productsItem 編號
-  const getProductIndex = (productName) => {
-    const productsList = [
-      "刺身拼盤",
-      "鮭魚刺身",
-      "鯛魚刺身",
-      "竹筴魚刺身",
-      "干貝刺身",
-      "鮪魚壽司",
-      "蛋壽司",
-      "鮭魚壽司",
-      "黃瓜捲壽司",
-      "蝦壽司",
-      // ... 其他商品名稱
-    ];
-    const index = productsList.indexOf(productName);
-    return index !== -1 ? index + 1 : 1;
-  };
-
-  const productIndex = getProductIndex(product.name);
-
   return (
     <Modal
       title={null}
@@ -72,17 +51,14 @@ const ProductModal = ({ isOpen, onClose, product }) => {
       <div className="p-6">
         <img
           src={product.image}
-          alt={t(`products.items.productsItem${productIndex}.name`)}
+          alt={t(`products.items.${product.name}.name`)}
           className="w-full h-[300px] object-cover rounded-lg mb-6"
         />
         <h2 className="text-3xl font-bold text-main-color-yellow mb-4">
-          {t(`products.items.productsItem${productIndex}.name`)}
+          {t(`products.items.${product.name}.name`)}
         </h2>
-        <h3 className="text-2xl text-main-color-orange mb-4">
-          {t(`home.menu.categories.${product.category}`)}
-        </h3>
         <p className="text-lg mb-4 text-gray-300">
-          {t(`products.items.productsItem${productIndex}.description`)}
+          {t(`products.items.${product.name}.description`)}
         </p>
         <p className="text-2xl font-bold text-main-color-yellow">
           ${product.price}

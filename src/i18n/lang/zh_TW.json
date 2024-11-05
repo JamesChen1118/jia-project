@@ -85,144 +85,281 @@
     "items": {
       "productsItem1": {
         "name": "刺身拼盤",
-        "description": "精選新鮮生魚片拼盤，搭配山葵與醬油"
+        "description": "精選新鮮生魚片拼盤，搭配山葵與醬油",
+        "price": 580
       },
       "productsItem2": {
         "name": "鮭魚刺身",
-        "description": "挪威空運鮭魚，入口即化的細緻口感"
+        "description": "挪威空運鮭魚，入口即化的細緻口感",
+        "price": 320
       },
       "productsItem3": {
         "name": "鯛魚刺身",
-        "description": "新鮮鯛魚片，清甜鮮美"
+        "description": "新鮮鯛魚片，清甜鮮美",
+        "price": 300
       },
       "productsItem4": {
         "name": "竹筴魚刺身",
-        "description": "油脂豐富的竹筴魚，入口即化"
+        "description": "油脂豐富的竹筴魚，入口即化",
+        "price": 280
       },
       "productsItem5": {
         "name": "干貝刺身",
-        "description": "北海道空運干貝，鮮甜可口"
+        "description": "北海道空運干貝，鮮甜可口",
+        "price": 260
       },
       "productsItem6": {
         "name": "鮪魚壽司",
-        "description": "新鮮鮪魚搭配道地醋飯"
+        "description": "新鮮鮪魚搭配道地醋飯",
+        "price": 240
       },
       "productsItem7": {
         "name": "蛋壽司",
-        "description": "新鮮雞蛋與醋飯的完美結合"
+        "description": "新雞蛋與醋飯的完美結合",
+        "price": 220
       },
       "productsItem8": {
         "name": "鮭魚壽司",
-        "description": "挪威鮭魚與醋飯的絕妙搭配"
+        "description": "挪威鮭魚與醋飯的絕妙搭配",
+        "price": 200
       },
       "productsItem9": {
         "name": "黃瓜捲壽司",
-        "description": "清爽黃瓜與醋飯的絕妙組合"
+        "description": "清爽黃瓜與醋飯的絕妙組合",
+        "price": 180
       },
       "productsItem10": {
         "name": "蝦壽司",
-        "description": "新鮮蝦與醋飯的完美結合"
+        "description": "新鮮蝦與醋飯的完美結合",
+        "price": 160
       },
       "productsItem11": {
         "name": "烤蛤蜊",
-        "description": "新鮮蛤蜊與蒜香醬油的絕妙搭配"
+        "description": "新鮮蛤蜊與蒜香醬油的絕妙搭配",
+        "price": 140
       },
       "productsItem12": {
         "name": "海膽",
-        "description": "北海道空運海膽，鮮美可口"
+        "description": "北海道空運海膽，鮮美可口",
+        "price": 120
       },
       "productsItem13": {
         "name": "牡蠣",
-        "description": "新鮮牡蠣與檸檬汁的絕妙搭配"
+        "description": "新鮮牡蠣與檸檬汁的絕妙搭配",
+        "price": 100
       },
       "productsItem14": {
         "name": "生蠔",
-        "description": "新鮮生蠔與檸檬汁的絕妙搭配"
+        "description": "新鮮生蠔與檸檬汁的絕妙搭配",
+        "price": 80
       },
       "productsItem15": {
         "name": "干貝",
-        "description": "北海道空運干貝，鮮甜可口"
+        "description": "北海道空運干貝，鮮甜可口",
+        "price": 60
       },
       "productsItem16": {
         "name": "炸天婦羅",
-        "description": "天婦羅外酥內嫩，海鮮與麵衣的絕妙搭配"
+        "description": "天婦羅外酥內嫩，海鮮與麵衣的絕妙搭配",
+        "price": 50
       },
       "productsItem17": {
         "name": "炸蝦",
-        "description": "新鮮蝦與麵衣的絕妙搭配"
+        "description": "新鮮蝦與麵衣的絕妙搭配",
+        "price": 40
       },
       "productsItem18": {
         "name": "炸雞",
-        "description": "新鮮雞肉與麵衣的絕妙搭配"
+        "description": "新鮮雞肉與麵衣的絕妙搭配",
+        "price": 30
       },
       "productsItem19": {
         "name": "炸豆腐",
-        "description": "新鮮豆腐與麵衣的絕妙搭配"
+        "description": "新鮮豆腐與麵衣的絕妙搭配",
+        "price": 20
       },
       "productsItem20": {
         "name": "烤雞肉串",
-        "description": "新鮮雞肉與醬油的絕妙搭配"
+        "description": "新鮮雞肉與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem21": {
         "name": "烤牛肉串",
-        "description": "新鮮牛肉與醬油的絕妙搭配"
+        "description": "新鮮牛肉與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem22": {
         "name": "鯖魚定食",
-        "description": "新鮮鯖魚與醬油的絕妙搭配"
+        "description": "新鮮鯖魚與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem23": {
         "name": "豬排定食",
-        "description": "新鮮豬排與醬油的絕妙搭配"
+        "description": "新鮮豬排與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem24": {
         "name": "炸蝦定食",
-        "description": "新鮮蝦與醬油的絕妙搭配"
+        "description": "新鮮蝦與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem25": {
         "name": "牛肉定食",
-        "description": "新鮮牛肉與醬油的絕妙搭配"
+        "description": "新鮮牛肉與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem26": {
         "name": "雞肉定食",
-        "description": "新鮮雞肉與醬油的絕妙搭配"
+        "description": "新鮮雞肉與醬油的絕妙搭配",
+        "price": 10
       },
       "productsItem27": {
         "name": "抹茶冰淇淋",
-        "description": "京都抹茶粉製成，香甜可口"
+        "description": "京都抹茶粉製成，香甜可口",
+        "price": 80
       },
       "productsItem28": {
         "name": "大福",
-        "description": "新鮮紅豆與糯米皮的絕妙搭配"
+        "description": "新鮮紅豆與糯米皮的絕妙搭配",
+        "price": 60
       },
       "productsItem29": {
         "name": "抹茶奶酪",
-        "description": "京都抹茶粉製成，奶香濃郁"
+        "description": "京都抹茶粉製成，奶香濃郁",
+        "price": 50
       },
       "productsItem30": {
         "name": "紅豆湯",
-        "description": "紅豆與水的絕妙搭配，甜而不膩"
+        "description": "紅豆���水的絕妙搭配，甜而不膩",
+        "price": 40
       },
       "productsItem31": {
         "name": "抹茶蛋糕",
-        "description": "京都抹茶粉製成，蛋糕鬆軟"
+        "description": "京都抹茶粉製成，蛋糕鬆軟",
+        "price": 30
       },
       "productsItem32": {
         "name": "抹茶拿鐵",
-        "description": "京都抹茶粉製成，香醇濃郁"
+        "description": "京都抹茶粉製成，香醇濃郁",
+        "price": 20
       },
       "productsItem33": {
         "name": "日式煎茶",
-        "description": "靜岡產地直送，清香回甘"
+        "description": "靜岡產地直送，清香回甘",
+        "price": 10
       },
       "productsItem34": {
         "name": "玄米茶",
-        "description": "玄米焙香與綠茶完美結合"
+        "description": "玄米焙香與綠茶完美結合",
+        "price": 10
       },
       "productsItem35": {
         "name": "清酒",
-        "description": "獨特米香，回甘持久"
+        "description": "獨特香回甘持久",
+        "price": 50
       }
     }
+  },
+
+  "about": {
+    "title": "關於我們",
+    "description1": "當夜幕降臨城市的燈光漸亮，JIA靜靜地在台北的一隅等待著您。",
+    "description2": "穿過喧鬧街頭，您將感受到溫暖的歸屬感。",
+    "description3": "我們不僅提供美食，更重視每道料理背後的心意與故事。",
+    "description4": "主廚精選當季食材，以細膩手法創造充滿日式風情的美味，",
+    "description5": "帶來精緻與溫馨交織的用餐體驗。",
+    "description6": "無論是小酌放鬆，或與親友共享，JIA都是您的理想選擇。",
+    "description7": "在這裡，您會感受到如家般的溫暖與舒適，讓疲憊的心靈獲得片刻放鬆。",
+    "description8": "如果您渴望片刻寧靜，歡迎回到JIA，坐下，慢慢品味，",
+    "description9": "這裡，是您的小小歸屬。",
+    "welcomeButton": "歡迎回JIA"
+  },
+
+  "contact": {
+    "title": "聯絡我們",
+    "name": "請填寫姓名",
+    "phone": "請填寫手機號碼",
+    "email": "請填寫聯絡信箱",
+    "subject": "請填寫信件主旨",
+    "content": "請填寫內容",
+    "submit": "送出",
+    "address": "地址: 台北市松山區民生東路五段163-1號",
+    "phone_number": "電話: (02)2388-8888",
+    "email_address": "Email: contact@jiaizakaya.com"
+  },
+
+  "booking": {
+    "takeout": "外帶",
+    "dineIn": "內用"
+  },
+
+  "cart": {
+    "continue": "繼續選購",
+    "title": "購物車品項",
+    "total": "總金額",
+    "payment": {
+      "title": "信用卡付款資訊",
+      "cardNumber": "信用卡卡號",
+      "expiry": "有效日期",
+      "year": "年份",
+      "month": "月份",
+      "cvv": "檢查碼",
+      "confirm": "確認付款"
+    }
+  },
+
+  "member": {
+    "title": "會員中心",
+    "info": "會員資訊",
+    "orders": "訂單查詢",
+    "history": "消費紀錄",
+    "fields": {
+      "name": "姓名",
+      "email": "電子郵件",
+      "phone": "電話",
+      "address": "地址"
+    },
+    "table": {
+      "orderNumber": "訂單編號",
+      "date": "日期",
+      "amount": "金額",
+      "status": "狀態",
+      "productName": "商品名稱",
+      "quantity": "數量"
+    }
+  },
+
+  "login": {
+    "title": "會員登入",
+    "register": "會員註冊",
+    "username": "請輸入帳號",
+    "password": "請輸入密碼",
+    "submit": "登入",
+    "register_submit": "註冊",
+    "remember": "記住帳號",
+    "register_form": {
+      "username": "請填寫帳號",
+      "phone": "請填寫手機號碼",
+      "email": "請填寫信箱",
+      "password": "請填寫密碼",
+      "confirm_password": "再次輸入密碼"
+    },
+    "messages": {
+      "empty": "請輸入使用者名稱和密碼",
+      "success": "登入成功",
+      "fail": "登入失敗"
+    }
+  },
+
+  "reservation": {
+    "title": "訂位資訊",
+    "namePlaceholder": "請填寫姓名",
+    "selectTime": "選擇時間",
+    "selectPeople": "請選擇人數",
+    "peopleCount": "{{count}} 位",
+    "phonePlaceholder": "請填寫手機號碼",
+    "emailPlaceholder": "請填寫信箱",
+    "tablePlaceholder": "座位號碼",
+    "submit": "確認送出"
   }
 }

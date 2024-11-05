@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./index.css";
 
-// TODO購物車畫面待設計
 const ShoppingCart = () => {
+  const { t } = useTranslation();
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "鮪魚壽司", price: 48, numbers: 1 },
     { id: 2, name: "鮪魚壽司", price: 48, numbers: 1 },
@@ -36,9 +37,9 @@ const ShoppingCart = () => {
         <div className="cart">
           <div className="cart-top">
             <Link to="/order" className="backOrder">
-              繼續選購
+              {t("cart.continue")}
             </Link>
-            <h1 className="cart-title">購物車品項</h1>
+            <h1 className="cart-title">{t("cart.title")}</h1>
           </div>
           <hr className="line" />
 
@@ -73,56 +74,35 @@ const ShoppingCart = () => {
             ))}
           </div>
           <div className="total-box">
-            <label className="total-text">總金額 :</label>
+            <label className="total-text">{t("cart.total")} :</label>
             <label className="total-price">$ {totalAmount}</label>
           </div>
         </div>
         <div className="checkoutBox">
-          <div className="check-title">信用卡付款資訊</div>
+          <div className="check-title">{t("cart.payment.title")}</div>
           <hr className="line" />
           <div className="ccBox">
             <div className="check-number">
-              <label htmlFor="">信用卡卡號:</label>
-              <input
-                className="checkNum"
-                type="password"
-                maxLength="4"
-                pattern="\d{4}"
-                autoComplete="off"
-                required
-              ></input>
-              <input
-                className="checkNum"
-                type="password"
-                maxLength="4"
-                pattern="\d{4}"
-                autoComplete="off"
-                required
-              ></input>
-              <input
-                className="checkNum"
-                type="password"
-                maxLength="4"
-                pattern="\d{4}"
-                autoComplete="off"
-                required
-              ></input>
-              <input
-                className="checkNum"
-                type="password"
-                maxLength="4"
-                pattern="\d{4}"
-                autoComplete="off"
-                required
-              ></input>
+              <label>{t("cart.payment.cardNumber")}:</label>
+              {[1, 2, 3, 4].map((index) => (
+                <input
+                  key={index}
+                  className="checkNum"
+                  type="password"
+                  maxLength="4"
+                  pattern="\d{4}"
+                  autoComplete="off"
+                  required
+                />
+              ))}
             </div>
             <div className="cc-info">
               <div className="cc-time">
-                <label>有效日期:</label>
+                <label>{t("cart.payment.expiry")}:</label>
                 <input
                   type="text"
                   id="cc-year"
-                  placeholder="年份"
+                  placeholder={t("cart.payment.year")}
                   maxLength="4"
                   pattern="\d{4}"
                   inputMode="numeric"
@@ -132,31 +112,31 @@ const ShoppingCart = () => {
                 <input
                   type="text"
                   id="cc-month"
-                  placeholder="月份"
+                  placeholder={t("cart.payment.month")}
                   maxLength="2"
                   pattern="\d{2}"
                   inputMode="numeric"
                   autoComplete="off"
                   required
                 />
-
-                {/* <button className="date-picker">選擇</button> */}
               </div>
             </div>
             <div className="ccv-check">
-              <label className="ccv-title">檢查碼:</label>
+              <label className="ccv-title">{t("cart.payment.cvv")}:</label>
               <input
                 type="text"
                 id="ccv-number"
-                placeholder="請輸入"
+                placeholder={t("cart.payment.cvv")}
                 maxLength="3"
                 pattern="\d{3}"
                 inputMode="numeric"
                 autoComplete="off"
                 required
-              ></input>
+              />
             </div>
-            <button className="checkOut-btn">確認付款</button>
+            <button className="checkOut-btn">
+              {t("cart.payment.confirm")}
+            </button>
           </div>
         </div>
       </div>
