@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./index.css";
+import ScrollToContent from "@/components/ScrollToContent";
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Contact = () => {
 
   return (
     <>
+      <ScrollToContent />
       <div className="contact-form">
         <div className="contact-left">
           <h1 className="contact-title">{t("contact.title")}</h1>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./index.css";
+import ScrollToContent from "@/components/ScrollToContent";
 
 const ShoppingCart = () => {
   const { t } = useTranslation();
@@ -33,6 +34,7 @@ const ShoppingCart = () => {
 
   return (
     <>
+      <ScrollToContent />
       <div className="checkoutList">
         <div className="cart">
           <div className="cart-top">

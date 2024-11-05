@@ -28,7 +28,7 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { language, setLanguage } = useUserStore();
   let scrollTimeout;
 
@@ -66,11 +66,10 @@ const Header = () => {
     window.scrollTo(0, 0);
   };
 
-  const changeLanguage = () => {
-    const newLang =
-      language === languageList.zh ? languageList.en : languageList.zh;
-    i18n.changeLanguage(newLang);
+  const handleLanguageChange = () => {
+    const newLang = language === "zh_TW" ? "en_US" : "zh_TW";
     setLanguage(newLang);
+    i18n.changeLanguage(newLang);
   };
 
   const navItems = [
@@ -215,7 +214,7 @@ const Header = () => {
 
             <li className="w-full text-center">
               <button
-                onClick={changeLanguage}
+                onClick={handleLanguageChange}
                 className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
               >
                 <FontAwesomeIcon icon={faGlobe} />
@@ -285,7 +284,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
           <button
-            onClick={changeLanguage}
+            onClick={handleLanguageChange}
             className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
           >
             <FontAwesomeIcon icon={faGlobe} />

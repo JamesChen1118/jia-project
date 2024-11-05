@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./index.css";
+import ScrollToContent from "@/components/ScrollToContent";
 
 const Member = () => {
   const [memberTable, setmemberTable] = useState("info");
@@ -47,12 +48,6 @@ const Member = () => {
               <td>NT$ 1,500</td>
               <td>{t("member.table.status")}</td>
             </tr>
-            <tr>
-              <td>JIA002</td>
-              <td>2024-01-01</td>
-              <td>NT$ 2,000</td>
-              <td>{t("member.table.status")}</td>
-            </tr>
           </tbody>
         </table>
       ),
@@ -73,18 +68,6 @@ const Member = () => {
               <td>2</td>
               <td>NT$ 360</td>
             </tr>
-            <tr>
-              <td>{t("products.items.productsItem21.name")}</td>
-              <td>2023-05-05</td>
-              <td>1</td>
-              <td>NT$ 580</td>
-            </tr>
-            <tr>
-              <td>{t("products.items.productsItem35.name")}</td>
-              <td>2023-05-05</td>
-              <td>2</td>
-              <td>NT$ 320</td>
-            </tr>
           </tbody>
         </table>
       ),
@@ -94,47 +77,50 @@ const Member = () => {
   };
 
   return (
-    <div className="member-container">
-      <div className="member-sidebar">
-        <h2 id="member-title">{t("member.title")}</h2>
-        <ul className="member-categories">
-          <li
-            className={`member-option ${
-              memberTable === "info" ? "active" : ""
-            }`}
-            onClick={() => setmemberTable("info")}
-          >
-            {t("member.info")}
-          </li>
-          <li
-            className={`member-option ${
-              memberTable === "orders" ? "active" : ""
-            }`}
-            onClick={() => setmemberTable("orders")}
-          >
-            {t("member.orders")}
-          </li>
-          <li
-            className={`member-option ${
-              memberTable === "history" ? "active" : ""
-            }`}
-            onClick={() => setmemberTable("history")}
-          >
-            {t("member.history")}
-          </li>
-        </ul>
+    <>
+      <ScrollToContent />
+      <div className="member-container">
+        <div className="member-sidebar">
+          <h2 id="member-title">{t("member.title")}</h2>
+          <ul className="member-categories">
+            <li
+              className={`member-option ${
+                memberTable === "info" ? "active" : ""
+              }`}
+              onClick={() => setmemberTable("info")}
+            >
+              {t("member.info")}
+            </li>
+            <li
+              className={`member-option ${
+                memberTable === "orders" ? "active" : ""
+              }`}
+              onClick={() => setmemberTable("orders")}
+            >
+              {t("member.orders")}
+            </li>
+            <li
+              className={`member-option ${
+                memberTable === "history" ? "active" : ""
+              }`}
+              onClick={() => setmemberTable("history")}
+            >
+              {t("member.history")}
+            </li>
+          </ul>
+        </div>
+        <div className="member-content">
+          <h3>
+            {memberTable === "info"
+              ? t("member.info")
+              : memberTable === "orders"
+              ? t("member.orders")
+              : t("member.history")}
+          </h3>
+          {renderContent()}
+        </div>
       </div>
-      <div className="member-content">
-        <h3>
-          {memberTable === "info"
-            ? t("member.info")
-            : memberTable === "orders"
-            ? t("member.orders")
-            : t("member.history")}
-        </h3>
-        {renderContent()}
-      </div>
-    </div>
+    </>
   );
 };
 
