@@ -42,7 +42,7 @@ const ProductItem = ({ image, category, name, price, description }) => {
             </div>
           </div>
           <div className="p-2">
-            <h3 className="text-3xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5 h-[60px] flex items-center justify-center">
+            <h3 className="text-2xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5 h-[60px] flex items-center justify-center">
               {t(`products.items.${name}.name`)}
             </h3>
             <div className="rounded-lg p-3">
@@ -53,25 +53,25 @@ const ProductItem = ({ image, category, name, price, description }) => {
                 <button
                   onClick={() => handleQuantityChange(-1)}
                   className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                           text-black cursor-pointer transition-all duration-300 
-                           hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
+                                 text-black cursor-pointer transition-all duration-300 
+                                 hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
                 >
                   -
                 </button>
                 <div
                   className="mx-1.5 text-2xl text-main-color-yellow font-bold w-[50px] 
-                             border-2 border-[rgba(255,170,13,0.5)] 
-                             rounded-[5px] py-1.5
-                             bg-[rgba(0,0,0,0.2)] 
-                             flex items-center justify-center"
+                               border-2 border-[rgba(255,170,13,0.5)] 
+                               rounded-[5px] py-1.5
+                               bg-[rgba(0,0,0,0.2)] 
+                               flex items-center justify-center"
                 >
                   {quantity}
                 </div>
                 <button
                   onClick={() => handleQuantityChange(1)}
                   className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                           text-black cursor-pointer transition-all duration-300 
-                           hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
+                                 text-black cursor-pointer transition-all duration-300 
+                                 hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
                 >
                   +
                 </button>

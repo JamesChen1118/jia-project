@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { productApi } from "@/api/product.js";
 import { useTranslation } from "react-i18next";
+import products from "../../../server/data/products";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
@@ -9,27 +10,18 @@ const Menu3D = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await productApi.searchProducts("全部");
-        const selectedProducts = products.slice(0, 12);
+    const selectedProducts = products.slice(0, 12);
 
-        const formattedMenuItems = selectedProducts.map((product, index) => ({
-          id: product._id,
-          imageUrl: product.image,
-          title: `productsItem${index + 1}`,
-          category: product.category,
-          price: `$${product.price}`,
-          description: product.description,
-        }));
+    const formattedMenuItems = selectedProducts.map((product) => ({
+      id: product.name,
+      imageUrl: product.image,
+      name: product.name,
+      category: product.category,
+      price: product.price,
+      description: product.description,
+    }));
 
-        setMenuItems(formattedMenuItems);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
+    setMenuItems(formattedMenuItems);
   }, []);
 
   const handleImageClick = (id) => {
@@ -49,19 +41,19 @@ const Menu3D = () => {
             {openImageId === item.id && (
               <div className="menu-box">
                 <div className="menu-listTitle">
-                  {t(`products.items.${item.title}.name`)}
+                  {t(`products.items.${item.name}.name`)}
                 </div>
                 <div className="menu-list">
                   <img
                     src={item.imageUrl}
                     className="menu-listImg"
-                    alt={t(`products.items.${item.title}.name`)}
+                    alt={t(`products.items.${item.name}.name`)}
                   />
                   <div className="menu-listItem">
                     <div className="menu-listContent">
-                      {t(`products.items.${item.title}.description`)}
+                      {t(`products.items.${item.name}.description`)}
                     </div>
-                    <div className="menu-listPrice">{item.price}</div>
+                    <div className="menu-listPrice">${item.price}</div>
                     <NavLink to="/menu" className="toMenu">
                       {t("home.menu.toMenu")}
                     </NavLink>
