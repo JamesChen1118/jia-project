@@ -215,14 +215,13 @@ const Header = () => {
 
             <li className="w-full text-center">
               <button
-                onClick={() => {
-                  changeLanguage();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+                onClick={changeLanguage}
+                className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
               >
                 <FontAwesomeIcon icon={faGlobe} />
-                {language === languageList.zh ? "En" : "繁中"}
+                <span className="ml-1">
+                  {language === "zh_TW" ? "En" : "繁中"}
+                </span>
               </button>
             </li>
           </ul>
@@ -290,9 +289,7 @@ const Header = () => {
             className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
           >
             <FontAwesomeIcon icon={faGlobe} />
-            <span className="ml-1">
-              {language === languageList.zh ? "En" : "繁中"}
-            </span>
+            <span className="ml-1">{language === "zh_TW" ? "En" : "繁中"}</span>
           </button>
         </div>
       </nav>

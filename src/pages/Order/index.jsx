@@ -35,7 +35,11 @@ const Order = () => {
             <li
               key={category._id}
               onClick={() => handleCategoryClick(category.name)}
-              className="mt-[35px] inline-block px-20 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black text-2xl transition-all duration-700 ease-in-out hover:text-white hover:font-black hover:tracking-[3px] hover:scale-110 cursor-pointer"
+              className="mt-[35px] inline-block w-[200px] py-2.5 bg-main-color-yellow 
+                         rounded-xl font-medium text-black text-2xl 
+                         transition-all duration-700 ease-in-out 
+                         hover:text-white hover:font-black hover:tracking-[3px] 
+                         hover:scale-110 cursor-pointer"
             >
               {t(`home.menu.categories.${category.name}`)}
             </li>

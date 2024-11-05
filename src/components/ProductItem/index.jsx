@@ -7,6 +7,26 @@ const ProductItem = ({ image, category, name, price, description }) => {
   const [quantity, setQuantity] = useState(0);
   const { t } = useTranslation();
 
+  const getProductIndex = (productName) => {
+    const productsList = [
+      "刺身拼盤",
+      "鮭魚刺身",
+      "鯛魚刺身",
+      "竹筴魚刺身",
+      "干貝刺身",
+      "鮪魚壽司",
+      "蛋壽司",
+      "鮭魚壽司",
+      "黃瓜捲壽司",
+      "蝦壽司",
+      // ... 其他商品名稱
+    ];
+    const index = productsList.indexOf(productName);
+    return index !== -1 ? index + 1 : 1;
+  };
+
+  const productIndex = getProductIndex(name);
+
   const handleCardClick = (e) => {
     if (!e.target.closest(".quantity-controls")) {
       setIsModalOpen(true);
@@ -28,42 +48,54 @@ const ProductItem = ({ image, category, name, price, description }) => {
                  active:scale-95 cursor-pointer"
       >
         <div>
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-[250px] object-cover"
-          />
-          <div className="p-5">
-            <h3 className="block text-xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5">
-              {name}
-            </h3>
+          <div className="relative">
+            <img
+              src={image}
+              alt={t(`products.items.productsItem${productIndex}.name`)}
+              className="w-full h-[250px] object-cover"
+            />
             <div
-              className="quantity-controls flex items-center mt-2.5"
-              onClick={(e) => e.stopPropagation()}
+              className="absolute top-0 right-0 bg-main-color-yellow px-[20px] py-[15px] text-xl
+                    rounded-tr-[10px] rounded-bl-[10px]"
             >
-              <button
-                onClick={() => handleQuantityChange(-1)}
-                className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                         text-black cursor-pointer transition-all duration-300 
-                         hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
+              <span className="text-black font-extrabold">${price}</span>
+            </div>
+          </div>
+          <div className="p-2">
+            <h3 className="text-3xl text-[rgb(240,201,130)] font-bold tracking-[2px] mb-2.5 h-[60px] flex items-center justify-center">
+              {t(`products.items.productsItem${productIndex}.name`)}
+            </h3>
+            <div className=" rounded-lg p-3">
+              <div
+                className="quantity-controls flex justify-center items-center gap-2"
+                onClick={(e) => e.stopPropagation()}
               >
-                -
-              </button>
-              <label
-                className="mx-2.5 text-xl text-[#3e0de0] font-bold w-[60px] 
-                              text-center border border-[rgba(255,170,13,0.5)] 
-                              rounded-[5px] py-1.5"
-              >
-                {quantity}
-              </label>
-              <button
-                onClick={() => handleQuantityChange(1)}
-                className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                         text-black cursor-pointer transition-all duration-300 
-                         hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
-              >
-                +
-              </button>
+                <button
+                  onClick={() => handleQuantityChange(-1)}
+                  className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
+                           text-black cursor-pointer transition-all duration-300 
+                           hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
+                >
+                  -
+                </button>
+                <div
+                  className="mx-1.5 text-2xl text-main-color-yellow font-bold w-[50px] 
+                             border-2 border-[rgba(255,170,13,0.5)] 
+                             rounded-[5px] py-1.5
+                             bg-[rgba(0,0,0,0.2)] 
+                             flex items-center justify-center"
+                >
+                  {quantity}
+                </div>
+                <button
+                  onClick={() => handleQuantityChange(1)}
+                  className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
+                           text-black cursor-pointer transition-all duration-300 
+                           hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +104,13 @@ const ProductItem = ({ image, category, name, price, description }) => {
       <ProductModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        product={{ image, category, name, price, description }}
+        product={{
+          image,
+          category,
+          name: `productsItem${productIndex}`,
+          price,
+          description,
+        }}
       />
     </>
   );

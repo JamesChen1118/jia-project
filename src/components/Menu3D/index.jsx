@@ -14,17 +14,19 @@ const Menu3D = () => {
         const products = await productApi.searchProducts("全部");
         const selectedProducts = products.slice(0, 12);
 
-        const formattedMenuItems = selectedProducts.map((product) => ({
+        const formattedMenuItems = selectedProducts.map((product, index) => ({
           id: product._id,
           imageUrl: product.image,
-          title: product.name,
+          title: `productsItem${index + 1}`,
           category: product.category,
           price: `$${product.price}`,
           description: product.description,
         }));
 
         setMenuItems(formattedMenuItems);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
 
     fetchProducts();
@@ -46,15 +48,19 @@ const Menu3D = () => {
           >
             {openImageId === item.id && (
               <div className="menu-box">
-                <div className="menu-listTitle">{item.title}</div>
+                <div className="menu-listTitle">
+                  {t(`products.items.${item.title}.name`)}
+                </div>
                 <div className="menu-list">
                   <img
                     src={item.imageUrl}
                     className="menu-listImg"
-                    alt={item.title}
+                    alt={t(`products.items.${item.title}.name`)}
                   />
                   <div className="menu-listItem">
-                    <div className="menu-listContent">{item.description}</div>
+                    <div className="menu-listContent">
+                      {t(`products.items.${item.title}.description`)}
+                    </div>
                     <div className="menu-listPrice">{item.price}</div>
                     <NavLink to="/menu" className="toMenu">
                       {t("home.menu.toMenu")}
