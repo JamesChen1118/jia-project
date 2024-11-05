@@ -20,6 +20,8 @@
         filter 3s var(--transition),
         width 0.3s var(--transition);
     will-change: transform, filter;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 /* When Hovered */
@@ -94,6 +96,7 @@
     filter: inherit;
     z-index: 1;
     margin: 0 0.45vw;
+    border-radius: 10px;
 }
 
 .menu-box {
@@ -111,6 +114,7 @@
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    overflow: hidden;
 }
 
 .open .menu-box {
