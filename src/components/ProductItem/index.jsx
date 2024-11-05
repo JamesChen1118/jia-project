@@ -35,7 +35,7 @@ const ProductItem = ({ image, category, name, price, description }) => {
               className="w-full h-[250px] object-cover"
             />
             <div
-              className="absolute top-0 right-0 bg-main-color-yellow px-[20px] py-[15px] text-xl
+              className="absolute top-0 right-0 bg-main-color-yellow px-[15px] py-[5px] text-xl
                     rounded-tr-[10px] rounded-bl-[10px]"
             >
               <span className="text-black font-extrabold">${price}</span>

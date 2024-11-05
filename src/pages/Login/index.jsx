@@ -37,34 +37,49 @@ const Login = () => {
   return (
     <>
       <ScrollToContent />
-      <div className="mt-[200px] mb-[300px] mx-auto">
-        <div className="relative w-[600px] h-[700px] mx-auto bg-[rgba(41,40,40,0.7)] border-3 border-[rgba(255,255,255,0.2)] shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-[20px] p-[10px] rounded-[20px] overflow-hidden">
+      <div className="mt-[80px] mb-[100px] mx-auto px-4">
+        <div
+          className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] 
+                      h-auto min-h-[500px] mx-auto 
+                      bg-[rgba(41,40,40,0.7)] border-2 border-white/20 
+                      shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-[20px] 
+                      p-4 sm:p-6 rounded-[20px] overflow-hidden"
+        >
           {/* 滑動選單 */}
-          <div className="w-[300px] mx-auto mt-[70px] relative bg-[rgba(161,167,142,0.2)] shadow-[0_0_25px_5px_#0000003b] rounded-[30px]">
+          <div
+            className="w-[240px] sm:w-[280px] mx-auto mt-[30px] relative 
+                        bg-[rgba(161,167,142,0.2)] shadow-[0_0_25px_5px_#0000003b] 
+                        rounded-[30px]"
+          >
             <motion.div
-              className="absolute top-0 h-full bg-[rgba(255,170,13,0.2)] rounded-[30px] shadow-[2px_1px_5px_rgba(255,255,255,0.3)]"
+              className="absolute top-0 h-full bg-[rgba(255,170,13,0.2)] rounded-[30px] 
+                         shadow-[2px_1px_5px_rgba(255,255,255,0.3)]"
               initial={false}
               animate={{
-                left: isLoginForm ? "0px" : "150px",
-                width: "150px",
+                left: isLoginForm ? "0px" : "120px",
+                width: "120px",
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             />
             <div className="flex">
               <button
                 type="button"
-                className={`w-[150px] py-3 cursor-pointer bg-transparent border-0 outline-none text-xl text-main-color-yellow transition-all duration-400 ease-in-out hover:scale-110 ${
-                  isLoginForm ? "font-bold" : "font-normal"
-                }`}
+                className={`w-[120px] py-2 cursor-pointer bg-transparent border-0 outline-none 
+                           text-base sm:text-lg text-main-color-yellow transition-all duration-400 
+                           ease-in-out hover:scale-110 ${
+                             isLoginForm ? "font-bold" : "font-normal"
+                           }`}
                 onClick={() => setIsLoginForm(true)}
               >
                 {t("login.title")}
               </button>
               <button
                 type="button"
-                className={`w-[150px] py-3 cursor-pointer bg-transparent border-0 outline-none text-xl text-main-color-yellow transition-all duration-400 ease-in-out hover:scale-110 ${
-                  !isLoginForm ? "font-bold" : "font-normal"
-                }`}
+                className={`w-[120px] py-2 cursor-pointer bg-transparent border-0 outline-none 
+                           text-base sm:text-lg text-main-color-yellow transition-all duration-400 
+                           ease-in-out hover:scale-110 ${
+                             !isLoginForm ? "font-bold" : "font-normal"
+                           }`}
                 onClick={() => setIsLoginForm(false)}
               >
                 {t("login.register")}
@@ -80,7 +95,7 @@ const Login = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: isLoginForm ? -400 : 400 }}
               transition={{ duration: 0.5 }}
-              className="absolute top-[150px] w-[350px] left-[110px]"
+              className="absolute top-[120px] w-[85%] left-[50%] -translate-x-1/2"
             >
               {isLoginForm ? (
                 <form onSubmit={handleLogin}>
@@ -89,14 +104,32 @@ const Login = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     type="text"
                     placeholder={t("login.username")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                   />
                   <input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     placeholder={t("login.password")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                   />
                   <div className="flex items-center justify-start my-5 cursor-pointer relative">
                     <input
@@ -119,31 +152,76 @@ const Login = () => {
                   <input
                     type="text"
                     placeholder={t("login.register_form.username")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                     required
                   />
                   <input
                     type="number"
                     placeholder={t("login.register_form.phone")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                     required
                   />
                   <input
                     type="email"
                     placeholder={t("login.register_form.email")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                     required
                   />
                   <input
                     type="password"
                     placeholder={t("login.register_form.password")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                     required
                   />
                   <input
                     type="password"
                     placeholder={t("login.register_form.confirm_password")}
-                    className="w-full py-[15px] px-0 my-[10px] mx-0 rounded-[5px] border border-main-color-yellow text-center outline-none bg-[rgba(255,255,255,0.2)] text-xl text-main-color-yellow shadow-[-1px_-1px_5px_rgba(255,255,255,0.9)] transition-shadow duration-300 ease-in-out focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.5)] focus:border-2 focus:border-main-color-yellow placeholder:text-xl placeholder:text-[rgba(255,170,13,0.7)] placeholder:text-center"
+                    className="w-full py-3 px-4 my-2 rounded-lg 
+                             bg-white/20 border border-main-color-yellow
+                             text-center text-lg text-main-color-yellow 
+                             shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
+                             outline-none
+                             placeholder:text-[rgba(255,170,13,0.7)]
+                             placeholder:text-lg
+                             focus:border-2 focus:border-main-color-yellow
+                             focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
+                             transition-all duration-300"
                     required
                   />
                   <button

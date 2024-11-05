@@ -7,20 +7,11 @@ const About = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const slideLeft = {
-    offscreen: { opacity: 0, x: -100 },
+  const fadeIn = {
+    offscreen: { opacity: 0, y: 50 },
     onscreen: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 1 },
-    },
-  };
-
-  const slideRight = {
-    offscreen: { opacity: 0, x: 100 },
-    onscreen: {
-      opacity: 1,
-      x: 0,
+      y: 0,
       transition: { duration: 1 },
     },
   };
@@ -28,19 +19,26 @@ const About = () => {
   return (
     <>
       <ScrollToContent />
-      <div className="mt-[150px] mb-[300px] relative">
+      <div className="mt-[120px] mb-[150px] px-4 md:px-8 lg:px-12">
+        {/* 第一區塊 */}
         <motion.div
-          className="flex justify-center items-center mb-[100px]"
+          className="flex flex-col items-center mb-16 md:mb-24"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.3 }}
         >
+          <motion.img
+            src="https://images.pexels.com/photos/5766238/pexels-photo-5766238.jpeg"
+            alt={t("about.title")}
+            className="w-full max-w-[500px] h-[300px] md:h-[400px] object-cover rounded-lg shadow-custom mb-8"
+            variants={fadeIn}
+          />
           <motion.div
-            className="w-[600px] mr-[150px] text-center"
-            variants={slideLeft}
+            className="w-full max-w-[600px] text-center"
+            variants={fadeIn}
           >
             <p
-              className="text-main-text-white text-2xl leading-loose tracking-letterSpacing-5
+              className="text-main-text-white text-lg md:text-xl lg:text-2xl leading-loose tracking-wider
                          [text-shadow:2px_2px_4px_rgba(0,0,0,0.7),1px_1px_8px_rgba(255,170,13,0.8)]"
             >
               {t("about.description1")}
@@ -54,32 +52,27 @@ const About = () => {
               {t("about.description5")}
             </p>
           </motion.div>
-          <motion.img
-            src="https://images.pexels.com/photos/5766238/pexels-photo-5766238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt={t("about.title")}
-            className="w-[500px] h-[500px] object-cover rounded-lg shadow-custom"
-            variants={slideRight}
-          />
         </motion.div>
 
+        {/* 第二區塊 */}
         <motion.div
-          className="flex justify-center items-center mb-[100px]"
+          className="flex flex-col items-center"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.3 }}
         >
           <motion.img
-            src="https://images.pexels.com/photos/1710001/pexels-photo-1710001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            src="https://images.pexels.com/photos/1710001/pexels-photo-1710001.jpeg"
             alt={t("about.title")}
-            className="w-[500px] h-[500px] object-cover rounded-lg shadow-custom mr-[150px]"
-            variants={slideLeft}
+            className="w-full max-w-[500px] h-[300px] md:h-[400px] object-cover rounded-lg shadow-custom mb-8"
+            variants={fadeIn}
           />
           <motion.div
-            className="w-[600px] text-center flex flex-col items-center"
-            variants={slideRight}
+            className="w-full max-w-[600px] text-center"
+            variants={fadeIn}
           >
             <p
-              className="text-main-text-white text-2xl leading-loose tracking-letterSpacing-5 mb-12
+              className="text-main-text-white text-lg md:text-xl lg:text-2xl leading-loose tracking-wider mb-8
                          [text-shadow:2px_2px_4px_rgba(0,0,0,0.7),1px_1px_8px_rgba(255,170,13,0.8)]"
             >
               {t("about.description6")}
@@ -92,12 +85,9 @@ const About = () => {
             </p>
             <motion.button
               onClick={() => navigate("/Booking")}
-              className="inline-block px-8 py-3 text-xl text-main-color-yellow border-2 border-main-color-yellow rounded-lg 
-              transition-all duration-300 hover:bg-main-color-yellow hover:text-white hover:shadow-custom-hover"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.7, delay: 0.2, ease: "easeInOut" }}
+              className="px-6 py-2.5 text-lg md:text-xl text-main-color-yellow border-2 border-main-color-yellow 
+                       rounded-lg transition-all duration-300 hover:bg-main-color-yellow hover:text-white 
+                       hover:shadow-custom-hover"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

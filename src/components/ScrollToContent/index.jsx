@@ -14,7 +14,7 @@ const ScrollToContent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return null; // 這是一個純功能組件，不需要渲染任何內容
+  return null;
 };
 
 export default ScrollToContent;

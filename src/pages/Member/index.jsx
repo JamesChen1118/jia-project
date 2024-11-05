@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import "./index.css";
 import ScrollToContent from "@/components/ScrollToContent";
 
 const Member = () => {
@@ -79,43 +78,41 @@ const Member = () => {
   return (
     <>
       <ScrollToContent />
-      <div className="member-container">
-        <div className="member-sidebar">
-          <h2 id="member-title">{t("member.title")}</h2>
-          <ul className="member-categories">
-            <li
-              className={`member-option ${
-                memberTable === "info" ? "active" : ""
-              }`}
-              onClick={() => setmemberTable("info")}
-            >
-              {t("member.info")}
-            </li>
-            <li
-              className={`member-option ${
-                memberTable === "orders" ? "active" : ""
-              }`}
-              onClick={() => setmemberTable("orders")}
-            >
-              {t("member.orders")}
-            </li>
-            <li
-              className={`member-option ${
-                memberTable === "history" ? "active" : ""
-              }`}
-              onClick={() => setmemberTable("history")}
-            >
-              {t("member.history")}
-            </li>
+      <div
+        className="w-[90%] lg:w-[80%] mx-auto mt-[120px] mb-[150px] 
+                    flex flex-col lg:flex-row gap-8"
+      >
+        {/* 側邊選單 */}
+        <div className="w-full lg:w-[250px] bg-[#333] rounded-xl p-6">
+          <h2
+            className="text-2xl font-bold text-main-color-yellow mb-8 
+                       text-center"
+          >
+            {t("member.title")}
+          </h2>
+          <ul className="space-y-4">
+            {["info", "orders", "history"].map((option) => (
+              <li
+                key={option}
+                onClick={() => setmemberTable(option)}
+                className={`py-2 px-4 rounded-lg cursor-pointer 
+                           transition-all duration-300
+                           ${
+                             memberTable === option
+                               ? "bg-main-color-yellow text-black"
+                               : "text-white hover:bg-white/10"
+                           }`}
+              >
+                {t(`member.${option}`)}
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="member-content">
-          <h3>
-            {memberTable === "info"
-              ? t("member.info")
-              : memberTable === "orders"
-              ? t("member.orders")
-              : t("member.history")}
+
+        {/* 內容區域 */}
+        <div className="flex-1 bg-[#333] rounded-xl p-6">
+          <h3 className="text-xl font-bold text-main-color-yellow mb-6">
+            {t(`member.${memberTable}`)}
           </h3>
           {renderContent()}
         </div>
