@@ -12,42 +12,20 @@ export const productApi = {
     },
     searchProducts: async (category) => {
         try {
-            const { data } = await server.get("/products");
-            if (category === "all") {
-                return data;
-            }
-            return data.filter(product => product.category === category);
-        } catch (error) {
-            return [];
-        }
-    },
-    getProductById: async (id) => {
-        try {
-            const { data } = await server.get(`/products/${id}`);
+            const { data } = await server.get(`/products?category=${category}`);
             return data;
         } catch (error) {
-            return null;
+            console.error("Error searching products:", error);
+            return [];
         }
     },
     getCategories: async () => {
         try {
             const { data } = await server.get("/categories");
-            return data.map(category => ({
-                name: category.name
-            }));
+            return data;
         } catch (error) {
             console.error("Failed to fetch categories:", error);
-            return [
-                { name: "all" },
-                { name: "sashimi" },
-                { name: "sushi" },
-                { name: "seafood" },
-                { name: "tempura" },
-                { name: "yakitori" },
-                { name: "teishoku" },
-                { name: "dessert" },
-                { name: "drink" }
-            ];
+            return [];
         }
     }
 };

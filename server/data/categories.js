@@ -1,30 +1,30 @@
 const categories = [
   {
-    name: "all",
+    name: "全部",
   },
   {
-    name: "sashimi",
+    name: "生食",
   },
   {
-    name: "sushi",
+    name: "壽司",
   },
   {
-    name: "seafood",
+    name: "海鮮",
   },
   {
-    name: "tempura",
+    name: "炸物",
   },
   {
-    name: "yakitori",
+    name: "燒烤",
   },
   {
-    name: "teishoku",
+    name: "定食",
   },
   {
-    name: "dessert",
+    name: "甜點",
   },
   {
-    name: "drink",
+    name: "飲品",
   },
 ];
 

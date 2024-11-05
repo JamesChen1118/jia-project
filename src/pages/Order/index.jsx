@@ -1,48 +1,31 @@
-import ProductCard from "@/components/ProductItem";
-import { productApi } from "@/api/product.js";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { productApi } from "@/api/product";
+import ProductItem from "@/components/ProductItem";
 
 const Order = () => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
-  const getCategories = async () => {
-    const data = await productApi.getCategories();
-    setCategories(data);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const categoriesData = await productApi.getCategories();
+      setCategories(categoriesData);
+      const productsData = await productApi.searchProducts("全部");
+      setProducts(productsData);
+    };
+    fetchData();
+  }, []);
 
-  const filterProducts = async (category) => {
+  const handleCategoryClick = async (category) => {
     const data = await productApi.searchProducts(category);
     setProducts(data);
   };
 
-  useEffect(() => {
-    filterProducts("全部");
-    getCategories();
-  }, []);
-
-  const getProductIndex = (productName) => {
-    const productsList = [
-      "刺身拼盤",
-      "鮭魚刺身",
-      "鯛魚刺身",
-      "竹筴魚刺身",
-      "干貝刺身",
-      "鮪魚壽司",
-      "蛋壽司",
-      "鮭魚壽司",
-      "黃瓜捲壽司",
-      "蝦壽司",
-      // ... 其他商品名稱
-    ];
-    const index = productsList.indexOf(productName);
-    return index !== -1 ? index + 1 : 1;
-  };
-
   return (
     <div className="w-[80%] flex mx-auto mt-[120px]">
+      {/* 分類選單 */}
       <div className="w-[20%] h-[2000px] bg-[#333] rounded-[15px] p-[30px] text-white">
         <h2 className="text-[30px] font-bold text-main-color-yellow text-center py-5">
           {t("home.menu.categoryTitle")}
@@ -50,8 +33,8 @@ const Order = () => {
         <ul className="mt-[15px] list-none text-center">
           {categories.map((category) => (
             <li
-              key={`category-${category._id}-${category.name}`}
-              onClick={() => filterProducts(category.name)}
+              key={category._id}
+              onClick={() => handleCategoryClick(category.name)}
               className="mt-[35px] inline-block px-20 py-2.5 bg-main-color-yellow rounded-xl font-medium text-black text-2xl transition-all duration-700 ease-in-out hover:text-white hover:font-black hover:tracking-[3px] hover:scale-110 cursor-pointer"
             >
               {t(`home.menu.categories.${category.name}`)}
@@ -59,21 +42,20 @@ const Order = () => {
           ))}
         </ul>
       </div>
+
+      {/* 商品列表 */}
       <div className="w-[80%] ml-[30px]">
         <div className="grid grid-cols-4 gap-[30px]">
-          {products.map((product) => {
-            const productIndex = getProductIndex(product.name);
-            return (
-              <ProductCard
-                key={`product-${product._id}`}
-                image={product.image}
-                category={product.category}
-                name={`productsItem${productIndex}`}
-                price={product.price}
-                // description={product.description}
-              />
-            );
-          })}
+          {products.map((product) => (
+            <ProductItem
+              key={product._id}
+              image={product.image}
+              category={product.category}
+              name={product.name}
+              price={product.price}
+              description={product.description}
+            />
+          ))}
         </div>
       </div>
     </div>

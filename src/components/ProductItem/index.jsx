@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ProductModal from "@/components/ProductModal";
 
 const ProductItem = ({ image, category, name, price, description }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const { t } = useTranslation();
 
   const handleCardClick = (e) => {
     if (!e.target.closest(".quantity-controls")) {

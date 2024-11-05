@@ -23,28 +23,18 @@ app.get("/products", asyncHandler(async (req, res) => {
             products = await Product.find({ category });
         }
 
-        console.log('Fetched products:', products);
         res.json(products);
     } catch (error) {
-        console.error("Error fetching products:", error);
-        res.status(500).json({
-            message: "Server error",
-            error: error.message
-        });
+        res.status(500).json({ message: error.message });
     }
 }));
 
 app.get("/categories", asyncHandler(async (req, res) => {
     try {
         const categories = await Category.find({});
-        console.log('Fetched categories:', categories);
         res.json(categories);
     } catch (error) {
-        console.error("Error fetching categories:", error);
-        res.status(500).json({
-            message: "Server error",
-            error: error.message
-        });
+        res.status(500).json({ message: error.message });
     }
 }));
 
