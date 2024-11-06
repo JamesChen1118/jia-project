@@ -19,22 +19,17 @@ const About = () => {
   return (
     <>
       <ScrollToContent />
-      <div className="mt-[120px] mb-[150px] px-4 md:px-8 lg:px-12">
-        {/* 第一區塊 */}
+      <div className="mt-[80px] mb-[100px] px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
+        {/* 第一區塊 - 文字在左，圖片在右 */}
         <motion.div
-          className="flex flex-col items-center mb-16 md:mb-24"
+          className="flex flex-col lg:flex-row items-center justify-between mb-12 gap-8"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <motion.img
-            src="https://images.pexels.com/photos/5766238/pexels-photo-5766238.jpeg"
-            alt={t("about.title")}
-            className="w-full max-w-[500px] h-[300px] md:h-[400px] object-cover rounded-lg shadow-custom mb-8"
-            variants={fadeIn}
-          />
+          {/* 左側文字 */}
           <motion.div
-            className="w-full max-w-[600px] text-center"
+            className="w-full lg:w-1/2 text-center lg:text-left order-2 lg:order-1 px-4"
             variants={fadeIn}
           >
             <p
@@ -52,23 +47,39 @@ const About = () => {
               {t("about.description5")}
             </p>
           </motion.div>
+
+          {/* 右側圖片 */}
+          <motion.div
+            className="w-full lg:w-1/2 order-1 lg:order-2 px-4"
+            variants={fadeIn}
+          >
+            <img
+              src="https://images.pexels.com/photos/5766238/pexels-photo-5766238.jpeg"
+              alt={t("about.title")}
+              className="w-full max-w-[500px] h-[350px] object-cover rounded-lg shadow-custom mx-auto"
+            />
+          </motion.div>
         </motion.div>
 
-        {/* 第二區塊 */}
+        {/* 第二區塊 - 圖片在左，文字在右 */}
         <motion.div
-          className="flex flex-col items-center"
+          className="flex flex-col lg:flex-row items-center justify-between gap-8"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <motion.img
-            src="https://images.pexels.com/photos/1710001/pexels-photo-1710001.jpeg"
-            alt={t("about.title")}
-            className="w-full max-w-[500px] h-[300px] md:h-[400px] object-cover rounded-lg shadow-custom mb-8"
-            variants={fadeIn}
-          />
+          {/* 左側圖片 */}
+          <motion.div className="w-full lg:w-1/2 px-4" variants={fadeIn}>
+            <img
+              src="https://images.pexels.com/photos/1710001/pexels-photo-1710001.jpeg"
+              alt={t("about.title")}
+              className="w-full max-w-[500px] h-[350px] object-cover rounded-lg shadow-custom mx-auto"
+            />
+          </motion.div>
+
+          {/* 右側文字和按鈕 */}
           <motion.div
-            className="w-full max-w-[600px] text-center"
+            className="w-full lg:w-1/2 text-center lg:text-left px-4"
             variants={fadeIn}
           >
             <p
@@ -85,9 +96,9 @@ const About = () => {
             </p>
             <motion.button
               onClick={() => navigate("/Booking")}
-              className="px-6 py-2.5 text-lg md:text-xl text-main-color-yellow border-2 border-main-color-yellow 
+              className="px-8 py-3 text-xl text-main-color-yellow border-2 border-main-color-yellow 
                        rounded-lg transition-all duration-300 hover:bg-main-color-yellow hover:text-white 
-                       hover:shadow-custom-hover"
+                       hover:shadow-custom-hover mx-auto lg:mx-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

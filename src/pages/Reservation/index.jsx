@@ -3,8 +3,10 @@ import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
 import table2 from "../../assets/images/reservation/seat-2-1.png";
 import table4 from "../../assets/images/reservation/table-4.png";
+import { useNavigate } from "react-router-dom";
 
 const Reservation = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [selectedTable, setSelectedTable] = useState("");
   const [formData, setFormData] = useState({
@@ -45,6 +47,17 @@ const Reservation = () => {
     <>
       <ScrollToContent />
       <div className="container mx-auto px-4">
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-8 left-8 px-6 py-2.5 text-lg text-main-color-yellow 
+                   border-2 border-main-color-yellow rounded-lg
+                   transition-all duration-300
+                   hover:bg-main-color-yellow hover:text-black
+                   active:scale-95"
+        >
+          {t("common.backToHome") || "回到首頁"}
+        </button>
+
         <div
           className="box-border w-[80%] mx-auto mt-[100px] mb-[300px] flex justify-evenly items-center 
                       rounded-[20px] shadow-reservation bg-reservation-gradient
