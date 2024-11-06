@@ -14,6 +14,7 @@ import {
   ShoppingCart,
   Member,
 } from "@/pages";
+import Register from "@/pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/member",
         element: <Member />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
