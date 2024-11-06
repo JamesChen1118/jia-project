@@ -230,7 +230,7 @@
       },
       "productsItem30": {
         "name": "紅豆湯",
-        "description": "紅豆水的絕妙搭配，甜而不膩",
+        "description": "紅豆���的絕妙搭配，甜而不膩",
         "price": 40
       },
       "productsItem31": {
@@ -361,5 +361,12 @@
     "emailPlaceholder": "請填寫信箱",
     "tablePlaceholder": "座位號碼",
     "submit": "確認送出"
+  },
+
+  "notFound": {
+    "title": "頁面不存在",
+    "description": "很抱歉，您所尋找的頁面似乎不在這裡。",
+    "back": "返回上一頁",
+    "home": "回到首頁"
   }
 }

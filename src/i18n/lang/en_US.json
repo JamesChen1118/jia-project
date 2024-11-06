@@ -326,5 +326,12 @@
     "emailPlaceholder": "Enter Email",
     "tablePlaceholder": "Table Number",
     "submit": "Submit"
+  },
+
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for doesn't exist.",
+    "back": "Go Back",
+    "home": "Home Page"
   }
 }
