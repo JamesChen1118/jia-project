@@ -71,6 +71,7 @@ module.exports = {
         'btn-hover': '2px 1px 5px rgba(255,255,255,0.3)',
         'input': '-1px -1px 5px rgba(255,255,255,0.9)',
         'input-focus': '-1px -1px 5px rgba(255,69,0,0.5)',
+        'reservation': '10px 15px 20px rgba(0, 0, 0, .5)',
       },
       letterSpacing: {
         'letterSpacing-1': '1px',
@@ -93,10 +94,14 @@ module.exports = {
         '400': '400px',
         '500': '500px',
         '700': '700px',
+        'reservation': '60%',
+        'form': '400px',
+        'seating': '400px',
       },
       height: {
         '500': '500px',
         '80vh': '80vh',
+        'seating': '300px',
       },
       backgroundPosition: {
         '40': '40%',
@@ -109,6 +114,9 @@ module.exports = {
       },
       backgroundImage: {
         'menu-gradient': 'linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.7))',
+        'reservation-gradient': 'radial-gradient(circle, rgba(52, 51, 51, 1) 4%, rgba(82, 80, 80, 1) 40%, rgba(56, 54, 54, 1) 74%)',
+        'table-2': "url('@/assets/images/reservation/seat-2-1.png')",
+        'table-4': "url('@/assets/images/reservation/table-4.png')",
       },
       transitionTimingFunction: {
         'custom-bezier': 'cubic-bezier(0.1, 0.7, 0, 1)',
@@ -133,6 +141,26 @@ module.exports = {
         'cart-item': '1px 1px 5px #403f3f',
         'member': '2px 2px 5px #646464',
         'cart-hover': '1px 1px 3px #b67729',
+        'reservation': '1px 1px 3px #3a3939',
+        'table': `
+          1px 1px 0 rgba(0, 0, 0, 0.8),
+          -1px -1px 0 rgba(0, 0, 0, 0.8),
+          -1px 1px 0 rgba(0, 0, 0, 0.8),
+          1px -1px 0 rgba(0, 0, 0, 0.8),
+          2px 2px 4px rgba(0, 0, 0, 0.5)
+        `,
+      },
+      padding: {
+        'title': '50px',
+      },
+      fontSize: {
+        'reservation': '32px',
+      },
+      gridTemplateColumns: {
+        'seating': 'repeat(auto-fill, minmax(50px, 1fr))',
+      },
+      gridTemplateRows: {
+        'seating': 'repeat(auto-fill, minmax(50px, 1fr))',
       },
     },
   },
@@ -146,6 +174,23 @@ module.exports = {
         },
         { values: theme('textShadow') }
       )
+    }),
+    require('tailwindcss/plugin')(function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow-reservation': {
+          textShadow: '1px 1px 3px #3a3939',
+        },
+        '.text-shadow-table': {
+          textShadow: `
+            1px 1px 0 rgba(0, 0, 0, 0.8),
+            -1px -1px 0 rgba(0, 0, 0, 0.8),
+            -1px 1px 0 rgba(0, 0, 0, 0.8),
+            1px -1px 0 rgba(0, 0, 0, 0.8),
+            2px 2px 4px rgba(0, 0, 0, 0.5)
+          `,
+        },
+      };
+      addUtilities(newUtilities);
     }),
   ],
 }

@@ -42,7 +42,7 @@ const Contact = () => {
           ></textarea>
 
           <button
-            onClick={() => navigate("/Booking")}
+            onClick={() => navigate("/")}
             className="px-5 py-2.5 mt-8 text-xl font-bold bg-main-color-yellow text-black rounded-xl border border-main-color-yellow transition-all duration-300 hover:bg-[rgb(255,120,0)] hover:text-[#f0e68c] active:scale-90 shadow-md"
           >
             {t("contact.submit")}
