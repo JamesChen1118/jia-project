@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ProductModal from "@/components/ProductModal";
+import { useCartStore } from "@/store/shopping";
+import Swal from "sweetalert2";
+import CartButton from "@/components/CartButton";
 
 const ProductItem = ({ image, category, name, price, description }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [quantity, setQuantity] = useState(0);
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const cartItems = useCartStore((state) => state.cartItems);
+
+  // 從購物車中獲取當前商品數量
+  const currentItem = cartItems.find((item) => item.name === name);
+  const quantity = currentItem ? currentItem.numbers : 0;
+
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const handleCardClick = (e) => {
     if (!e.target.closest(".quantity-controls")) {
@@ -14,18 +23,42 @@ const ProductItem = ({ image, category, name, price, description }) => {
   };
 
   const handleQuantityChange = (change) => {
-    setQuantity((prev) => Math.max(0, prev + change));
+    if (change > 0) {
+      addToCart({ name, price, image }, 1);
+      Swal.fire({
+        title: `${t(`products.items.${name}.name`)}`,
+        text: t("cart.addSuccess"),
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+        position: "top-end",
+        toast: true,
+        background: "#333",
+        color: "#ffc107",
+        iconColor: "#ffc107",
+      });
+    } else if (change < 0 && quantity > 0) {
+      addToCart({ name, price, image }, -1);
+      Swal.fire({
+        title: `${t(`products.items.${name}.name`)}`,
+        text: t("cart.updateSuccess"),
+        icon: "info",
+        timer: 1500,
+        showConfirmButton: false,
+        position: "top-end",
+        toast: true,
+        background: "#333",
+        color: "#ffc107",
+        iconColor: "#ffc107",
+      });
+    }
   };
 
   return (
     <>
       <div
         onClick={handleCardClick}
-        className="bg-[rgb(120,117,117)] rounded-[10px] overflow-hidden 
-                 shadow-[0_0_5px_rgba(0,0,0,0.1)] 
-                 transition-all duration-300 ease-in-out 
-                 hover:scale-105 hover:shadow-[0_0_15px_rgba(255,170,13,0.5)]
-                 active:scale-95 cursor-pointer"
+        className="bg-[rgb(120,117,117)] rounded-[10px] overflow-hidden..."
       >
         <div>
           <div className="relative">
@@ -50,31 +83,26 @@ const ProductItem = ({ image, category, name, price, description }) => {
                 className="quantity-controls flex justify-center items-center gap-2"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button
+                <CartButton
+                  type="minus"
                   onClick={() => handleQuantityChange(-1)}
-                  className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                                 text-black cursor-pointer transition-all duration-300 
-                                 hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
-                >
-                  -
-                </button>
+                  disabled={quantity === 0}
+                />
+
                 <div
                   className="mx-1.5 text-2xl text-main-color-yellow font-bold w-[50px] 
-                               border-2 border-[rgba(255,170,13,0.5)] 
-                               rounded-[5px] py-1.5
-                               bg-[rgba(0,0,0,0.2)] 
-                               flex items-center justify-center"
+                             border-2 border-[rgba(255,170,13,0.5)] 
+                             rounded-[5px] py-1.5
+                             bg-[rgba(0,0,0,0.2)] 
+                             flex items-center justify-center"
                 >
                   {quantity}
                 </div>
-                <button
+
+                <CartButton
+                  type="plus"
                   onClick={() => handleQuantityChange(1)}
-                  className="w-[30px] h-[30px] text-xl bg-[rgb(245,222,180)] rounded-[5px] 
-                                 text-black cursor-pointer transition-all duration-300 
-                                 hover:bg-[rgba(255,170,13,0.8)] active:scale-95"
-                >
-                  +
-                </button>
+                />
               </div>
             </div>
           </div>

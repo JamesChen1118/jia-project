@@ -9,7 +9,7 @@ export const useUserStore = create(
         }),
         {
             name: "user",
-            // partialize: (state) => ({ language: state.language }),
+
         }
     )
 );

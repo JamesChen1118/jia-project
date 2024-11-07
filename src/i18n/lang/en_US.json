@@ -259,6 +259,8 @@
   },
 
   "cart": {
+    "addSuccess": "Added to cart successfully!",
+    "updateSuccess": "Cart updated successfully~",
     "continue": "Continue Shopping",
     "title": "Cart Items",
     "total": "Total Amount",

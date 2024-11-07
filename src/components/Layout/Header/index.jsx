@@ -13,8 +13,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getToken, removeToken } from "@/utils/auth";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n";
+import i18n from "@/i18n/index.js";
 import { useUserStore } from "@/store/lang.js";
+import { useCartStore } from "@/store/shopping";
 
 const languageList = {
   zh: "zh_TW",
@@ -30,7 +31,20 @@ const Header = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { language, setLanguage } = useUserStore();
-  let scrollTimeout;
+  const cartItems = useCartStore((state) => state.cartItems);
+  const [isCartAnimating, setIsCartAnimating] = useState(false);
+
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.numbers,
+    0
+  );
+
+  useEffect(() => {
+    if (cartItemCount > 0) {
+      setIsCartAnimating(true);
+      setTimeout(() => setIsCartAnimating(false), 1000);
+    }
+  }, [cartItemCount]);
 
   useEffect(() => {
     const token = getToken();
@@ -205,10 +219,23 @@ const Header = () => {
               <Link
                 to="/shoppingCart"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
+                className="relative text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 
+                           flex items-center justify-center gap-2"
               >
-                <FontAwesomeIcon icon={faShoppingCart} />
+                <FontAwesomeIcon
+                  icon={faShoppingCart}
+                  className={`${isCartAnimating ? "animate-bounce" : ""}`}
+                />
                 {t("header.cart")}
+                {cartItemCount > 0 && (
+                  <span
+                    className="absolute top-2 ml-6 bg-red-500 text-white text-xs 
+                                  w-5 h-5 rounded-full flex items-center justify-center
+                                  animate-pulse"
+                  >
+                    {cartItemCount}
+                  </span>
+                )}
               </Link>
             </li>
 
@@ -279,9 +306,21 @@ const Header = () => {
           </div>
           <Link
             to="/shoppingCart"
-            className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
+            className="relative text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
           >
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className={`${isCartAnimating ? "animate-bounce" : ""}`}
+            />
+            {cartItemCount > 0 && (
+              <span
+                className="absolute -top-2 -right-2 bg-red-500 text-white text-xs 
+                              w-5 h-5 rounded-full flex items-center justify-center
+                              animate-pulse"
+              >
+                {cartItemCount}
+              </span>
+            )}
           </Link>
           <button
             onClick={handleLanguageChange}
