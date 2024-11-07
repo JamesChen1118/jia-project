@@ -200,11 +200,12 @@ const ShoppingCart = () => {
                   inputMode="numeric"
                   autoComplete="off"
                   required
-                  className="w-24 text-center py-2 bg-transparent 
+                  className="w-[83px] text-center py-1 bg-transparent 
                             border border-main-color-yellow 
                             outline-none text-lg text-main-color-yellow 
                             tracking-[5px] placeholder:text-[rgb(255,120,0)]
-                            focus:border-2 focus:border-main-color-yellow"
+                            focus:border-2 focus:border-main-color-yellow
+                            rounded-[5px]"
                 />
                 <input
                   type="text"
@@ -217,11 +218,12 @@ const ShoppingCart = () => {
                   inputMode="numeric"
                   autoComplete="off"
                   required
-                  className="w-24 text-center py-2 bg-transparent 
+                  className="w-[83px] text-center py-1 bg-transparent 
                             border border-main-color-yellow 
                             outline-none text-lg text-main-color-yellow 
                             tracking-[5px] placeholder:text-[rgb(255,120,0)]
-                            focus:border-2 focus:border-main-color-yellow"
+                            focus:border-2 focus:border-main-color-yellow
+                            rounded-[5px]"
                 />
               </div>
             </div>
