@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { newsApi } from "@/api/news";
+import { newsApi } from "@/api/module/news";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 

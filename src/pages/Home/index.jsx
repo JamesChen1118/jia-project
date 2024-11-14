@@ -11,7 +11,7 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import { newsApi } from "@/api/news";
+import { newsApi } from "@/api/module/news";
 import i18n from "@/i18n/index";
 
 const Home = () => {

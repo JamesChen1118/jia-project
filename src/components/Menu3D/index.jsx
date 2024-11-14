@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { productApi } from "@/api/product.js";
+import { productApi } from "@/api/module/product.js";
 import { useTranslation } from "react-i18next";
 import products from "../../../server/data/products";
 

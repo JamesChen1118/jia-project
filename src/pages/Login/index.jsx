@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { userApi } from "@/api/user.js";
+import { userApi } from "@/api/module/user.js";
 import { setToken } from "@/utils/auth.js";
 import ScrollToContent from "@/components/ScrollToContent";
 
