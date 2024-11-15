@@ -1,19 +1,52 @@
-import server from "../server";
+import mongoose from "mongoose";
 
-export const orderApi = {
-    addOrder: async (order) => {
-        try {
-            await server.post("/order", order);
-        } catch (err) {
-            console.error(err);
-        }
+const orderSchema = new mongoose.Schema(
+    {
+        orderItems: [
+            {
+                name: {
+                    type: String,
+                    required: true,
+                },
+                quantity: {
+                    type: Number,
+                    required: true,
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                },
+                image: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
+        paymentInfo: {
+            cardNumbers: {
+                type: String,
+                required: true,
+            },
+            expiryYear: {
+                type: String,
+                required: true,
+            },
+            expiryMonth: {
+                type: String,
+                required: true,
+            },
+            cvv: {
+                type: String,
+                required: true,
+            },
+        },
+        totalPrice: {
+            type: Number,
+            required: true,
+            default: 0.0,
+        },
     },
-    getOrders: async () => {
-        try {
-            const { data } = await server.get("/orders");
-            return data;
-        } catch (err) {
-            console.error(err);
-        }
-    },
-};
+    { timestamps: true }
+);
+
+export default mongoose.model("Order", orderSchema);
