@@ -1,31 +1,48 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useCartStore } from "@/store/shopping";
 import ScrollToContent from "@/components/ScrollToContent";
+import { useCartStore } from "@/store/shopping";
 import CartButton from "@/components/CartButton";
+import { orderApi } from "@/api/module/order.js";
+import { message } from "antd";
 import GoTop from "@/components/GoTop";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { cartItems, updateQuantity, removeItem } = useCartStore();
+  const { cartItems, updateQuantity, removeItem, clearCart } = useCartStore();
 
-  const [paymentInfo, setPaymentInfo] = useState({
+  const initForm = {
     cardNumbers: ["", "", "", ""],
     expiryYear: "",
     expiryMonth: "",
     cvv: "",
-  });
-
-  const handleCartSubmit = (e) => {
-    e.preventDefault();
-    console.log("購物車更新:", cartItems);
   };
 
-  const handlePaymentSubmit = (e) => {
+
+  const [paymentInfo, setPaymentInfo] = useState(initForm);
+
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const handlePaymentSubmit = async (e) => {
     e.preventDefault();
-    console.log("付款資訊:", paymentInfo);
+    const order = {
+      orderItems: cartItems,
+      paymentInfo: {
+        ...paymentInfo,
+        cardNumbers: paymentInfo.cardNumbers.join(""),
+      },
+      totalPrice,
+    };
+    await orderApi.addOrder(order);
+    message.success("付款成功");
+    clearCart();
+    setPaymentInfo(initForm);
   };
 
   const handleCardNumberChange = (index, value) => {
@@ -45,20 +62,19 @@ const ShoppingCart = () => {
     });
   };
 
-  const totalAmount = cartItems.reduce(
-    (total, item) => total + item.price * item.numbers,
-    0
-  );
+  const getOrders = async () => {
+    const data = await orderApi.getOrders();
+    console.log(data);
+  };
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   return (
     <>
-      <GoTop />
       <ScrollToContent />
       <div className="flex flex-col lg:flex-row items-start p-5 mx-[50px] mb-[150px] gap-8">
-        <form
-          onSubmit={handleCartSubmit}
-          className="w-full lg:w-1/2 lg:mx-[100px] order-1 lg:order-1"
-        >
+        <div className="w-full lg:w-1/2 lg:mx-[100px] order-1 lg:order-1">
           <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
             <button
               onClick={() => navigate("/order")}
@@ -102,9 +118,9 @@ const ShoppingCart = () => {
                   <CartButton
                     type="minus"
                     onClick={() => updateQuantity(item.id, -1)}
-                    disabled={item.numbers === 0}
+                    disabled={item.quantity === 0}
                   />
-                  <CartButton type="quantity" value={item.numbers} />
+                  <CartButton type="quantity" value={item.quantity} />
                   <CartButton
                     type="plus"
                     onClick={() => updateQuantity(item.id, 1)}
@@ -125,10 +141,10 @@ const ShoppingCart = () => {
           >
             <span className="tracking-wider">{t("cart.total")} :</span>
             <span className="tracking-[15px] underline decoration-double">
-              $ {totalAmount}
+              $ {totalPrice}
             </span>
           </div>
-        </form>
+        </div>
 
         <form
           onSubmit={handlePaymentSubmit}
