@@ -6,6 +6,7 @@ import {
   Booking,
   Contact,
   Login,
+  Register,
   Menu,
   News,
   NotFound,
@@ -14,7 +15,6 @@ import {
   ShoppingCart,
   Member,
 } from "@/pages";
-import Register from "@/pages/Register";
 
 const router = createBrowserRouter([
   {

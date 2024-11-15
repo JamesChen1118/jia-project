@@ -6,8 +6,8 @@ import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
 import { newsApi } from "@/api/module/news";
-import i18n from "@/i18n/index";
 import GoTop from "@/components/GoTop";
+import i18n from "@/i18n/index";
 
 const Home = () => {
   const navigate = useNavigate();

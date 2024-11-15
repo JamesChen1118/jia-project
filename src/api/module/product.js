@@ -1,6 +1,7 @@
 import server from "../server";
 
 export const productApi = {
+
     getProductsByCategory: async (category = "") => {
         try {
             const { data } = await server.get(`/products?category=${category}`);

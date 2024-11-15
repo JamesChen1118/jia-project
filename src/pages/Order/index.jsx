@@ -1,39 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ProductItem from "@/components/ProductItem";
-import GoTop from "@/components/GoTop";
 import { productApi } from "@/api/module/product.js";
+import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const categories = [
-  { name: "全部" },
-  { name: "生食" },
-  { name: "壽司" },
-  { name: "海鮮" },
-  { name: "炸物" },
-  { name: "燒烤" },
-  { name: "定食" },
-  { name: "甜點" },
-  { name: "飲品" },
+  { name: "all" },
+  { name: "sashimi" },
+  { name: "sushi" },
+  { name: "seafood" },
+  { name: "tempura" },
+  { name: "yakimono" },
+  { name: "setMeal" },
+  { name: "dessert" },
+  { name: "drinks" },
 ];
 
 const Order = () => {
   const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState("全部");
+  const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const filteredProducts =
-    selectedCategory === "全部"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    setIsMobileMenuOpen(false);
+  const getProductsByCategory = async (category = "") => {
+    const data = await productApi.getProductsByCategory(category);
+    setProducts(data);
   };
+
+  const handleCategoryClick = async (category) => {
+    await getProductsByCategory(category);
+    setSelectedCategory(category);
+  };
+
+  useEffect(() => {
+    getProductsByCategory();
+  }, []);
 
   return (
     <>
       <GoTop />
+      <ScrollToContent />
       <div className="w-[90%] lg:w-[80%] mx-auto mt-[120px] flex flex-col lg:flex-row">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -75,9 +82,10 @@ const Order = () => {
 
         <div className="w-full lg:w-[80%] lg:ml-[30px] mt-6 lg:mt-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] lg:gap-[30px]">
-            {filteredProducts.map((product) => (
+            {products.map((product) => (
               <ProductItem
                 key={product.name}
+                id={product._id}
                 image={product.image}
                 category={product.category}
                 name={product.name}

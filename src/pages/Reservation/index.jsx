@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import GoTop from "@/components/GoTop";
 import ScrollToContent from "@/components/ScrollToContent";
 import table2 from "../../assets/images/reservation/seat-2-1.png";
 import table4 from "../../assets/images/reservation/table-4.png";
-import { useNavigate } from "react-router-dom";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -19,16 +20,13 @@ const Reservation = () => {
     tableNo: "",
   });
 
-  // 生成時間選項
   const generateTimeOptions = () => {
     const times = [];
-    // 午餐時段 11:30-14:30
     for (let i = 11.5; i <= 14.5; i += 0.5) {
       const hour = Math.floor(i);
       const minute = i % 1 === 0 ? "00" : "30";
       times.push(`${hour}:${minute}`);
     }
-    // 晚餐時段 17:30-22:30
     for (let i = 17.5; i <= 22.5; i += 0.5) {
       const hour = Math.floor(i);
       const minute = i % 1 === 0 ? "00" : "30";
@@ -37,7 +35,6 @@ const Reservation = () => {
     return times;
   };
 
-  // 處理座位選擇
   const handleTableClick = (tableNo) => {
     setSelectedTable(tableNo);
     setFormData((prev) => ({ ...prev, tableNo }));
@@ -45,6 +42,7 @@ const Reservation = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div className="container mx-auto px-4">
         <button
@@ -65,7 +63,6 @@ const Reservation = () => {
                       lg:flex-row md:flex-col sm:flex-col
                       lg:gap-0 md:gap-[30px] sm:gap-[30px]"
         >
-          {/* 表單區域 */}
           <div
             className="w-[400px] box-border text-main-color-yellow leading-8 font-verdana 
                        font-bold text-xl flex flex-col justify-evenly bg-transparent 
@@ -163,7 +160,6 @@ const Reservation = () => {
               </div>
             </div>
 
-            {/* 新增座位號碼輸入框 */}
             <div className="w-full mb-[15px] flex">
               <input
                 type="text"
@@ -178,7 +174,6 @@ const Reservation = () => {
               />
             </div>
 
-            {/* 新增電話號碼輸入框 */}
             <div className="w-full mb-[15px] flex">
               <input
                 type="number"
@@ -209,7 +204,6 @@ const Reservation = () => {
             </button>
           </div>
 
-          {/* 座位區域 */}
           <div className="flex justify-center items-center px-16">
             <div
               className={`w-[500px] h-[400px] my-[80px] mx-auto 
@@ -232,7 +226,6 @@ const Reservation = () => {
                 const col = index % 6;
                 let tableId = null;
 
-                // 定義座位位置
                 if (row === 0 && col === 1) tableId = "A1";
                 if (row === 0 && col === 3) tableId = "A2";
                 if (row === 0 && col === 5) tableId = "A3";

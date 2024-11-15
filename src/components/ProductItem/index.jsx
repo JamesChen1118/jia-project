@@ -5,14 +5,13 @@ import { useCartStore } from "@/store/shopping";
 import Swal from "sweetalert2";
 import CartButton from "@/components/CartButton";
 
-const ProductItem = ({ image, category, name, price, description }) => {
+const ProductItem = ({ id, image, category, name, price, description }) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems = useCartStore((state) => state.cartItems);
 
-  // 從購物車中獲取當前商品數量
   const currentItem = cartItems.find((item) => item.name === name);
-  const quantity = currentItem ? currentItem.numbers : 0;
+  const quantity = currentItem ? currentItem.quantity : 0;
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -24,7 +23,7 @@ const ProductItem = ({ image, category, name, price, description }) => {
 
   const handleQuantityChange = (change) => {
     if (change > 0) {
-      addToCart({ name, price, image }, 1);
+      addToCart({ id, name, price, image }, 1);
       Swal.fire({
         title: `${t(`products.items.${name}.name`)}`,
         text: t("cart.addSuccess"),
@@ -38,7 +37,7 @@ const ProductItem = ({ image, category, name, price, description }) => {
         iconColor: "#ffc107",
       });
     } else if (change < 0 && quantity > 0) {
-      addToCart({ name, price, image }, -1);
+      addToCart({ id, name, price, image }, -1);
       Swal.fire({
         title: `${t(`products.items.${name}.name`)}`,
         text: t("cart.updateSuccess"),
