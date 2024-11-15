@@ -1,9 +1,13 @@
+/* eslint-env node */
 import express from "express";
 import dotenv from "dotenv";
 import asyncHandler from "express-async-handler";
+
 import Product from "./models/product.js";
 import Category from "./models/category.js";
-import news from "./data/newsItem.js";
+import NewsItem from "./models/newsItem.js";
+import User from "./models/user.js";
+import Cart from "./models/cart.js";
 import connectDB from "./config/db.js";
 
 dotenv.config();
@@ -12,67 +16,102 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-app.get("/products", asyncHandler(async (req, res) => {
-    try {
-        const { category } = req.query;
-        let products;
-
-        if (!category || category === "全部") {
-            products = await Product.find({});
-        } else {
-            products = await Product.find({ category });
-        }
-
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+app.get(
+  "/products/:category",
+  asyncHandler(async (req, res) => {
+    const categoryName = req.params.category;
+    if (categoryName === "全部") {
+      const products = await Product.find({});
+      return res.json(products);
     }
+    const products = await Product.find({ category: categoryName });
+    return res.json(products);
+  })
+);
+
+app.get(
+  "/categories",
+  asyncHandler(async (req, res) => {
+    const categories = await Category.find({});
+    return res.json(categories);
+  })
+);
+
+app.get(
+  "/news",
+  asyncHandler(async (req, res) => {
+    const newsItems = await NewsItem.find({})
+      .sort({ date: -1 });
+    return res.json(newsItems);
+  })
+);
+
+app.post("/api/users/register", asyncHandler(async (req, res) => {
+    const { username, password, email, phone } = req.body;
+    const user = await User.create({
+        username,
+        password,
+        email,
+        phone
+    });
+    res.status(201).json(user);
 }));
 
-app.get("/categories", asyncHandler(async (req, res) => {
-    try {
-        const categories = await Category.find({});
-        res.json(categories);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-}));
-
-app.get("/news", (req, res) => {
-    try {
-        console.log('Sending news data:', news);
-        if (!news) {
-            throw new Error('News data is undefined');
-        }
-        res.json(news);
-    } catch (error) {
-        console.error("Error sending news:", error);
-        res.status(500).json({
-            message: "Server error",
-            error: error.message
+app.post("/api/users/login", asyncHandler(async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (user && user.password === password) {
+        res.json({
+            _id: user._id,
+            username: user.username,
+            email: user.email
         });
+    } else {
+        res.status(401).json({ message: "Invalid credentials" });
     }
-});
+}));
+
+app.post("/api/cart", asyncHandler(async (req, res) => {
+    const { userId, items } = req.body;
+    const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    
+    const cart = await Cart.create({
+        user: userId,
+        items,
+        totalAmount
+    });
+    
+    res.status(201).json(cart);
+}));
+
+app.put("/api/cart/:cartId", asyncHandler(async (req, res) => {
+    const { items } = req.body;
+    const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    
+    const cart = await Cart.findByIdAndUpdate(
+        req.params.cartId,
+        {
+            items,
+            totalAmount,
+            status: 'active'
+        },
+        { new: true }
+    );
+    
+    res.json(cart);
+}));
+
+app.get("/api/cart/:userId", asyncHandler(async (req, res) => {
+    const cart = await Cart.findOne({
+        user: req.params.userId,
+        status: 'active'
+    }).populate('items.product');
+    
+    res.json(cart || { items: [], totalAmount: 0 });
+}));
 
 const PORT = process.env.PORT || 1999;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-app.use((err, req, res, next) => {
-    console.error('Global error handler:', err);
-    res.status(500).json({
-        message: "Something went wrong!",
-        error: err.message
-    });
-});
-
-process.on('SIGTERM', () => {
-    console.log('SIGTERM received. Closing server...');
-    app.close(() => {
-        console.log('Server closed');
-        process.exit(0);
-    });
-});
-
