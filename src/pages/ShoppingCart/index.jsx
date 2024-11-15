@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import ScrollToContent from "@/components/ScrollToContent";
 import { useCartStore } from "@/store/shopping";
+import ScrollToContent from "@/components/ScrollToContent";
 import CartButton from "@/components/CartButton";
+import GoTop from "@/components/GoTop";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { cartItems, updateQuantity, removeItem } = useCartStore();
 
-  // 付款表單狀態
   const [paymentInfo, setPaymentInfo] = useState({
     cardNumbers: ["", "", "", ""],
     expiryYear: "",
@@ -18,21 +18,16 @@ const ShoppingCart = () => {
     cvv: "",
   });
 
-  // 購物車表單處理
   const handleCartSubmit = (e) => {
     e.preventDefault();
-    // 處理購物車更新
     console.log("購物車更新:", cartItems);
   };
 
-  // 付款表單處理
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
-    // 處理付款
     console.log("付款資訊:", paymentInfo);
   };
 
-  // 其他處理函數...
   const handleCardNumberChange = (index, value) => {
     const newCardNumbers = [...paymentInfo.cardNumbers];
     newCardNumbers[index] = value;
@@ -57,9 +52,9 @@ const ShoppingCart = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div className="flex flex-col lg:flex-row items-start p-5 mx-[50px] mb-[150px] gap-8">
-        {/* 購物車表單 */}
         <form
           onSubmit={handleCartSubmit}
           className="w-full lg:w-1/2 lg:mx-[100px] order-1 lg:order-1"
