@@ -5,14 +5,9 @@ import NewsItem from "@/components/NewsItem";
 import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMapMarker,
-  faPhone,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
 import { newsApi } from "@/api/module/news";
 import i18n from "@/i18n/index";
+import GoTop from "@/components/GoTop";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -41,7 +36,7 @@ const Home = () => {
       scale: 1,
       transition: {
         duration: 1,
-        ease: "easeOut", // 使用標準的 easing 函數
+        ease: "easeOut",
       },
     },
   };
@@ -73,7 +68,6 @@ const Home = () => {
 
   return (
     <>
-      {/* About 餐廳簡介區域 */}
       <div className="text-center min-h-[500px] my-[100px] lg:my-[150px] px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-8 lg:gap-0">
           <motion.div
@@ -151,12 +145,10 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Menu3D 區域 */}
       <div className="w-[90%] md:w-[85%] lg:w-4/5 mx-auto mt-[250px] lg:mt-[350px]">
         <Menu3D />
       </div>
 
-      {/* News 最新消息區域 */}
       <motion.div
         className="p-40 md:my-[150px] lg:my-[200px] perspective-1000"
         initial={{ opacity: 0, y: 50 }}
@@ -167,12 +159,10 @@ const Home = () => {
         <NewsItem />
       </motion.div>
 
-      {/* Reservation 訂位區域 */}
       <div
         className="relative mx-auto mb-[150px] min-h-[50vh] w-full font-georgia font-semibold 
                     text-2xl md:text-3xl lg:text-4xl flex justify-center items-center"
       >
-        {/* 背景圖片容器 */}
         <div
           className="absolute inset-0 z-[-1]"
           style={{
@@ -184,7 +174,6 @@ const Home = () => {
           }}
         />
 
-        {/* 按鈕 */}
         <motion.button
           onClick={() => navigate("/Booking")}
           className="relative z-20 py-2.5 px-5 bg-main-color-yellow rounded-xl
@@ -206,7 +195,6 @@ const Home = () => {
         </motion.button>
       </div>
 
-      {/* Location 餐廳資訊區域 */}
       <div className="flex flex-col lg:flex-row justify-evenly items-center p-6 lg:p-[50px] gap-8 lg:gap-0">
         <div
           className="w-full lg:w-[550px] leading-[2.5] lg:leading-[3] text-main-color-yellow 
@@ -270,6 +258,7 @@ const Home = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      <GoTop />
     </>
   );
 };

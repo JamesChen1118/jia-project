@@ -3,23 +3,24 @@ import { useTranslation } from "react-i18next";
 import ProductItem from "@/components/ProductItem";
 import products from "../../../server/data/products";
 import ScrollToContent from "@/components/ScrollToContent";
+import { productApi } from "@/api/module/product.js";
+
+const categories = [
+  { name: "全部" },
+  { name: "生食" },
+  { name: "壽司" },
+  { name: "海鮮" },
+  { name: "炸物" },
+  { name: "燒烤" },
+  { name: "定食" },
+  { name: "甜點" },
+  { name: "飲品" },
+];
 
 const Order = () => {
   const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState("全部");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const categories = [
-    { name: "全部" },
-    { name: "生食" },
-    { name: "壽司" },
-    { name: "海鮮" },
-    { name: "炸物" },
-    { name: "燒烤" },
-    { name: "定食" },
-    { name: "甜點" },
-    { name: "飲品" },
-  ];
 
   const filteredProducts =
     selectedCategory === "全部"

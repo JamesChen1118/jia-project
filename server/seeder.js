@@ -8,11 +8,9 @@ connectDB();
 
 const importData = async () => {
     try {
-        // 清除舊資料
         await Category.deleteMany();
         await Product.deleteMany();
 
-        // 導入新資料
         await Category.insertMany(categories);
         await Product.insertMany(products);
 

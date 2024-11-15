@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const About = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const About = () => {
 
   return (
     <>
-      <ScrollToContent />
+      <GoTop />{" "}
       <div className="mt-[150px] mb-[200px] px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
         <motion.div
           className="flex flex-col lg:flex-row items-center justify-between mb-40 gap-10"
