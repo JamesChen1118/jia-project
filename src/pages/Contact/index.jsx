@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Contact = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div className="w-[70%] mx-auto mt-[120px] mb-[150px] flex flex-col lg:flex-row justify-center shadow-lg rounded-[20px] overflow-hidden">
         {/* 左側表單區域 */}

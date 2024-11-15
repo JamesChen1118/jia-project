@@ -14,22 +14,6 @@ import Cart from "./models/cart.js";
 
 connectDB();
 
-<<<<<<< HEAD
-const importData = async () => {
-    try {
-        await Category.deleteMany();
-        await Product.deleteMany();
-
-        await Category.insertMany(categories);
-        await Product.insertMany(products);
-
-        console.log("資料導入成功");
-        process.exit();
-    } catch (error) {
-        console.error("資料導入錯誤:", error);
-        process.exit(1);
-    }
-=======
 const deleteData = async () => {
   try {
     await Product.deleteMany();
@@ -41,13 +25,11 @@ const deleteData = async () => {
   } catch (error) {
     console.log(error);
   }
->>>>>>> 9eb0e3e18476d16066b2b4e76610c5dc15a5a43d
 };
 
 const importSeedData = async () => {
   try {
     await deleteData();
-    
     await Category.insertMany(categories);
     await Product.insertMany(products);
     await NewsItem.insertMany(news);

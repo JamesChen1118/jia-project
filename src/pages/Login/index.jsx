@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { userApi } from "@/api/module/user.js";
 import { setToken } from "@/utils/auth.js";
 import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -35,6 +36,7 @@ const Login = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div className="flex justify-center items-center min-h-screen">
         <motion.div

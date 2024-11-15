@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Booking = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div
         className="w-[70%] mx-auto flex flex-col lg:flex-row justify-evenly items-center text-center 

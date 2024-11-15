@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ProductItem from "@/components/ProductItem";
-import products from "../../../server/data/products";
-import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 import { productApi } from "@/api/module/product.js";
 
 const categories = [
@@ -34,7 +33,7 @@ const Order = () => {
 
   return (
     <>
-      <ScrollToContent />
+      <GoTop />
       <div className="w-[90%] lg:w-[80%] mx-auto mt-[120px] flex flex-col lg:flex-row">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

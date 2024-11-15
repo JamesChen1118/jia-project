@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const Member = () => {
-  const [memberTable, setmemberTable] = useState("info");
+  const [memberTable, setMemberTable] = useState("info");
   const { t } = useTranslation();
 
   const renderContent = () => {
@@ -77,12 +78,12 @@ const Member = () => {
 
   return (
     <>
+      <GoTop />
       <ScrollToContent />
       <div
         className="w-[90%] lg:w-[80%] mx-auto mt-[120px] mb-[150px] 
                     flex flex-col lg:flex-row gap-8"
       >
-        {/* 側邊選單 */}
         <div className="w-full lg:w-[250px] bg-[#333] rounded-xl p-6">
           <h2
             className="text-2xl font-bold text-main-color-yellow mb-8 
@@ -94,7 +95,7 @@ const Member = () => {
             {["info", "orders", "history"].map((option) => (
               <li
                 key={option}
-                onClick={() => setmemberTable(option)}
+                onClick={() => setMemberTable(option)}
                 className={`py-2 px-4 rounded-lg cursor-pointer 
                            transition-all duration-300
                            ${
@@ -109,7 +110,6 @@ const Member = () => {
           </ul>
         </div>
 
-        {/* 內容區域 */}
         <div className="flex-1 bg-[#333] rounded-xl p-6">
           <h3 className="text-xl font-bold text-main-color-yellow mb-6">
             {t(`member.${memberTable}`)}

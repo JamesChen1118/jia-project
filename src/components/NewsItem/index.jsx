@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { newsApi } from "@/api/module/news";
+import { newsApi } from "@/api/module/news.js";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ const NewsItem = () => {
     const fetchNews = async () => {
       try {
         const data = await newsApi.getNews();
+        console.log("Fetched news data:", data);
         if (Array.isArray(data)) {
           setNewsItems(data);
         } else {
@@ -34,7 +35,6 @@ const NewsItem = () => {
 
   return (
     <div className="w-4/5 mx-auto">
-      {/* 桌機版 (lg 以上) */}
       <div className="hidden lg:block">
         <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden">
           {newsItems.map((item, index) => (
@@ -58,7 +58,6 @@ const NewsItem = () => {
         </div>
       </div>
 
-      {/* 平板和手機版 (lg 以下) */}
       <div className="block lg:hidden">
         <h2 className="text-2xl text-main-color-yellow text-center mb-6 font-bold">
           {t("news.title")}

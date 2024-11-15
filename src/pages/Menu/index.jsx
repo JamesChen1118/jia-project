@@ -4,6 +4,7 @@ import products from "../../../server/data/products";
 import { useTranslation } from "react-i18next";
 import ProductModal from "@/components/ProductModal";
 import ScrollToContent from "@/components/ScrollToContent";
+import GoTop from "@/components/GoTop";
 
 const Menu = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,6 +22,7 @@ const Menu = () => {
   return (
     <>
       <ScrollToContent />
+      <GoTop />
       <div className="w-[70%] mx-auto mt-[100px] mb-[150px]">
         {Object.entries(groupedProducts).map(([category, items]) => (
           <div key={`category-${category}`} className="mb-12">
