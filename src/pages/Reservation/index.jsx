@@ -8,6 +8,27 @@ import table2 from "../../assets/images/reservation/seat-2-1.png";
 import table4 from "../../assets/images/reservation/table-4.png";
 import { message } from "antd";
 
+const timeOptions = [
+  "11:30",
+  "12:00",
+  "12:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "17:30",
+  "18:00",
+  "18:30",
+  "19:00",
+  "19:30",
+  "20:00",
+  "20:30",
+  "21:00",
+  "21:30",
+  "22:00",
+  "22:30",
+];
+
 const Reservation = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -21,21 +42,6 @@ const Reservation = () => {
     people: "",
     tableNo: "",
   });
-
-  const generateTimeOptions = () => {
-    const times = [];
-    for (let i = 11.5; i <= 14.5; i += 0.5) {
-      const hour = Math.floor(i);
-      const minute = i % 1 === 0 ? "00" : "30";
-      times.push(`${hour}:${minute}`);
-    }
-    for (let i = 17.5; i <= 22.5; i += 0.5) {
-      const hour = Math.floor(i);
-      const minute = i % 1 === 0 ? "00" : "30";
-      times.push(`${hour}:${minute}`);
-    }
-    return times;
-  };
 
   const handleTableClick = (tableNo) => {
     setSelectedTable(tableNo);
@@ -164,7 +170,7 @@ const Reservation = () => {
                   <option value="" disabled className="bg-[#333]">
                     {t("reservation.selectTime")}
                   </option>
-                  {generateTimeOptions().map((time) => (
+                  {timeOptions.map((time) => (
                     <option key={time} value={time} className="bg-[#333]">
                       {time}
                     </option>

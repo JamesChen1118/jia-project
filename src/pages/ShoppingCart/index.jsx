@@ -20,9 +20,7 @@ const ShoppingCart = () => {
     cvv: "",
   };
 
-
   const [paymentInfo, setPaymentInfo] = useState(initForm);
-
 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -43,6 +41,7 @@ const ShoppingCart = () => {
     message.success("付款成功");
     clearCart();
     setPaymentInfo(initForm);
+    navigate("/");
   };
 
   const handleCardNumberChange = (index, value) => {
@@ -72,7 +71,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-    <GoTop/>
+      <GoTop />
       <ScrollToContent />
       <div className="flex flex-col lg:flex-row items-start p-5 mx-[50px] mb-[150px] gap-8">
         <div className="w-full lg:w-1/2 lg:mx-[100px] order-1 lg:order-1">
