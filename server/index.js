@@ -10,6 +10,7 @@ import User from "./models/user.js";
 import Cart from "./models/cart.js";
 import Order from "./models/order.js";
 import connectDB from "./config/db.js";
+import Reservation from "./models/reservation.js";
 
 dotenv.config();
 connectDB();
@@ -151,6 +152,32 @@ app.get(
         }).populate("items.product");
 
         res.json(cart || { items: [], totalAmount: 0 });
+    })
+);
+
+app.post(
+    "/reservation",
+    asyncHandler(async (req, res) => {
+        const newReservation = new Reservation(req.body);
+        const savedReservation = await newReservation.save();
+        console.log("預約成功:", savedReservation);
+        res.status(201).json(savedReservation);
+    })
+);
+
+app.get(
+    "/reservations",
+    asyncHandler(async (req, res) => {
+        const reservations = await Reservation.find({});
+        return res.json(reservations);
+    })
+);
+
+app.delete(
+    "/reservation/:id",
+    asyncHandler(async (req, res) => {
+        await Reservation.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "預約已刪除" });
     })
 );
 
