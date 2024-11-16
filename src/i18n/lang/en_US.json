@@ -327,7 +327,10 @@
     "phonePlaceholder": "Enter Phone Number",
     "emailPlaceholder": "Enter Email",
     "tablePlaceholder": "Table Number",
-    "submit": "Submit"
+    "submit": "Submit",
+    "pleaseCompleteForm": "Please complete all required fields",
+    "successMessage": "Reservation successful! We will contact you soon to confirm",
+    "errorMessage": "Reservation failed. Please try again later or contact us directly"
   },
 
   "notFound": {

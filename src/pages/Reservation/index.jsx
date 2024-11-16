@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { reservationApi } from "@/api/module/reservation";
 import GoTop from "@/components/GoTop";
 import ScrollToContent from "@/components/ScrollToContent";
 import table2 from "../../assets/images/reservation/seat-2-1.png";
 import table4 from "../../assets/images/reservation/table-4.png";
+import { message } from "antd";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -38,6 +40,41 @@ const Reservation = () => {
   const handleTableClick = (tableNo) => {
     setSelectedTable(tableNo);
     setFormData((prev) => ({ ...prev, tableNo }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (
+        !formData.name ||
+        !formData.date ||
+        !formData.time ||
+        !formData.phone ||
+        !formData.people ||
+        !formData.tableNo
+      ) {
+        message.error(t("reservation.pleaseCompleteForm"));
+        return;
+      }
+
+      await reservationApi.addReservation(formData);
+
+      setFormData({
+        name: "",
+        date: "",
+        time: "",
+        email: "",
+        phone: "",
+        people: "",
+        tableNo: "",
+      });
+      setSelectedTable("");
+
+      message.success(t("reservation.successMessage"));
+      navigate("/");
+    } catch (error) {
+      console.error("預約失敗:", error);
+      message.error(t("reservation.errorMessage"));
+    }
   };
 
   return (
@@ -194,6 +231,7 @@ const Reservation = () => {
             </div>
 
             <button
+              onClick={handleSubmit}
               className="px-[15px] py-[10px] font-bold mt-[25px] mx-auto mb-0 
                            text-xl leading-6 text-[#3b3a3a] bg-main-color-yellow 
                            rounded-[10px] border-none transition-all duration-500 
