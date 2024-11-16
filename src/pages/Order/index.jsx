@@ -84,8 +84,8 @@ const Order = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] lg:gap-[30px]">
             {products.map((product) => (
               <ProductItem
-                key={product.name}
-                id={product._id}
+                key={product._id}
+                _id={product._id}
                 image={product.image}
                 category={product.category}
                 name={product.name}
