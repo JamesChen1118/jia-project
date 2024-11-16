@@ -72,6 +72,7 @@ const ShoppingCart = () => {
 
   return (
     <>
+    <GoTop/>
       <ScrollToContent />
       <div className="flex flex-col lg:flex-row items-start p-5 mx-[50px] mb-[150px] gap-8">
         <div className="w-full lg:w-1/2 lg:mx-[100px] order-1 lg:order-1">
