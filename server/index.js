@@ -43,23 +43,10 @@ app.post(
 
 app.get(
     "/products",
-    asyncHandler(async (req, res) => {
-        const categoryName = req.query.category;
-        if (categoryName === "all" || !categoryName) {
-            const products = await Product.find({});
-            return res.json(products);
-        }
-        const products = await Product.find({ category: categoryName });
-        return res.json(products);
-    })
 );
 
 app.get(
     "/categories",
-    asyncHandler(async (req, res) => {
-        const categories = await Category.find({});
-        return res.json(categories);
-    })
 );
 
 app.get(
