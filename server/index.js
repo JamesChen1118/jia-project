@@ -12,11 +12,14 @@ import Order from "./models/order.js";
 import connectDB from "./config/db.js";
 import Reservation from "./models/reservation.js";
 
+import router from "./routes/index.js";
+
 dotenv.config();
 connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(router);
 
 app.get(
     "/orders",
@@ -39,14 +42,6 @@ app.post(
         await order.save();
         res.status(200).json({});
     })
-);
-
-app.get(
-    "/products",
-);
-
-app.get(
-    "/categories",
 );
 
 app.get(
