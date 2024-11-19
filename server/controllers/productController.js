@@ -1,4 +1,5 @@
-import Product from "server/models/product.js";
+import Product from "../models/product.js";
+import Category from "../models/category.js";
 import asyncHandler from "express-async-handler";
 
 const productController = {
