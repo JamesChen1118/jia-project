@@ -45,7 +45,7 @@ app.post(
 );
 
 app.get(
-    "/news",
+    "/api/news",
     asyncHandler(async (req, res) => {
         const newsItems = await NewsItem.find({}).sort({ date: -1 });
         return res.json(newsItems);
@@ -162,6 +162,10 @@ app.delete(
         res.status(200).json({ message: "預約已刪除" });
     })
 );
+
+app.get('/api/users/profile', protect, asyncHandler(async (req, res) => {
+    res.json(req.user);
+}));
 
 const PORT = process.env.PORT || 6000;
 

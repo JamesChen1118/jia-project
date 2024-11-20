@@ -11,6 +11,7 @@ import Reservation from "@/pages/Reservation";
 import ShoppingCart from "@/pages/ShoppingCart";
 import Member from "@/pages/Member";
 import Register from "./Register";
+import { newsApi } from "@/api/module/news";
 
 export {
   Home,
