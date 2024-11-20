@@ -9,8 +9,6 @@ import news from "./data/newsItem.js";
 import Product from "./models/product.js";
 import Category from "./models/category.js";
 import NewsItem from "./models/newsItem.js";
-import User from "./models/user.js";
-import Cart from "./models/cart.js";
 
 connectDB();
 
@@ -19,8 +17,6 @@ const deleteData = async () => {
     await Product.deleteMany();
     await Category.deleteMany();
     await NewsItem.deleteMany();
-    await User.deleteMany();
-    await Cart.deleteMany();
     console.log("data is deleted.");
   } catch (error) {
     console.log(error);

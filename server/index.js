@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import asyncHandler from "express-async-handler";
+import newsController from "./controllers/newsController.js";
 
 import Product from "./models/product.js";
 import Category from "./models/category.js";
@@ -11,8 +12,10 @@ import Cart from "./models/cart.js";
 import Order from "./models/order.js";
 import connectDB from "./config/db.js";
 import Reservation from "./models/reservation.js";
+import authMiddleware from "./middlewares/authMiddleware.js";
 
 import router from "./routes/index.js";
+import userRoutes from "./routes/module/userRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -20,6 +23,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(router);
+app.use('/api/users', userRoutes);
 
 app.get(
     "/orders",
@@ -44,13 +48,7 @@ app.post(
     })
 );
 
-app.get(
-    "/api/news",
-    asyncHandler(async (req, res) => {
-        const newsItems = await NewsItem.find({}).sort({ date: -1 });
-        return res.json(newsItems);
-    })
-);
+app.get("/api/news", newsController.getAllNews);
 
 app.post(
     "/api/users/register",
@@ -163,11 +161,11 @@ app.delete(
     })
 );
 
-app.get('/api/users/profile', protect, asyncHandler(async (req, res) => {
+app.get('/api/users/profile', authMiddleware, asyncHandler(async (req, res) => {
     res.json(req.user);
 }));
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 1999;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
