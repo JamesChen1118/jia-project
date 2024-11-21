@@ -30,12 +30,6 @@ const cartSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    paymentInfo: {
-        cardNumbers: [String],
-        expiryYear: String,
-        expiryMonth: String,
-        cvv: String
-    },
     status: {
         type: String,
         enum: ['active', 'completed', 'cancelled'],

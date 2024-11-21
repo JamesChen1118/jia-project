@@ -4,7 +4,10 @@ import asyncHandler from "express-async-handler";
 const orderController = {
     getOrders: asyncHandler(async (req, res) => {
         try {
-            const orders = await Order.find({});
+            const orders = await Order.find({})
+                .populate('orderItems.product')
+                .sort({ createdAt: -1 });
+            console.log('Orders fetched:', orders);
             res.json(orders);
         } catch (error) {
             console.error('Error in getOrders:', error);
@@ -14,6 +17,7 @@ const orderController = {
 
     addOrder: asyncHandler(async (req, res) => {
         try {
+            console.log('Received order data:', req.body);
             const order = await Order.create(req.body);
             res.status(201).json(order);
         } catch (error) {

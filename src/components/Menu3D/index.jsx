@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { productApi } from "@/api/module/product.js";
 import { useTranslation } from "react-i18next";
-import products from "../../../server/data/products";
+import products from "../../../server/data/products.js";
 
 const Menu3D = () => {
   const [openImageId, setOpenImageId] = useState(null);
@@ -10,11 +9,12 @@ const Menu3D = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    // 只選取前12個產品
     const selectedProducts = products.slice(0, 12);
 
     const formattedMenuItems = selectedProducts.map((product) => ({
       id: product.name,
-      imageUrl: product.image,
+      imageUrl: `/src/assets/images/products/${product.image}`,
       name: product.name,
       category: product.category,
       price: product.price,
@@ -54,7 +54,7 @@ const Menu3D = () => {
                       {t(`products.items.${item.name}.description`)}
                     </div>
                     <div className="menu-listPrice">${item.price}</div>
-                    <NavLink to="/menu" className="toMenu">
+                    <NavLink to="/order" className="toMenu">
                       {t("home.menu.toMenu")}
                     </NavLink>
                   </div>

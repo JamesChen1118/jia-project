@@ -7,7 +7,7 @@ const reservationSchema = new mongoose.Schema(
             required: true,
         },
         date: {
-            type: String,
+            type: Date,
             required: true,
         },
         time: {
@@ -21,10 +21,17 @@ const reservationSchema = new mongoose.Schema(
         people: {
             type: Number,
             required: true,
+            min: 1,
+            max: 10
         },
-        tableNo: {
+        tableId: {
             type: String,
             required: true,
+        },
+        status: {
+            type: String,
+            enum: ['pending', 'confirmed', 'cancelled'],
+            default: 'pending'
         }
     },
     { timestamps: true }

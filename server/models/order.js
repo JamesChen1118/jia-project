@@ -4,22 +4,21 @@ const orderSchema = new mongoose.Schema(
     {
         orderItems: [
             {
-                name: {
-                    type: String,
-                    required: true,
+                product: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Product',
+                    required: true
                 },
                 quantity: {
                     type: Number,
-                    required: true,
+                    required: true
                 },
                 price: {
                     type: Number,
-                    required: true,
+                    required: true
                 },
-                image: {
-                    type: String,
-                    required: true,
-                },
+                name: String,
+                image: String
             },
         ],
         paymentInfo: {
@@ -43,8 +42,15 @@ const orderSchema = new mongoose.Schema(
         totalPrice: {
             type: Number,
             required: true,
-            default: 0.0,
         },
+        status: {
+            type: String,
+            default: 'pending'
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
     },
     { timestamps: true }
 );
