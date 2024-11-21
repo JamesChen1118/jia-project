@@ -6,7 +6,7 @@ import User from "./models/user.js";
 import Cart from "./models/cart.js";
 import Reservation from "./models/reservation.js";
 import newsController from "./controllers/newsController.js";
-import { authMiddleware } from "./middleware/authMiddleware.js";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
 import connectDB from "./config/db.js";
 import routes from "./routes/index.js";
 
@@ -32,8 +32,6 @@ app.post(
         res.status(200).json({});
     })
 );
-
-app.get("/news", newsController.getAllNews);
 
 app.post(
     "/users/register",
