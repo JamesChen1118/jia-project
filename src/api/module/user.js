@@ -1,8 +1,6 @@
 import axios from "axios";
 import server from "../server";
-// import { getToken } from "@/utils/auth";
-
-const API_URL = "http://localhost:1999/api";
+import { getToken } from "@/utils/auth";
 
 export const userApi = {
   login: async (username, password) => {
@@ -37,11 +35,11 @@ export const userApi = {
     return data;
   },
   getCart: async (userId) => {
-    const { data } = await axios.get(`${API_URL}/cart/${userId}`);
+    const { data } = await server.get(`/cart/${userId}`);
     return data;
   },
   updateCart: async (cartId, items) => {
-    const { data } = await axios.put(`${API_URL}/cart/${cartId}`, { items });
+    const { data } = await server.put(`/cart/${cartId}`, { items });
     return data;
   },
 };

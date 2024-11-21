@@ -1,37 +1,22 @@
 /* eslint-env node */
 import express from "express";
-import dotenv from "dotenv";
 import asyncHandler from "express-async-handler";
-import newsController from "./controllers/newsController.js";
-
-import Product from "./models/product.js";
-import Category from "./models/category.js";
-import NewsItem from "./models/newsItem.js";
+import Order from "./models/order.js";
 import User from "./models/user.js";
 import Cart from "./models/cart.js";
-import Order from "./models/order.js";
-import connectDB from "./config/db.js";
 import Reservation from "./models/reservation.js";
-import authMiddleware from "./middlewares/authMiddleware.js";
-
-import router from "./routes/index.js";
-import userRoutes from "./routes/module/userRoutes.js";
-
-dotenv.config();
-connectDB();
+import newsController from "./controllers/newsController.js";
+import { authMiddleware } from "./middleware/authMiddleware.js";
+import connectDB from "./config/db.js";
+import routes from "./routes/index.js";
 
 const app = express();
-app.use(express.json());
-app.use(router);
-app.use('/api/users', userRoutes);
 
-app.get(
-    "/orders",
-    asyncHandler(async (req, res) => {
-        const orders = await Order.find({});
-        return res.json(orders);
-    })
-);
+connectDB();
+
+app.use(express.json());
+
+app.use('/', routes);
 
 app.post(
     "/order",
@@ -48,10 +33,10 @@ app.post(
     })
 );
 
-app.get("/api/news", newsController.getAllNews);
+app.get("/news", newsController.getAllNews);
 
 app.post(
-    "/api/users/register",
+    "/users/register",
     asyncHandler(async (req, res) => {
         const { username, password, email, phone } = req.body;
         const user = await User.create({
@@ -65,7 +50,7 @@ app.post(
 );
 
 app.post(
-    "/api/users/login",
+    "/users/login",
     asyncHandler(async (req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
@@ -82,7 +67,7 @@ app.post(
 );
 
 app.post(
-    "/api/cart",
+    "/cart",
     asyncHandler(async (req, res) => {
         const { userId, items } = req.body;
         const totalAmount = items.reduce(
@@ -101,7 +86,7 @@ app.post(
 );
 
 app.put(
-    "/api/cart/:cartId",
+    "/cart/:cartId",
     asyncHandler(async (req, res) => {
         const { items } = req.body;
         const totalAmount = items.reduce(
@@ -124,7 +109,7 @@ app.put(
 );
 
 app.get(
-    "/api/cart/:userId",
+    "/cart/:userId",
     asyncHandler(async (req, res) => {
         const cart = await Cart.findOne({
             user: req.params.userId,
@@ -161,11 +146,11 @@ app.delete(
     })
 );
 
-app.get('/api/users/profile', authMiddleware, asyncHandler(async (req, res) => {
+app.get('/users/profile', authMiddleware, asyncHandler(async (req, res) => {
     res.json(req.user);
 }));
 
-const PORT = process.env.PORT || 1999;
+const PORT = process.env.PORT || 6000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

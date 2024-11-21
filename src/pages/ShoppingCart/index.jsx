@@ -95,10 +95,9 @@ const ShoppingCart = () => {
           <div className="space-y-4">
             {cartItems.map((item) => (
               <div
-                key={item.id}
-                className="flex flex-col sm:flex-row items-center 
-                 text-center p-4 rounded-[20px] bg-[#b6acace1] 
-                 border border-white/20 shadow-md gap-4 sm:gap-0"
+                key={item._id}
+                className="flex items-center justify-between mb-4 p-4 rounded-[20px] bg-[#b6acace1] 
+                 border border-white/20 shadow-md"
               >
                 <div className="flex-1 flex flex-col sm:flex-row items-center gap-4 sm:gap-8 min-w-0">
                   <img
