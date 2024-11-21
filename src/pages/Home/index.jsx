@@ -99,8 +99,8 @@ const Home = () => {
 
             <motion.button
               onClick={() => navigate("/About")}
-              className="px-8 py-3 text-2xl text-main-color-orange 
-                        transition-all duration-300  italic
+              className="inline-block px-8 py-3 text-2xl text-main-color-orange 
+                        transition-all duration-300 hidden italic
                         text-shadow-cart hover:text-shadow-cart-hover"
               initial={{ opacity: 0, y: 20, display: "none" }}
               animate={{ opacity: 1, y: 0, display: "inline-block" }}

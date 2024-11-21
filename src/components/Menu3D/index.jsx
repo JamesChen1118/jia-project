@@ -9,12 +9,11 @@ const Menu3D = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // 只選取前12個產品
     const selectedProducts = products.slice(0, 12);
 
     const formattedMenuItems = selectedProducts.map((product) => ({
       id: product.name,
-      imageUrl: `/src/assets/images/products/${product.image}`,
+      imageUrl: product.image,
       name: product.name,
       category: product.category,
       price: product.price,
