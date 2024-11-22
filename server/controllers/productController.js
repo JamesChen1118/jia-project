@@ -1,5 +1,4 @@
 import Product from "../models/product.js";
-import products from "../data/products.js";
 import asyncHandler from "express-async-handler";
 
 const productController = {
@@ -7,21 +6,15 @@ const productController = {
         try {
             const { category } = req.query;
             console.log('Requested category:', category);
-            console.log('Available categories:', [...new Set(products.map(p => p.category))]);
 
-            let filteredProducts = products;
-            if (category && category !== "all") {
-                console.log('Filtering products for category:', category);
-                filteredProducts = products.filter(p => {
-                    const match = p.category.toLowerCase() === category.toLowerCase();
-                    console.log(`Product ${p.name} category ${p.category} matches ${category}: ${match}`);
-                    return match;
-                });
+            let query = {};
+            if (category && category !== 'all') {
+                query = { category: category.toLowerCase() };
             }
 
-            console.log(`Found ${filteredProducts.length} products for category ${category}`);
-            console.log('Filtered products:', filteredProducts.map(p => p.name));
-            res.json(filteredProducts);
+            const products = await Product.find(query);
+            console.log(`Found ${products.length} products for category: ${category || 'all'}`);
+            res.json(products);
         } catch (error) {
             console.error('Error in getProducts:', error);
             res.status(500).json({ message: error.message });
@@ -30,7 +23,7 @@ const productController = {
 
     getCategories: asyncHandler(async (req, res) => {
         try {
-            const categories = [...new Set(products.map(p => p.category))];
+            const categories = await Product.distinct('category');
             console.log('Available categories:', categories);
             res.json(categories);
         } catch (error) {
