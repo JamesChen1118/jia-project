@@ -4,7 +4,7 @@ export const productApi = {
     getProductsByCategory: async (category) => {
         try {
             console.log("Requesting products for category:", category);
-            const url = category && category !== "all" 
+            const url = category && category !== 'all' 
                 ? `/products?category=${category}`
                 : '/products';
             
