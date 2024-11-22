@@ -29,8 +29,15 @@ const Order = () => {
   };
 
   const handleCategoryClick = async (category) => {
-    await getProductsByCategory(category);
     setSelectedCategory(category);
+    try {
+        const data = await productApi.getProductsByCategory(category);
+        console.log(`Loaded ${data.length} products for category:`, category);
+        setProducts(data);
+    } catch (error) {
+        console.error("Error loading products:", error);
+        setProducts([]);
+    }
   };
 
   useEffect(() => {

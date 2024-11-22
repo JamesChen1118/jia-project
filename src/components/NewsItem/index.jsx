@@ -34,19 +34,21 @@ const NewsItem = () => {
         <div className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden">
           {newsItems.map((item, index) => (
             <motion.div
-              key={index}
+              key={item._id || index}
               className="grid grid-cols-12 gap-4 p-4 border-b border-main-color-yellow
                        hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="col-span-3 text-news-text-gray">{item.date}</div>
+              <div className="col-span-3 text-news-text-gray">
+                {new Date(item.date).toLocaleDateString()}
+              </div>
               <div className="col-span-3 text-main-color-yellow font-bold">
-                {t(`news.newsTitle.newsItem${index + 1}`)}
+                {item.title}
               </div>
               <div className="col-span-6 text-main-text-white">
-                {t(`news.content.newsItem${index + 1}`)}
+                {item.content}
               </div>
             </motion.div>
           ))}
