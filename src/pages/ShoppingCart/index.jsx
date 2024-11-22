@@ -12,6 +12,7 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { cartItems, updateQuantity, removeItem, clearCart } = useCartStore();
+  const totalAmount = useCartStore(state => state.getTotalAmount());
 
   const initForm = {
     cardNumbers: ["", "", "", ""],
@@ -22,11 +23,6 @@ const ShoppingCart = () => {
 
   const [paymentInfo, setPaymentInfo] = useState(initForm);
 
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
     const order = {
@@ -35,7 +31,7 @@ const ShoppingCart = () => {
         ...paymentInfo,
         cardNumbers: paymentInfo.cardNumbers.join(""),
       },
-      totalPrice,
+      totalPrice: totalAmount,
     };
     await orderApi.addOrder(order);
     message.success("付款成功");
@@ -114,18 +110,25 @@ const ShoppingCart = () => {
                 </div>
 
                 <div className="flex items-center gap-2 sm:ml-auto sm:w-[180px] justify-end">
-                  <CartButton
-                    type="minus"
-                    onClick={() => updateQuantity(item.id, -1)}
-                    disabled={item.quantity === 0}
-                  />
-                  <CartButton type="quantity" value={item.quantity} />
-                  <CartButton
-                    type="plus"
-                    onClick={() => updateQuantity(item.id, 1)}
-                  />
-                  <CartButton
-                    type="delete"
+                <CartButton
+        key={`minus-${item._id}`}
+        type="minus"
+        onClick={() => updateQuantity(item.id, -1)}
+        disabled={item.numbers === 0}
+      />
+      <CartButton 
+        key={`quantity-${item._id}`}
+        type="quantity" 
+        value={item.numbers} 
+      />
+      <CartButton
+        key={`plus-${item._id}`}
+        type="plus"
+        onClick={() => updateQuantity(item.id, 1)}
+      />
+      <CartButton
+        key={`delete-${item._id}`}
+        type="delete"
                     onClick={() => removeItem(item.id)}
                   />
                 </div>
@@ -140,7 +143,7 @@ const ShoppingCart = () => {
           >
             <span className="tracking-wider">{t("cart.total")} :</span>
             <span className="tracking-[15px] underline decoration-double">
-              $ {totalPrice}
+              $ {totalAmount}
             </span>
           </div>
         </div>
