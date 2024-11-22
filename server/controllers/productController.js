@@ -1,49 +1,43 @@
 import Product from "../models/product.js";
 import products from "../data/products.js";
+import asyncHandler from "express-async-handler";
 
 const productController = {
-    getProducts: async (req, res) => {
+    getProducts: asyncHandler(async (req, res) => {
         try {
             const { category } = req.query;
             console.log('Requested category:', category);
+            console.log('Available categories:', [...new Set(products.map(p => p.category))]);
 
-            // 檢查數據庫連接
-            if (!Product.db.readyState) {
-                throw new Error('Database connection not ready');
-            }
-
-            let query = {};
+            let filteredProducts = products;
             if (category && category !== "all") {
-                query.category = category;
+                console.log('Filtering products for category:', category);
+                filteredProducts = products.filter(p => {
+                    const match = p.category.toLowerCase() === category.toLowerCase();
+                    console.log(`Product ${p.name} category ${p.category} matches ${category}: ${match}`);
+                    return match;
+                });
             }
 
-            const foundProducts = await Product.find(query);
-            console.log(`Found ${foundProducts.length} products`);
-
-            // 如果沒有找到產品，返回示例數據
-            if (foundProducts.length === 0) {
-                console.log('No products found, returning sample data');
-                return res.json(products);
-            }
-
-            res.json(foundProducts);
+            console.log(`Found ${filteredProducts.length} products for category ${category}`);
+            console.log('Filtered products:', filteredProducts.map(p => p.name));
+            res.json(filteredProducts);
         } catch (error) {
             console.error('Error in getProducts:', error);
-            // 如果發生錯誤，返回示例數據
-            console.log('Error occurred, returning sample data');
-            res.json(products);
+            res.status(500).json({ message: error.message });
         }
-    },
+    }),
 
-    getCategories: async (req, res) => {
+    getCategories: asyncHandler(async (req, res) => {
         try {
-            const categories = ['all', 'sashimi', 'sushi', 'seafood', 'tempura', 'yakimono', 'setMeal', 'dessert', 'drinks'];
+            const categories = [...new Set(products.map(p => p.category))];
+            console.log('Available categories:', categories);
             res.json(categories);
         } catch (error) {
             console.error('Error in getCategories:', error);
             res.status(500).json({ message: error.message });
         }
-    }
+    })
 };
 
 export default productController;

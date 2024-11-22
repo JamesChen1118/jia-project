@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { newsApi } from "@/api/module/news.js";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import newsData from "../../../server/data/newsItem";
 
 const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -10,25 +10,15 @@ const NewsItem = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const data = await newsApi.getNews();
-        console.log("Fetched news data:", data);
-        if (Array.isArray(data)) {
-          setNewsItems(data);
-        } else {
-          console.error("News data is not an array:", data);
-          setNewsItems([]);
-        }
-      } catch (error) {
-        console.error("Error fetching news:", error);
-        setNewsItems([]);
-      }
-    };
-
-    fetchNews();
+    try {
+      // 直接使用導入的新聞資料
+      console.log("載入的新聞資料:", news);
+      setNewsItems(news);
+    } catch (error) {
+      console.error("獲取新聞時出錯:", error);
+      setNewsItems([]);
+    }
   }, []);
-
   if (newsItems.length === 0) {
     return <div className="w-4/5 mx-auto text-center">載入中...</div>;
   }

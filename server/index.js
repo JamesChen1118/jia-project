@@ -1,13 +1,15 @@
 /* eslint-env node */
 import express from "express";
+import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import routes from "./routes/index.js";
+import router from "./routes/index.js";
+
+dotenv.config();
+connectDB();
 
 const app = express();
-
-connectDB();
 app.use(express.json());
-app.use('/', routes);
+app.use('/api', router);
 
 const startServer = async () => {
     let port = process.env.PORT || 6001;
