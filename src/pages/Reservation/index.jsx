@@ -29,6 +29,12 @@ const timeOptions = [
   "22:30",
 ];
 
+const tableList = [
+  "A1", "A2", "A3",
+  "B1", "B2", "B3",
+  "C1", "C2"
+];
+
 const Reservation = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -99,24 +105,19 @@ const Reservation = () => {
           {t("common.backToHome") || "回到首頁"}
         </button>
 
-        <div
-          className="box-border w-[80%] mx-auto mt-[100px] mb-[300px] flex justify-evenly items-center 
+        <div className="box-border w-[80%] mx-auto mt-[100px] mb-[300px] flex justify-evenly items-center 
                       rounded-[20px] shadow-reservation bg-reservation-gradient
                       lg:w-[85%] md:w-[90%] sm:w-[95%]
                       lg:flex-row md:flex-col sm:flex-col
-                      lg:gap-0 md:gap-[30px] sm:gap-[30px]"
-        >
-          <div
-            className="w-[400px] box-border text-main-color-yellow leading-8 font-verdana 
+                      lg:gap-0 md:gap-[30px] sm:gap-[30px]">
+          
+          <div className="w-[400px] box-border text-main-color-yellow leading-8 font-verdana 
                        font-bold text-xl flex flex-col justify-evenly bg-transparent 
                        backdrop-blur-10 px-8
-                       lg:w-[400px] md:w-full sm:w-full md:max-w-[500px] sm:max-w-[500px]"
-          >
-            <h1
-              className="text-center pb-title tracking-[10px] text-reservation font-bold 
+                       lg:w-[400px] md:w-full sm:w-full md:max-w-[500px] sm:max-w-[500px]">
+            <h1 className="text-center pb-title tracking-[10px] text-reservation font-bold 
                          text-shadow-reservation
-                         md:text-2xl md:pb-[30px] sm:text-2xl sm:pb-[30px]"
-            >
+                         md:text-2xl md:pb-[30px] sm:text-2xl sm:pb-[30px]">
               {t("reservation.title")}
             </h1>
 
@@ -150,10 +151,8 @@ const Reservation = () => {
               />
             </div>
 
-            <div
-              className="flex gap-[15px] w-full mb-[10px]
-                         md:flex-col sm:flex-col md:gap-[10px] sm:gap-[10px]"
-            >
+            <div className="flex gap-[15px] w-full mb-[10px]
+                         md:flex-col sm:flex-col md:gap-[10px] sm:gap-[10px]">
               <div className="flex-1">
                 <select
                   value={formData.time}
@@ -248,74 +247,48 @@ const Reservation = () => {
             </button>
           </div>
 
-          <div className="flex justify-center items-center px-16">
-            <div
-              className={`w-[500px] h-[400px] my-[80px] mx-auto 
-                bg-[url('https://images.unsplash.com/photo-1704135520525-f6d7bb8d1129?q=80&w=1858&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] 
-                bg-cover bg-[rgba(255,245,245,0.723)] bg-blend-overlay 
-                rounded-[20px] grid grid-cols-6 grid-rows-6 gap-1
-                lg:w-[500px] md:w-full sm:w-full 
-                lg:max-w-[500px] md:max-w-[500px] sm:max-w-[500px]
-                lg:h-[400px] md:h-[350px] sm:h-[300px]
-                place-items-center
-                ${
-                  selectedTable
-                    ? "[&_.table-img:not(.selected)]:opacity-30 [&_.table-img:not(.selected)]:bg-black/70 [&_.table-img:not(.selected)]:brightness-50 [&_.table-img:not(.selected)]:text-white/50" +
-                      "[&_.table-four:not(.selected)]:opacity-30 [&_.table-four:not(.selected)]:bg-black/70 [&_.table-four:not(.selected)]:brightness-50 [&_.table-four:not(.selected)]:text-white/50"
-                    : ""
-                }`}
-            >
-              {[...Array(36)].map((_, index) => {
-                const row = Math.floor(index / 6);
-                const col = index % 6;
-                let tableId = null;
-
-                if (row === 0 && col === 1) tableId = "A1";
-                if (row === 0 && col === 3) tableId = "A2";
-                if (row === 0 && col === 5) tableId = "A3";
-                if (row === 2 && col === 1) tableId = "B1";
-                if (row === 2 && col === 3) tableId = "B2";
-                if (row === 2 && col === 5) tableId = "B3";
-                if (row === 4 && col === 1) tableId = "C1";
-                if (row === 4 && col === 3) tableId = "C2";
-
-                return (
-                  <div
-                    key={index}
-                    className="w-full h-full flex justify-center items-center
-                                text-main-color-yellow rounded-[10px] bg-transparent 
-                                text-base text-center relative"
-                  >
-                    {tableId && (
-                      <div
-                        className={`absolute inset-0 m-auto bg-contain bg-center bg-no-repeat
-                                 flex justify-center items-center text-main-color-yellow 
-                                 font-bold text-[32px] md:text-[24px] sm:text-[20px]
-                                 rounded-[50px] cursor-pointer
-                                 transition-all duration-500 ease-in-out
-                                 hover:bg-white/50 hover:scale-[1.2]
-                                 text-shadow-table
-                                 ${tableId.startsWith("C") ? "w-full" : ""}
-                                 ${
-                                   selectedTable === tableId
-                                     ? "border-2 border-main-color-yellow opacity-100 brightness-100 bg-transparent text-main-color-yellow"
-                                     : ""
-                                 }`}
-                        onClick={() => handleTableClick(tableId)}
-                        style={{
-                          backgroundImage: `url(${
-                            tableId.startsWith("C") ? table4 : table2
-                          })`,
-                        }}
-                      >
-                        {tableId}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          {/* 右側座位選擇區域 - 改為按鈕形式 */}
+          <div className="flex flex-col justify-start items-center lg:px-16 md:px-8 sm:px-4 w-full max-w-[500px]">
+  <div className="relative w-full bg-black/10 backdrop-blur-[2px] rounded-[20px] p-8">
+    <div className="grid grid-cols-2 gap-6">
+      {tableList.map((tableId) => (
+        <button
+          key={tableId}
+          onClick={() => handleTableClick(tableId)}
+          className={`relative flex items-center justify-center p-5 rounded-xl
+                    border-2 transition-all duration-300 
+                    backdrop-blur-sm
+                    ${
+                      selectedTable === tableId
+                        ? "border-main-color-yellow bg-main-color-yellow/10 text-main-color-yellow shadow-lg"
+                        : "border-main-color-yellow/30 hover:border-main-color-yellow hover:bg-black/20"
+                    }
+                    group`}
+        >
+          <img 
+            src={tableId.startsWith("C") ? table4 : table2}
+            alt={`Table ${tableId}`}
+            className={`w-14 h-14 object-contain transition-all duration-300
+                     ${
+                       selectedTable === tableId
+                         ? "opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                         : "opacity-80 group-hover:opacity-100"
+                     }`}
+          />
+          <span className={`ml-3 font-bold text-2xl tracking-wider
+                        transition-all duration-300
+                        ${
+                          selectedTable === tableId
+                            ? "text-main-color-yellow drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                            : "text-main-color-yellow/70 group-hover:text-main-color-yellow"
+                        }`}>
+            {tableId}
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </>
