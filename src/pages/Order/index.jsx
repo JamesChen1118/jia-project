@@ -4,6 +4,7 @@ import ProductItem from "@/components/ProductItem";
 import { productApi } from "@/api/module/product.js";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
+import ProductModal from "@/components/ProductModal";
 
 const categories = [
   { name: "all" },
@@ -22,6 +23,8 @@ const Order = () => {
   const [selectedCategory, setSelectedCategory] = useState("全部");
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getProductsByCategory = async (category = "") => {
     const data = await productApi.getProductsByCategory(category);
@@ -31,12 +34,12 @@ const Order = () => {
   const handleCategoryClick = async (category) => {
     setSelectedCategory(category);
     try {
-        const data = await productApi.getProductsByCategory(category);
-        console.log(`Loaded ${data.length} products for category:`, category);
-        setProducts(data);
+      const data = await productApi.getProductsByCategory(category);
+      console.log(`Loaded ${data.length} products for category:`, category);
+      setProducts(data);
     } catch (error) {
-        console.error("Error loading products:", error);
-        setProducts([]);
+      console.error("Error loading products:", error);
+      setProducts([]);
     }
   };
 
@@ -98,11 +101,27 @@ const Order = () => {
                 name={product.name}
                 price={product.price}
                 description={product.description}
+                onImageClick={() => {
+                  setSelectedProduct(product);
+                  setIsModalOpen(true);
+                }}
+                onTitleClick={() => {
+                  setSelectedProduct(product);
+                  setIsModalOpen(true);
+                }}
               />
             ))}
           </div>
         </div>
       </div>
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProduct(null);
+        }}
+        product={selectedProduct}
+      />
     </>
   );
 };
