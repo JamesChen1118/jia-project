@@ -52,22 +52,38 @@ const Contact = () => {
         </div>
 
         {/* 右側資訊區域 */}
-        <div className="w-full lg:w-[40%] flex flex-col bg-[#292828] border border-white/20 rounded-b-[20px] lg:rounded-r-[20px] lg:rounded-bl-none p-8">
-          <div className="flex flex-col gap-6 mb-12">
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+        <div
+          className="w-full lg:w-[40%] flex flex-col bg-[#292828] border border-white/20 
+                rounded-b-[20px] lg:rounded-r-[20px] lg:rounded-bl-none p-8"
+        >
+          {/* 調整上方文字區域，增加 max-width 和水平置中 */}
+          <div className="flex flex-col gap-6 mt-12 mx-auto max-w-[80%]">
+            <p
+              className="text-main-color-yellow text-xl md:text-2xl font-bold 
+                    font-georgia text-center shadow-text"
+            >
               {t("contact.address")}
             </p>
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+            <p
+              className="text-main-color-yellow text-xl md:text-2xl font-bold 
+                    font-georgia text-center shadow-text"
+            >
               {t("contact.phone_number")}
             </p>
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+            <p
+              className="text-main-color-yellow text-xl md:text-2xl font-bold 
+                    font-georgia text-center shadow-text"
+            >
               {t("contact.email_address")}
             </p>
           </div>
 
-          <div className="mt-auto">
+          {/* 調整地圖容器，增加 max-width 和水平置中 */}
+          <div className="mt-8 mx-auto w-[90%]">
             <iframe
-              className="w-full h-[350px] rounded-[20px] shadow-lg transition-all duration-500 hover:shadow-[2px_2px_15px_#e69539]"
+              className="w-full h-[350px] rounded-[20px] shadow-lg 
+                     transition-all duration-500 
+                     hover:shadow-[2px_2px_15px_#e69539]"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14457.023512407435!2d121.5629083!3d25.0593151!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab8d9d238e55%3A0x3c19f236bf0fecac!2z5Y-w5YyX5biC5rCR55Sf56S-5Y2A5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1729574886171!5m2!1szh-TW!2stw"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
