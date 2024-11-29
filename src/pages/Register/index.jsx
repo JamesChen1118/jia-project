@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import GoTop from "@/components/GoTop";
-import ScrollToContent from "@/components/ScrollToContent";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ const Register = () => {
   return (
     <>
       <GoTop />
-      <ScrollToContent />
       <div className="flex justify-center items-center min-h-screen">
         <motion.div
           initial={{ opacity: 0, x: 100 }}
