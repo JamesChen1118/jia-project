@@ -12,7 +12,7 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { cartItems, updateQuantity, removeItem, clearCart } = useCartStore();
-  const totalAmount = useCartStore(state => state.getTotalAmount());
+  const totalAmount = useCartStore((state) => state.getTotalAmount());
 
   const initForm = {
     cardNumbers: ["", "", "", ""],
@@ -110,25 +110,25 @@ const ShoppingCart = () => {
                 </div>
 
                 <div className="flex items-center gap-2 sm:ml-auto sm:w-[180px] justify-end">
-                <CartButton
-        key={`minus-${item._id}`}
-        type="minus"
-        onClick={() => updateQuantity(item.id, -1)}
-        disabled={item.numbers === 0}
-      />
-      <CartButton 
-        key={`quantity-${item._id}`}
-        type="quantity" 
-        value={item.numbers} 
-      />
-      <CartButton
-        key={`plus-${item._id}`}
-        type="plus"
-        onClick={() => updateQuantity(item.id, 1)}
-      />
-      <CartButton
-        key={`delete-${item._id}`}
-        type="delete"
+                  <CartButton
+                    key={`minus-${item._id}`}
+                    type="minus"
+                    onClick={() => updateQuantity(item.id, -1)}
+                    disabled={item.numbers === 0}
+                  />
+                  <CartButton
+                    key={`quantity-${item._id}`}
+                    type="quantity"
+                    value={item.numbers}
+                  />
+                  <CartButton
+                    key={`plus-${item._id}`}
+                    type="plus"
+                    onClick={() => updateQuantity(item.id, 1)}
+                  />
+                  <CartButton
+                    key={`delete-${item._id}`}
+                    type="delete"
                     onClick={() => removeItem(item.id)}
                   />
                 </div>
@@ -216,7 +216,7 @@ const ShoppingCart = () => {
                   className="w-[83px] text-center py-1 bg-transparent 
                             border border-main-color-yellow 
                             outline-none text-lg text-main-color-yellow 
-                            tracking-[5px] placeholder:text-[rgb(255,120,0)]
+                            tracking-[5px] placeholder:text-white
                             focus:border-2 focus:border-main-color-yellow
                             rounded-[5px]"
                 />
@@ -234,7 +234,7 @@ const ShoppingCart = () => {
                   className="w-[83px] text-center py-1 bg-transparent 
                             border border-main-color-yellow 
                             outline-none text-lg text-main-color-yellow 
-                            tracking-[5px] placeholder:text-[rgb(255,120,0)]
+                            tracking-[5px] placeholder:text-white
                             focus:border-2 focus:border-main-color-yellow
                             rounded-[5px]"
                 />
@@ -262,7 +262,7 @@ const ShoppingCart = () => {
                 className="w-20 text-center py-1 bg-transparent 
                           border border-main-color-yellow 
                           outline-none text-lg text-main-color-yellow 
-                          tracking-[5px] placeholder:text-[rgb(255,120,0)]
+                          tracking-[5px] placeholder:text-white
                           focus:border-2 focus:border-main-color-yellow"
               />
             </div>

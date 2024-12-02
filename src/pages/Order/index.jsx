@@ -60,9 +60,8 @@ const Order = () => {
         </button>
 
         <div
-          className={`${
-            isMobileMenuOpen ? "block" : "hidden"
-          } lg:block w-full lg:w-[20%] bg-[#333] rounded-b-[15px] lg:rounded-[15px] p-[20px] lg:p-[30px] text-white sticky top-24`}
+          className={`${isMobileMenuOpen ? "block" : "hidden"}
+           lg:block w-full lg:w-[20%] bg-[#333] rounded-b-[15px] lg:rounded-[15px] p-[20px] lg:p-[30px] text-white sticky top-24`}
         >
           <h2 className="text-2xl lg:text-[30px] font-bold text-main-color-yellow text-center py-3 lg:py-5">
             {t("home.menu.categoryTitle")}
