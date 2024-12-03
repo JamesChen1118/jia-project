@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm install -g vite && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "start": "node server/index.js",
     "preview": "vite preview",

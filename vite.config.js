@@ -9,28 +9,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    host: true,
-    port: process.env.PORT || 5173,
-    strictPort: true,
-    proxy: {
-      '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:6001',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      },
-    },
-  },
   build: {
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['antd', '@fortawesome/fontawesome-svg-core'],
-        },
-      },
-    },
-  },
+    outDir: 'dist',
+    sourcemap: true
+  }
 });
