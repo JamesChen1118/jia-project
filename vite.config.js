@@ -9,13 +9,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:6001',
-        changeOrigin: true,
-        secure: false
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['antd', '@fortawesome/fontawesome-svg-core'],
+          motion: ['framer-motion']
+        }
       }
-    }
+    },
+    chunkSizeWarningLimit: 1000
   }
 });
