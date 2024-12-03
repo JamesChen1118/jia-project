@@ -3,12 +3,12 @@ import server from '../server';
 export const newsApi = {
     getNews: async () => {
         try {
-            console.log('Fetching news...');
-            const response = await server.get('/news');  // 使用正確的路徑
+            console.log('Fetching news from:', '/news');
+            const response = await server.get('/news');
             console.log('News response:', response.data);
             return response.data;
         } catch (error) {
-            console.error('Axios error in getNews:', error);
+            console.error('Error fetching news:', error);
             return [];
         }
     }

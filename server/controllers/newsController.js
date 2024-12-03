@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler';
 const newsController = {
     getAllNews: asyncHandler(async (req, res) => {
         try {
-            console.log('Fetching news from database...');
+            console.log('Getting all news...');
             const newsItems = await NewsItem.find({}).sort({ date: -1 });
             console.log(`Found ${newsItems.length} news items`);
             res.json(newsItems);
