@@ -1,8 +1,12 @@
-/* eslint-env node */
 import express from "express";
 import dotenv from "dotenv";
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 connectDB();
@@ -10,11 +14,20 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-// 使用路由，注意這裡的 /api 前綴
+// API 路由
 app.use('/api', router);
 
-const PORT = process.env.PORT || 6001;  // 改為 6001
+// 在生產環境提供靜態文件
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../dist')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+    });
+}
+
+const PORT = process.env.PORT || 6001;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
