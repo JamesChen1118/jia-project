@@ -7,40 +7,45 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node modules
-node_modules/
+# Dependencies
+node_modules
+dist
 
-# Build output
-# dist/
-dist-ssr/
+# Testing
+coverage
 
-# Local environment variables
+# Production
+dist
+dist-ssr
 *.local
+
+# Environment Variables
 .env
-.env.local
-.env.*.local
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Vite local server cache
-.vite/
-
-# Mac system files
-.DS_Store
+.env.development
+.env.production
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea/
+.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-# Other IDE or system files
+# System Files
+.DS_Store
 Thumbs.db
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local Netlify folder
+.netlify
+
+# Vite
+.vite/

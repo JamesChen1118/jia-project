@@ -13,7 +13,7 @@ app.use(express.json());
 // 使用路由，注意這裡的 /api 前綴
 app.use('/api', router);
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 6001;  // 改為 6001
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
