@@ -1,13 +1,15 @@
-import server from "../server";
+import server from '../server';
 
 export const newsApi = {
     getNews: async () => {
         try {
-            const { data } = await server.get("/news");
-            return data;
+            console.log('Fetching news...');
+            const response = await server.get('/news');  // 使用正確的路徑
+            console.log('News response:', response.data);
+            return response.data;
         } catch (error) {
-            console.error("Error in getNews:", error);
+            console.error('Axios error in getNews:', error);
             return [];
         }
     }
-}; 
+};

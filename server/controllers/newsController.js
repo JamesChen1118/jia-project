@@ -1,5 +1,5 @@
-import NewsItem from "../models/newsItem.js";
-import asyncHandler from "express-async-handler";
+import NewsItem from '../models/newsItem.js';
+import asyncHandler from 'express-async-handler';
 
 const newsController = {
     getAllNews: asyncHandler(async (req, res) => {
@@ -15,4 +15,4 @@ const newsController = {
     })
 };
 
-export default newsController; 
+export default newsController;

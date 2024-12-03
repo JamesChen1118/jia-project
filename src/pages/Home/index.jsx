@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import NewsItem from "@/components/NewsItem";
+import NewsItem from "@/components/NewsItem"; // 確認路徑是否正確
 import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
@@ -18,10 +18,11 @@ const Home = () => {
     const fetchNews = async () => {
       try {
         const data = await newsApi.getNews();
+        console.log("Fetched news data:", data); // 用來調試資料
         setNewsItems(data);
       } catch (error) {
         console.error("Error fetching news:", error);
-        setNewsItems([]);
+        setNewsItems([]); // 如果出錯，將 newsItems 設為空
       }
     };
 
@@ -156,7 +157,12 @@ const Home = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: false, amount: 0.5 }}
       >
-        <NewsItem />
+        {/* NewsItem 組件 */}
+        {newsItems.length === 0 ? (
+          <div>No news available</div> // 若沒有資料，顯示提示
+        ) : (
+          <NewsItem newsItems={newsItems} /> // 傳遞資料給 NewsItem
+        )}
       </motion.div>
 
       <div
@@ -244,21 +250,11 @@ const Home = () => {
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            {t("home.contact.email")}
+            {t("home.contact.line")}
           </motion.p>
         </div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28914.047024814867!2d121.52479947431641!3d25.059315120000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab8d9d238e55%3A0x3c19f236bf0fecac!2z5Y-w5YyX5biC5rCR55Sf56S-5Y2A5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1726976862072!5m2!1szh-TW!2stw"
-          className="w-full lg:w-[700px] h-[300px] md:h-[400px] lg:h-[450px] 
-                     outline-none shadow-[3px_3px_15px_#000000] 
-                     transition-all duration-500 ease-in-out
-                     hover:shadow-[2px_2px_15px_#e69539]
-                     px-4 lg:px-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <GoTop />
       </div>
-      <GoTop />
     </>
   );
 };

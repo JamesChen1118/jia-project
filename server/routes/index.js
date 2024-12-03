@@ -1,6 +1,7 @@
 import express from "express";
 import productController from "../controllers/productController.js";
 import newsController from "../controllers/newsController.js";
+import newsRoutes from './module/newsRoutes.js';
 
 const router = express.Router();
 
@@ -9,6 +10,6 @@ router.get('/products', productController.getProducts);
 router.get('/categories', productController.getCategories);
 
 // 新聞路由
-router.get('/news', newsController.getAllNews);
+router.use('/news', newsRoutes); // 使用 newsRoutes
 
 export default router;

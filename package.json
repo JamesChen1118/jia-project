@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "NODE_ENV=production node server/index.js",
     "build": "vite build",
     "lint": "eslint .",
-    "start": "node server/index.js",
     "preview": "vite preview",
     "server": "nodemon server/index.js",
     "client": "vite",
-    "seed": "node server/seeder.js"
+    "seed": "NODE_ENV=development node server/seeder.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -53,6 +53,6 @@
     "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "vite": "^5.4.9"
+    "vite": "^5.4.11"
   }
 }
