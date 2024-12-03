@@ -12,18 +12,12 @@ app.use(express.json());
 
 // 日誌中間件
 app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
     next();
 });
 
-// API 路由
-app.use('/api', router);
-
-// 錯誤處理中間件
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ message: err.message });
-});
+// API 路由 - 注意這裡不需要 /api 前綴
+app.use('/', router);  // 修改這行
 
 // 連接資料庫
 await connectDB();
@@ -32,6 +26,4 @@ const PORT = process.env.PORT || 6001;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    console.log('Available routes:');
-    console.log('- GET /api/news');
 });
