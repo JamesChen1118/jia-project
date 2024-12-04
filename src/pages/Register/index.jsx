@@ -1,11 +1,69 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { userApi } from "@/api/module/user";
+import { useAuthStore } from "@/store/auth";
+import Swal from "sweetalert2";
 import GoTop from "@/components/GoTop";
 
 const Register = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { login } = useAuthStore();
+
+  const [formData, setFormData] = useState({
+    username: "",
+    phone: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // 驗證密碼
+      if (formData.password !== formData.confirmPassword) {
+        Swal.fire({
+          title: "錯誤",
+          text: "兩次輸入的密碼不一致",
+          icon: "error",
+          confirmButtonText: "確定",
+        });
+        return;
+      }
+
+      const data = await userApi.register(formData);
+      login(data.token, data);
+
+      Swal.fire({
+        title: "註冊成功！",
+        text: "歡迎加入JIA",
+        icon: "success",
+        confirmButtonText: "確定",
+      }).then(() => {
+        navigate("/member");
+      });
+    } catch (error) {
+      console.error("Register error:", error);
+      Swal.fire({
+        title: "註冊失敗",
+        text: error.message || "請稍後再試",
+        icon: "error",
+        confirmButtonText: "確定",
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -53,11 +111,14 @@ const Register = () => {
 
             <div className="mt-[100px] w-full flex justify-center">
               <form
-                id="register"
+                onSubmit={handleSubmit}
                 className="w-full max-w-[500px] flex flex-col items-center"
               >
                 <input
                   type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
                   placeholder={t("login.register_form.username")}
                   className="w-full py-4 px-6 my-3 rounded-lg 
                            bg-white/20 border border-main-color-yellow
@@ -71,7 +132,10 @@ const Register = () => {
                   required
                 />
                 <input
-                  type="number"
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder={t("login.register_form.phone")}
                   className="w-full py-4 px-6 my-3 rounded-lg 
                            bg-white/20 border border-main-color-yellow
@@ -86,6 +150,9 @@ const Register = () => {
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder={t("login.register_form.email")}
                   className="w-full py-4 px-6 my-3 rounded-lg 
                            bg-white/20 border border-main-color-yellow
@@ -100,6 +167,9 @@ const Register = () => {
                 />
                 <input
                   type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder={t("login.register_form.password")}
                   className="w-full py-4 px-6 my-3 rounded-lg 
                            bg-white/20 border border-main-color-yellow
@@ -114,6 +184,9 @@ const Register = () => {
                 />
                 <input
                   type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                   placeholder={t("login.register_form.confirm_password")}
                   className="w-full py-4 px-6 my-3 rounded-lg 
                            bg-white/20 border border-main-color-yellow

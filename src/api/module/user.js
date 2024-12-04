@@ -11,8 +11,12 @@ export const userApi = {
   },
 
   register: async (userData) => {
-    const { data } = await server.post("/users/register", userData);
-    return data;
+    try {
+      const { data } = await server.post("/users/register", userData);
+      return data;
+    } catch (error) {
+      throw error.response?.data?.message || '註冊失敗';
+    }
   },
 
   getUser: async () => {
