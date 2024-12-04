@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { userApi } from "@/api/module/user.js";
-import { setToken } from "@/utils/auth.js";
+import { useAuthStore } from "@/store/auth";
 import ScrollToContent from "@/components/ScrollToContent";
+import Swal from "sweetalert2";
 import GoTop from "@/components/GoTop";
 
 const Login = () => {
@@ -13,25 +13,39 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { login } = useAuthStore();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!username || !password) {
-      message.warning(t("login.messages.empty"));
+      Swal.fire({
+        title: t("login.messages.empty"),
+        icon: "warning",
+        confirmButtonText: t("common.confirm"),
+      });
       return;
     }
 
-    userApi
-      .login(username, password)
-      .then(({ token }) => {
-        setToken(token);
-        message.success(t("login.messages.success"));
-        navigate("/");
-      })
-      .catch((err) => {
-        message.error(t("login.messages.fail"));
-        console.error(err);
+    try {
+      const data = await userApi.login(username, password);
+      login(data.token, data);
+
+      Swal.fire({
+        title: t("login.messages.success"),
+        icon: "success",
+        confirmButtonText: t("common.confirm"),
+      }).then(() => {
+        navigate("/member");
       });
+    } catch (error) {
+      console.error("Login error:", error);
+      Swal.fire({
+        title: t("login.messages.fail"),
+        text: error.message,
+        icon: "error",
+        confirmButtonText: t("common.confirm"),
+      });
+    }
   };
 
   return (

@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
 import { useCartStore } from "@/store/shopping";
+import { useAuthStore } from "@/store/auth"; // 添加這行
 import CartButton from "@/components/CartButton";
 import { orderApi } from "@/api/module/order.js";
-import { message } from "antd";
+import Swal from "sweetalert2"; // 改用 Swal 取代 message
 import GoTop from "@/components/GoTop";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { isLoggedIn } = useAuthStore(); // 添加這行
   const { cartItems, updateQuantity, removeItem, clearCart } = useCartStore();
   const totalAmount = useCartStore((state) => state.getTotalAmount());
 
@@ -25,19 +27,61 @@ const ShoppingCart = () => {
 
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
-    const order = {
-      orderItems: cartItems,
-      paymentInfo: {
-        ...paymentInfo,
-        cardNumbers: paymentInfo.cardNumbers.join(""),
-      },
-      totalPrice: totalAmount,
-    };
-    await orderApi.addOrder(order);
-    message.success("付款成功");
-    clearCart();
-    setPaymentInfo(initForm);
-    navigate("/");
+
+    try {
+      if (!isLoggedIn) {
+        Swal.fire({
+          title: t("message.login.required"),
+          text: t("message.login.checkoutHint"),
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: t("login.submit"),
+          cancelButtonText: t("common.cancel"),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/login");
+          }
+        });
+        return;
+      }
+
+      const order = {
+        orderItems: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          numbers: item.numbers,
+          price: item.price,
+        })),
+        paymentInfo: {
+          cardNumbers: paymentInfo.cardNumbers.join(""),
+          expiryMonth: paymentInfo.expiryMonth,
+          expiryYear: paymentInfo.expiryYear,
+          cvv: paymentInfo.cvv,
+        },
+        totalPrice: totalAmount,
+      };
+
+      await orderApi.addOrder(order);
+
+      Swal.fire({
+        title: "付款成功！",
+        text: "訂單已成功建立",
+        icon: "success",
+        confirmButtonText: "確定",
+      }).then(() => {
+        clearCart();
+        setPaymentInfo(initForm);
+        navigate("/member"); // 導向會員中心
+      });
+    } catch (error) {
+      console.error("Payment error:", error);
+      Swal.fire({
+        title: "付款失敗",
+        text: error.message || "請稍後再試",
+        icon: "error",
+        confirmButtonText: "確定",
+      });
+    }
   };
 
   const handleCardNumberChange = (index, value) => {
@@ -56,14 +100,6 @@ const ShoppingCart = () => {
       [name]: value,
     });
   };
-
-  const getOrders = async () => {
-    const data = await orderApi.getOrders();
-    console.log(data);
-  };
-  useEffect(() => {
-    getOrders();
-  }, []);
 
   return (
     <>

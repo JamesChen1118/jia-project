@@ -15,10 +15,10 @@ export const orderApi = {
                 }
             };
 
-            const { data } = await server.post("/api/orders", order, config);
+            const { data } = await server.post("/orders", order, config);
             return data;
         } catch (err) {
-            throw err;  // 讓錯誤往上傳遞
+            throw err;
         }
     },
 
@@ -35,10 +35,10 @@ export const orderApi = {
                 }
             };
 
-            const { data } = await server.get("/api/orders", config);
+            const { data } = await server.get("/orders", config);
             return data;
         } catch (err) {
-            throw err;  // 讓錯誤往上傳遞
+            throw err;
         }
-    },
+    }
 };

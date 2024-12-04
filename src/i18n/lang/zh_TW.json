@@ -352,6 +352,10 @@
       "fail": "登入失敗"
     }
   },
+  "common": {
+    "confirm": "確定",
+    "cancel": "取消"
+  },
 
   "reservation": {
     "title": "訂位資訊",

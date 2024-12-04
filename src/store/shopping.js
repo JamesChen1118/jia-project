@@ -4,7 +4,7 @@ export const useCartStore = create((set, get) => ({
     cartItems: [],
     isProcessing: false,
 
-    // 添加 getTotalAmount 方法
+
     getTotalAmount: () => {
         const state = get();
         return state.cartItems.reduce((total, item) =>
