@@ -11,8 +11,10 @@ const newsItemSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
+        default: Date.now
     }
+}, {
+    timestamps: true
 });
-    
-export default mongoose.model("NewsItem", newsItemSchema); 
+
+export default mongoose.model('NewsItem', newsItemSchema);

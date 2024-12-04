@@ -20,31 +20,31 @@ const categories = [
 
 const Order = () => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("全部");
+  const [selectedCategory, setSelectedCategory] = useState("all"); // 修改這裡
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const getProductsByCategory = async (category = "") => {
-    const data = await productApi.getProductsByCategory(category);
-    setProducts(data);
-  };
-
-  const handleCategoryClick = async (category) => {
-    setSelectedCategory(category);
+  const getProductsByCategory = async (category = "all") => {
+    // 修改這裡
     try {
       const data = await productApi.getProductsByCategory(category);
-      console.log(`Loaded ${data.length} products for category:`, category);
+      console.log(`Fetched ${data.length} products for category:`, category);
       setProducts(data);
     } catch (error) {
-      console.error("Error loading products:", error);
+      console.error("Error fetching products:", error);
       setProducts([]);
     }
   };
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    getProductsByCategory(category);
+  };
+
   useEffect(() => {
-    getProductsByCategory();
+    getProductsByCategory("all"); // 修改這裡
   }, []);
 
   return (
@@ -94,7 +94,7 @@ const Order = () => {
             {products.map((product) => (
               <ProductItem
                 key={product._id}
-                _id={product._id}
+                id={product._id} // 修改這裡
                 image={product.image}
                 category={product.category}
                 name={product.name}

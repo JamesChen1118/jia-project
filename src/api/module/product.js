@@ -1,18 +1,26 @@
 import server from "../server";
 
 export const productApi = {
-    getProductsByCategory: async (category) => {
+    getProducts: async () => {
         try {
-            console.log("Requesting products for category:", category);
-            const url = category && category !== 'all' 
-                ? `/products?category=${category}`
-                : '/products';
-            
-            const { data } = await server.get(url);
-            console.log("Received products:", data);
+            const { data } = await server.get("/products");
             return data;
         } catch (error) {
-            console.error("Error searching products:", error);
+            console.error('Error fetching products:', error);
+            return [];
+        }
+    },
+
+    getProductsByCategory: async (category) => {
+        try {
+            const { data } = await server.get(
+                category === 'all'
+                    ? '/products'
+                    : `/products/category/${category}`
+            );
+            return data;
+        } catch (error) {
+            console.error('Error fetching products by category:', error);
             return [];
         }
     }

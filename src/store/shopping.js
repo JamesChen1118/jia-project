@@ -1,63 +1,52 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 export const useCartStore = create((set, get) => ({
     cartItems: [],
-    
-    addToCart: (product, quantity = 1) => {
-        set((state) => {
-            const existingItem = state.cartItems.find(item => item.name === product.name);
-            
+    isProcessing: false,
+
+    // 添加 getTotalAmount 方法
+    getTotalAmount: () => {
+        const state = get();
+        return state.cartItems.reduce((total, item) =>
+            total + (item.price * item.numbers), 0
+        );
+    },
+
+    addToCart: (product, quantity) => {
+        set(state => {
+            const existingItem = state.cartItems.find(item => item.id === product.id);
             if (existingItem) {
                 return {
                     cartItems: state.cartItems.map(item =>
-                        item.name === product.name
+                        item.id === product.id
                             ? { ...item, numbers: item.numbers + quantity }
                             : item
                     )
                 };
             }
-            
             return {
-                cartItems: [...state.cartItems, { 
-                    ...product, 
-                    numbers: quantity,
-                    id: Date.now().toString()
-                }]
+                cartItems: [...state.cartItems, { ...product, numbers: quantity }]
             };
         });
     },
-    
+
     updateQuantity: (productId, change) => {
-        set((state) => ({
-            cartItems: state.cartItems.map(item => {
-                if (item.id === productId) {
-                    const newNumbers = Math.max(0, item.numbers + change);
-                    return { ...item, numbers: newNumbers };
-                }
-                return item;
-            }).filter(item => item.numbers > 0)
+        set(state => ({
+            cartItems: state.cartItems.map(item =>
+                item.id === productId
+                    ? { ...item, numbers: Math.max(0, item.numbers + change) }
+                    : item
+            ).filter(item => item.numbers > 0)
         }));
     },
-    
+
     removeItem: (productId) => {
-        set((state) => ({
+        set(state => ({
             cartItems: state.cartItems.filter(item => item.id !== productId)
         }));
     },
-    
+
     clearCart: () => {
         set({ cartItems: [] });
-    },
-    
-    getTotalAmount: () => {
-        const state = get();
-        return state.cartItems.reduce((total, item) => {
-            return total + (item.price * item.numbers);
-        }, 0);
-    },
-    
-    getTotalItems: () => {
-        const state = get();
-        return state.cartItems.reduce((total, item) => total + item.numbers, 0);
     }
 }));

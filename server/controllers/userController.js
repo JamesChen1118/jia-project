@@ -59,6 +59,8 @@ const userController = {
                 email: user.email,
                 phone: user.phone,
                 isAdmin: user.isAdmin,
+                orders: user.orders,
+                history: user.history
             });
         } else {
             res.status(404);

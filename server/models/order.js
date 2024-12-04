@@ -2,57 +2,48 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
     {
-        orderItems: [
-            {
-                product: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: 'Product',
-                    required: true
-                },
-                quantity: {
-                    type: Number,
-                    required: true
-                },
-                price: {
-                    type: Number,
-                    required: true
-                },
-                name: String,
-                image: String
-            },
-        ],
-        paymentInfo: {
-            cardNumbers: {
-                type: String,
-                required: true,
-            },
-            expiryYear: {
-                type: String,
-                required: true,
-            },
-            expiryMonth: {
-                type: String,
-                required: true,
-            },
-            cvv: {
-                type: String,
-                required: true,
-            },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
         },
-        totalPrice: {
-            type: Number,
+        orderNumber: {
+            type: String,
             required: true,
+            unique: true
+        },
+        items: [{
+            productId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product',
+                required: true
+            },
+            name: String,
+            quantity: Number,
+            price: Number
+        }],
+        totalAmount: {
+            type: Number,
+            required: true
+        },
+        paymentInfo: {
+            cardNumber: String,
+            paymentStatus: {
+                type: String,
+                enum: ['pending', 'completed', 'failed'],
+                default: 'pending'
+            },
+            paymentDate: Date
         },
         status: {
             type: String,
+            enum: ['pending', 'processing', 'completed', 'cancelled'],
             default: 'pending'
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true
+    }
 );
 
-export default mongoose.model("Order", orderSchema);
+export default mongoose.model('Order', orderSchema);

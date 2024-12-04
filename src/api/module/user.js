@@ -1,4 +1,3 @@
-import axios from "axios";
 import server from "../server";
 import { getToken } from "@/utils/auth";
 
@@ -10,10 +9,12 @@ export const userApi = {
     });
     return data;
   },
+
   register: async (userData) => {
     const { data } = await server.post("/users/register", userData);
     return data;
   },
+
   getUser: async () => {
     const token = getToken();
     const config = {
@@ -24,22 +25,36 @@ export const userApi = {
     const { data } = await server.get("/users", config);
     return data;
   },
-  UpdateUser: async () => {
+
+  createOrder: async (orderData) => {
     const token = getToken();
+    if (!token) {
+      throw new Error('Please login first');
+    }
+
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
-    const { data } = await server.put("/users", config);
+
+    const { data } = await server.post('/api/orders', orderData, config);
     return data;
   },
-  getCart: async (userId) => {
-    const { data } = await server.get(`/cart/${userId}`);
+
+  getOrders: async () => {
+    const token = getToken();
+    if (!token) {
+      throw new Error('Please login first');
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    const { data } = await server.get('/api/orders', config);
     return data;
-  },
-  updateCart: async (cartId, items) => {
-    const { data } = await server.put(`/cart/${cartId}`, { items });
-    return data;
-  },
+  }
 };

@@ -4,7 +4,6 @@ import newsController from '../../controllers/newsController.js';
 const router = express.Router();
 
 router.get('/', newsController.getAllNews);
-
-console.log('News routes registered');
+router.get('/:id', newsController.getNewsById);
 
 export default router;

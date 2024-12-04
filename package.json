@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "server": "nodemon server/index.js",
     "client": "vite",
-    "seed": "NODE_ENV=development node server/seeder.js"
+    "seed": "node server/seeder.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
