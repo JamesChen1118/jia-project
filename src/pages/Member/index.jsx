@@ -11,6 +11,7 @@ const Member = () => {
   const [memberTable, setMemberTable] = useState("info");
   const [userData, setUserData] = useState(null);
   const [reservations, setReservations] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -18,32 +19,29 @@ const Member = () => {
     const currentUser = userApi.getCurrentUser();
 
     if (!currentUser) {
-      // 如果用戶未登入，重定向到登入頁面
       navigate("/login");
       return;
     }
 
-    const fetchUserData = async () => {
+    const fetchData = async () => {
+      setIsLoading(true);
       try {
-        const data = await userApi.getUser();
-        setUserData(data);
+        const [userData, reservationsData] = await Promise.all([
+          userApi.getUser(),
+          reservationApi.getUserReservations(),
+        ]);
+
+        setUserData(userData);
+        setReservations(reservationsData);
+        console.log("Fetched reservations:", reservationsData);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    const fetchReservations = async () => {
-      try {
-        const data = await reservationApi.getUserReservations();
-        console.log("Fetched reservations:", data);
-        setReservations(data);
-      } catch (error) {
-        console.error("Error fetching reservations:", error);
-      }
-    };
-
-    fetchUserData();
-    fetchReservations();
+    fetchData();
   }, [navigate]);
 
   const getStatusColor = (status) => {
@@ -57,6 +55,53 @@ const Member = () => {
       default:
         return "text-white";
     }
+  };
+
+  const renderReservations = () => {
+    if (isLoading) {
+      return (
+        <tr>
+          <td
+            colSpan="5"
+            className="text-center text-main-color-yellow/70 py-4"
+          >
+            載入中...
+          </td>
+        </tr>
+      );
+    }
+
+    if (!reservations || reservations.length === 0) {
+      return (
+        <tr>
+          <td
+            colSpan="5"
+            className="text-center text-main-color-yellow/70 py-4"
+          >
+            {t("member.reservation.noRecords")}
+          </td>
+        </tr>
+      );
+    }
+
+    return reservations.map((reservation) => (
+      <tr
+        key={reservation._id}
+        className="border-b border-[rgba(230,149,57,0.2)]"
+      >
+        <td className="p-4 text-main-color-yellow">
+          {new Date(reservation.date).toLocaleDateString()}
+        </td>
+        <td className="p-4 text-white">{reservation.time}</td>
+        <td className="p-4 text-main-color-yellow">
+          {t("member.reservation.peopleCount", { count: reservation.people })}
+        </td>
+        <td className="p-4 text-white">{reservation.tableNo}</td>
+        <td className={`p-4 ${getStatusColor(reservation.status)}`}>
+          {t(`member.reservation.status.${reservation.status}`)}
+        </td>
+      </tr>
+    ));
   };
 
   const renderContent = () => {
@@ -215,39 +260,7 @@ const Member = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {reservations && reservations.length > 0 ? (
-                reservations.map((reservation) => (
-                  <tr
-                    key={reservation._id}
-                    className="border-b border-[rgba(230,149,57,0.2)]"
-                  >
-                    <td className="p-4 text-main-color-yellow">
-                      {new Date(reservation.date).toLocaleDateString()}
-                    </td>
-                    <td className="p-4 text-white">{reservation.time}</td>
-                    <td className="p-4 text-main-color-yellow">
-                      {t("member.reservation.peopleCount", {
-                        count: reservation.people,
-                      })}
-                    </td>
-                    <td className="p-4 text-white">{reservation.tableNo}</td>
-                    <td className={`p-4 ${getStatusColor(reservation.status)}`}>
-                      {t(`member.reservation.status.${reservation.status}`)}
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan="5"
-                    className="text-center text-main-color-yellow/70 py-4"
-                  >
-                    {t("member.reservation.noRecords")}
-                  </td>
-                </tr>
-              )}
-            </tbody>
+            <tbody>{renderReservations()}</tbody>
           </table>
         </motion.div>
       ),

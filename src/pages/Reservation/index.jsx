@@ -94,6 +94,22 @@ const Reservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!isLoggedIn) {
+      Swal.fire({
+        title: "請先登入",
+        text: "需要登入才能進行訂位",
+        icon: "warning",
+        confirmButtonText: "前往登入",
+        showCancelButton: true,
+        cancelButtonText: "取消",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
+
     if (
       !formData.name ||
       !formData.date ||
@@ -136,29 +152,17 @@ const Reservation = () => {
       await reservationApi.addReservation(reservationData);
       Swal.fire({
         title: "預約成功！",
-        text: isLoggedIn
-          ? "您可以在會員中心查看訂位資訊"
-          : "我們將盡快與您聯繫確認",
+        text: "您可以在會員中心查看訂位資訊",
         icon: "success",
         confirmButtonText: "確定",
       }).then(() => {
-        setFormData({
-          name: "",
-          date: "",
-          time: "",
-          email: "",
-          phone: "",
-          people: "",
-          tableNo: "",
-        });
-        setSelectedTable("");
-        navigate(isLoggedIn ? "/member" : "/");
+        navigate("/member");
       });
     } catch (error) {
       console.error("預約失敗:", error);
       Swal.fire({
         title: "預約失敗",
-        text: error.message || t("reservation.errorMessage"),
+        text: error.message || "請稍後再試",
         icon: "error",
         confirmButtonText: "確定",
       });

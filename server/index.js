@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // API 路由
-app.use('/', router);
+app.use('/api', router);
 
 // 連接資料庫並啟動服務器
 const startServer = async () => {

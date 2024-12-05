@@ -28,6 +28,8 @@ const userController = {
     register: asyncHandler(async (req, res) => {
         const { username, password, email, phone, confirmPassword } = req.body;
 
+        console.log('Register request:', req.body); // 添加日誌
+
         // 驗證密碼
         if (password !== confirmPassword) {
             res.status(400);
@@ -44,28 +46,34 @@ const userController = {
             throw new Error('此帳號或信箱已被註冊');
         }
 
-        // 創建新用戶
-        const user = await User.create({
-            username,
-            password,  // 密碼會通過 pre save 中間件自動加密
-            email,
-            phone,
-            orders: [],
-            history: []
-        });
-
-        if (user) {
-            res.status(201).json({
-                id: user._id,
-                username: user.username,
-                email: user.email,
-                phone: user.phone,
-                isAdmin: user.isAdmin,
-                token: generateToken(user._id)
+        try {
+            // 創建新用戶
+            const user = await User.create({
+                username,
+                password,
+                email,
+                phone,
+                orders: [],
+                history: []
             });
-        } else {
+
+            if (user) {
+                res.status(201).json({
+                    id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    phone: user.phone,
+                    isAdmin: user.isAdmin,
+                    token: generateToken(user._id)
+                });
+            } else {
+                res.status(400);
+                throw new Error('無效的使用者資訊');
+            }
+        } catch (error) {
+            console.error('Register error:', error); // 添加錯誤日誌
             res.status(400);
-            throw new Error('無效的使用者資訊');
+            throw new Error(error.message || '註冊失敗');
         }
     }),
 

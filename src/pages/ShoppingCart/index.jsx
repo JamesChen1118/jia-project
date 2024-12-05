@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
 import { useCartStore } from "@/store/shopping";
-import { useAuthStore } from "@/store/auth"; // 添加這行
-import CartButton from "@/components/CartButton";
+import { useAuthStore } from "@/store/auth";
 import { orderApi } from "@/api/module/order.js";
-import Swal from "sweetalert2"; // 改用 Swal 取代 message
+import Swal from "sweetalert2";
 import GoTop from "@/components/GoTop";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { isLoggedIn } = useAuthStore(); // 添加這行
+  const { isLoggedIn } = useAuthStore();
   const { cartItems, updateQuantity, removeItem, clearCart } = useCartStore();
   const totalAmount = useCartStore((state) => state.getTotalAmount());
 
@@ -71,7 +70,7 @@ const ShoppingCart = () => {
       }).then(() => {
         clearCart();
         setPaymentInfo(initForm);
-        navigate("/member"); // 導向會員中心
+        navigate("/member");
       });
     } catch (error) {
       console.error("Payment error:", error);
@@ -100,6 +99,24 @@ const ShoppingCart = () => {
       [name]: value,
     });
   };
+
+  const CartButtons = ({ onIncrease, onDecrease, quantity }) => (
+    <div className="flex items-center gap-2">
+      <button
+        onClick={onDecrease}
+        className="px-2 py-1 bg-main-color-yellow text-black rounded hover:bg-[rgb(255,120,0)] transition-colors"
+      >
+        -
+      </button>
+      <span className="text-main-color-yellow">{quantity}</span>
+      <button
+        onClick={onIncrease}
+        className="px-2 py-1 bg-main-color-yellow text-black rounded hover:bg-[rgb(255,120,0)] transition-colors"
+      >
+        +
+      </button>
+    </div>
+  );
 
   return (
     <>
@@ -145,29 +162,15 @@ const ShoppingCart = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 sm:ml-auto sm:w-[180px] justify-end">
-                  <CartButton
-                    key={`minus-${item._id}`}
-                    type="minus"
-                    onClick={() => updateQuantity(item.id, -1)}
-                    disabled={item.numbers === 0}
-                  />
-                  <CartButton
-                    key={`quantity-${item._id}`}
-                    type="quantity"
-                    value={item.numbers}
-                  />
-                  <CartButton
-                    key={`plus-${item._id}`}
-                    type="plus"
-                    onClick={() => updateQuantity(item.id, 1)}
-                  />
-                  <CartButton
-                    key={`delete-${item._id}`}
-                    type="delete"
-                    onClick={() => removeItem(item.id)}
-                  />
-                </div>
+                <CartButtons
+                  onIncrease={() =>
+                    handleQuantityChange(item.id, item.quantity + 1)
+                  }
+                  onDecrease={() =>
+                    handleQuantityChange(item.id, item.quantity - 1)
+                  }
+                  quantity={item.quantity}
+                />
               </div>
             ))}
           </div>

@@ -10,7 +10,5 @@ router.post("/", reservationController.createReservation);
 
 // Protected routes
 router.get("/user", authMiddleware, reservationController.getUserReservations);
-router.get("/", authMiddleware, reservationController.getAllReservations);
-router.put("/:id", authMiddleware, reservationController.updateReservation);
 
 export default router;

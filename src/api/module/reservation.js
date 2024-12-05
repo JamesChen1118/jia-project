@@ -37,10 +37,10 @@ export const reservationApi = {
             };
 
             const { data } = await server.get("/reservations/user", config);
-            console.log("Reservation API response:", data);
+            console.log("Fetched reservations:", data);
             return data;
         } catch (error) {
-            console.error('Get reservations error:', error.response || error);
+            console.error('Get reservations error:', error);
             throw error.response?.data?.message || '獲取訂位記錄失敗';
         }
     },

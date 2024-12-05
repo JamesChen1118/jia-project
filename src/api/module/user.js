@@ -13,15 +13,18 @@ export const userApi = {
       }
       return data;
     } catch (error) {
+      console.error('Login error:', error.response || error);
       throw error.response?.data?.message || "登入失敗";
     }
   },
 
   register: async (userData) => {
     try {
+      console.log('Sending register data:', userData);
       const { data } = await server.post("/users/register", userData);
       return data;
     } catch (error) {
+      console.error('Register error:', error.response || error);
       throw error.response?.data?.message || '註冊失敗';
     }
   },
