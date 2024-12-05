@@ -4,9 +4,11 @@ import User from '../models/user.js';
 
 const reservationController = {
     createReservation: asyncHandler(async (req, res) => {
-        const { name, date, time, people, tableNo, phone } = req.body;
+        const { name, date, time, people, tableNo, phone, email } = req.body;
+        const userId = req.user?._id;  // 從認證中間件獲取用戶ID
 
         try {
+            // 創建訂位記錄
             const reservation = await Reservation.create({
                 name,
                 date,
@@ -14,17 +16,20 @@ const reservationController = {
                 people,
                 tableNo,
                 phone,
-                user: req.user ? req.user._id : null,
+                email,
+                user: userId,  // 關聯用戶ID
                 status: 'pending'
             });
 
-            if (req.user) {
-                await User.findByIdAndUpdate(req.user._id, {
+            // 如果是已登入用戶，更新用戶的訂位記錄
+            if (userId) {
+                await User.findByIdAndUpdate(userId, {
                     $push: {
                         reservations: {
                             reservationId: reservation._id,
                             date: reservation.date,
                             time: reservation.time,
+                            people: reservation.people,
                             tableNo: reservation.tableNo,
                             status: reservation.status
                         }
@@ -35,7 +40,7 @@ const reservationController = {
             res.status(201).json(reservation);
         } catch (error) {
             res.status(400);
-            throw new Error('無法建立訂位');
+            throw new Error('建立訂位失敗');
         }
     }),
 
@@ -62,9 +67,14 @@ const reservationController = {
     }),
 
     getUserReservations: asyncHandler(async (req, res) => {
-        const reservations = await Reservation.find({ user: req.user._id })
-            .sort('-date');
-        res.json(reservations);
+        try {
+            const reservations = await Reservation.find({ user: req.user._id })
+                .sort('-date');
+            res.json(reservations);
+        } catch (error) {
+            res.status(400);
+            throw new Error('獲取訂位記錄失敗');
+        }
     }),
 
     getAllReservations: asyncHandler(async (req, res) => {

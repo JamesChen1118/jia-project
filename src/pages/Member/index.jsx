@@ -5,14 +5,24 @@ import { reservationApi } from "@/api/module/reservation";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Member = () => {
   const [memberTable, setMemberTable] = useState("info");
   const [userData, setUserData] = useState(null);
   const [reservations, setReservations] = useState([]);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const currentUser = userApi.getCurrentUser();
+
+    if (!currentUser) {
+      // 如果用戶未登入，重定向到登入頁面
+      navigate("/login");
+      return;
+    }
+
     const fetchUserData = async () => {
       try {
         const data = await userApi.getUser();
@@ -33,7 +43,7 @@ const Member = () => {
 
     fetchUserData();
     fetchReservations();
-  }, []);
+  }, [navigate]);
 
   const getStatusColor = (status) => {
     switch (status) {
