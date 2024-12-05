@@ -15,7 +15,7 @@ export const reservationApi = {
                 reservationData.userId = currentUser.id;
             }
 
-            const { data } = await server.post("/api/reservations", reservationData, config);
+            const { data } = await server.post("/reservations", reservationData, config);
             return data;
         } catch (error) {
             throw error.response?.data?.message || '訂位失敗';
@@ -33,10 +33,21 @@ export const reservationApi = {
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            const { data } = await server.get("/api/reservations/user", config);
+            const { data } = await server.get("/reservations/user", config);
             return data;
         } catch (error) {
             throw error.response?.data?.message || '獲取訂位記錄失敗';
+        }
+    },
+
+    checkTableAvailability: async (date, time, tableNo) => {
+        try {
+            const { data } = await server.get(`/reservations/check`, {
+                params: { date, time, tableNo }
+            });
+            return data.available;
+        } catch (error) {
+            throw error.response?.data?.message || '檢查座位狀態失敗';
         }
     }
 };
