@@ -339,7 +339,7 @@
     "selectPeople": "Select Number of People",
     "peopleCount": "{{count}} Person(s)",
     "phonePlaceholder": "Enter Phone Number",
-    "emailPlaceholder": "Enter Email",
+    "emailPlaceholder": "Enter Email Address",
     "tablePlaceholder": "Table Number",
     "submit": "Submit",
     "pleaseCompleteForm": "Please complete all required fields",

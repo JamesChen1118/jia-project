@@ -10,6 +10,8 @@ export const reservationApi = {
                 headers: { Authorization: `Bearer ${token}` }
             } : {};
 
+            console.log('Sending reservation data:', reservationData);
+
             const currentUser = userApi.getCurrentUser();
             if (currentUser) {
                 reservationData.userId = currentUser.id;
@@ -18,6 +20,7 @@ export const reservationApi = {
             const { data } = await server.post("/reservations", reservationData, config);
             return data;
         } catch (error) {
+            console.error('Reservation error:', error.response || error);
             throw error.response?.data?.message || '訂位失敗';
         }
     },
@@ -34,8 +37,10 @@ export const reservationApi = {
             };
 
             const { data } = await server.get("/reservations/user", config);
+            console.log("Reservation API response:", data);
             return data;
         } catch (error) {
+            console.error('Get reservations error:', error.response || error);
             throw error.response?.data?.message || '獲取訂位記錄失敗';
         }
     },

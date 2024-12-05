@@ -35,6 +35,7 @@ const Member = () => {
     const fetchReservations = async () => {
       try {
         const data = await reservationApi.getUserReservations();
+        console.log("Fetched reservations:", data);
         setReservations(data);
       } catch (error) {
         console.error("Error fetching reservations:", error);
@@ -215,7 +216,7 @@ const Member = () => {
               </tr>
             </thead>
             <tbody>
-              {reservations.length > 0 ? (
+              {reservations && reservations.length > 0 ? (
                 reservations.map((reservation) => (
                   <tr
                     key={reservation._id}

@@ -46,6 +46,7 @@ const Reservation = () => {
     people: "",
     tableNo: "",
   });
+  const [email, setEmail] = useState("");
 
   const { isLoggedIn } = useAuthStore();
 
@@ -90,40 +91,49 @@ const Reservation = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      !formData.name ||
+      !formData.date ||
+      !formData.time ||
+      !formData.phone ||
+      !formData.people ||
+      !formData.tableNo
+    ) {
+      Swal.fire({
+        title: "提示",
+        text: t("reservation.pleaseCompleteForm"),
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
+
+    const phoneRegex = /^09\d{8}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      Swal.fire({
+        title: "提示",
+        text: "請輸入正確的手機號碼格式",
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
+
+    const reservationData = {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      date: formData.date,
+      time: formData.time,
+      people: formData.people,
+      tableNo: formData.tableNo,
+    };
+
     try {
-      // 表單驗證
-      if (
-        !formData.name ||
-        !formData.date ||
-        !formData.time ||
-        !formData.phone ||
-        !formData.people ||
-        !formData.tableNo
-      ) {
-        Swal.fire({
-          title: "提示",
-          text: t("reservation.pleaseCompleteForm"),
-          icon: "warning",
-          confirmButtonText: "確定",
-        });
-        return;
-      }
-
-      // 電話格式驗證
-      const phoneRegex = /^09\d{8}$/;
-      if (!phoneRegex.test(formData.phone)) {
-        Swal.fire({
-          title: "提示",
-          text: "請輸入正確的手機號碼格式",
-          icon: "warning",
-          confirmButtonText: "確定",
-        });
-        return;
-      }
-
-      await reservationApi.addReservation(formData);
-
+      await reservationApi.addReservation(reservationData);
       Swal.fire({
         title: "預約成功！",
         text: isLoggedIn
@@ -205,6 +215,23 @@ const Reservation = () => {
                          text-center transition-all duration-300
                          focus:shadow-input-focus focus:border-[orangered]
                          placeholder:text-main-color-yellow"
+              />
+            </div>
+
+            <div className="w-full mb-[15px] flex">
+              <input
+                type="email"
+                placeholder={t("reservation.emailPlaceholder")}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
+                         text-xl outline-none bg-[rgba(255,255,255,0.2)] 
+                         text-main-color-yellow text-center transition-all duration-300
+                         focus:shadow-input-focus focus:border-[orangered]
+                         placeholder:text-main-color-yellow"
+                required
               />
             </div>
 
