@@ -3,6 +3,7 @@ import userRoutes from './module/userRoutes.js';
 import productRoutes from './module/productRoutes.js';
 import newsRoutes from './module/newsRoutes.js';
 import orderRoutes from './module/orderRoutes.js';
+import reservationRoutes from './module/reservationRoutes.js';
 
 const router = express.Router();
 
@@ -10,5 +11,6 @@ router.use('/products', productRoutes);
 router.use('/users', userRoutes);
 router.use('/news', newsRoutes);
 router.use('/orders', orderRoutes);
+router.use('/reservations', reservationRoutes);
 
 export default router;

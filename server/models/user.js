@@ -15,6 +15,17 @@ const historySchema = new mongoose.Schema({
     amount: Number
 });
 
+const reservationSchema = new mongoose.Schema({
+    reservationId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reservation'
+    },
+    date: Date,
+    time: String,
+    tableNumber: String,
+    status: String
+});
+
 const userSchema = new mongoose.Schema(
     {
         username: {

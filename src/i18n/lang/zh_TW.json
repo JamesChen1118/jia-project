@@ -315,6 +315,7 @@
     "info": "會員資訊",
     "orders": "訂單查詢",
     "history": "消費紀錄",
+    "reservations": "訂位資訊",
     "fields": {
       "name": "姓名",
       "email": "電子郵件",
@@ -328,6 +329,19 @@
       "status": "狀態",
       "productName": "商品名稱",
       "quantity": "數量"
+    },
+    "reservation": {
+      "date": "訂位日期",
+      "time": "時間",
+      "people": "人數",
+      "peopleCount": "{{count}}位",
+      "table": "桌號",
+      "status": {
+        "pending": "待確認",
+        "confirmed": "已確認",
+        "cancelled": "已取消"
+      },
+      "noRecords": "尚無訂位記錄"
     }
   },
 
@@ -354,7 +368,8 @@
   },
   "common": {
     "confirm": "確定",
-    "cancel": "取消"
+    "cancel": "取消",
+    "pleaseSelect": "請選擇一個選項"
   },
 
   "reservation": {

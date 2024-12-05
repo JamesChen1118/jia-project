@@ -34,7 +34,7 @@
         "全部": "All",
         "生食": "Sashimi",
         "壽司": "Sushi",
-        "海鮮": "Seafood",
+        "海": "Seafood",
         "炸物": "Tempura",
         "燒烤": "Yakimono",
         "定食": "SetMeal",
@@ -280,6 +280,7 @@
     "info": "Member Info",
     "orders": "Order History",
     "history": "Purchase History",
+    "reservations": "Reservations",
     "fields": {
       "name": "Name",
       "email": "Email",
@@ -293,6 +294,19 @@
       "status": "Status",
       "productName": "Product",
       "quantity": "Quantity"
+    },
+    "reservation": {
+      "date": "Date",
+      "time": "Time",
+      "people": "People",
+      "peopleCount": "{{count}} Person(s)",
+      "table": "Table No.",
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled"
+      },
+      "noRecords": "No reservation records"
     }
   },
 
@@ -338,5 +352,9 @@
     "description": "Sorry, the page you are looking for doesn't exist.",
     "back": "Go Back",
     "home": "Home Page"
+  },
+
+  "common": {
+    "pleaseSelect": "Please select an option"
   }
 }

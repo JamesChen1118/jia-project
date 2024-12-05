@@ -1,27 +1,48 @@
 import server from "../server";
+import { getToken } from "@/utils/auth";
 
 export const reservationApi = {
-    addReservation: async (reservation) => {
+    addReservation: async (reservationData) => {
         try {
-            await server.post("/reservation", reservation);
-        } catch (err) {
-            console.error(err);
-        }
-    },
-    getReservations: async () => {
-        try {
-            const { data } = await server.get("/reservations");
+            const token = getToken();
+            const config = token ? {
+                headers: { Authorization: `Bearer ${token}` }
+            } : {};
+
+            const { data } = await server.post("/reservations", reservationData, config);
             return data;
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            throw error.response?.data?.message || '訂位失敗';
         }
     },
-    deleteReservation: async (id) => {
+
+    getUserReservations: async () => {
         try {
-            await server.delete(`/reservation/${id}`);
-        } catch (err) {
-            console.error(err);
+            const token = getToken();
+            if (!token) {
+                throw new Error('請先登入');
+            }
+
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+
+            const { data } = await server.get("/reservations/user", config);
+            return data;
+        } catch (error) {
+            throw error.response?.data?.message || '獲取訂位資料失敗';
+        }
+    },
+
+    // 檢查座位是否可用
+    checkTableAvailability: async (date, time, tableNo) => {
+        try {
+            const { data } = await server.get(`/reservations/check`, {
+                params: { date, time, tableNo }
+            });
+            return data.available;
+        } catch (error) {
+            throw error.response?.data?.message || '檢查座位狀態失敗';
         }
     }
 };
-

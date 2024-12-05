@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { userApi } from "@/api/module/user";
+import { reservationApi } from "@/api/module/reservation";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 import { motion } from "framer-motion";
@@ -8,6 +9,7 @@ import { motion } from "framer-motion";
 const Member = () => {
   const [memberTable, setMemberTable] = useState("info");
   const [userData, setUserData] = useState(null);
+  const [reservations, setReservations] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -20,8 +22,31 @@ const Member = () => {
       }
     };
 
+    const fetchReservations = async () => {
+      try {
+        const data = await reservationApi.getUserReservations();
+        setReservations(data);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+      }
+    };
+
     fetchUserData();
+    fetchReservations();
   }, []);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "pending":
+        return "text-yellow-500";
+      case "confirmed":
+        return "text-green-500";
+      case "cancelled":
+        return "text-red-500";
+      default:
+        return "text-white";
+    }
+  };
 
   const renderContent = () => {
     const memberInfo = {
@@ -60,14 +85,6 @@ const Member = () => {
                   {userData?.phone || "Loading..."}
                 </div>
               </div>
-              <div className="flex flex-col">
-                <label className="text-white mb-2">
-                  {t("member.fields.address")}
-                </label>
-                <div className="text-main-color-yellow font-bold text-xl">
-                  {t("contact.address")}
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>
@@ -91,9 +108,6 @@ const Member = () => {
                 <th className="p-4 text-left text-white">
                   {t("member.table.amount")}
                 </th>
-                <th className="p-4 text-left text-white">
-                  {t("member.table.status")}
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +125,6 @@ const Member = () => {
                   <td className="p-4 text-main-color-yellow">
                     NT$ {order.amount}
                   </td>
-                  <td className="p-4 text-white">{order.status}</td>
                 </tr>
               ))}
             </tbody>
@@ -164,9 +177,72 @@ const Member = () => {
           </table>
         </motion.div>
       ),
+      reservations: (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="overflow-x-auto"
+        >
+          <table className="w-full">
+            <thead className="bg-[rgba(230,149,57,0.1)]">
+              <tr>
+                <th className="p-4 text-left text-white">
+                  {t("member.reservation.date")}
+                </th>
+                <th className="p-4 text-left text-white">
+                  {t("member.reservation.time")}
+                </th>
+                <th className="p-4 text-left text-white">
+                  {t("member.reservation.people")}
+                </th>
+                <th className="p-4 text-left text-white">
+                  {t("member.reservation.table")}
+                </th>
+                <th className="p-4 text-left text-white">
+                  {t("member.table.status")}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {reservations.length > 0 ? (
+                reservations.map((reservation) => (
+                  <tr
+                    key={reservation._id}
+                    className="border-b border-[rgba(230,149,57,0.2)]"
+                  >
+                    <td className="p-4 text-main-color-yellow">
+                      {new Date(reservation.date).toLocaleDateString()}
+                    </td>
+                    <td className="p-4 text-white">{reservation.time}</td>
+                    <td className="p-4 text-main-color-yellow">
+                      {t("member.reservation.peopleCount", {
+                        count: reservation.people,
+                      })}
+                    </td>
+                    <td className="p-4 text-white">{reservation.tableNo}</td>
+                    <td className={`p-4 ${getStatusColor(reservation.status)}`}>
+                      {t(`member.reservation.status.${reservation.status}`)}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="5"
+                    className="text-center text-main-color-yellow/70 py-4"
+                  >
+                    {t("member.reservation.noRecords")}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </motion.div>
+      ),
     };
 
-    return memberInfo[memberTable] || <div>請選擇一個選項</div>;
+    return memberInfo[memberTable] || <div>{t("common.pleaseSelect")}</div>;
   };
 
   return (
@@ -184,7 +260,7 @@ const Member = () => {
             {t("member.title")}
           </h2>
           <ul className="space-y-4">
-            {["info", "orders", "history"].map((option) => (
+            {["info", "orders", "history", "reservations"].map((option) => (
               <motion.li
                 key={option}
                 whileHover={{ scale: 1.05 }}
