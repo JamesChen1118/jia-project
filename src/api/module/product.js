@@ -3,7 +3,7 @@ import server from "../server";
 export const productApi = {
     getProducts: async () => {
         try {
-            const { data } = await server.get("/products");
+            const { data } = await server.get("/api/products");
             return data;
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -15,8 +15,8 @@ export const productApi = {
         try {
             const { data } = await server.get(
                 category === 'all'
-                    ? '/products'
-                    : `/products/category/${category}`
+                    ? '/api/products'
+                    : `/api/products/category/${category}`
             );
             return data;
         } catch (error) {

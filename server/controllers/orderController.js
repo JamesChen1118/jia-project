@@ -21,9 +21,11 @@ const orderController = {
                 price: item.price
             }));
 
+            const orderNumber = `JIA${Date.now()}`;
+
             const order = await Order.create({
                 user: userId,
-                orderNumber: `JIA${Date.now()}`,
+                orderNumber,
                 items: formattedItems,
                 totalAmount: totalPrice,
                 paymentInfo: {
@@ -44,7 +46,13 @@ const orderController = {
                         orderNumber: order.orderNumber,
                         date: order.createdAt,
                         amount: order.totalAmount
-                    }
+                    },
+                    history: formattedItems.map(item => ({
+                        productName: item.name,
+                        date: new Date(),
+                        quantity: item.quantity,
+                        amount: item.price * item.quantity
+                    }))
                 }
             });
 
@@ -66,6 +74,18 @@ const orderController = {
         const orders = await Order.find({ user: req.user._id })
             .sort('-createdAt');
         res.json(orders);
+    }),
+
+    getUserHistory: asyncHandler(async (req, res) => {
+        try {
+            const user = await User.findById(req.user._id);
+            if (!user) {
+                return res.status(404).json({ message: '找不到用戶' });
+            }
+            res.json(user.history);
+        } catch (error) {
+            res.status(500).json({ message: '獲取消費記錄失敗' });
+        }
     })
 };
 

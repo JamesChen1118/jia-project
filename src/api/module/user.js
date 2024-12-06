@@ -4,7 +4,7 @@ import { getToken } from "@/utils/auth";
 export const userApi = {
   login: async (username, password) => {
     try {
-      const { data } = await server.post("/users/login", {
+      const { data } = await server.post("/api/users/login", {
         username,
         password,
       });
@@ -13,15 +13,18 @@ export const userApi = {
       }
       return data;
     } catch (error) {
+      console.error('Login error:', error.response?.data || error);
       throw error.response?.data?.message || "登入失敗";
     }
   },
 
   register: async (userData) => {
     try {
-      const { data } = await server.post("/users/register", userData);
+      console.log('Registering with data:', userData);
+      const { data } = await server.post("/api/users/register", userData);
       return data;
     } catch (error) {
+      console.error('Register error:', error.response?.data || error);
       throw error.response?.data?.message || '註冊失敗';
     }
   },
@@ -34,7 +37,7 @@ export const userApi = {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await server.get("/users", config);
+      const { data } = await server.get("/api/users", config);
       return data;
     } catch (error) {
       throw error.response?.data?.message || '獲取用戶資料失敗';

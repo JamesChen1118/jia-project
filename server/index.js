@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
-import newsRoutes from './routes/module/newsRoutes.js';
 
 dotenv.config();
 
@@ -11,9 +10,15 @@ app.use(express.json());
 
 // API 路由
 app.use('/api', router);
-app.use('/news', newsRoutes);
 
-// 連接資料庫並啟動服務器
+// 錯誤處理中間件
+app.use((err, req, res, next) => {
+    console.error('Server error:', err);
+    res.status(500).json({
+        message: err.message || 'Internal server error'
+    });
+});
+
 const startServer = async () => {
     try {
         await connectDB();
@@ -28,11 +33,5 @@ const startServer = async () => {
         process.exit(1);
     }
 };
-
-// 錯誤處理
-process.on('unhandledRejection', (err) => {
-    console.error('Unhandled Rejection:', err);
-    process.exit(1);
-});
 
 startServer();

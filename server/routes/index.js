@@ -14,4 +14,12 @@ router.use('/news', newsRoutes);
 router.use('/reservations', reservationRoutes);
 router.use('/orders', orderRoutes);
 
+// 添加一個簡單的錯誤處理中間件
+router.use((err, req, res, next) => {
+    console.error('Router error:', err);
+    res.status(err.status || 500).json({
+        message: err.message || '服務器錯誤'
+    });
+});
+
 export default router;
