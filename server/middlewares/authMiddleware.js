@@ -2,28 +2,46 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/user.js";
 
-export const authMiddleware = asyncHandler(async (req, res, next) => {
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    try {
-      // 取得 token
-      const token = req.headers.authorization.split(" ")[1];
-      console.log(req.headers.authorization);
-      // JWT解密
-      const decodedId = jwt.verify(token, process.env.JWT_SECRET);
-      console.log("decodedId", decodedId);
-      // 取得用戶資訊並排除密碼，再將用戶資訊存到req裡面
-      req.user = await User.findById(decodedId.id).select("-password");
-      // 可進行下一步
-      next();
-    } catch (err) {
-      console.error(error);
-      res.status(401);
-      throw new Error("沒有權限，或無效的token");
+const authMiddleware = asyncHandler(async (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization?.startsWith("Bearer")) {
+        try {
+            // 取得 token
+            token = req.headers.authorization.split(" ")[1];
+            console.log('Token received:', token);
+
+            // JWT解密
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log('Decoded token:', decoded);
+
+            // 查找用戶
+            const user = await User.findById(decoded.id);
+            console.log('Found user:', user ? 'Yes' : 'No');
+
+            if (!user) {
+                res.status(401);
+                throw new Error("用戶不存在或已被刪除");
+            }
+
+            // 將用戶信息存到 req 中
+            req.user = user;
+            next();
+        } catch (error) {
+            console.error('Auth error:', error);
+            res.status(401);
+            if (error.name === 'JsonWebTokenError') {
+                throw new Error("無效的認證令牌");
+            } else if (error.name === 'TokenExpiredError') {
+                throw new Error("認證令牌已過期");
+            } else {
+                throw new Error("認證失敗");
+            }
+        }
+    } else {
+        res.status(401);
+        throw new Error("未提供認證令牌");
     }
-  }
 });
 
 export default authMiddleware;

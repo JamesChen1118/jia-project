@@ -4,8 +4,9 @@ import authMiddleware from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+// 訂單路由
 router.post('/', authMiddleware, orderController.createOrder);
-router.get('/', authMiddleware, orderController.getUserOrders);
-router.get('/:id', authMiddleware, orderController.getOrderById);
+router.get('/', authMiddleware, orderController.getOrders);
+router.get('/my', authMiddleware, orderController.getUserOrders);
 
 export default router;

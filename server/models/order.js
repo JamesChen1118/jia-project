@@ -35,15 +35,23 @@ const orderSchema = new mongoose.Schema(
             },
             paymentDate: Date
         },
-        status: {
-            type: String,
-            enum: ['pending', 'processing', 'completed', 'cancelled'],
-            default: 'pending'
+        customerInfo: {
+            username: String,
+            phone: String,
+            email: String
         }
     },
     {
         timestamps: true
     }
 );
+
+orderSchema.pre('find', function() {
+    this.populate('user', 'username phone email');
+});
+
+orderSchema.pre('findOne', function() {
+    this.populate('user', 'username phone email');
+});
 
 export default mongoose.model('Order', orderSchema);
