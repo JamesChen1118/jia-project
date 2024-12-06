@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
+import newsRoutes from './routes/module/newsRoutes.js';
 
 dotenv.config();
 
@@ -9,7 +10,8 @@ const app = express();
 app.use(express.json());
 
 // API 路由
-app.use('/', router);
+app.use('/api', router);
+app.use('/news', newsRoutes);
 
 // 連接資料庫並啟動服務器
 const startServer = async () => {

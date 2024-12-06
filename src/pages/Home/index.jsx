@@ -12,22 +12,6 @@ import i18n from "@/i18n/index";
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [newsItems, setNewsItems] = useState([]);
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const data = await newsApi.getNews();
-        console.log("Fetched news data:", data); // 用來調試資料
-        setNewsItems(data);
-      } catch (error) {
-        console.error("Error fetching news:", error);
-        setNewsItems([]); // 如果出錯，將 newsItems 設為空
-      }
-    };
-
-    fetchNews();
-  }, []);
 
   const imageAnimation = {
     initial: { opacity: 0, x: -50, scale: 0.8 },
@@ -65,6 +49,26 @@ const Home = () => {
         ease: "easeOut",
       },
     },
+  };
+
+  const newsContainerVariants = {
+    offscreen: {
+      rotateX: -90,
+      y: 50,
+      opacity: 0,
+      transformPerspective: 1000,
+      transformOrigin: "top"
+    },
+    onscreen: {
+      rotateX: 0,
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
   };
 
   return (
@@ -152,17 +156,12 @@ const Home = () => {
 
       <motion.div
         className="p-40 md:my-[150px] lg:my-[200px] perspective-1000"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.5 }}
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={newsContainerVariants}
       >
-        {/* NewsItem 組件 */}
-        {newsItems.length === 0 ? (
-          <div>No news available</div> // 若沒有資料，顯示提示
-        ) : (
-          <NewsItem newsItems={newsItems} /> // 傳遞資料給 NewsItem
-        )}
+        <NewsItem />
       </motion.div>
 
       <div
