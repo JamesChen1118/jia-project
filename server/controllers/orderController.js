@@ -14,19 +14,15 @@ const orderController = {
                 return res.status(404).json({ message: '找不到用戶' });
             }
 
-            const formattedItems = orderItems.map(item => ({
-                productId: item.id,
-                name: item.name,
-                quantity: item.numbers,
-                price: item.price
-            }));
-
-            const orderNumber = `JIA${Date.now()}`;
-
             const order = await Order.create({
                 user: userId,
-                orderNumber,
-                items: formattedItems,
+                orderNumber: `JIA${Date.now()}`,
+                items: orderItems.map(item => ({
+                    productId: item.id,
+                    name: item.name,
+                    quantity: item.numbers,
+                    price: item.price
+                })),
                 totalAmount: totalPrice,
                 paymentInfo: {
                     cardNumber: paymentInfo.cardNumbers.slice(-4),
@@ -47,18 +43,18 @@ const orderController = {
                         date: order.createdAt,
                         amount: order.totalAmount
                     },
-                    history: formattedItems.map(item => ({
+                    history: orderItems.map(item => ({
                         productName: item.name,
                         date: new Date(),
-                        quantity: item.quantity,
-                        amount: item.price * item.quantity
+                        quantity: item.numbers,
+                        amount: item.price * item.numbers
                     }))
                 }
             });
 
             res.status(201).json(order);
         } catch (error) {
-            console.error('訂單創建失敗:', error.message);
+            console.error('訂單創建失敗:', error);
             res.status(500).json({ message: '創建訂單失敗' });
         }
     }),
@@ -78,11 +74,15 @@ const orderController = {
 
     getUserHistory: asyncHandler(async (req, res) => {
         try {
-            const user = await User.findById(req.user._id);
+            const user = await User.findById(req.user._id)
+                .select('history')
+                .sort({ 'history.date': -1 });
+            
             if (!user) {
                 return res.status(404).json({ message: '找不到用戶' });
             }
-            res.json(user.history);
+            
+            res.json(user.history || []);
         } catch (error) {
             res.status(500).json({ message: '獲取消費記錄失敗' });
         }

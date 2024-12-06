@@ -51,7 +51,7 @@ export const orderApi = {
             return response.data;
         } catch (error) {
             console.error('Error fetching history:', error);
-            throw error;
+            return [];
         }
     }
 };
