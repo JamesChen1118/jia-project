@@ -7,12 +7,6 @@ const orderController = {
     createOrder: asyncHandler(async (req, res) => {
         try {
             const { orderItems, paymentInfo, totalPrice } = req.body;
-            console.log('Received order request:', { orderItems, paymentInfo, totalPrice });
-
-            if (!req.user) {
-                return res.status(401).json({ message: '請先登入' });
-            }
-
             const userId = req.user._id;
             const user = await User.findById(userId);
             
@@ -27,11 +21,9 @@ const orderController = {
                 price: item.price
             }));
 
-            const orderNumber = `JIA${Date.now()}`;
-
             const order = await Order.create({
                 user: userId,
-                orderNumber,
+                orderNumber: `JIA${Date.now()}`,
                 items: formattedItems,
                 totalAmount: totalPrice,
                 paymentInfo: {
@@ -58,11 +50,8 @@ const orderController = {
 
             res.status(201).json(order);
         } catch (error) {
-            console.error('Create order error:', error);
-            res.status(500).json({ 
-                message: '創建訂單失敗',
-                error: error.message
-            });
+            console.error('訂單創建失敗:', error.message);
+            res.status(500).json({ message: '創建訂單失敗' });
         }
     }),
 
