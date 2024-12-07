@@ -1,11 +1,9 @@
 import axios from 'axios';
 
 const server = axios.create({
-    baseURL: '/api',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    baseURL: process.env.NODE_ENV === 'production' 
+        ? '/'  
+        : '/api'  
 });
 
 export default server;
