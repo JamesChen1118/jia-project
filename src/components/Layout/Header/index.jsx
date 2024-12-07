@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -97,6 +97,28 @@ const Header = () => {
     translationKey: `header.${item.name}`,
   }));
 
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+      
+      if (mobileMenuRef.current && 
+          !mobileMenuRef.current.contains(event.target) && 
+          !event.target.closest('button[aria-label="toggle-menu"]')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
@@ -117,6 +139,7 @@ const Header = () => {
 
         <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
           <button
+            aria-label="toggle-menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-main-text-white text-2xl p-2 hover:text-main-color-yellow
                       transition-all duration-300 ease-in-out hover:scale-110"
@@ -146,6 +169,7 @@ const Header = () => {
         </ul>
 
         <div
+          ref={mobileMenuRef}
           className={`
             fixed top-24 left-0 w-full bg-black/95 
             transform transition-all duration-500 ease-in-out lg:hidden
@@ -189,7 +213,7 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown(!showDropdown)}
               className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
