@@ -347,7 +347,6 @@ const Reservation = () => {
             </button>
           </div>
 
-          {/* 右側座位選擇區域 - 改為按鈕形式 */}
           <div className="flex flex-col justify-start items-center lg:px-16 md:px-8 sm:px-4 w-full max-w-[500px]">
             <div className="relative w-full bg-black/10 backdrop-blur-[2px] rounded-[20px] p-8">
               <div className="grid grid-cols-2 gap-6">

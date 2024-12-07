@@ -4,7 +4,6 @@ import generateToken from '../utils/generateToken.js';
 import bcrypt from 'bcryptjs';
 
 const userController = {
-    // 登入
     login: asyncHandler(async (req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
@@ -24,17 +23,14 @@ const userController = {
         }
     }),
 
-    // 註冊
     register: asyncHandler(async (req, res) => {
         const { username, password, email, phone, confirmPassword } = req.body;
 
-        // 驗證密碼
         if (password !== confirmPassword) {
             res.status(400);
             throw new Error('密碼不一致');
         }
 
-        // 檢查用戶是否已存在
         const userExists = await User.findOne({
             $or: [{ username }, { email }]
         });
@@ -44,10 +40,9 @@ const userController = {
             throw new Error('此帳號或信箱已被註冊');
         }
 
-        // 創建新用戶
         const user = await User.create({
             username,
-            password,  // 密碼會通過 pre save 中間件自動加密
+            password, 
             email,
             phone,
             orders: [],
@@ -69,7 +64,6 @@ const userController = {
         }
     }),
 
-    // 獲取用戶資料
     getUser: asyncHandler(async (req, res) => {
         const user = await User.findById(req.user._id);
         if (user) {
@@ -88,7 +82,6 @@ const userController = {
         }
     }),
 
-    // 更新用戶資料
     updateUser: asyncHandler(async (req, res) => {
         const user = await User.findById(req.user._id);
 
@@ -117,7 +110,6 @@ const userController = {
         }
     }),
 
-    // 刪除用戶
     deleteUser: asyncHandler(async (req, res) => {
         const user = await User.findById(req.user._id);
         if (user) {

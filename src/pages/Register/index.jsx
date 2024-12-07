@@ -24,7 +24,6 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      // 驗證密碼
       if (formData.password !== formData.confirmPassword) {
         Swal.fire({
           title: "錯誤",

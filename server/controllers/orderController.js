@@ -1,4 +1,3 @@
-// server/controllers/orderController.js
 import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
 import User from '../models/user.js';

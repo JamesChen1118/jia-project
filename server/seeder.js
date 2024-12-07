@@ -13,13 +13,11 @@ connectDB();
 
 const importSeedData = async () => {
     try {
-        // 檢查是否已有數據
         const productsCount = await Product.countDocuments();
         const categoriesCount = await Category.countDocuments();
         const newsCount = await NewsItem.countDocuments();
         const usersCount = await User.countDocuments();
 
-        // 只在集合為空時才導入數據
         if (categoriesCount === 0) {
             await Category.insertMany(categories);
             console.log('Categories seeded');
@@ -48,7 +46,6 @@ const importSeedData = async () => {
     }
 };
 
-// 添加一個清除數據的函數，但默認不執行
 const deleteData = async () => {
     try {
         await Product.deleteMany();
@@ -63,7 +60,6 @@ const deleteData = async () => {
     }
 };
 
-// 根據命令行參數執行不同的操作
 if (process.argv[2] === '-d') {
     deleteData();
 } else {

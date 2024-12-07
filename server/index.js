@@ -8,10 +8,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// API 路由
 app.use('/api', router);
 
-// 錯誤處理中間件
 app.use((err, req, res, next) => {
     console.error('Server error:', err);
     res.status(500).json({

@@ -15,15 +15,12 @@ const Register = () => {
                 password: formData.password,
                 phone: formData.phone,
             });
-            // 處理成功註冊
         } catch (error) {
-            // 處理錯誤
         }
     };
 
     return (
         <form onSubmit={handleRegister}>
-            {/* 其他輸入欄位 */}
             <input
                 type="tel"
                 placeholder="手機號碼"
@@ -34,7 +31,6 @@ const Register = () => {
                 }))}
                 required
             />
-            {/* 其他表單元素 */}
         </form>
     );
 }; 

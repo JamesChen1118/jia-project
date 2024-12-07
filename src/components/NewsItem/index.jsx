@@ -1,5 +1,4 @@
-// src/components/NewsItem/index.jsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { newsApi } from "@/api/module/news";
@@ -29,7 +28,7 @@ const NewsItem = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 整個新聞區塊的翻轉動畫
+
   const containerVariants = {
     offscreen: {
       rotateX: -90,

@@ -18,7 +18,6 @@ const Member = () => {
     const currentUser = userApi.getCurrentUser();
 
     if (!currentUser) {
-      // 如果用戶未登入，重定向到登入頁面
       navigate("/login");
       return;
     }

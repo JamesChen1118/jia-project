@@ -5,10 +5,9 @@ import User from '../models/user.js';
 const reservationController = {
     createReservation: asyncHandler(async (req, res) => {
         const { name, date, time, people, tableNo, phone, email } = req.body;
-        const userId = req.user?._id;  // 從認證中間件獲取用戶ID
+        const userId = req.user?._id;  
 
         try {
-            // 檢查該時段是否已有訂位
             const existingReservation = await Reservation.findOne({
                 date: new Date(date),
                 time,
@@ -21,7 +20,6 @@ const reservationController = {
                 throw new Error('此座位已被預訂');
             }
 
-            // 創建訂位記錄
             const reservation = await Reservation.create({
                 name,
                 date,
@@ -34,7 +32,6 @@ const reservationController = {
                 status: 'pending'
             });
 
-            // 如果是已登入用戶，更新用戶的訂位記錄
             if (userId) {
                 await User.findByIdAndUpdate(userId, {
                     $push: {
@@ -61,12 +58,11 @@ const reservationController = {
         const { date, time, tableNo } = req.query;
 
         try {
-            // 檢查該時段是否已有訂位
             const existingReservation = await Reservation.findOne({
                 date: new Date(date),
                 time,
                 tableNo,
-                status: { $ne: 'cancelled' }  // 不包括已取消的訂位
+                status: { $ne: 'cancelled' }  
             });
 
             res.json({
@@ -81,10 +77,9 @@ const reservationController = {
 
     getUserReservations: asyncHandler(async (req, res) => {
         try {
-            // 獲取用戶的所有訂位記錄
             const reservations = await Reservation.find({
                 user: req.user._id,
-                status: { $ne: 'cancelled' }  // 不包括已取消的訂位
+                status: { $ne: 'cancelled' } 
             }).sort('-date');
 
             res.json(reservations);

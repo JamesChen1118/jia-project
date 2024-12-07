@@ -7,14 +7,12 @@ import orderRoutes from './module/orderRoutes.js';
 
 const router = express.Router();
 
-// API Routes
 router.use('/users', userRoutes);
 router.use('/products', productRoutes);
 router.use('/news', newsRoutes);
 router.use('/reservations', reservationRoutes);
 router.use('/orders', orderRoutes);
 
-// 添加一個簡單的錯誤處理中間件
 router.use((err, req, res, next) => {
     console.error('Router error:', err);
     res.status(err.status || 500).json({

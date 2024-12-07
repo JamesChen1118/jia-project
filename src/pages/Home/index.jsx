@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import NewsItem from "@/components/NewsItem"; // 確認路徑是否正確
+import NewsItem from "@/components/NewsItem"; 
 import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
