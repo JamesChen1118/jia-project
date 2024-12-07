@@ -20,14 +20,13 @@ const categories = [
 
 const Order = () => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("all"); // 修改這裡
+  const [selectedCategory, setSelectedCategory] = useState("all"); 
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getProductsByCategory = async (category = "all") => {
-    // 修改這裡
     try {
       const data = await productApi.getProductsByCategory(category);
       console.log(`Fetched ${data.length} products for category:`, category);
@@ -44,7 +43,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    getProductsByCategory("all"); // 修改這裡
+    getProductsByCategory("all"); 
   }, []);
 
   return (
@@ -72,7 +71,7 @@ const Order = () => {
               <li
                 key={category.name}
                 onClick={() => handleCategoryClick(category.name)}
-                className={`inline-block w-[120px] lg:w-[150px] py-2 lg:py-2.5 
+                className={`inline-block w-1/4 lg:w-full py-2 lg:py-2.5 
                            bg-main-color-yellow rounded-xl font-medium 
                            text-black text-lg lg:text-2xl text-center
                            transition-all duration-700 ease-in-out 
