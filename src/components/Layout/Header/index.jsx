@@ -156,10 +156,7 @@ const Header = () => {
             z-20
           `}
         >
-          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6
-                         transform transition-all duration-500 ease-in-out
-                         ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-10'}"
-          >
+          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
             {navItems.map((item, index) => (
               <li
                 key={item.name}
@@ -188,90 +185,10 @@ const Header = () => {
                 </button>
               </li>
             ))}
-
-            <div className="w-4/5 h-px bg-main-color-yellow/30 my-4"></div>
-
-            {isLoggedIn ? (
-              <>
-                <li className="w-full text-center">
-                  <button
-                    onClick={() => {
-                      navigate("/member");
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                  >
-                    <FontAwesomeIcon icon={faUser} />
-                    {t("header.member")}
-                  </button>
-                </li>
-                <li className="w-full text-center">
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                  >
-                    <FontAwesomeIcon icon={faSignOutAlt} />
-                    {t("header.logout")}
-                  </button>
-                </li>
-              </>
-            ) : (
-              <li className="w-full text-center">
-                <button
-                  onClick={() => {
-                    navigate("/login");
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                >
-                  <FontAwesomeIcon icon={faSignInAlt} />
-                  {t("header.login")}
-                </button>
-              </li>
-            )}
-
-            <li className="w-full text-center">
-              <Link
-                to="/shoppingCart"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 
-                           flex items-center justify-center gap-2"
-              >
-                <FontAwesomeIcon
-                  icon={faShoppingCart}
-                  className={`${isCartAnimating ? "animate-bounce" : ""}`}
-                />
-                {t("header.cart")}
-                {cartItemCount > 0 && (
-                  <span
-                    className="absolute top-2 ml-6 bg-red-500 text-white text-xs 
-                                  w-5 h-5 rounded-full flex items-center justify-center
-                                  animate-pulse"
-                  >
-                    {cartItemCount}
-                  </span>
-                )}
-              </Link>
-            </li>
-
-            <li className="w-full text-center">
-              <button
-                onClick={handleLanguageChange}
-                className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
-              >
-                <FontAwesomeIcon icon={faGlobe} />
-                <span className="ml-1">
-                  {language === "zh_TW" ? "En" : "繁中"}
-                </span>
-              </button>
-            </li>
           </ul>
         </div>
 
-        <div className="hidden lg:flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
+        <div className="flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
