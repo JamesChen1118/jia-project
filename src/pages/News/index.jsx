@@ -11,9 +11,7 @@ const News = () => {
     <>
       <GoTop />
       <ScrollToContent />
-      <div className="w-full min-h-60vh px-4 pb-72 pt-10">
-        <NewsItem />
-      </div>
+      <NewsItem />
     </>
   );
 };

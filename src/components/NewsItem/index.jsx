@@ -31,7 +31,7 @@ const NewsItem = () => {
 
   const containerVariants = {
     offscreen: {
-      rotateX: -90,
+      rotateX: -180,
       y: 50,
       opacity: 0,
       transformPerspective: 1000,
@@ -43,26 +43,25 @@ const NewsItem = () => {
       opacity: 1,
       transition: {
         type: "spring",
-        bounce: 0.4,
-        duration: 0.8
+        bounce: 0.3,
+        duration: 1.5 ,
+        ease: "easeInOut"
       }
     },
     exit: {
-      rotateX: 90,
+      rotateX: 180,
       y: -50,
       opacity: 0,
       transition: {
-        duration: 0.5
+        duration: 1.3
       }
     }
   };
 
-  if (!newsItems || newsItems.length === 0) {
-    return <div>Loading news...</div>;
-  }
-
+  
   return (
-    <div className="w-4/5 mx-auto perspective-1000">
+    <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] 
+                    mx-auto py-10 md:py-16 lg:py-20">
       <motion.div
         className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden"
         initial="offscreen"
@@ -73,16 +72,29 @@ const NewsItem = () => {
         {newsItems.map((item, index) => (
           <div
             key={item._id || index}
-            className="p-4 border-b border-main-color-yellow
-                     hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300"
+            className="px-4 py-4 sm:px-6 lg:px-8
+                     border-b border-main-color-yellow
+                     hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300
+                     flex flex-col lg:flex-row items-start lg:items-center
+                     gap-2 lg:gap-6"
           >
-            <div className="text-news-text-gray mb-2">
+            <div className="text-news-text-gray
+                        whitespace-nowrap
+                        w-[120px]
+                        text-sm lg:text-base">
               {new Date(item.date).toLocaleDateString()}
             </div>
-            <div className="text-main-color-yellow font-bold mb-2">
+            <div className="text-main-color-yellow font-bold
+                        whitespace-nowrap
+                        w-[180px]
+                        text-base lg:text-lg
+                        mb-2 lg:mb-0">
               {t(`news.newsTitle.newsItem${index + 1}`)}
             </div>
-            <div className="text-main-text-white">
+            <div className="text-main-text-white
+                        w-full lg:flex-1
+                        text-sm lg:text-base
+                        break-words">
               {t(`news.content.newsItem${index + 1}`)}
             </div>
           </div>
@@ -119,3 +131,4 @@ const NewsItem = () => {
 };
 
 export default NewsItem;
+          

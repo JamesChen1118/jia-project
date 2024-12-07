@@ -51,26 +51,6 @@ const Home = () => {
     },
   };
 
-  const newsContainerVariants = {
-    offscreen: {
-      rotateX: -90,
-      y: 50,
-      opacity: 0,
-      transformPerspective: 1000,
-      transformOrigin: "top"
-    },
-    onscreen: {
-      rotateX: 0,
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.8
-      }
-    }
-  };
-
   return (
     <>
       <div className="text-center min-h-[500px] my-[100px] lg:my-[150px] px-4 lg:px-0">
@@ -154,18 +134,15 @@ const Home = () => {
         <Menu3D />
       </div>
 
-      <motion.div
-        className="p-40 md:my-[150px] lg:my-[200px] perspective-1000"
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.5 }}
-        variants={newsContainerVariants}
+      <div
+        className="mx-auto min-h-60vh py-32 
+                   flex justify-center items-center"
       >
         <NewsItem />
-      </motion.div>
+      </div>
 
       <div
-        className="relative mx-auto mb-[150px] min-h-[50vh] w-full font-georgia font-semibold 
+        className="relative mx-auto mb-[120px] min-h-[50vh] w-full font-georgia font-semibold 
                     text-2xl md:text-3xl lg:text-4xl flex justify-center items-center"
       >
         <div
@@ -200,11 +177,17 @@ const Home = () => {
         </motion.button>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-evenly items-center p-6 lg:p-[50px] gap-8 lg:gap-0">
+      <div className="flex flex-col lg:flex-row justify-evenly items-center 
+                p-4 lg:p-[30px] gap-6 lg:gap-0">
         <div
-          className="w-full lg:w-[550px] leading-[2.5] lg:leading-[3] text-main-color-yellow 
-                        tracking-[3px] lg:tracking-[5px] font-georgia 
-                        text-xl md:text-2xl mx-4 lg:mx-[75px] my-4 lg:my-[50px] text-center"
+          className="w-full lg:w-[500px] 
+                  leading-[2] lg:leading-[2.5] 
+                  text-main-color-yellow 
+                  tracking-[3px] lg:tracking-[5px] font-georgia 
+                  text-lg md:text-xl 
+                  mx-4 lg:mx-[50px] 
+                  my-3 lg:my-[30px] 
+                  text-center"
         >
           <motion.p
             className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
@@ -236,11 +219,13 @@ const Home = () => {
         </div>
 
         <motion.div
-          className="w-full lg:w-[550px] h-[300px] lg:h-[400px] relative 
-                     border-2 border-main-color-yellow rounded-lg overflow-hidden
-                     transition-all duration-300 hover:scale-105
-                     shadow-[0_0_10px_rgba(255,170,13,0.3)]
-                     hover:shadow-[0_0_20px_rgba(255,170,13,0.5)]"
+          className="w-full lg:w-[500px] 
+                  h-[250px] lg:h-[350px] 
+                  relative 
+                  border-2 border-main-color-yellow rounded-lg overflow-hidden
+                  transition-all duration-300 hover:scale-105
+                  shadow-[0_0_10px_rgba(255,170,13,0.3)]
+                  hover:shadow-[0_0_20px_rgba(255,170,13,0.5)]"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
