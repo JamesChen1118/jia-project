@@ -115,12 +115,15 @@ const Header = () => {
           </button>
         </h2>
 
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden text-main-text-white text-2xl p-2 hover:text-main-color-yellow"
-        >
-          <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
-        </button>
+        <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-main-text-white text-2xl p-2 hover:text-main-color-yellow
+                      transition-all duration-300 ease-in-out hover:scale-110"
+          >
+            <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
+          </button>
+        </div>
 
         <ul className="hidden lg:flex items-center justify-center">
           {navItems.map((item) => (
@@ -144,16 +147,31 @@ const Header = () => {
 
         <div
           className={`
-            fixed top-24 left-0 w-full bg-black/95 transform transition-transform duration-300 ease-in-out lg:hidden
-            ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+            fixed top-24 left-0 w-full bg-black/95 
+            transform transition-all duration-500 ease-in-out lg:hidden
+            ${isMobileMenuOpen 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-full pointer-events-none'
+            }
             z-20
           `}
         >
-          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
-            {navItems.map((item) => (
+          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6
+                         transform transition-all duration-500 ease-in-out
+                         ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-10'}"
+          >
+            {navItems.map((item, index) => (
               <li
                 key={item.name}
-                className="w-full text-center flex items-center justify-center"
+                className="w-full text-center flex items-center justify-center
+                           transform transition-all duration-500 ease-in-out"
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  transform: isMobileMenuOpen 
+                    ? 'translateY(0)' 
+                    : 'translateY(-20px)'
+                }}
               >
                 <button
                   onClick={() => {
