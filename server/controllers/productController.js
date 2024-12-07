@@ -18,9 +18,11 @@ const productController = {
         if (product) {
             res.json(product);
         } else {
-            res.status(404).json({ message: '找不到產品' });
+            res.status(404);
+            throw new Error('找不到產品');
         }
     })
 };
 
 export default productController;
+

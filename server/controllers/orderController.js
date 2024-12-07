@@ -1,4 +1,4 @@
-import asyncHandler from 'express-async-handler';
+    import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
 import User from '../models/user.js';
 
@@ -13,15 +13,18 @@ const orderController = {
                 return res.status(404).json({ message: '找不到用戶' });
             }
 
+            // 格式化訂單項目
+            const formattedItems = orderItems.map(item => ({
+                name: item.name,
+                quantity: item.numbers,
+                price: item.price
+            }));
+
+            // 創建訂單
             const order = await Order.create({
                 user: userId,
                 orderNumber: `JIA${Date.now()}`,
-                items: orderItems.map(item => ({
-                    productId: item.id,
-                    name: item.name,
-                    quantity: item.numbers,
-                    price: item.price
-                })),
+                items: formattedItems,
                 totalAmount: totalPrice,
                 paymentInfo: {
                     cardNumber: paymentInfo.cardNumbers.slice(-4),
@@ -35,12 +38,14 @@ const orderController = {
                 }
             });
 
+            // 更新用戶的訂單歷史
             await User.findByIdAndUpdate(userId, {
                 $push: {
                     orders: {
                         orderNumber: order.orderNumber,
                         date: order.createdAt,
-                        amount: order.totalAmount
+                        amount: order.totalAmount,
+                        status: 'completed'
                     },
                     history: orderItems.map(item => ({
                         productName: item.name,
@@ -51,24 +56,30 @@ const orderController = {
                 }
             });
 
-            res.status(201).json(order);
+            res.status(201).json({
+                success: true,
+                order,
+                message: '訂單創建成功'
+            });
+
         } catch (error) {
-            console.error('訂單創建失敗:', error);
-            res.status(500).json({ message: '創建訂單失敗' });
+            console.error('訂單創建錯誤:', error);
+            res.status(500).json({
+                success: false,
+                message: '訂單創建失敗',
+                error: error.message
+            });
         }
     }),
 
-    getOrders: asyncHandler(async (req, res) => {
-        const orders = await Order.find()
-            .populate('user', 'username phone email')
-            .sort('-createdAt');
-        res.json(orders);
-    }),
-
     getUserOrders: asyncHandler(async (req, res) => {
-        const orders = await Order.find({ user: req.user._id })
-            .sort('-createdAt');
-        res.json(orders);
+        try {
+            const orders = await Order.find({ user: req.user._id })
+                .sort('-createdAt');
+            res.json(orders);
+        } catch (error) {
+            res.status(500).json({ message: '獲取訂單失敗' });
+        }
     }),
 
     getUserHistory: asyncHandler(async (req, res) => {
@@ -89,3 +100,4 @@ const orderController = {
 };
 
 export default orderController;
+

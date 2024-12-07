@@ -5,8 +5,8 @@ import authMiddleware from '../../middlewares/authMiddleware.js';
 const router = express.Router();
 
 router.post('/', authMiddleware, orderController.createOrder);
-router.get('/', authMiddleware, orderController.getOrders);
-router.get('/my', authMiddleware, orderController.getUserOrders);
+router.get('/', authMiddleware, orderController.getUserOrders);
 router.get('/history', authMiddleware, orderController.getUserHistory);
 
 export default router;
+

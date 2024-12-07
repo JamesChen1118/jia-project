@@ -13,11 +13,11 @@ export const productApi = {
 
     getProductsByCategory: async (category) => {
         try {
-            const { data } = await server.get(
-                category === 'all'
-                    ? '/api/products'
-                    : `/api/products/category/${category}`
-            );
+            let url = '/api/products';
+            if (category !== 'all') {
+                url = `/api/products/category/${category}`;
+            }
+            const { data } = await server.get(url);
             return data;
         } catch (error) {
             console.error('Error fetching products by category:', error);
@@ -25,3 +25,4 @@ export const productApi = {
         }
     }
 };
+
