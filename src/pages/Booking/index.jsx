@@ -12,43 +12,89 @@ const Booking = () => {
     <>
       <GoTop />
       <ScrollToContent />
-      <div
-        className="w-[70%] mx-auto flex flex-col lg:flex-row justify-evenly items-center text-center 
-                    mt-[80px] mb-[150px]
-                    px-5 sm:px-[50px] lg:px-[100px] xl:px-[200px]
-                    text-[28px] sm:text-[36px] lg:text-[48px] xl:text-[58px]
-                    font-verdana font-bold tracking-[5px]
-                    gap-10 lg:gap-20"
-      >
-        <button
-          onClick={() => navigate("/Order")}
-          className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px] xl:w-[400px] xl:h-[400px]
-                     flex items-center justify-center
-                     border-3 border-[#bbaf48] rounded-full
-                     bg-gradient-to-br from-[#e7dc74] via-[#a1973e] to-[#ccc375]
-                     text-[#31312f] hover:text-[aliceblue]
-                     shadow-[5px_5px_15px_rgba(0,0,0,0.3),-5px_-5px_10px_rgba(255,255,255,0.1)]
-                     hover:shadow-[8px_8px_20px_rgba(0,0,0,0.4),-5px_-5px_15px_rgba(255,255,255,0.2)]
-                     transition-all duration-800 ease-in-out
-                     hover:scale-110"
-        >
-          {t("booking.takeout")}
-        </button>
+      <div className="min-h-screen">
+        <div className="w-[70%] mx-auto 
+                      flex flex-col lg:flex-row justify-evenly items-center text-center 
+                      pt-0 mb-[150px] gap-10 lg:gap-20
+                      px-5 sm:px-[50px] lg:px-[100px] xl:px-[200px]">
+          <button
+            onClick={() => navigate("/Order")}
+            className="group relative w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] 
+                     lg:w-[300px] lg:h-[300px] xl:w-[400px] xl:h-[400px]
+                     overflow-hidden rounded-full
+                     transition-all duration-500 ease-out
+                     shadow-[0_0_20px_rgba(0,0,0,0.3)]
+                     hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
+                     active:scale-95"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center
+                       transition-all duration-700 ease-out
+                       group-hover:scale-110 group-hover:blur-[0px]
+                       blur-[3px] brightness-[0.8]
+                       group-hover:brightness-[1.1]"
+              style={{
+                backgroundImage: "url('https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+              }}
+            />
+            
+            <div className="absolute inset-0 rounded-full
+                          border-2 border-white/20
+                          bg-black/30 backdrop-blur-[2px]
+                          group-hover:border-white/40
+                          group-hover:bg-black/20
+                          group-hover:backdrop-blur-[1px]
+                          transition-all duration-500
+                          group-hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.3)]" />
 
-        <button
-          onClick={() => navigate("/Reservation")}
-          className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px] xl:w-[400px] xl:h-[400px]
-                     flex items-center justify-center
-                     border-3 border-[#bbaf48] rounded-full
-                     bg-gradient-to-br from-[#e7dc74] via-[#a1973e] to-[#ccc375]
-                     text-[#31312f] hover:text-[aliceblue]
-                     shadow-[5px_5px_15px_rgba(0,0,0,0.3),-5px_-5px_10px_rgba(255,255,255,0.1)]
-                     hover:shadow-[8px_8px_20px_rgba(0,0,0,0.4),-5px_-5px_15px_rgba(255,255,255,0.2)]
-                     transition-all duration-800 ease-in-out
-                     hover:scale-110"
-        >
-          {t("booking.dineIn")}
-        </button>
+            <span className="relative z-10
+                         text-[28px] sm:text-[36px] lg:text-[48px] xl:text-[58px]
+                         font-verdana font-bold tracking-[5px]
+                         text-main-color-yellow drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]
+                         transition-all duration-500">
+              {t("booking.takeout")}
+            </span>
+          </button>
+
+          <button
+            onClick={() => navigate("/Reservation")}
+            className="group relative w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] 
+                     lg:w-[300px] lg:h-[300px] xl:w-[400px] xl:h-[400px]
+                     overflow-hidden rounded-full
+                     transition-all duration-500 ease-out
+                     shadow-[0_0_20px_rgba(0,0,0,0.3)]
+                     hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
+                     active:scale-95"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center
+                       transition-all duration-700 ease-out
+                       group-hover:scale-110 group-hover:blur-[0px]
+                       blur-[3px] brightness-[0.8]
+                       group-hover:brightness-[1.1]"
+              style={{
+                backgroundImage: "url('https://images.pexels.com/photos/2323398/pexels-photo-2323398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+              }}
+            />
+            
+            <div className="absolute inset-0 rounded-full
+                          border-2 border-white/20
+                          bg-black/30 backdrop-blur-[2px]
+                          group-hover:border-white/40
+                          group-hover:bg-black/20
+                          group-hover:backdrop-blur-[1px]
+                          transition-all duration-500
+                          group-hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.3)]" />
+
+            <span className="relative z-10
+                         text-[28px] sm:text-[36px] lg:text-[48px] xl:text-[58px]
+                         font-verdana font-bold tracking-[5px]
+                         text-main-color-yellow drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]
+                         transition-all duration-500">
+              {t("booking.dineIn")}
+            </span>
+          </button>
+        </div>
       </div>
     </>
   );
