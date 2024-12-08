@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/i18n/index.js";
 import { useUserStore } from "@/store/lang.js";
 import { useCartStore } from "@/store/shopping";
+import { useAuthStore } from "@/store/auth";
 
 const languageList = {
   zh: "zh_TW",
@@ -24,7 +25,6 @@ const languageList = {
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -33,6 +33,7 @@ const Header = () => {
   const { language, setLanguage } = useUserStore();
   const cartItems = useCartStore((state) => state.cartItems);
   const [isCartAnimating, setIsCartAnimating] = useState(false);
+  const { isLoggedIn, logout: authLogout } = useAuthStore();
 
   const cartItemCount = cartItems.reduce(
     (total, item) => total + item.numbers,
@@ -47,9 +48,6 @@ const Header = () => {
   }, [cartItemCount]);
 
   useEffect(() => {
-    const token = getToken();
-    setIsLoggedIn(!!token);
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -70,8 +68,8 @@ const Header = () => {
 
   const handleLogout = () => {
     removeToken();
-    setIsLoggedIn(false);
-    setShowDropdown(false);
+    authLogout();
+    localStorage.removeItem("currentUser");
     navigate("/login");
   };
 
@@ -105,17 +103,19 @@ const Header = () => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowDropdown(false);
       }
-      
-      if (mobileMenuRef.current && 
-          !mobileMenuRef.current.contains(event.target) && 
-          !event.target.closest('button[aria-label="toggle-menu"]')) {
+
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !event.target.closest('button[aria-label="toggle-menu"]')
+      ) {
         setIsMobileMenuOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -173,9 +173,10 @@ const Header = () => {
           className={`
             fixed top-24 left-0 w-full bg-black/95 
             transform transition-all duration-500 ease-in-out lg:hidden
-            ${isMobileMenuOpen 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 -translate-y-full pointer-events-none'
+            ${
+              isMobileMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-full pointer-events-none"
             }
             z-20
           `}
@@ -189,9 +190,9 @@ const Header = () => {
                 style={{
                   transitionDelay: `${index * 100}ms`,
                   opacity: isMobileMenuOpen ? 1 : 0,
-                  transform: isMobileMenuOpen 
-                    ? 'translateY(0)' 
-                    : 'translateY(-20px)'
+                  transform: isMobileMenuOpen
+                    ? "translateY(0)"
+                    : "translateY(-20px)",
                 }}
               >
                 <button

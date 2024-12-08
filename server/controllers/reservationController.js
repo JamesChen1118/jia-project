@@ -19,7 +19,7 @@ const reservationController = {
                 throw new Error('此座位已被預訂');
             }
 
-            const reservation = await Reservation.create({
+            const reservationData = {
                 name,
                 date,
                 time,
@@ -66,14 +66,17 @@ const reservationController = {
 
     getUserReservations: asyncHandler(async (req, res) => {
         try {
+            console.log('Fetching reservations for user:', req.user._id);
             const reservations = await Reservation.find({
                 user: req.user._id,
                 status: { $ne: 'cancelled' }
             }).sort('-date');
 
+            console.log('Found reservations:', reservations);
             res.json(reservations);
         } catch (error) {
-            res.status(400);
+            console.error('Error in getUserReservations:', error);
+            res.status(500);
             throw new Error('獲取訂位記錄失敗');
         }
     })

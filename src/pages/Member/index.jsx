@@ -26,14 +26,28 @@ const Member = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [userData, reservationsData] = await Promise.all([
+        const [userData, reservationsData] = await Promise.allSettled([
           userApi.getUser(),
           reservationApi.getUserReservations(),
         ]);
 
-        setUserData(userData);
-        setReservations(reservationsData);
-        console.log("Fetched reservations:", reservationsData);
+        console.log("User data response:", userData);
+        console.log("Reservations response:", reservationsData);
+
+        if (userData.status === "fulfilled") {
+          setUserData(userData.value);
+        } else {
+          console.error("Failed to fetch user data:", userData.reason);
+        }
+
+        if (reservationsData.status === "fulfilled") {
+          setReservations(reservationsData.value);
+        } else {
+          console.error(
+            "Failed to fetch reservations:",
+            reservationsData.reason
+          );
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {

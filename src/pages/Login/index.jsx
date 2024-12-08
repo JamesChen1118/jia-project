@@ -7,6 +7,7 @@ import { useAuthStore } from "@/store/auth";
 import ScrollToContent from "@/components/ScrollToContent";
 import Swal from "sweetalert2";
 import GoTop from "@/components/GoTop";
+import { setToken } from "@/utils/auth";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -28,15 +29,16 @@ const Login = () => {
 
     try {
       const data = await userApi.login(username, password);
+      setToken(data.token);
       login(data.token, data);
 
-      Swal.fire({
+      await Swal.fire({
         title: t("login.messages.success"),
         icon: "success",
         confirmButtonText: t("common.confirm"),
-      }).then(() => {
-        navigate("/member");
       });
+
+      navigate("/member", { replace: true });
     } catch (error) {
       console.error("Login error:", error);
       Swal.fire({

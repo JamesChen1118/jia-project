@@ -17,7 +17,7 @@ export const reservationApi = {
                 reservationData.userId = currentUser.id;
             }
 
-            const { data } = await server.post("/reservations", reservationData, config);
+            const { data } = await server.post("/api/reservations", reservationData, config);
             return data;
         } catch (error) {
             console.error('Reservation error:', error.response || error);
@@ -36,7 +36,7 @@ export const reservationApi = {
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            const { data } = await server.get("/reservations/user", config);
+            const { data } = await server.get("/api/reservations/user", config);
             console.log("Fetched reservations:", data);
             return data;
         } catch (error) {
@@ -47,7 +47,7 @@ export const reservationApi = {
 
     checkTableAvailability: async (date, time, tableNo) => {
         try {
-            const { data } = await server.get(`/reservations/check`, {
+            const { data } = await server.get(`/api/reservations/check`, {
                 params: { date, time, tableNo }
             });
             return data.available;
