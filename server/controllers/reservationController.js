@@ -7,7 +7,6 @@ const reservationController = {
         const userId = req.user?._id;
 
         try {
-            // 檢查該時段是否已有訂位
             const existingReservation = await Reservation.findOne({
                 date: new Date(date),
                 time,
@@ -20,8 +19,7 @@ const reservationController = {
                 throw new Error('此座位已被預訂');
             }
 
-            // 創建訂位記錄
-            const reservationData = {
+            const reservation = await Reservation.create({
                 name,
                 date,
                 time,
@@ -32,7 +30,6 @@ const reservationController = {
                 status: 'pending'
             };
 
-            // 只有在用戶已登入時才添加 user 欄位
             if (userId) {
                 reservationData.user = userId;
             }
@@ -70,7 +67,8 @@ const reservationController = {
     getUserReservations: asyncHandler(async (req, res) => {
         try {
             const reservations = await Reservation.find({
-                user: req.user._id
+                user: req.user._id,
+                status: { $ne: 'cancelled' }
             }).sort('-date');
 
             res.json(reservations);

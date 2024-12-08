@@ -2,15 +2,14 @@ import asyncHandler from 'express-async-handler';
 import Product from '../models/product.js';
 
 const productController = {
-    getProducts: asyncHandler(async (req, res) => {
+    getAllProducts: asyncHandler(async (req, res) => {
         const products = await Product.find({});
         res.json(products);
     }),
 
     getProductsByCategory: asyncHandler(async (req, res) => {
         const { category } = req.params;
-        const query = category === 'all' ? {} : { category };
-        const products = await Product.find(query);
+        const products = await Product.find({ category });
         res.json(products);
     }),
 
@@ -20,9 +19,10 @@ const productController = {
             res.json(product);
         } else {
             res.status(404);
-            throw new Error('Product not found');
+            throw new Error('找不到產品');
         }
     })
 };
 
 export default productController;
+

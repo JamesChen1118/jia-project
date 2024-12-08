@@ -16,13 +16,11 @@ const ProductItem = ({
   const { t } = useTranslation();
   const { cartItems, addToCart, updateQuantity } = useCartStore();
 
-  // 查找當前商品在購物車中的數量
   const currentItem = cartItems.find((item) => item.name === name);
   const currentQuantity = currentItem ? currentItem.numbers : 0;
 
   const handleQuantityChange = (change) => {
     if (change > 0) {
-      // 添加到購物車
       addToCart({ id, name, price, image }, 1);
       Swal.fire({
         title: t(`products.items.${name}.name`),
@@ -40,7 +38,6 @@ const ProductItem = ({
         },
       });
     } else if (change < 0 && currentQuantity > 0) {
-      // 從購物車中減少
       updateQuantity(currentItem.id, -1);
     }
   };

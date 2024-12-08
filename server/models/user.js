@@ -9,10 +9,22 @@ const orderSchema = new mongoose.Schema({
 });
 
 const historySchema = new mongoose.Schema({
-    productName: String,
-    date: Date,
-    quantity: Number,
-    amount: Number
+    productName: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    }
 });
 
 const reservationSchema = new mongoose.Schema({

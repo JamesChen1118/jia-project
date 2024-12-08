@@ -1,5 +1,4 @@
-// server/controllers/orderController.js
-import asyncHandler from 'express-async-handler';
+    import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
 import User from '../models/user.js';
 
@@ -8,72 +7,97 @@ const orderController = {
         try {
             const { orderItems, paymentInfo, totalPrice } = req.body;
             const userId = req.user._id;
+            const user = await User.findById(userId);
+            
+            if (!user) {
+                return res.status(404).json({ message: '找不到用戶' });
+            }
 
-            const orderNumber = `JIA${Date.now()}`;
+            // 格式化訂單項目
+            const formattedItems = orderItems.map(item => ({
+                name: item.name,
+                quantity: item.numbers,
+                price: item.price
+            }));
 
+            // 創建訂單
             const order = await Order.create({
                 user: userId,
-                orderNumber,
-                items: orderItems.map(item => ({
-                    productId: item.id,
-                    name: item.name,
-                    quantity: item.numbers,
-                    price: item.price
-                })),
+                orderNumber: `JIA${Date.now()}`,
+                items: formattedItems,
                 totalAmount: totalPrice,
                 paymentInfo: {
                     cardNumber: paymentInfo.cardNumbers.slice(-4),
                     paymentStatus: 'completed',
                     paymentDate: new Date()
                 },
-                status: 'processing'
+                customerInfo: {
+                    username: user.username,
+                    phone: user.phone,
+                    email: user.email
+                }
             });
 
+            // 更新用戶的訂單歷史
             await User.findByIdAndUpdate(userId, {
                 $push: {
                     orders: {
                         orderNumber: order.orderNumber,
                         date: order.createdAt,
                         amount: order.totalAmount,
-                        status: order.status
+                        status: 'completed'
                     },
                     history: orderItems.map(item => ({
                         productName: item.name,
-                        date: order.createdAt,
+                        date: new Date(),
                         quantity: item.numbers,
                         amount: item.price * item.numbers
                     }))
                 }
             });
 
-            res.status(201).json(order);
+            res.status(201).json({
+                success: true,
+                order,
+                message: '訂單創建成功'
+            });
+
         } catch (error) {
-            console.error('Order creation error:', error);
-            res.status(500).json({ message: error.message });
+            console.error('訂單創建錯誤:', error);
+            res.status(500).json({
+                success: false,
+                message: '訂單創建失敗',
+                error: error.message
+            });
         }
     }),
 
     getUserOrders: asyncHandler(async (req, res) => {
-        const orders = await Order.find({ user: req.user._id })
-            .sort('-createdAt');
-        res.json(orders);
+        try {
+            const orders = await Order.find({ user: req.user._id })
+                .sort('-createdAt');
+            res.json(orders);
+        } catch (error) {
+            res.status(500).json({ message: '獲取訂單失敗' });
+        }
     }),
 
-    // 添加這個方法
-    getOrderById: asyncHandler(async (req, res) => {
+    getUserHistory: asyncHandler(async (req, res) => {
         try {
-            const order = await Order.findById(req.params.id);
-            if (order && order.user.toString() === req.user._id.toString()) {
-                res.json(order);
-            } else {
-                res.status(404);
-                throw new Error('Order not found');
+            const user = await User.findById(req.user._id)
+                .select('history')
+                .sort({ 'history.date': -1 });
+            
+            if (!user) {
+                return res.status(404).json({ message: '找不到用戶' });
             }
+            
+            res.json(user.history || []);
         } catch (error) {
-            console.error('Get order by id error:', error);
-            res.status(404).json({ message: 'Order not found' });
+            res.status(500).json({ message: '獲取消費記錄失敗' });
         }
     })
 };
 
 export default orderController;
+

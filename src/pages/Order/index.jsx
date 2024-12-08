@@ -20,14 +20,13 @@ const categories = [
 
 const Order = () => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("all"); // 修改這裡
+  const [selectedCategory, setSelectedCategory] = useState("all"); 
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getProductsByCategory = async (category = "all") => {
-    // 修改這裡
     try {
       const data = await productApi.getProductsByCategory(category);
       console.log(`Fetched ${data.length} products for category:`, category);
@@ -44,35 +43,37 @@ const Order = () => {
   };
 
   useEffect(() => {
-    getProductsByCategory("all"); // 修改這裡
+    getProductsByCategory("all"); 
   }, []);
 
   return (
     <>
       <GoTop />
       <ScrollToContent />
-      <div className="w-[90%] lg:w-[80%] mx-auto mt-[120px] flex flex-col lg:flex-row">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden w-full bg-[#333] text-main-color-yellow py-4 rounded-t-[15px] text-xl font-bold"
-        >
-          {t("home.menu.categoryTitle")} ▼
-        </button>
+      <div className="w-[90%] lg:w-[80%] mx-auto mt-[120px] flex flex-col lg:flex-row relative">
+        <div className="lg:hidden w-full">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-full bg-[#333] text-main-color-yellow py-4 rounded-t-[15px] text-xl font-bold"
+          >
+            {t("home.menu.categoryTitle")} {isMobileMenuOpen ? "▲" : "▼"}
+          </button>
+        </div>
 
         <div
-          className={`${isMobileMenuOpen ? "block" : "hidden"}
-           lg:block w-full lg:w-[20%] bg-[#333] rounded-b-[15px] lg:rounded-[15px] p-[20px] lg:p-[30px] text-white sticky top-24`}
+          className={`${
+            isMobileMenuOpen ? "block" : "hidden"
+          } lg:block w-full lg:w-[20%] bg-[#333] rounded-b-[15px] lg:rounded-[15px] 
+          p-[20px] lg:p-[30px] text-white lg:sticky lg:top-24 lg:h-fit`}
         >
-          <h2 className="text-2xl lg:text-[30px] font-bold text-main-color-yellow text-center py-3 lg:py-5">
-            {t("home.menu.categoryTitle")}
-          </h2>
-          <ul className="flex flex-wrap lg:flex-col gap-3 justify-center items-center">
+                  <ul className="flex flex-wrap lg:flex-col gap-3 justify-center items-center">
             {categories.map((category) => (
               <li
                 key={category.name}
                 onClick={() => handleCategoryClick(category.name)}
-                className={`inline-block w-[120px] lg:w-[150px] py-2 lg:py-2.5 bg-main-color-yellow 
-                           rounded-xl font-medium text-black text-lg lg:text-2xl text-center
+                className={`inline-block w-1/4 lg:w-full py-2 lg:py-2.5 
+                           bg-main-color-yellow rounded-xl font-medium 
+                           text-black text-lg lg:text-2xl text-center
                            transition-all duration-700 ease-in-out 
                            hover:text-white hover:font-black hover:tracking-[3px] 
                            hover:scale-110 cursor-pointer
@@ -94,20 +95,12 @@ const Order = () => {
             {products.map((product) => (
               <ProductItem
                 key={product._id}
-                id={product._id} // 修改這裡
+                _id={product._id}
                 image={product.image}
                 category={product.category}
                 name={product.name}
                 price={product.price}
                 description={product.description}
-                onImageClick={() => {
-                  setSelectedProduct(product);
-                  setIsModalOpen(true);
-                }}
-                onTitleClick={() => {
-                  setSelectedProduct(product);
-                  setIsModalOpen(true);
-                }}
               />
             ))}
           </div>

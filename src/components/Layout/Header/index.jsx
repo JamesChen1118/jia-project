@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -97,6 +97,28 @@ const Header = () => {
     translationKey: `header.${item.name}`,
   }));
 
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+      
+      if (mobileMenuRef.current && 
+          !mobileMenuRef.current.contains(event.target) && 
+          !event.target.closest('button[aria-label="toggle-menu"]')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
@@ -115,12 +137,16 @@ const Header = () => {
           </button>
         </h2>
 
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden text-main-text-white text-2xl p-2 hover:text-main-color-yellow"
-        >
-          <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
-        </button>
+        <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+          <button
+            aria-label="toggle-menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-main-text-white text-2xl p-2 hover:text-main-color-yellow
+                      transition-all duration-300 ease-in-out hover:scale-110"
+          >
+            <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
+          </button>
+        </div>
 
         <ul className="hidden lg:flex items-center justify-center">
           {navItems.map((item) => (
@@ -143,17 +169,30 @@ const Header = () => {
         </ul>
 
         <div
+          ref={mobileMenuRef}
           className={`
-            fixed top-24 left-0 w-full bg-black/95 transform transition-transform duration-300 ease-in-out lg:hidden
-            ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+            fixed top-24 left-0 w-full bg-black/95 
+            transform transition-all duration-500 ease-in-out lg:hidden
+            ${isMobileMenuOpen 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-full pointer-events-none'
+            }
             z-20
           `}
         >
           <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <li
                 key={item.name}
-                className="w-full text-center flex items-center justify-center"
+                className="w-full text-center flex items-center justify-center
+                           transform transition-all duration-500 ease-in-out"
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  transform: isMobileMenuOpen 
+                    ? 'translateY(0)' 
+                    : 'translateY(-20px)'
+                }}
               >
                 <button
                   onClick={() => {
@@ -170,91 +209,11 @@ const Header = () => {
                 </button>
               </li>
             ))}
-
-            <div className="w-4/5 h-px bg-main-color-yellow/30 my-4"></div>
-
-            {isLoggedIn ? (
-              <>
-                <li className="w-full text-center">
-                  <button
-                    onClick={() => {
-                      navigate("/member");
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                  >
-                    <FontAwesomeIcon icon={faUser} />
-                    {t("header.member")}
-                  </button>
-                </li>
-                <li className="w-full text-center">
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                  >
-                    <FontAwesomeIcon icon={faSignOutAlt} />
-                    {t("header.logout")}
-                  </button>
-                </li>
-              </>
-            ) : (
-              <li className="w-full text-center">
-                <button
-                  onClick={() => {
-                    navigate("/login");
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 flex items-center justify-center gap-2"
-                >
-                  <FontAwesomeIcon icon={faSignInAlt} />
-                  {t("header.login")}
-                </button>
-              </li>
-            )}
-
-            <li className="w-full text-center">
-              <Link
-                to="/shoppingCart"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-main-text-white hover:text-main-color-yellow text-lg w-full py-3 
-                           flex items-center justify-center gap-2"
-              >
-                <FontAwesomeIcon
-                  icon={faShoppingCart}
-                  className={`${isCartAnimating ? "animate-bounce" : ""}`}
-                />
-                {t("header.cart")}
-                {cartItemCount > 0 && (
-                  <span
-                    className="absolute top-2 ml-6 bg-red-500 text-white text-xs 
-                                  w-5 h-5 rounded-full flex items-center justify-center
-                                  animate-pulse"
-                  >
-                    {cartItemCount}
-                  </span>
-                )}
-              </Link>
-            </li>
-
-            <li className="w-full text-center">
-              <button
-                onClick={handleLanguageChange}
-                className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
-              >
-                <FontAwesomeIcon icon={faGlobe} />
-                <span className="ml-1">
-                  {language === "zh_TW" ? "En" : "繁中"}
-                </span>
-              </button>
-            </li>
           </ul>
         </div>
 
-        <div className="hidden lg:flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
-          <div className="relative">
+        <div className="flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown(!showDropdown)}
               className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"

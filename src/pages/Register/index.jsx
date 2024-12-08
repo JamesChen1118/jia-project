@@ -24,7 +24,6 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      // 驗證密碼
       if (formData.password !== formData.confirmPassword) {
         Swal.fire({
           title: "錯誤",
@@ -141,12 +140,19 @@ const Register = () => {
                            bg-white/20 border border-main-color-yellow
                            text-center text-xl text-main-color-yellow 
                            shadow-[-1px_-1px_5px_rgba(255,255,255,0.3)]
-                           outline-none placeholder:text-[rgba(255,170,13,0.7)]
-                           placeholder:text-xl focus:border-2 
+                           outline-none 
+                           placeholder:text-[rgba(255,170,13,0.7)]
+                           placeholder:text-xl 
+                           focus:border-2 
                            focus:border-main-color-yellow
                            focus:shadow-[-1px_-1px_5px_rgba(255,69,0,0.3)]
-                           transition-all duration-300"
+                           transition-all duration-300
+                           [&:-webkit-autofill]:bg-[rgba(255,255,255,0.05)]
+                           [&:-webkit-autofill]:text-main-color-yellow
+                           [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(255,170,13)]
+                           [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]"
                   required
+                  autoComplete="off"
                 />
                 <input
                   type="email"

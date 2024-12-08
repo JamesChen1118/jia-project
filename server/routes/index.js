@@ -7,11 +7,17 @@ import orderRoutes from './module/orderRoutes.js';
 
 const router = express.Router();
 
-// API Routes
 router.use('/users', userRoutes);
 router.use('/products', productRoutes);
 router.use('/news', newsRoutes);
 router.use('/reservations', reservationRoutes);
 router.use('/orders', orderRoutes);
+
+router.use((err, req, res, next) => {
+    console.error('Router error:', err);
+    res.status(err.status || 500).json({
+        message: err.message || '服務器錯誤'
+    });
+});
 
 export default router;

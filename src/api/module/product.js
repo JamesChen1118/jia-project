@@ -3,7 +3,7 @@ import server from "../server";
 export const productApi = {
     getProducts: async () => {
         try {
-            const { data } = await server.get("/products");
+            const { data } = await server.get("/api/products");
             return data;
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -13,11 +13,11 @@ export const productApi = {
 
     getProductsByCategory: async (category) => {
         try {
-            const { data } = await server.get(
-                category === 'all'
-                    ? '/products'
-                    : `/products/category/${category}`
-            );
+            let url = '/api/products';
+            if (category !== 'all') {
+                url = `/api/products/category/${category}`;
+            }
+            const { data } = await server.get(url);
             return data;
         } catch (error) {
             console.error('Error fetching products by category:', error);
@@ -25,3 +25,4 @@ export const productApi = {
         }
     }
 };
+
