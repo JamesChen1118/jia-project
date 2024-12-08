@@ -5,7 +5,7 @@ import { reservationApi } from "@/api/module/reservation";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Member = () => {
   const [memberTable, setMemberTable] = useState("info");
@@ -14,6 +14,7 @@ const Member = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const currentUser = userApi.getCurrentUser();
@@ -48,6 +49,12 @@ const Member = () => {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    if (location.state?.activeTab) {
+      setMemberTable(location.state.activeTab);
+    }
+  }, [location]);
+
   const getStatusColor = (status) => {
     switch (status) {
       case "pending":
@@ -62,24 +69,11 @@ const Member = () => {
   };
 
   const renderReservations = () => {
-    if (isLoading) {
-      return (
-        <tr>
-          <td
-            colSpan="5"
-            className="text-center text-main-color-yellow/70 py-4"
-          >
-            載入中...
-          </td>
-        </tr>
-      );
-    }
-
     if (!reservations || reservations.length === 0) {
       return (
         <tr>
           <td
-            colSpan="5"
+            colSpan="4"
             className="text-center text-main-color-yellow/70 py-4"
           >
             {t("member.reservation.noRecords")}
@@ -89,21 +83,13 @@ const Member = () => {
     }
 
     return reservations.map((reservation) => (
-      <tr
-        key={reservation._id}
-        className="border-b border-[rgba(230,149,57,0.2)]"
-      >
+      <tr key={reservation._id} className="hover:bg-member-hover">
         <td className="p-4 text-main-color-yellow">
           {new Date(reservation.date).toLocaleDateString()}
         </td>
-        <td className="p-4 text-white">{reservation.time}</td>
-        <td className="p-4 text-main-color-yellow">
-          {t("member.reservation.peopleCount", { count: reservation.people })}
-        </td>
-        <td className="p-4 text-white">{reservation.tableNo}</td>
-        <td className={`p-4 ${getStatusColor(reservation.status)}`}>
-          {t(`member.reservation.status.${reservation.status}`)}
-        </td>
+        <td className="p-4 text-main-color-yellow">{reservation.time}</td>
+        <td className="p-4 text-main-color-yellow">{reservation.people}</td>
+        <td className="p-4 text-main-color-yellow">{reservation.tableNo}</td>
       </tr>
     ));
   };
@@ -258,9 +244,6 @@ const Member = () => {
                 </th>
                 <th className="p-4 text-left text-white">
                   {t("member.reservation.table")}
-                </th>
-                <th className="p-4 text-left text-white">
-                  {t("member.table.status")}
                 </th>
               </tr>
             </thead>

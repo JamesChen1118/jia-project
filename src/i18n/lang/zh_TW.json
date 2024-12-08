@@ -352,7 +352,7 @@
     "password": "請輸入密碼",
     "submit": "登入",
     "register_submit": "註冊",
-    "remember": "記住帳號",
+    "remember": "記��帳號",
     "register_form": {
       "username": "請填寫帳號",
       "phone": "請填寫手機號碼",
@@ -364,7 +364,9 @@
       "empty": "請輸入使用者名稱和密碼",
       "success": "登入成功",
       "fail": "登入失敗"
-    }
+    },
+    "required": "請先登入",
+    "reservation_hint": "需要登入才能進行訂位"
   },
   "common": {
     "confirm": "確定",
@@ -384,7 +386,11 @@
     "submit": "確認送出",
     "pleaseCompleteForm": "請填寫所有必填欄位",
     "successMessage": "訂位成功！我們將盡快與您聯繫確認",
-    "errorMessage": "訂位失敗，請稍後再試或直接與我們聯繫"
+    "errorMessage": "訂位失敗，請稍後再試或直接與我們聯繫",
+    "success": "預約成功！",
+    "success_message": "您可以在會員中心查看訂位資訊",
+    "fail": "預約失敗",
+    "error_message": "請稍後再試"
   },
 
   "notFound": {

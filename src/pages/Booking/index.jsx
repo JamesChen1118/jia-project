@@ -14,21 +14,40 @@ const Booking = () => {
   const handleTakeoutClick = () => {
     if (!isLoggedIn) {
       Swal.fire({
-        title: "請先登入",
-        text: "需要登入才能進行點餐",
+        title: t("login.required") || "請先登入",
+        text: t("login.reservation_hint") || "需要登入才能進行點餐",
         icon: "info",
-        confirmButtonText: "前往登入",
+        confirmButtonText: t("login.submit") || "前往登入",
         showCancelButton: true,
-        cancelButtonText: "取消",
+        cancelButtonText: t("common.cancel") || "取消",
       }).then((result) => {
         if (result.isConfirmed) {
-          // 儲存意圖去的頁面
           localStorage.setItem("intendedRoute", "/order");
           navigate("/login");
         }
       });
     } else {
       navigate("/order");
+    }
+  };
+
+  const handleDineInClick = () => {
+    if (!isLoggedIn) {
+      Swal.fire({
+        title: t("login.required") || "請先登入",
+        text: t("login.reservation_hint") || "需要登入才能進行訂位",
+        icon: "info",
+        confirmButtonText: t("login.submit") || "前往登入",
+        showCancelButton: true,
+        cancelButtonText: t("common.cancel") || "取消",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.setItem("intendedRoute", "/reservation");
+          navigate("/login");
+        }
+      });
+    } else {
+      navigate("/reservation");
     }
   };
 
@@ -88,7 +107,7 @@ const Booking = () => {
           </button>
 
           <button
-            onClick={() => navigate("/Reservation")}
+            onClick={handleDineInClick}
             className="group relative w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] 
                      lg:w-[300px] lg:h-[300px] xl:w-[400px] xl:h-[400px]
                      overflow-hidden rounded-full

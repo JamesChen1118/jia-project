@@ -37,18 +37,52 @@ const Reservation = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [selectedTable, setSelectedTable] = useState("");
+  const { user, isLoggedIn } = useAuthStore();
+
   const [formData, setFormData] = useState({
-    name: "",
+    name: user?.username || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
     date: "",
     time: "",
-    email: "",
-    phone: "",
     people: "",
     tableNo: "",
   });
-  const [email, setEmail] = useState("");
 
-  const { isLoggedIn } = useAuthStore();
+  const userFields = (
+    <>
+      <div className="w-full mb-[15px] flex">
+        <input
+          type="text"
+          value={formData.name}
+          readOnly
+          className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
+                   text-xl outline-none bg-input-bg text-main-color-yellow/70 
+                   text-center cursor-not-allowed"
+        />
+      </div>
+      <div className="w-full mb-[15px] flex">
+        <input
+          type="email"
+          value={formData.email}
+          readOnly
+          className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
+                   text-xl outline-none bg-input-bg text-main-color-yellow/70 
+                   text-center cursor-not-allowed"
+        />
+      </div>
+      <div className="w-full mb-[15px] flex">
+        <input
+          type="text"
+          value={formData.phone}
+          readOnly
+          className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
+                   text-xl outline-none bg-input-bg text-main-color-yellow/70 
+                   text-center cursor-not-allowed"
+        />
+      </div>
+    </>
+  );
 
   const handleTableClick = async (tableNo) => {
     if (!formData.date || !formData.time) {
@@ -78,7 +112,6 @@ const Reservation = () => {
         return;
       }
 
-      setSelectedTable(tableNo);
       setFormData((prev) => ({ ...prev, tableNo }));
     } catch (error) {
       console.error("檢查座位狀態失敗:", error);
@@ -94,75 +127,43 @@ const Reservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isLoggedIn) {
-      Swal.fire({
-        title: "請先登入",
-        text: "需要登入才能進行訂位",
-        icon: "warning",
-        confirmButtonText: "前往登入",
-        showCancelButton: true,
-        cancelButtonText: "取消",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login");
-        }
-      });
-      return;
-    }
-
-    if (
-      !formData.name ||
-      !formData.date ||
-      !formData.time ||
-      !formData.phone ||
-      !formData.people ||
-      !formData.tableNo
-    ) {
-      Swal.fire({
-        title: "提示",
-        text: t("reservation.pleaseCompleteForm"),
-        icon: "warning",
-        confirmButtonText: "確定",
-      });
-      return;
-    }
-
-    const phoneRegex = /^09\d{8}$/;
-    if (!phoneRegex.test(formData.phone)) {
-      Swal.fire({
-        title: "提示",
-        text: "請輸入正確的手機號碼格式",
-        icon: "warning",
-        confirmButtonText: "確定",
-      });
-      return;
-    }
-
-    const reservationData = {
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      date: formData.date,
-      time: formData.time,
-      people: formData.people,
-      tableNo: formData.tableNo,
-    };
-
     try {
+      if (
+        !formData.date ||
+        !formData.time ||
+        !formData.people ||
+        !formData.tableNo
+      ) {
+        Swal.fire({
+          title: "提示",
+          text: t("reservation.pleaseCompleteForm"),
+          icon: "warning",
+          confirmButtonText: "確定",
+        });
+        return;
+      }
+
+      const reservationData = {
+        ...formData,
+        userId: user._id,
+      };
+
       await reservationApi.addReservation(reservationData);
-      Swal.fire({
-        title: "預約成功！",
-        text: "您可以在會員中心查看訂位資訊",
+
+      await Swal.fire({
+        title: t("reservation.success"),
+        text: t("reservation.success_message"),
         icon: "success",
         confirmButtonText: "確定",
-      }).then(() => {
-        navigate("/member");
+      });
+
+      navigate("/member", {
+        state: { activeTab: "reservations" },
       });
     } catch (error) {
-      console.error("預約失敗:", error);
       Swal.fire({
-        title: "預約失敗",
-        text: error.message || "請稍後再試",
+        title: t("reservation.fail"),
+        text: error.message || t("reservation.error_message"),
         icon: "error",
         confirmButtonText: "確定",
       });
@@ -206,38 +207,7 @@ const Reservation = () => {
               {t("reservation.title")}
             </h1>
 
-            <div className="w-full mb-[15px] flex">
-              <input
-                type="text"
-                placeholder={t("reservation.namePlaceholder")}
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
-                         text-xl outline-none bg-input-bg text-main-color-yellow 
-                         text-center transition-all duration-300
-                         focus:shadow-input-focus focus:border-[orangered]
-                         placeholder:text-main-color-yellow"
-              />
-            </div>
-
-            <div className="w-full mb-[15px] flex">
-              <input
-                type="email"
-                placeholder={t("reservation.emailPlaceholder")}
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
-                         text-xl outline-none bg-[rgba(255,255,255,0.2)] 
-                         text-main-color-yellow text-center transition-all duration-300
-                         focus:shadow-input-focus focus:border-[orangered]
-                         placeholder:text-main-color-yellow"
-                required
-              />
-            </div>
+            <div className="w-full mb-[15px] flex">{userFields}</div>
 
             <div className="w-full mb-[15px] flex">
               <input
@@ -320,25 +290,6 @@ const Reservation = () => {
               />
             </div>
 
-            <div className="w-full mb-[15px] flex">
-              <input
-                type="number"
-                placeholder={t("reservation.phonePlaceholder")}
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                className="w-full p-[10px] border border-main-color-yellow rounded-[5px] 
-                         text-xl outline-none bg-[rgba(255,255,255,0.2)] 
-                         text-main-color-yellow text-center transition-all duration-300
-                         focus:shadow-input-focus focus:border-[orangered]
-                         placeholder:text-main-color-yellow
-                         [appearance:textfield]
-                         [&::-webkit-outer-spin-button]:appearance-none
-                         [&::-webkit-inner-spin-button]:appearance-none"
-              />
-            </div>
-
             <button
               onClick={handleSubmit}
               className="px-[15px] py-[10px] font-bold mt-[25px] mx-auto mb-0 
@@ -362,7 +313,7 @@ const Reservation = () => {
                     border-2 transition-all duration-300 
                     backdrop-blur-sm
                     ${
-                      selectedTable === tableId
+                      formData.tableNo === tableId
                         ? "border-main-color-yellow bg-main-color-yellow/10 text-main-color-yellow shadow-lg"
                         : "border-main-color-yellow/30 hover:border-main-color-yellow hover:bg-black/20"
                     }
@@ -373,7 +324,7 @@ const Reservation = () => {
                       alt={`Table ${tableId}`}
                       className={`w-14 h-14 object-contain transition-all duration-300
                      ${
-                       selectedTable === tableId
+                       formData.tableNo === tableId
                          ? "opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
                          : "opacity-80 group-hover:opacity-100"
                      }`}
@@ -382,7 +333,7 @@ const Reservation = () => {
                       className={`ml-3 font-bold text-2xl tracking-wider
                         transition-all duration-300
                         ${
-                          selectedTable === tableId
+                          formData.tableNo === tableId
                             ? "text-main-color-yellow drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
                             : "text-main-color-yellow/70 group-hover:text-main-color-yellow"
                         }`}
