@@ -31,25 +31,15 @@ const Member = () => {
           reservationApi.getUserReservations(),
         ]);
 
-        console.log("User data response:", userData);
-        console.log("Reservations response:", reservationsData);
-
         if (userData.status === "fulfilled") {
           setUserData(userData.value);
-        } else {
-          console.error("Failed to fetch user data:", userData.reason);
         }
 
         if (reservationsData.status === "fulfilled") {
           setReservations(reservationsData.value);
-        } else {
-          console.error(
-            "Failed to fetch reservations:",
-            reservationsData.reason
-          );
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // 保留錯誤處理，但不輸出到控制台
       } finally {
         setIsLoading(false);
       }

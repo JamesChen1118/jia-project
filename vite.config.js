@@ -20,6 +20,10 @@ export default defineConfig({
         target: 'http://localhost:6001',
         changeOrigin: true,
         secure: false,
+        ws: true,
+        onError: (err) => {
+          console.log('Proxy error:', err);
+        }
       }
     }
   },

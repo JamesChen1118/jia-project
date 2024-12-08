@@ -20,7 +20,7 @@ const categories = [
 
 const Order = () => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("all"); 
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -29,10 +29,8 @@ const Order = () => {
   const getProductsByCategory = async (category = "all") => {
     try {
       const data = await productApi.getProductsByCategory(category);
-      console.log(`Fetched ${data.length} products for category:`, category);
       setProducts(data);
     } catch (error) {
-      console.error("Error fetching products:", error);
       setProducts([]);
     }
   };
@@ -43,7 +41,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    getProductsByCategory("all"); 
+    getProductsByCategory("all");
   }, []);
 
   return (
@@ -66,7 +64,7 @@ const Order = () => {
           } lg:block w-full lg:w-[20%] bg-[#333] rounded-b-[15px] lg:rounded-[15px] 
           p-[20px] lg:p-[30px] text-white lg:sticky lg:top-24 lg:h-fit`}
         >
-                  <ul className="flex flex-wrap lg:flex-col gap-3 justify-center items-center">
+          <ul className="flex flex-wrap lg:flex-col gap-3 justify-center items-center">
             {categories.map((category) => (
               <li
                 key={category.name}

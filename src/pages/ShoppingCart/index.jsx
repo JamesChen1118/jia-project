@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrollToContent from "@/components/ScrollToContent";
 import { useCartStore } from "@/store/shopping";
-import { useAuthStore } from "@/store/auth";
+import CartButton from "@/components/CartButton";
 import { orderApi } from "@/api/module/order.js";
+import { useAuthStore } from "@/store/auth";
 import Swal from "sweetalert2";
 import GoTop from "@/components/GoTop";
 
@@ -46,7 +47,7 @@ const ShoppingCart = () => {
 
       const order = {
         orderItems: cartItems.map((item) => ({
-          id: item.id,
+          id: item._id,
           name: item.name,
           numbers: item.numbers,
           price: item.price,
@@ -100,24 +101,6 @@ const ShoppingCart = () => {
     });
   };
 
-  const CartButtons = ({ onIncrease, onDecrease, quantity }) => (
-    <div className="flex items-center gap-2">
-      <button
-        onClick={onDecrease}
-        className="px-2 py-1 bg-main-color-yellow text-black rounded hover:bg-[rgb(255,120,0)] transition-colors"
-      >
-        -
-      </button>
-      <span className="text-main-color-yellow">{quantity}</span>
-      <button
-        onClick={onIncrease}
-        className="px-2 py-1 bg-main-color-yellow text-black rounded hover:bg-[rgb(255,120,0)] transition-colors"
-      >
-        +
-      </button>
-    </div>
-  );
-
   return (
     <>
       <GoTop />
@@ -162,15 +145,22 @@ const ShoppingCart = () => {
                   </div>
                 </div>
 
-                <CartButtons
-                  onIncrease={() =>
-                    handleQuantityChange(item.id, item.quantity + 1)
-                  }
-                  onDecrease={() =>
-                    handleQuantityChange(item.id, item.quantity - 1)
-                  }
-                  quantity={item.quantity}
-                />
+                <div className="flex items-center">
+                  <CartButton
+                    type="minus"
+                    onClick={() => updateQuantity(item._id, -1)}
+                    disabled={item.numbers <= 1}
+                  />
+                  <CartButton type="quantity" value={item.numbers} />
+                  <CartButton
+                    type="plus"
+                    onClick={() => updateQuantity(item._id, 1)}
+                  />
+                  <CartButton
+                    type="delete"
+                    onClick={() => removeItem(item._id)}
+                  />
+                </div>
               </div>
             ))}
           </div>

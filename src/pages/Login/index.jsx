@@ -38,7 +38,13 @@ const Login = () => {
         confirmButtonText: t("common.confirm"),
       });
 
-      navigate("/member", { replace: true });
+      const intendedRoute = localStorage.getItem("intendedRoute");
+      if (intendedRoute) {
+        localStorage.removeItem("intendedRoute");
+        navigate(intendedRoute);
+      } else {
+        navigate("/member");
+      }
     } catch (error) {
       console.error("Login error:", error);
       Swal.fire({
