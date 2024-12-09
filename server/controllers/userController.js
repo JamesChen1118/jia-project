@@ -24,48 +24,58 @@ const userController = {
     }),
 
     register: asyncHandler(async (req, res) => {
-        try {
-            const { username, password, email, phone, confirmPassword } = req.body;
+        const { username, phone, email, password } = req.body;
 
-            if (password !== confirmPassword) {
+        try {
+            // 檢查必要欄位
+            if (!username || !phone || !email || !password) {
                 res.status(400);
-                throw new Error('密碼不一致');
+                throw new Error('所有欄位都是必填的');
             }
 
-            const userExists = await User.findOne({
-                $or: [{ username }, { email }]
-            });
-
+            // 檢查用戶名是否已存在
+            const userExists = await User.findOne({ username });
             if (userExists) {
                 res.status(400);
-                throw new Error('此帳號或信箱已被註冊');
+                throw new Error('用戶名已被使用');
             }
 
+            // 檢查郵箱是否已存在
+            const emailExists = await User.findOne({ email });
+            if (emailExists) {
+                res.status(400);
+                throw new Error('郵箱已被使用');
+            }
+
+            // 創建新用戶
             const user = await User.create({
                 username,
-                password,
-                email,
                 phone,
+                email,
+                password,
+                isAdmin: false,
                 orders: [],
-                history: []
+                history: [],
+                reservations: []
             });
 
             if (user) {
+                const token = generateToken(user._id);
                 res.status(201).json({
-                    id: user._id,
+                    _id: user._id,
                     username: user.username,
-                    email: user.email,
                     phone: user.phone,
+                    email: user.email,
                     isAdmin: user.isAdmin,
-                    token: generateToken(user._id)
+                    token
                 });
             } else {
                 res.status(400);
-                throw new Error('無效的使用者資訊');
+                throw new Error('無效的用戶資料');
             }
         } catch (error) {
             console.error('Register error:', error);
-            res.status(400);
+            res.status(error.status || 500);
             throw new Error(error.message || '註冊失敗');
         }
     }),

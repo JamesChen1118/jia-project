@@ -28,26 +28,26 @@ const ShoppingCart = () => {
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      if (!isLoggedIn) {
-        Swal.fire({
-          title: t("message.login.required"),
-          text: t("message.login.checkoutHint"),
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: t("login.submit"),
-          cancelButtonText: t("common.cancel"),
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate("/login");
-          }
-        });
-        return;
-      }
+    if (!isLoggedIn) {
+      Swal.fire({
+        title: t("login.required"),
+        text: t("login.checkoutHint"),
+        icon: "warning",
+        confirmButtonText: t("login.submit"),
+        showCancelButton: true,
+        cancelButtonText: t("common.cancel"),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
 
+    try {
       const order = {
         orderItems: cartItems.map((item) => ({
-          id: item._id,
+          _id: item._id,
           name: item.name,
           numbers: item.numbers,
           price: item.price,
@@ -71,10 +71,11 @@ const ShoppingCart = () => {
       }).then(() => {
         clearCart();
         setPaymentInfo(initForm);
-        navigate("/member");
+        navigate("/member", {
+          state: { activeTab: "orders" },
+        });
       });
     } catch (error) {
-      console.error("Payment error:", error);
       Swal.fire({
         title: "付款失敗",
         text: error.message || "請稍後再試",

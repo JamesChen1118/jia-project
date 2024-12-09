@@ -14,20 +14,15 @@ const app = express();
 app.use(express.json());
 app.use('/api', router);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../dist')));
-
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+// 錯誤處理中間件
+app.use((err, req, res, next) => {
+    console.error('Server error:', err);
+    res.status(err.status || 500).json({
+        message: err.message || '伺服器錯誤'
     });
-} else {
-    app.get('/', (req, res) => {
-        res.send('API is running....');
-    });
-}
+});
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 6001;
 
 const startServer = async () => {
     try {

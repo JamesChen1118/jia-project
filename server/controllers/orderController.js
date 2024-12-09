@@ -1,50 +1,30 @@
-    import asyncHandler from 'express-async-handler';
+import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
 import User from '../models/user.js';
 
 const orderController = {
     createOrder: asyncHandler(async (req, res) => {
+        const { orderItems, paymentInfo, totalPrice } = req.body;
+        const userId = req.user._id;
+
         try {
-            const { orderItems, paymentInfo, totalPrice } = req.body;
-            const userId = req.user._id;
-            const user = await User.findById(userId);
-            
-            if (!user) {
-                return res.status(404).json({ message: '找不到用戶' });
-            }
-
-            // 格式化訂單項目
-            const formattedItems = orderItems.map(item => ({
-                name: item.name,
-                quantity: item.numbers,
-                price: item.price
-            }));
-
-            // 創建訂單
+            const orderNumber = `JIA${Date.now()}`;
             const order = await Order.create({
                 user: userId,
-                orderNumber: `JIA${Date.now()}`,
-                items: formattedItems,
-                totalAmount: totalPrice,
-                paymentInfo: {
-                    cardNumber: paymentInfo.cardNumbers.slice(-4),
-                    paymentStatus: 'completed',
-                    paymentDate: new Date()
-                },
-                customerInfo: {
-                    username: user.username,
-                    phone: user.phone,
-                    email: user.email
-                }
+                orderNumber,
+                orderItems,
+                paymentInfo,
+                totalPrice,
+                status: 'completed',
+                date: new Date()
             });
 
-            // 更新用戶的訂單歷史
             await User.findByIdAndUpdate(userId, {
                 $push: {
                     orders: {
-                        orderNumber: order.orderNumber,
-                        date: order.createdAt,
-                        amount: order.totalAmount,
+                        orderNumber,
+                        date: new Date(),
+                        amount: totalPrice,
                         status: 'completed'
                     },
                     history: orderItems.map(item => ({
@@ -56,45 +36,34 @@ const orderController = {
                 }
             });
 
-            res.status(201).json({
-                success: true,
-                order,
-                message: '訂單創建成功'
-            });
-
+            res.status(201).json(order);
         } catch (error) {
-            console.error('訂單創建錯誤:', error);
-            res.status(500).json({
-                success: false,
-                message: '訂單創建失敗',
-                error: error.message
-            });
+            res.status(400);
+            throw new Error(error.message || '建立訂單失敗');
         }
     }),
 
     getUserOrders: asyncHandler(async (req, res) => {
         try {
             const orders = await Order.find({ user: req.user._id })
-                .sort('-createdAt');
-            res.json(orders);
-        } catch (error) {
-            res.status(500).json({ message: '獲取訂單失敗' });
-        }
-    }),
+                .select('orderNumber date totalPrice status orderItems')
+                .sort('-date')
+                .lean();
 
-    getUserHistory: asyncHandler(async (req, res) => {
-        try {
-            const user = await User.findById(req.user._id)
-                .select('history')
-                .sort({ 'history.date': -1 });
-            
-            if (!user) {
-                return res.status(404).json({ message: '找不到用戶' });
-            }
-            
-            res.json(user.history || []);
+            const safeOrders = orders.map(order => ({
+                _id: order._id,
+                orderNumber: order.orderNumber,
+                date: order.date,
+                totalPrice: order.totalPrice,
+                status: order.status,
+                orderItems: Array.isArray(order.orderItems) ? order.orderItems : []
+            }));
+
+            res.json(safeOrders);
         } catch (error) {
-            res.status(500).json({ message: '獲取消費記錄失敗' });
+            console.error('Error in getUserOrders:', error);
+            res.status(500);
+            throw new Error('獲取訂單記錄失敗');
         }
     })
 };

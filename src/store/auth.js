@@ -2,16 +2,24 @@ import { create } from 'zustand';
 import { setToken, removeToken } from '@/utils/auth';
 
 export const useAuthStore = create((set) => ({
-  isLoggedIn: false,
-  user: null,
-  token: null,
-  login: (token, user) => {
+  isLoggedIn: !!localStorage.getItem('token'),
+  user: JSON.parse(localStorage.getItem('currentUser') || 'null'),
+
+  login: (token, userData) => {
     setToken(token);
-    set({ isLoggedIn: true, token, user });
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+    set({
+      isLoggedIn: true,
+      user: userData
+    });
   },
+
   logout: () => {
     removeToken();
     localStorage.removeItem('currentUser');
-    set({ isLoggedIn: false, token: null, user: null });
+    set({
+      isLoggedIn: false,
+      user: null
+    });
   }
 }));

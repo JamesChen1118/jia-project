@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Reservation from '../models/reservation.js';
+import User from '../models/user.js';
 
 const reservationController = {
     createReservation: asyncHandler(async (req, res) => {
@@ -19,7 +20,7 @@ const reservationController = {
                 throw new Error('此座位已被預訂');
             }
 
-            const reservationData = {
+            const reservation = await Reservation.create({
                 name,
                 date,
                 time,
@@ -27,17 +28,18 @@ const reservationController = {
                 tableNo,
                 phone,
                 email,
+                user: userId,
                 status: 'pending'
-            };
+            });
 
             if (userId) {
-                reservationData.user = userId;
+                await User.findByIdAndUpdate(userId, {
+                    $push: { reservations: reservation._id }
+                });
             }
 
-            const reservation = await Reservation.create(reservationData);
             res.status(201).json(reservation);
         } catch (error) {
-            console.error('Reservation error:', error);
             res.status(400);
             throw new Error(error.message || '建立訂位失敗');
         }
@@ -55,8 +57,7 @@ const reservationController = {
             });
 
             res.json({
-                available: !existingReservation,
-                message: existingReservation ? '此座位已被預訂' : '座位可用'
+                available: !existingReservation
             });
         } catch (error) {
             res.status(500);
@@ -66,16 +67,13 @@ const reservationController = {
 
     getUserReservations: asyncHandler(async (req, res) => {
         try {
-            console.log('Fetching reservations for user:', req.user._id);
             const reservations = await Reservation.find({
                 user: req.user._id,
                 status: { $ne: 'cancelled' }
             }).sort('-date');
 
-            console.log('Found reservations:', reservations);
             res.json(reservations);
         } catch (error) {
-            console.error('Error in getUserReservations:', error);
             res.status(500);
             throw new Error('獲取訂位記錄失敗');
         }

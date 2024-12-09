@@ -1,10 +1,14 @@
 export const setToken = (token) => {
-    localStorage.setItem("JIA-Token", token);
+    if (token) {
+        localStorage.setItem('token', token);
+    }
 };
+
 export const getToken = () => {
-    const token = localStorage.getItem("JIA-Token");
-    return token || "";
+    return localStorage.getItem('token');
 };
+
 export const removeToken = () => {
-    localStorage.removeItem("JIA-Token");
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
 };

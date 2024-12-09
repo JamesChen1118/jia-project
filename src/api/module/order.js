@@ -4,54 +4,20 @@ import { getToken } from "@/utils/auth";
 export const orderApi = {
     addOrder: async (orderData) => {
         try {
-            const token = getToken();
-            if (!token) {
-                throw new Error('請先登入');
-            }
-
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-
-            const response = await server.post("/api/orders", orderData, config);
-            return response.data;
+            const { data } = await server.post("/api/orders", orderData);
+            return data;
         } catch (error) {
-            console.error('Order creation error:', error.response?.data || error);
-            throw error;
+            throw error.response?.data?.message || "建立訂單失敗";
         }
     },
 
     getOrders: async () => {
         try {
-            const token = getToken();
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-            const response = await server.get("/api/orders", config);
-            return response.data;
+            const { data } = await server.get("/api/orders/user");
+            return Array.isArray(data) ? data : [];
         } catch (error) {
             console.error('Error fetching orders:', error);
-            throw error;
-        }
-    },
-
-    getUserHistory: async () => {
-        try {
-            const token = getToken();
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-            const response = await server.get("/api/orders/history", config);
-            return response.data;
-        } catch (error) {
-            console.error('Error fetching history:', error);
-            return [];
+            throw error.response?.data?.message || "獲取訂單失敗";
         }
     }
 };

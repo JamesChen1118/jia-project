@@ -5,26 +5,21 @@ const orderSchema = new mongoose.Schema({
     orderNumber: String,
     date: Date,
     amount: Number,
-    status: String
+    status: {
+        type: String,
+        enum: ['pending', 'completed', 'cancelled'],
+        default: 'completed'
+    }
 });
 
 const historySchema = new mongoose.Schema({
-    productName: {
-        type: String,
-        required: true
-    },
+    productName: String,
     date: {
         type: Date,
         default: Date.now
     },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    amount: {
-        type: Number,
-        required: true
-    }
+    quantity: Number,
+    amount: Number
 });
 
 const reservationSchema = new mongoose.Schema({
@@ -70,7 +65,10 @@ const userSchema = new mongoose.Schema(
         },
         orders: [orderSchema],
         history: [historySchema],
-        reservations: [reservationSchema]
+        reservations: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }]
     },
     {
         timestamps: true,

@@ -6,54 +6,51 @@ import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuthStore } from "@/store/auth";
+import { orderApi } from "@/api/module/order";
 
 const Member = () => {
+  const { user } = useAuthStore();
   const [memberTable, setMemberTable] = useState("info");
-  const [userData, setUserData] = useState(null);
+  const [orders, setOrders] = useState([]);
   const [reservations, setReservations] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const currentUser = userApi.getCurrentUser();
-
-    if (!currentUser) {
+    if (!user) {
       navigate("/login");
       return;
     }
 
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const [userData, reservationsData] = await Promise.allSettled([
-          userApi.getUser(),
-          reservationApi.getUserReservations(),
-        ]);
-
-        if (userData.status === "fulfilled") {
-          setUserData(userData.value);
-        }
-
-        if (reservationsData.status === "fulfilled") {
-          setReservations(reservationsData.value);
-        }
-      } catch (error) {
-        // 保留錯誤處理，但不輸出到控制台
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [navigate]);
-
-  useEffect(() => {
     if (location.state?.activeTab) {
       setMemberTable(location.state.activeTab);
     }
-  }, [location]);
+
+    const fetchOrders = async () => {
+      try {
+        const response = await orderApi.getOrders();
+        setOrders(Array.isArray(response) ? response : []);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+        setOrders([]);
+      }
+    };
+
+    const fetchReservations = async () => {
+      try {
+        const response = await reservationApi.getUserReservations();
+        setReservations(Array.isArray(response) ? response : []);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+        setReservations([]);
+      }
+    };
+
+    fetchOrders();
+    fetchReservations();
+  }, [user, navigate, location]);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -94,6 +91,70 @@ const Member = () => {
     ));
   };
 
+  const renderOrders = () => {
+    const hasOrders = Array.isArray(orders) && orders.length > 0;
+
+    if (!hasOrders) {
+      return (
+        <tr>
+          <td
+            colSpan="4"
+            className="text-center text-main-color-yellow/70 py-4"
+          >
+            尚無訂單記錄
+          </td>
+        </tr>
+      );
+    }
+
+    return orders.map((order) => (
+      <tr key={order._id} className="hover:bg-member-hover">
+        <td className="p-4 text-main-color-yellow">{order.orderNumber}</td>
+        <td className="p-4 text-main-color-yellow">
+          {new Date(order.date).toLocaleDateString()}
+        </td>
+        <td className="p-4 text-main-color-yellow">NT$ {order.totalPrice}</td>
+        <td className="p-4 text-main-color-yellow">{order.status}</td>
+      </tr>
+    ));
+  };
+
+  const renderHistory = () => {
+    const hasOrders = Array.isArray(orders) && orders.length > 0;
+
+    if (!hasOrders) {
+      return (
+        <tr>
+          <td
+            colSpan="4"
+            className="text-center text-main-color-yellow/70 py-4"
+          >
+            尚無消費記錄
+          </td>
+        </tr>
+      );
+    }
+
+    return orders.flatMap((order) => {
+      const items = Array.isArray(order?.orderItems) ? order.orderItems : [];
+
+      return items.map((item, index) => (
+        <tr key={`${order._id}-${index}`} className="hover:bg-member-hover">
+          <td className="p-4 text-main-color-yellow">
+            {t(`products.items.${item?.name || "unknown"}.name`)}
+          </td>
+          <td className="p-4 text-main-color-yellow">
+            {new Date(order?.date || new Date()).toLocaleDateString()}
+          </td>
+          <td className="p-4 text-main-color-yellow">{item?.numbers || 0}</td>
+          <td className="p-4 text-main-color-yellow">
+            NT$ {(item?.price || 0) * (item?.numbers || 0)}
+          </td>
+        </tr>
+      ));
+    });
+  };
+
   const renderContent = () => {
     const memberInfo = {
       info: (
@@ -110,7 +171,7 @@ const Member = () => {
                   {t("member.fields.name")}
                 </label>
                 <div className="text-main-color-yellow font-bold text-xl">
-                  {userData?.username || "Loading..."}
+                  {user?.username || "Loading..."}
                 </div>
               </div>
               <div className="flex flex-col">
@@ -118,7 +179,7 @@ const Member = () => {
                   {t("member.fields.email")}
                 </label>
                 <div className="text-main-color-yellow font-bold text-xl">
-                  {userData?.email || "Loading..."}
+                  {user?.email || "Loading..."}
                 </div>
               </div>
             </div>
@@ -128,7 +189,7 @@ const Member = () => {
                   {t("member.fields.phone")}
                 </label>
                 <div className="text-main-color-yellow font-bold text-xl">
-                  {userData?.phone || "Loading..."}
+                  {user?.phone || "Loading..."}
                 </div>
               </div>
             </div>
@@ -156,24 +217,7 @@ const Member = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {userData?.orders?.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-b border-[rgba(230,149,57,0.2)]"
-                >
-                  <td className="p-4 text-main-color-yellow">
-                    {order.orderNumber}
-                  </td>
-                  <td className="p-4 text-white">
-                    {new Date(order.date).toLocaleDateString()}
-                  </td>
-                  <td className="p-4 text-main-color-yellow">
-                    NT$ {order.amount}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            <tbody>{renderOrders()}</tbody>
           </table>
         </motion.div>
       ),
@@ -201,25 +245,7 @@ const Member = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {userData?.history?.map((item) => (
-                <tr
-                  key={item._id}
-                  className="border-b border-[rgba(230,149,57,0.2)]"
-                >
-                  <td className="p-4 text-main-color-yellow">
-                    {t(`products.items.${item.productName}.name`)}
-                  </td>
-                  <td className="p-4 text-white">
-                    {new Date(item.date).toLocaleDateString()}
-                  </td>
-                  <td className="p-4 text-main-color-yellow">
-                    {item.quantity}
-                  </td>
-                  <td className="p-4 text-white">NT$ {item.amount}</td>
-                </tr>
-              ))}
-            </tbody>
+            <tbody>{renderHistory()}</tbody>
           </table>
         </motion.div>
       ),

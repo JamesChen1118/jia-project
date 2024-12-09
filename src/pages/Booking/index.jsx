@@ -34,12 +34,12 @@ const Booking = () => {
   const handleDineInClick = () => {
     if (!isLoggedIn) {
       Swal.fire({
-        title: t("login.required") || "請先登入",
-        text: t("login.reservation_hint") || "需要登入才能進行訂位",
+        title: t("login.required"),
+        text: t("login.reservation_hint"),
         icon: "info",
-        confirmButtonText: t("login.submit") || "前往登入",
+        confirmButtonText: t("login.submit"),
         showCancelButton: true,
-        cancelButtonText: t("common.cancel") || "取消",
+        cancelButtonText: t("common.cancel"),
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.setItem("intendedRoute", "/reservation");

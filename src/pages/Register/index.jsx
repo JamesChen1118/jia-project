@@ -23,30 +23,78 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      if (formData.password !== formData.confirmPassword) {
-        Swal.fire({
-          title: "錯誤",
-          text: "兩次輸入的密碼不一致",
-          icon: "error",
-          confirmButtonText: "確定",
-        });
-        return;
-      }
+    // 表單驗證
+    if (
+      !formData.username ||
+      !formData.phone ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      Swal.fire({
+        title: "提示",
+        text: "請填寫所有欄位",
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
 
-      const data = await userApi.register(formData);
-      login(data.token, data);
+    // 密碼確認
+    if (formData.password !== formData.confirmPassword) {
+      Swal.fire({
+        title: "提示",
+        text: "兩次輸入的密碼不一致",
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
+
+    // 手機號碼格式驗證
+    const phoneRegex = /^09\d{8}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      Swal.fire({
+        title: "提示",
+        text: "請輸入正確的手機號碼格式",
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
+
+    // 郵箱格式驗證
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      Swal.fire({
+        title: "提示",
+        text: "請輸入正確的郵箱格式",
+        icon: "warning",
+        confirmButtonText: "確定",
+      });
+      return;
+    }
+
+    try {
+      const userData = {
+        username: formData.username,
+        phone: formData.phone,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      const response = await userApi.register(userData);
+      login(response.token, response);
 
       Swal.fire({
-        title: "註冊成功！",
-        text: "歡迎加入JIA",
+        title: "註冊成功",
+        text: "歡迎加入我們",
         icon: "success",
         confirmButtonText: "確定",
       }).then(() => {
         navigate("/member");
       });
     } catch (error) {
-      console.error("Register error:", error);
       Swal.fire({
         title: "註冊失敗",
         text: error.message || "請稍後再試",
