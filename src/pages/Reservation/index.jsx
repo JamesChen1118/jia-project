@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { reservationApi } from "@/api/module/reservation";
+import { createReservation } from "@/api/module/reservation";
 import GoTop from "@/components/GoTop";
 import ScrollToContent from "@/components/ScrollToContent";
 import table2 from "../../assets/images/reservation/seat-2-1.png";
@@ -84,7 +84,7 @@ const Reservation = () => {
     </>
   );
 
-  const handleTableClick = async (tableNo) => {
+  const handleTableClick = (tableNo) => {
     if (!formData.date || !formData.time) {
       Swal.fire({
         title: "提示",
@@ -95,77 +95,57 @@ const Reservation = () => {
       return;
     }
 
-    try {
-      const isAvailable = await reservationApi.checkTableAvailability(
-        formData.date,
-        formData.time,
-        tableNo
-      );
-
-      if (!isAvailable) {
-        Swal.fire({
-          title: "座位已被預訂",
-          text: "請選擇其他座位",
-          icon: "error",
-          confirmButtonText: "確定",
-        });
-        return;
-      }
-
-      setFormData((prev) => ({ ...prev, tableNo }));
-    } catch (error) {
-      console.error("檢查座位狀態失敗:", error);
-      Swal.fire({
-        title: "錯誤",
-        text: error.message || "請稍後再試",
-        icon: "error",
-        confirmButtonText: "確定",
-      });
-    }
+    setFormData((prev) => ({ ...prev, tableNo }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      if (
-        !formData.date ||
-        !formData.time ||
-        !formData.people ||
-        !formData.tableNo
-      ) {
-        Swal.fire({
-          title: "提示",
-          text: t("reservation.pleaseCompleteForm"),
-          icon: "warning",
-          confirmButtonText: "確定",
-        });
-        return;
-      }
+    if (!isLoggedIn) {
+      Swal.fire({
+        title: t("login.required"),
+        text: t("login.reservation_hint"),
+        icon: "warning",
+        confirmButtonText: t("login.submit"),
+        showCancelButton: true,
+        cancelButtonText: t("common.cancel"),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
 
+    try {
       const reservationData = {
-        ...formData,
-        userId: user._id,
+        name: user.username,
+        date: formData.date,
+        time: formData.time,
+        people: formData.people,
+        tableNo: formData.tableNo,
+        phone: user.phone,
+        email: user.email,
       };
 
-      await reservationApi.addReservation(reservationData);
+      await createReservation(reservationData);
 
-      await Swal.fire({
+      Swal.fire({
         title: t("reservation.success"),
         text: t("reservation.success_message"),
         icon: "success",
-        confirmButtonText: "確定",
-      });
-
-      navigate("/member", {
-        state: { activeTab: "reservations" },
+        confirmButtonText: t("common.confirm"),
+      }).then(() => {
+        navigate("/member", {
+          state: { activeTab: "reservations" },
+        });
       });
     } catch (error) {
       Swal.fire({
         title: t("reservation.fail"),
         text: error.message || t("reservation.error_message"),
         icon: "error",
-        confirmButtonText: "確定",
+        confirmButtonText: t("common.confirm"),
       });
     }
   };

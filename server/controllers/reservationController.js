@@ -2,91 +2,60 @@ import asyncHandler from 'express-async-handler';
 import Reservation from '../models/reservation.js';
 import User from '../models/user.js';
 
-const reservationController = {
-    createReservation: asyncHandler(async (req, res) => {
-        const { name, date, time, people, tableNo, phone, email } = req.body;
-        const userId = req.user?._id;
+export const createReservation = asyncHandler(async (req, res) => {
+    const { name, date, time, people, tableNo, phone, email } = req.body;
+    const userId = req.user?._id;
 
-        try {
-            const existingReservation = await Reservation.findOne({
-                date: new Date(date),
-                time,
-                tableNo,
-                status: { $ne: 'cancelled' }
+    try {
+        const reservation = await Reservation.create({
+            name,
+            date,
+            time,
+            people,
+            tableNo,
+            phone,
+            email,
+            user: userId
+        });
+
+        if (userId) {
+            await User.findByIdAndUpdate(userId, {
+                $push: { reservations: reservation._id }
             });
-
-            if (existingReservation) {
-                res.status(400);
-                throw new Error('此座位已被預訂');
-            }
-
-            const reservation = await Reservation.create({
-                name,
-                date,
-                time,
-                people,
-                tableNo,
-                phone,
-                email,
-                user: userId,
-                status: 'pending'
-            });
-
-            if (userId) {
-                await User.findByIdAndUpdate(userId, {
-                    $push: { reservations: reservation._id }
-                });
-            }
-
-            res.status(201).json(reservation);
-        } catch (error) {
-            res.status(400);
-            throw new Error(error.message || '建立訂位失敗');
         }
-    }),
 
-    checkTableAvailability: asyncHandler(async (req, res) => {
-        const { date, time, tableNo } = req.query;
+        res.status(201).json(reservation);
+    } catch (error) {
+        console.error('Create reservation error:', error);
+        res.status(400);
+        throw new Error(error.message || '建立訂位失敗');
+    }
+});
 
-        try {
-            const existingReservation = await Reservation.findOne({
-                date: new Date(date),
-                time,
-                tableNo,
-                status: { $ne: 'cancelled' }
-            });
-
-            res.json({
-                available: !existingReservation
-            });
-        } catch (error) {
-            res.status(500);
-            throw new Error('檢查座位狀態失敗');
+export const getUserReservations = asyncHandler(async (req, res) => {
+    try {
+        if (!req.user?._id) {
+            res.status(401);
+            throw new Error('請先登入');
         }
-    }),
 
-    getUserReservations: asyncHandler(async (req, res) => {
-        try {
-            if (!req.user?._id) {
-                res.status(401);
-                throw new Error('請先登入');
-            }
+        const reservations = await Reservation.find({
+            user: req.user._id
+        })
+            .select('date time people tableNo')
+            .sort('-date')
+            .lean();
 
-            const reservations = await Reservation.find({
-                user: req.user._id,
-                status: { $ne: 'cancelled' }
-            })
-                .select('date time people tableNo status')
-                .sort('-date')
-                .lean();
+        console.log('Found reservations:', reservations);
+        res.json(reservations);
+    } catch (error) {
+        console.error('Get reservations error:', error);
+        res.status(500);
+        throw new Error('獲取訂位記錄失敗');
+    }
+});
 
-            res.json(reservations || []);
-        } catch (error) {
-            console.error('Get reservations error:', error);
-            res.status(500);
-            throw new Error('獲取訂位記錄失敗');
-        }
-    })
+export default {
+    createReservation,
+    getUserReservations
 };
-
-export default reservationController;

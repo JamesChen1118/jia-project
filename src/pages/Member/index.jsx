@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { userApi } from "@/api/module/user";
-import { reservationApi } from "@/api/module/reservation";
+import { getUserReservations } from "@/api/module/reservation";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 import { motion } from "framer-motion";
@@ -9,7 +9,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "@/store/auth";
 import { orderApi } from "@/api/module/order";
 
-// 格式化函數
+const isDev = process.env.NODE_ENV === "development";
+
+const safeLog = (message, data) => {
+  if (isDev) {
+    console.log(message, data);
+  }
+};
+
 const formatDate = (date) => {
   if (!date) return "-";
   const d = new Date(date);
@@ -42,7 +49,7 @@ const Member = () => {
     const fetchOrders = async () => {
       try {
         const response = await orderApi.getOrders();
-        console.log("訂單資料:", response);
+        safeLog("訂單資料:", response);
         setOrders(Array.isArray(response) ? response : []);
       } catch (error) {
         console.error("獲取訂單時出錯:", error);
@@ -52,7 +59,7 @@ const Member = () => {
 
     const fetchReservations = async () => {
       try {
-        const response = await reservationApi.getUserReservations();
+        const response = await getUserReservations();
         setReservations(Array.isArray(response) ? response : []);
       } catch (error) {
         console.error("獲取預約時出錯:", error);
@@ -92,7 +99,7 @@ const Member = () => {
 
   const renderOrders = () => {
     const hasOrders = Array.isArray(orders) && orders.length > 0;
-    console.log("Orders data:", orders);
+    safeLog("Orders data:", orders);
 
     if (!hasOrders) {
       return (
@@ -108,7 +115,7 @@ const Member = () => {
     }
 
     return orders.map((order) => {
-      console.log("Single order:", order);
+      safeLog("Single order:", order);
       return (
         <tr key={order._id} className="hover:bg-member-hover">
           <td className="p-4 text-main-color-yellow">
@@ -127,7 +134,7 @@ const Member = () => {
 
   const renderHistory = () => {
     const hasOrders = Array.isArray(orders) && orders.length > 0;
-    console.log("Orders for history:", orders);
+    safeLog("Orders for history:", orders);
 
     if (!hasOrders) {
       return (
@@ -144,7 +151,7 @@ const Member = () => {
 
     return orders.flatMap((order) => {
       const items = Array.isArray(order?.orderItems) ? order.orderItems : [];
-      console.log("Order items:", items);
+      safeLog("Order items:", items);
 
       return items.map((item, index) => (
         <tr key={`${order._id}-${index}`} className="hover:bg-member-hover">

@@ -2,6 +2,15 @@ import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
 import User from '../models/user.js';
 
+// 添加開發環境檢查
+const isDev = process.env.NODE_ENV === 'development';
+
+const safeLog = (message, data) => {
+    if (isDev) {
+        console.log(message, data);
+    }
+};
+
 const orderController = {
     createOrder: asyncHandler(async (req, res) => {
         const { orderItems, paymentInfo, totalPrice } = req.body;
@@ -39,7 +48,7 @@ const orderController = {
                 .sort('-date')
                 .lean();
 
-            console.log('Found orders:', orders);
+            safeLog('Found orders:', orders);
 
             const formattedOrders = orders.map(order => ({
                 _id: order._id,
@@ -62,7 +71,7 @@ const orderController = {
                         : []
             }));
 
-            console.log('Formatted orders:', formattedOrders);
+            safeLog('Formatted orders:', formattedOrders);
             res.json(formattedOrders);
         } catch (error) {
             console.error('Get orders error:', error);

@@ -4,9 +4,13 @@ import authMiddleware from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get("/check", reservationController.checkTableAvailability);
-router.post("/", reservationController.createReservation);
+// 以下路由需要驗證
+router.use(authMiddleware);
 
-router.get("/user", authMiddleware, reservationController.getUserReservations);
+// 創建訂位
+router.post('/', reservationController.createReservation);
+
+// 獲取用戶訂位記錄
+router.get('/user', reservationController.getUserReservations);
 
 export default router;
