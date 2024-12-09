@@ -56,22 +56,18 @@ const checkTableAvailability = async (date, time, tableNo) => {
     }
 };
 
-// 導出 API 物件
 const reservationApi = {
     createReservation: addReservation,
     getUserReservations: getReservations,
     checkTableAvailability
 };
 
-// 導出單獨函數
 export {
     addReservation as createReservation,
     getReservations as getUserReservations,
     checkTableAvailability
 };
 
-// 導出 API 物件
 export { reservationApi };
 
-// 默認導出
 export default reservationApi;

@@ -53,7 +53,7 @@ const Menu3D = () => {
                       {t(`products.items.${item.name}.description`)}
                     </div>
                     <div className="menu-listPrice">${item.price}</div>
-                    <NavLink to="/order" className="toMenu">
+                    <NavLink to="/menu" className="toMenu">
                       {t("home.menu.toMenu")}
                     </NavLink>
                   </div>
