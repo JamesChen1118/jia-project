@@ -9,6 +9,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "@/store/auth";
 import { orderApi } from "@/api/module/order";
 
+// 格式化函數
+const formatDate = (date) => {
+  if (!date) return "-";
+  const d = new Date(date);
+  return isNaN(d.getTime()) ? "-" : d.toLocaleDateString("zh-TW");
+};
+
+const formatAmount = (amount) => {
+  return amount ? `NT$ ${amount}` : "NT$ -";
+};
+
 const Member = () => {
   const { user } = useAuthStore();
   const [memberTable, setMemberTable] = useState("info");
@@ -31,9 +42,10 @@ const Member = () => {
     const fetchOrders = async () => {
       try {
         const response = await orderApi.getOrders();
+        console.log("訂單資料:", response);
         setOrders(Array.isArray(response) ? response : []);
       } catch (error) {
-        console.error("Error fetching orders:", error);
+        console.error("獲取訂單時出錯:", error);
         setOrders([]);
       }
     };
@@ -43,7 +55,7 @@ const Member = () => {
         const response = await reservationApi.getUserReservations();
         setReservations(Array.isArray(response) ? response : []);
       } catch (error) {
-        console.error("Error fetching reservations:", error);
+        console.error("獲取預約時出錯:", error);
         setReservations([]);
       }
     };
@@ -51,19 +63,6 @@ const Member = () => {
     fetchOrders();
     fetchReservations();
   }, [user, navigate, location]);
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "pending":
-        return "text-yellow-500";
-      case "confirmed":
-        return "text-green-500";
-      case "cancelled":
-        return "text-red-500";
-      default:
-        return "text-white";
-    }
-  };
 
   const renderReservations = () => {
     if (!reservations || reservations.length === 0) {
@@ -82,7 +81,7 @@ const Member = () => {
     return reservations.map((reservation) => (
       <tr key={reservation._id} className="hover:bg-member-hover">
         <td className="p-4 text-main-color-yellow">
-          {new Date(reservation.date).toLocaleDateString()}
+          {formatDate(reservation.date)}
         </td>
         <td className="p-4 text-main-color-yellow">{reservation.time}</td>
         <td className="p-4 text-main-color-yellow">{reservation.people}</td>
@@ -93,12 +92,13 @@ const Member = () => {
 
   const renderOrders = () => {
     const hasOrders = Array.isArray(orders) && orders.length > 0;
+    console.log("Orders data:", orders);
 
     if (!hasOrders) {
       return (
         <tr>
           <td
-            colSpan="4"
+            colSpan="3"
             className="text-center text-main-color-yellow/70 py-4"
           >
             尚無訂單記錄
@@ -107,20 +107,27 @@ const Member = () => {
       );
     }
 
-    return orders.map((order) => (
-      <tr key={order._id} className="hover:bg-member-hover">
-        <td className="p-4 text-main-color-yellow">{order.orderNumber}</td>
-        <td className="p-4 text-main-color-yellow">
-          {new Date(order.date).toLocaleDateString()}
-        </td>
-        <td className="p-4 text-main-color-yellow">NT$ {order.totalPrice}</td>
-        <td className="p-4 text-main-color-yellow">{order.status}</td>
-      </tr>
-    ));
+    return orders.map((order) => {
+      console.log("Single order:", order);
+      return (
+        <tr key={order._id} className="hover:bg-member-hover">
+          <td className="p-4 text-main-color-yellow">
+            {order.orderNumber || "-"}
+          </td>
+          <td className="p-4 text-main-color-yellow">
+            {order.date ? formatDate(order.date) : "-"}
+          </td>
+          <td className="p-4 text-main-color-yellow">
+            {order.totalPrice ? formatAmount(order.totalPrice) : "NT$ -"}
+          </td>
+        </tr>
+      );
+    });
   };
 
   const renderHistory = () => {
     const hasOrders = Array.isArray(orders) && orders.length > 0;
+    console.log("Orders for history:", orders);
 
     if (!hasOrders) {
       return (
@@ -137,18 +144,21 @@ const Member = () => {
 
     return orders.flatMap((order) => {
       const items = Array.isArray(order?.orderItems) ? order.orderItems : [];
+      console.log("Order items:", items);
 
       return items.map((item, index) => (
         <tr key={`${order._id}-${index}`} className="hover:bg-member-hover">
           <td className="p-4 text-main-color-yellow">
-            {t(`products.items.${item?.name || "unknown"}.name`)}
+            {item?.name ? t(`products.items.${item.name}.name`) : "-"}
           </td>
           <td className="p-4 text-main-color-yellow">
-            {new Date(order?.date || new Date()).toLocaleDateString()}
+            {order?.date ? formatDate(order.date) : "-"}
           </td>
-          <td className="p-4 text-main-color-yellow">{item?.numbers || 0}</td>
+          <td className="p-4 text-main-color-yellow">{item?.numbers || "-"}</td>
           <td className="p-4 text-main-color-yellow">
-            NT$ {(item?.price || 0) * (item?.numbers || 0)}
+            {item?.price && item?.numbers
+              ? formatAmount(item.price * item.numbers)
+              : "NT$ -"}
           </td>
         </tr>
       ));
@@ -207,13 +217,13 @@ const Member = () => {
             <thead className="bg-[rgba(230,149,57,0.1)]">
               <tr>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.orderNumber")}
+                  {t("member.order.orderNumber")}
                 </th>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.date")}
+                  {t("member.order.date")}
                 </th>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.amount")}
+                  {t("member.order.amount")}
                 </th>
               </tr>
             </thead>
@@ -232,16 +242,16 @@ const Member = () => {
             <thead className="bg-[rgba(230,149,57,0.1)]">
               <tr>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.productName")}
+                  {t("member.order.productName")}
                 </th>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.date")}
+                  {t("member.order.date")}
                 </th>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.quantity")}
+                  {t("member.order.quantity")}
                 </th>
                 <th className="p-4 text-left text-white">
-                  {t("member.table.amount")}
+                  {t("member.order.amount")}
                 </th>
               </tr>
             </thead>

@@ -67,13 +67,22 @@ const reservationController = {
 
     getUserReservations: asyncHandler(async (req, res) => {
         try {
+            if (!req.user?._id) {
+                res.status(401);
+                throw new Error('請先登入');
+            }
+
             const reservations = await Reservation.find({
                 user: req.user._id,
                 status: { $ne: 'cancelled' }
-            }).sort('-date');
+            })
+                .select('date time people tableNo status')
+                .sort('-date')
+                .lean();
 
-            res.json(reservations);
+            res.json(reservations || []);
         } catch (error) {
+            console.error('Get reservations error:', error);
             res.status(500);
             throw new Error('獲取訂位記錄失敗');
         }

@@ -1,5 +1,4 @@
 import server from "../server";
-import { getToken } from "@/utils/auth";
 
 export const orderApi = {
     addOrder: async (orderData) => {
@@ -7,6 +6,7 @@ export const orderApi = {
             const { data } = await server.post("/api/orders", orderData);
             return data;
         } catch (error) {
+            console.error('Create order error:', error);
             throw error.response?.data?.message || "建立訂單失敗";
         }
     },

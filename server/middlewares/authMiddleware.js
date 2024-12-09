@@ -2,33 +2,31 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/user.js";
 
-const authMiddleware = asyncHandler(async (req, res, next) => {
-    if (req.headers.authorization?.startsWith("Bearer")) {
+const protect = asyncHandler(async (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization?.startsWith('Bearer')) {
         try {
-            const token = req.headers.authorization.split(" ")[1];
+            token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id);
-            
-            if (!req.user) {
+
+            const user = await User.findById(decoded.id).select('-password');
+            if (!user) {
                 res.status(401);
-                throw new Error("用戶不存在或已被刪除");
+                throw new Error('用戶不存在');
             }
-            
+
+            req.user = user;
             next();
         } catch (error) {
+            console.error('Auth error:', error);
             res.status(401);
-            if (error.name === 'JsonWebTokenError') {
-                throw new Error("無效的認證令牌");
-            } else if (error.name === 'TokenExpiredError') {
-                throw new Error("認證令牌已過期");
-            } else {
-                throw new Error("認證失敗");
-            }
+            throw new Error('未授權的訪問');
         }
     } else {
         res.status(401);
-        throw new Error("未提供認證令牌");
+        throw new Error('請先登入');
     }
 });
 
-export default authMiddleware;
+export default protect;

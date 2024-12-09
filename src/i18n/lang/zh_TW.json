@@ -322,7 +322,7 @@
       "phone": "電話",
       "address": "地址"
     },
-    "table": {
+    "order": {
       "orderNumber": "訂單編號",
       "date": "日期",
       "amount": "金額",

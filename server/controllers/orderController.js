@@ -19,25 +19,9 @@ const orderController = {
                 date: new Date()
             });
 
-            await User.findByIdAndUpdate(userId, {
-                $push: {
-                    orders: {
-                        orderNumber,
-                        date: new Date(),
-                        amount: totalPrice,
-                        status: 'completed'
-                    },
-                    history: orderItems.map(item => ({
-                        productName: item.name,
-                        date: new Date(),
-                        quantity: item.numbers,
-                        amount: item.price * item.numbers
-                    }))
-                }
-            });
-
             res.status(201).json(order);
         } catch (error) {
+            console.error('Create order error:', error);
             res.status(400);
             throw new Error(error.message || '建立訂單失敗');
         }
@@ -45,23 +29,43 @@ const orderController = {
 
     getUserOrders: asyncHandler(async (req, res) => {
         try {
+            if (!req.user?._id) {
+                res.status(401);
+                throw new Error('請先登入');
+            }
+
             const orders = await Order.find({ user: req.user._id })
-                .select('orderNumber date totalPrice status orderItems')
+                .select('_id orderNumber date totalPrice totalAmount status orderItems items')
                 .sort('-date')
                 .lean();
 
-            const safeOrders = orders.map(order => ({
+            console.log('Found orders:', orders);
+
+            const formattedOrders = orders.map(order => ({
                 _id: order._id,
                 orderNumber: order.orderNumber,
-                date: order.date,
-                totalPrice: order.totalPrice,
-                status: order.status,
-                orderItems: Array.isArray(order.orderItems) ? order.orderItems : []
+                date: order.date || new Date(),
+                totalPrice: order.totalPrice || order.totalAmount || 0,
+                status: order.status || 'completed',
+                orderItems: Array.isArray(order.orderItems)
+                    ? order.orderItems.map(item => ({
+                        name: item?.name || '',
+                        numbers: item?.numbers || 0,
+                        price: item?.price || 0
+                    }))
+                    : Array.isArray(order.items)
+                        ? order.items.map(item => ({
+                            name: item?.name || '',
+                            numbers: item?.quantity || 0,
+                            price: item?.price || 0
+                        }))
+                        : []
             }));
 
-            res.json(safeOrders);
+            console.log('Formatted orders:', formattedOrders);
+            res.json(formattedOrders);
         } catch (error) {
-            console.error('Error in getUserOrders:', error);
+            console.error('Get orders error:', error);
             res.status(500);
             throw new Error('獲取訂單記錄失敗');
         }

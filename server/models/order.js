@@ -8,21 +8,13 @@ const orderSchema = new mongoose.Schema({
     },
     orderNumber: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     orderItems: [{
-        _id: String,
         name: String,
         numbers: Number,
         price: Number
     }],
-    paymentInfo: {
-        cardNumbers: String,
-        expiryMonth: String,
-        expiryYear: String,
-        cvv: String
-    },
     totalPrice: {
         type: Number,
         required: true
@@ -30,7 +22,7 @@ const orderSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['pending', 'completed', 'cancelled'],
-        default: 'pending'
+        default: 'completed'
     },
     date: {
         type: Date,

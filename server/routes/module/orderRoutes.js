@@ -1,17 +1,17 @@
 import express from 'express';
 import orderController from '../../controllers/orderController.js';
-import authMiddleware from '../../middlewares/authMiddleware.js';
+import protect from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// 所有訂單路由都需要驗證
-router.use(authMiddleware);
+// 保護所有訂單路由
+router.use(protect);
+
+// 獲取用戶訂單
+router.get('/user', orderController.getUserOrders);
 
 // 創建訂單
 router.post('/', orderController.createOrder);
-
-// 獲取用戶的訂單
-router.get('/user', orderController.getUserOrders);
 
 export default router;
 

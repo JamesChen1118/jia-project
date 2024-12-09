@@ -287,12 +287,12 @@
       "phone": "Phone",
       "address": "Address"
     },
-    "table": {
-      "orderNumber": "Order No.",
+    "order": {
+      "orderNumber": "Order Number",
       "date": "Date",
       "amount": "Amount",
       "status": "Status",
-      "productName": "Product",
+      "productName": "Product Name",
       "quantity": "Quantity"
     },
     "reservation": {
