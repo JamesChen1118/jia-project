@@ -1,11 +1,14 @@
 # JIA - Modern Creative Izakaya (現代創意居酒屋)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3574cbcb-7df0-443c-be85-a4234b67a31a" alt="J I A - About" width="200">
-  <img src="https://github.com/user-attachments/assets/b93add3b-bd6f-4176-a831-33bc0ad2e8d9" alt="J I A - Menu" width="200">
-  <img src="https://github.com/user-attachments/assets/31e5724d-85f5-4892-94c7-d5fff6fc38ec" alt="J I A - News" width="200">
-  <img src="https://github.com/user-attachments/assets/43268eaf-2f6d-4c2d-8e02-cd3deca0b9c2" alt="J I A - Contact" width="200">
+  <img src="https://github.com/user-attachments/assets/3574cbcb-7df0-443c-be85-a4234b67a31a" alt="J I A - About" width="300">
+  <img src="https://github.com/user-attachments/assets/31e5724d-85f5-4892-94c7-d5fff6fc38ec" alt="J I A - News" width="300">
 </p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b93add3b-bd6f-4176-a831-33bc0ad2e8d9" alt="J I A - Menu" width="300">
+  <img src="https://github.com/user-attachments/assets/43268eaf-2f6d-4c2d-8e02-cd3deca0b9c2" alt="J I A - Contact" width="300">
+</p>
+
 
 
 
