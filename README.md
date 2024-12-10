@@ -1,6 +1,11 @@
 # JIA - Modern Creative Izakaya (現代創意居酒屋)
 
-### 專案簡介
+![J I A - About](https://github.com/user-attachments/assets/3574cbcb-7df0-443c-be85-a4234b67a31a)
+![J I A - News](https://github.com/user-attachments/assets/31e5724d-85f5-4892-94c7-d5fff6fc38ec)
+![LoginTable](https://github.com/user-attachments/assets/3322faf4-4e5e-4838-ba84-53a7935589f2)
+
+### 專案簡介![J I A - Contact](https://github.com/user-attachments/assets/43268eaf-2f6d-4c2d-8e02-cd3deca0b9c2)
+
 
 「JIA」取其諧音與中文「家」相似，希望來到 JIA 的顧客能感受到像家一般的溫暖與親切。我們的料理融合義式、法式、中式與日式等多國料理技法，打造出豐富且多樣化的美食體驗。
 
