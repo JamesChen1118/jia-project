@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定義樣式 */
+body {
+  @apply bg-black min-h-screen;
+}
+
+/* 其他全局樣式 */
