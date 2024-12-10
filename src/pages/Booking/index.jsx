@@ -6,27 +6,6 @@ import GoTop from "@/components/GoTop";
 import { useAuthStore } from "@/store/auth";
 import Swal from "sweetalert2";
 
-// 創建一個通用的 Swal 配置
-const commonSwalConfig = {
-  background: "#333",
-  color: "#E69539",
-  confirmButtonColor: "#E69539",
-  cancelButtonColor: "#666",
-  showClass: {
-    popup: "animate__animated animate__fadeInDown",
-  },
-  hideClass: {
-    popup: "animate__animated animate__fadeOutUp",
-  },
-  customClass: {
-    title: "text-main-color-yellow text-xl",
-    htmlContainer: "text-main-color-yellow",
-    popup: "custom-popup-class",
-    confirmButton: "custom-confirm-button",
-    cancelButton: "custom-cancel-button",
-  },
-};
-
 const Booking = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -35,13 +14,16 @@ const Booking = () => {
   const handleTakeoutClick = () => {
     if (!isLoggedIn) {
       Swal.fire({
-        ...commonSwalConfig,
         title: t("login.required") || "請先登入",
         text: t("login.reservation_hint") || "需要登入才能進行點餐",
         icon: "info",
         confirmButtonText: t("login.submit") || "前往登入",
         showCancelButton: true,
         cancelButtonText: t("common.cancel") || "取消",
+        background: "#333",
+        color: "#E69539",
+        confirmButtonColor: "#E69539",
+        cancelButtonColor: "#666",
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.setItem("intendedRoute", "/order");
@@ -56,13 +38,16 @@ const Booking = () => {
   const handleDineInClick = () => {
     if (!isLoggedIn) {
       Swal.fire({
-        ...commonSwalConfig,
         title: t("login.required"),
         text: t("login.reservation_hint"),
         icon: "info",
         confirmButtonText: t("login.submit"),
         showCancelButton: true,
         cancelButtonText: t("common.cancel"),
+        background: "#333",
+        color: "#E69539",
+        confirmButtonColor: "#E69539",
+        cancelButtonColor: "#666",
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.setItem("intendedRoute", "/reservation");

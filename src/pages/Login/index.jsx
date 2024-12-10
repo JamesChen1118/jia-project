@@ -23,6 +23,9 @@ const Login = () => {
         title: t("login.messages.empty"),
         icon: "warning",
         confirmButtonText: t("common.confirm"),
+        background: "#333",
+        color: "#E69539",
+        confirmButtonColor: "#E69539",
       });
       return;
     }
@@ -36,6 +39,9 @@ const Login = () => {
         title: t("login.messages.success"),
         icon: "success",
         confirmButtonText: t("common.confirm"),
+        background: "#333",
+        color: "#E69539",
+        confirmButtonColor: "#E69539",
       });
 
       const intendedRoute = localStorage.getItem("intendedRoute");
@@ -52,6 +58,9 @@ const Login = () => {
         text: error.message,
         icon: "error",
         confirmButtonText: t("common.confirm"),
+        background: "#333",
+        color: "#E69539",
+        confirmButtonColor: "#E69539",
       });
     }
   };
