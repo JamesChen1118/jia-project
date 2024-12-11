@@ -1,32 +1,29 @@
 # JIA - Modern Creative Izakaya (現代創意居酒屋)
 
-### Project Overview
+<p align="center">
+  <figure>
+    <img src="https://github.com/user-attachments/assets/3574cbcb-7df0-443c-be85-a4234b67a31a" alt="J I A - About" width="300">
+    <figcaption>關於頁面</figcaption>
+  </figure>
+  <figure>
+    <img src="https://github.com/user-attachments/assets/b93add3b-bd6f-4176-a831-33bc0ad2e8d9" alt="J I A - Menu" width="300">
+    <figcaption>菜單頁面</figcaption>
+  </figure>
+</p>
+<p align="center">
+  <figure>
+    <img src="https://github.com/user-attachments/assets/31e5724d-85f5-4892-94c7-d5fff6fc38ec" alt="J I A - News" width="300">
+    <figcaption>最新消息</figcaption>
+  </figure>
+  <figure>
+    <img src="https://github.com/user-attachments/assets/43268eaf-2f6d-4c2d-8e02-cd3deca0b9c2" alt="J I A - Contact" width="300">
+    <figcaption>聯絡我們</figcaption>
+  </figure>
+</p>
 
-"JIA" is inspired by the Chinese word for "home," symbolizing our desire for guests at JIA to feel the same warmth and comfort as they would at home. Our cuisine blends Italian, French, Chinese, and Japanese culinary techniques, creating a rich and diverse dining experience. Our philosophy is to create a space where people can feel relaxed and at ease, no matter where they come from, offering them a sense of belonging.
 
-Through innovative dining services and modern website features, JIA aims to connect people from different cultures, providing each guest with a unique and creative izakaya dining experience.
 
-### Features
 
-- Dynamic Visual Display
-- Responsive Web Design (RWD)
-- Membership System
-- Bilingual (EN/ZH) Translation
-- Take-Out Ordering System
-- Dine-In Reservation with Seat Selection
-
-### Technologies
-
-- Front-end
-  - HTML, CSS, JavaScript
-  - React
-  - Zustand
-- Back-end
-  - Express.js
-- Database
-  - MongoDB
-
----
 
 ### 專案簡介
 
@@ -53,3 +50,32 @@ Through innovative dining services and modern website features, JIA aims to conn
   - Express.js
 - 資料庫
   - MongoDB
+
+---
+### Project Overview
+
+"JIA" is inspired by the Chinese word for "home," symbolizing our desire for guests at JIA to feel the same warmth and comfort as they would at home. Our cuisine blends Italian, French, Chinese, and Japanese culinary techniques, creating a rich and diverse dining experience. Our philosophy is to create a space where people can feel relaxed and at ease, no matter where they come from, offering them a sense of belonging.
+
+Through innovative dining services and modern website features, JIA aims to connect people from different cultures, providing each guest with a unique and creative izakaya dining experience.
+
+### Features
+
+- Dynamic Visual Display
+- Responsive Web Design (RWD)
+- Membership System
+- Bilingual (EN/ZH) Translation
+- Take-Out Ordering System
+- Dine-In Reservation with Seat Selection
+
+### Technologies
+
+- Front-end
+  - HTML, CSS, JavaScript
+  - React
+  - Zustand
+- Back-end
+  - Express.js
+- Database
+  - MongoDB
+
+
