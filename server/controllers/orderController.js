@@ -1,8 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
-import User from '../models/user.js';
 
-// 添加開發環境檢查
 const isDev = process.env.NODE_ENV === 'development';
 
 const safeLog = (message, data) => {

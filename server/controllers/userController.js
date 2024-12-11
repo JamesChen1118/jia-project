@@ -1,7 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/user.js';
 import generateToken from '../utils/generateToken.js';
-import bcrypt from 'bcryptjs';
 
 const userController = {
     login: asyncHandler(async (req, res) => {
@@ -27,27 +26,23 @@ const userController = {
         const { username, phone, email, password } = req.body;
 
         try {
-            // 檢查必要欄位
             if (!username || !phone || !email || !password) {
                 res.status(400);
                 throw new Error('所有欄位都是必填的');
             }
 
-            // 檢查用戶名是否已存在
             const userExists = await User.findOne({ username });
             if (userExists) {
                 res.status(400);
                 throw new Error('用戶名已被使用');
             }
 
-            // 檢查郵箱是否已存在
             const emailExists = await User.findOne({ email });
             if (emailExists) {
                 res.status(400);
                 throw new Error('郵箱已被使用');
             }
 
-            // 創建新用戶
             const user = await User.create({
                 username,
                 phone,

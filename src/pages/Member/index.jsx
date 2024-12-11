@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { userApi } from "@/api/module/user";
 import { getUserReservations } from "@/api/module/reservation";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";

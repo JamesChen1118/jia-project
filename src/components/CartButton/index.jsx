@@ -1,10 +1,8 @@
-// src/components/CartButton/index.jsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const CartButton = ({ onClick, type, disabled, value }) => {
-  // 基本樣式
   const baseStyle = `
     w-[30px] h-[30px] text-xl font-bold
     rounded-[5px] border-none cursor-pointer 
@@ -12,7 +10,6 @@ const CartButton = ({ onClick, type, disabled, value }) => {
     flex items-center justify-center
   `;
 
-  // 不同類型按鈕的樣式
   const buttonStyles = {
     minus: `
       ${baseStyle}
@@ -56,12 +53,10 @@ const CartButton = ({ onClick, type, disabled, value }) => {
     quantity: value,
   };
 
-  // 如果是數量顯示，返回 span
   if (type === "quantity") {
     return <span className={buttonStyles[type]}>{content[type]}</span>;
   }
 
-  // 禁用狀態的樣式
   const disabledStyle = disabled ? "opacity-50 cursor-not-allowed" : "";
 
   return (

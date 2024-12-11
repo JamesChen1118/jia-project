@@ -5,7 +5,6 @@ const server = axios.create({
     baseURL: '/'
 });
 
-// 請求攔截器
 server.interceptors.request.use(
     config => {
         const token = getToken();

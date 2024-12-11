@@ -5,8 +5,6 @@ import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 
 const News = () => {
-  const { t } = useTranslation();
-
   return (
     <>
       <GoTop />

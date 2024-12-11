@@ -1,15 +1,9 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
-export const useUserStore = create(
-    persist(
-        (set) => ({
-            language: 'zh_TW',
-            setLanguage: (language) => set(() => ({ language })),
-        }),
-        {
-            name: "user",
-
-        }
-    )
-);
+export const useUserStore = create((set) => ({
+    language: localStorage.getItem("language") || "zh_TW",
+    setLanguage: (lang) => {
+        localStorage.setItem("language", lang);
+        set({ language: lang });
+    },
+}));

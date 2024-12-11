@@ -23,7 +23,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 表單驗證
     if (
       !formData.username ||
       !formData.phone ||
@@ -40,7 +39,6 @@ const Register = () => {
       return;
     }
 
-    // 密碼確認
     if (formData.password !== formData.confirmPassword) {
       Swal.fire({
         title: "提示",
@@ -51,7 +49,6 @@ const Register = () => {
       return;
     }
 
-    // 手機號碼格式驗證
     const phoneRegex = /^09\d{8}$/;
     if (!phoneRegex.test(formData.phone)) {
       Swal.fire({
@@ -63,7 +60,6 @@ const Register = () => {
       return;
     }
 
-    // 郵箱格式驗證
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       Swal.fire({

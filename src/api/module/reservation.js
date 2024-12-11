@@ -2,7 +2,6 @@ import server from "../server";
 import { getToken } from "@/utils/auth";
 import { userApi } from "./user";
 
-// API 函數定義
 const addReservation = async (reservationData) => {
     try {
         const token = getToken();

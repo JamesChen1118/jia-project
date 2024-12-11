@@ -32,13 +32,6 @@ const timeOptions = [
 
 const tableList = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2"];
 
-const swalConfig = {
-  background: "#333",
-  color: "#E69539",
-  confirmButtonColor: "#E69539",
-  cancelButtonColor: "#666",
-};
-
 const Reservation = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -57,7 +50,6 @@ const Reservation = () => {
   const handleTableClick = (tableNo) => {
     if (!formData.date || !formData.time) {
       Swal.fire({
-        ...swalConfig,
         title: "提示",
         text: "請先選擇日期和時間",
         icon: "warning",
@@ -73,7 +65,6 @@ const Reservation = () => {
 
     if (!isLoggedIn) {
       Swal.fire({
-        ...swalConfig,
         title: t("login.required"),
         text: t("login.reservation_hint"),
         icon: "warning",
@@ -102,7 +93,6 @@ const Reservation = () => {
       await createReservation(reservationData);
 
       Swal.fire({
-        ...swalConfig,
         title: t("reservation.success"),
         text: t("reservation.success_message"),
         icon: "success",
@@ -112,7 +102,6 @@ const Reservation = () => {
       });
     } catch (error) {
       Swal.fire({
-        ...swalConfig,
         title: t("reservation.fail"),
         text: error.message || t("reservation.error_message"),
         icon: "error",

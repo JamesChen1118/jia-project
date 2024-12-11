@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import NewsItem from "@/components/NewsItem"; 
 import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
-import { newsApi } from "@/api/module/news";
 import GoTop from "@/components/GoTop";
-import i18n from "@/i18n/index";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -84,11 +82,12 @@ const Home = () => {
 
             <motion.button
               onClick={() => navigate("/About")}
-              className="inline-block px-8 py-3 text-2xl text-main-color-orange 
-                        transition-all duration-300 hidden italic
+              className="px-8 py-3 text-2xl text-main-color-orange 
+                        transition-all duration-300 italic
                         text-shadow-cart hover:text-shadow-cart-hover"
-              initial={{ opacity: 0, y: 20, display: "none" }}
-              animate={{ opacity: 1, y: 0, display: "inline-block" }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{ display: "inline-block" }}
               transition={{
                 duration: 0.5,
                 delay: 2.3,

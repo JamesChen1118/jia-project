@@ -4,7 +4,6 @@ import ProductItem from "@/components/ProductItem";
 import { productApi } from "@/api/module/product.js";
 import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
-import ProductModal from "@/components/ProductModal";
 
 const categories = [
   { name: "all" },
@@ -23,14 +22,13 @@ const Order = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getProductsByCategory = async (category = "all") => {
     try {
       const data = await productApi.getProductsByCategory(category);
       setProducts(data);
     } catch (error) {
+      console.error("Error fetching products:", error);
       setProducts([]);
     }
   };
@@ -104,14 +102,6 @@ const Order = () => {
           </div>
         </div>
       </div>
-      <ProductModal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setSelectedProduct(null);
-        }}
-        product={selectedProduct}
-      />
     </>
   );
 };
