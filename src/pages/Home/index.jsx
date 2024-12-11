@@ -1,11 +1,11 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import NewsItem from "@/components/NewsItem"; 
+import NewsItem from "@/components/NewsItem";
 import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
 import GoTop from "@/components/GoTop";
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -85,9 +85,9 @@ const Home = () => {
               className="px-8 py-3 text-2xl text-main-color-orange 
                         transition-all duration-300 italic
                         text-shadow-cart hover:text-shadow-cart-hover"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        style={{ display: "inline-block" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{ display: "inline-block" }}
               transition={{
                 duration: 0.5,
                 delay: 2.3,
@@ -176,8 +176,10 @@ const Home = () => {
         </motion.button>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-evenly items-center 
-                p-4 lg:p-[30px] gap-6 lg:gap-0">
+      <div
+        className="flex flex-col lg:flex-row justify-evenly items-center 
+                p-4 lg:p-[30px] gap-6 lg:gap-0"
+      >
         <div
           className="w-full lg:w-[500px] 
                   leading-[2] lg:leading-[2.5] 

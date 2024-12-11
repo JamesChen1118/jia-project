@@ -31,15 +31,15 @@
       "categoryTitle": "Categories",
       "toMenu": "View Menu",
       "categories": {
-        "全部": "All",
-        "生食": "Sashimi",
-        "壽司": "Sushi",
-        "海": "Seafood",
-        "炸物": "Tempura",
-        "燒烤": "Yakimono",
-        "定食": "SetMeal",
-        "甜點": "Dessert",
-        "飲品": "Drinks"
+        "all": "All",
+        "sashimi": "Sashimi",
+        "sushi": "Sushi",
+        "seafood": "Seafood",
+        "tempura": "Tempura",
+        "yakimono": "Yakimono",
+        "setMeal": "Set Meal",
+        "dessert": "Dessert",
+        "drinks": "Drinks"
       }
     }
   },
@@ -113,7 +113,7 @@
       },
       "productsItem8": {
         "name": "Salmon Sushi",
-        "description": "Norwegian salmon perfectly paired with vinegared rice"
+        "description": "Fresh fatty salmon with rice"
       },
       "productsItem9": {
         "name": "Cucumber Roll",
@@ -121,19 +121,19 @@
       },
       "productsItem10": {
         "name": "Shrimp Sushi",
-        "description": "Fresh shrimp perfectly paired with vinegared rice"
+        "description": "Fresh shrimp with rice"
       },
       "productsItem11": {
-        "name": "Grilled Clams",
-        "description": "Fresh clams with garlic soy sauce"
+        "name": "Garlic Clams",
+        "description": "Fresh clams with garlic flavor"
       },
       "productsItem12": {
         "name": "Sea Urchin",
         "description": "Air-flown sea urchin from Hokkaido"
       },
       "productsItem13": {
-        "name": "Oysters",
-        "description": "Fresh oysters with lemon juice"
+        "name": "Grilled Oysters",
+        "description": "Fresh oysters with charcoal grill"
       },
       "productsItem14": {
         "name": "Raw Oysters",
@@ -144,16 +144,16 @@
         "description": "Air-flown scallops from Hokkaido"
       },
       "productsItem16": {
-        "name": "Tempura",
-        "description": "Crispy tempura with seafood and vegetables"
+        "name": "Vegetable Tempura",
+        "description": "Fresh seasonal vegetables"
       },
       "productsItem17": {
         "name": "Shrimp Tempura",
-        "description": "Fresh shrimp in crispy tempura batter"
+        "description": "Japanese air-flown shrimp with crispy batter"
       },
       "productsItem18": {
         "name": "Chicken Tempura",
-        "description": "Fresh chicken in crispy tempura batter"
+        "description": "Crispy tempura with juicy chicken"
       },
       "productsItem19": {
         "name": "Tofu Tempura",
@@ -161,31 +161,31 @@
       },
       "productsItem20": {
         "name": "Chicken Yakitori",
-        "description": "Grilled chicken skewers with special sauce"
+        "description": "Fresh chicken with special sauce"
       },
       "productsItem21": {
         "name": "Beef Yakitori",
-        "description": "Grilled beef skewers with special sauce"
+        "description": "Fresh beef with special sauce"
       },
       "productsItem22": {
         "name": "Mackerel Set",
-        "description": "Fresh mackerel set with rice and miso soup"
+        "description": "Fresh mackerel with special sauce"
       },
       "productsItem23": {
         "name": "Pork Cutlet Set",
-        "description": "Fresh pork cutlet set with rice and miso soup"
+        "description": "Fresh pork cutlet with special sauce"
       },
       "productsItem24": {
         "name": "Tempura Set",
-        "description": "Fresh tempura set with rice and miso soup"
+        "description": "Fresh shrimp with special sauce"
       },
       "productsItem25": {
         "name": "Beef Set",
-        "description": "Fresh beef set with rice and miso soup"
+        "description": "Fresh beef with special sauce"
       },
       "productsItem26": {
         "name": "Chicken Set",
-        "description": "Fresh chicken set with rice and miso soup"
+        "description": "Charcoal grilled chicken, crispy outside tender inside"
       },
       "productsItem27": {
         "name": "Matcha Ice Cream",
@@ -193,7 +193,7 @@
       },
       "productsItem28": {
         "name": "Daifuku",
-        "description": "Fresh red bean paste wrapped in mochi"
+        "description": "Fresh red bean paste with mochi"
       },
       "productsItem29": {
         "name": "Matcha Pudding",
@@ -201,7 +201,7 @@
       },
       "productsItem30": {
         "name": "Red Bean Soup",
-        "description": "Sweet red bean soup, perfectly balanced"
+        "description": "Perfect blend of red beans and water"
       },
       "productsItem31": {
         "name": "Matcha Cake",
@@ -212,7 +212,7 @@
         "description": "Made with Kyoto matcha powder, rich and aromatic"
       },
       "productsItem33": {
-        "name": "Japanese Sencha",
+        "name": "Sencha",
         "description": "Direct from Shizuoka, fresh and sweet aftertaste"
       },
       "productsItem34": {

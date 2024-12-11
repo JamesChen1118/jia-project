@@ -6,20 +6,20 @@ import ScrollToContent from "@/components/ScrollToContent";
 import GoTop from "@/components/GoTop";
 
 const categories = [
-  { name: "all" },
-  { name: "sashimi" },
-  { name: "sushi" },
-  { name: "seafood" },
-  { name: "tempura" },
-  { name: "yakimono" },
-  { name: "setMeal" },
-  { name: "dessert" },
-  { name: "drinks" },
+  { key: "all", name: "all" },
+  { key: "sashimi", name: "sashimi" },
+  { key: "sushi", name: "sushi" },
+  { key: "seafood", name: "seafood" },
+  { key: "tempura", name: "tempura" },
+  { key: "yakimono", name: "yakimono" },
+  { key: "setMeal", name: "setMeal" },
+  { key: "dessert", name: "dessert" },
+  { key: "drinks", name: "drinks" },
 ];
 
 const Order = () => {
-  const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const { t, i18n } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState("all"); // 使用英文key
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -36,6 +36,7 @@ const Order = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     getProductsByCategory(category);
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -65,8 +66,8 @@ const Order = () => {
           <ul className="flex flex-wrap lg:flex-col gap-3 justify-center items-center">
             {categories.map((category) => (
               <li
-                key={category.name}
-                onClick={() => handleCategoryClick(category.name)}
+                key={category.key}
+                onClick={() => handleCategoryClick(category.key)}
                 className={`inline-block w-1/4 lg:w-full py-2 lg:py-2.5 
                            bg-main-color-yellow rounded-xl font-medium 
                            text-black text-lg lg:text-2xl text-center
@@ -74,7 +75,7 @@ const Order = () => {
                            hover:text-white hover:font-black hover:tracking-[3px] 
                            hover:scale-110 cursor-pointer
                            ${
-                             selectedCategory === category.name
+                             selectedCategory === category.key
                                ? "text-white font-black tracking-[3px]"
                                : ""
                            }

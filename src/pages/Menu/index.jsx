@@ -69,7 +69,7 @@ const Menu = () => {
                       {t(`products.items.${item.name}.name`)}
                     </h3>
                     <p className="text-2xl font-bold text-main-color-yellow">
-                      ${t(`products.items.${item.name}.price`)}
+                      ${item.price}
                     </p>
                   </div>
                 </motion.div>

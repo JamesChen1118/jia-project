@@ -61,7 +61,7 @@ const products = [
     price: 200,
     image:
       "https://images.pexels.com/photos/271715/pexels-photo-271715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "挪威鮭魚與醋飯的絕妙搭配",
+    description: "挪威肥美鮭魚與醋飯",
   },
   {
     name: "productsItem9",
@@ -77,20 +77,20 @@ const products = [
     price: 160,
     image:
       "https://images.pexels.com/photos/28559490/pexels-photo-28559490/free-photo-of-delicious-shrimp-nigiri-served-on-leaf-plate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "新鮮蝦與醋飯的完美結合",
+    description: "新鮮蝦搭配醋飯",
   },
   {
     name: "productsItem11",
     category: "seafood",
-    price: 140,
+    price: 180,
     image:
       "https://images.pexels.com/photos/10432859/pexels-photo-10432859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750",
-    description: "新鮮蛤蜊與蒜香醬油的絕妙搭配",
+    description: "新鮮蛤蜊蒜香風味",
   },
   {
     name: "productsItem12",
     category: "seafood",
-    price: 120,
+    price: 300,
     image:
       "https://images.pexels.com/photos/19193029/pexels-photo-19193029/free-photo-of-woman-preparing-seafood.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "北海道空運海膽，鮮美可口",
@@ -98,15 +98,15 @@ const products = [
   {
     name: "productsItem13",
     category: "seafood",
-    price: 100,
+    price: 200,
     image:
       "https://images.pexels.com/photos/4846502/pexels-photo-4846502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "新鮮牡蠣與檸檬汁的絕妙搭配",
+    description: "新鮮牡蠣與炭火的絕妙搭配",
   },
   {
     name: "productsItem14",
     category: "seafood",
-    price: 80,
+    price: 280,
     image:
       "https://images.pexels.com/photos/29143177/pexels-photo-29143177/free-photo-of-fresh-oysters-on-ice-with-sushi-selection.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "新鮮生蠔與檸檬汁的絕妙搭配",
@@ -114,7 +114,7 @@ const products = [
   {
     name: "productsItem15",
     category: "seafood",
-    price: 60,
+    price: 250,
     image:
       "https://images.pexels.com/photos/5038753/pexels-photo-5038753.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "北海道空運干貝，鮮甜可口",
@@ -125,7 +125,7 @@ const products = [
     price: 150,
     image:
       "https://images.pexels.com/photos/20891777/pexels-photo-20891777/free-photo-of-seafood-on-plate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "天婦羅外酥內嫩，seafood與麵衣的絕妙搭配",
+    description: "新鮮季節野菜",
   },
   {
     name: "productsItem17",
@@ -133,20 +133,20 @@ const products = [
     price: 140,
     image:
       "https://images.pexels.com/photos/8953714/pexels-photo-8953714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "新鮮蝦與麵衣的絕妙搭配",
+    description: "日本空運海老新鮮肉質軟嫩外層酥脆",
   },
   {
     name: "productsItem18",
     category: "tempura",
-    price: 30,
+    price: 180,
     image:
       "https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "新鮮雞肉與麵衣的絕妙搭配",
+    description: "外層酥脆天婦羅，新鮮多汁雞肉",
   },
   {
     name: "productsItem19",
     category: "tempura",
-    price: 20,
+    price: 120,
     image:
       "https://images.pexels.com/photos/3967347/pexels-photo-3967347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "新鮮豆腐與麵衣的絕妙搭配",
@@ -154,7 +154,7 @@ const products = [
   {
     name: "productsItem20",
     category: "yakimono",
-    price: 10,
+    price: 150,
     image:
       "https://images.pexels.com/photos/8112397/pexels-photo-8112397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "新鮮雞肉與醬油的絕妙搭配",
@@ -162,7 +162,7 @@ const products = [
   {
     name: "productsItem21",
     category: "yakimono",
-    price: 10,
+    price: 200,
     image:
       "https://images.pexels.com/photos/2233730/pexels-photo-2233730.jpeg?auto=compress&cs=tinysrgb&w=800&h=600",
     description: "新鮮牛肉與醬油的絕妙搭配",
@@ -202,15 +202,15 @@ const products = [
   {
     name: "productsItem26",
     category: "setMeal",
-    price: 10,
+    price: 180,
     image:
       "https://images.pexels.com/photos/19376507/pexels-photo-19376507/free-photo-of-a-bowl-with-rice-and-chicken-sprinkles-with-sesame-seeds.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description: "新鮮雞肉與醬油的絕妙搭配",
+    description: "木炭燒烤雞肉，外酥內嫩",
   },
   {
     name: "productsItem27",
     category: "dessert",
-    price: 80,
+    price: 100,
     image:
       "https://images.pexels.com/photos/2156698/pexels-photo-2156698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "京都抹茶粉製成，香甜可口",
@@ -218,7 +218,7 @@ const products = [
   {
     name: "productsItem28",
     category: "dessert",
-    price: 60,
+    price: 80,
     image:
       "https://images.pexels.com/photos/10676682/pexels-photo-10676682.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "新鮮紅豆與糯米皮的絕妙搭配",
@@ -226,7 +226,7 @@ const products = [
   {
     name: "productsItem29",
     category: "dessert",
-    price: 50,
+    price: 80,
     image:
       "https://images.pexels.com/photos/18089587/pexels-photo-18089587/free-photo-of-spanish-flan-dessert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "京都抹茶粉製成，奶香濃郁",
@@ -234,7 +234,7 @@ const products = [
   {
     name: "productsItem30",
     category: "dessert",
-    price: 40,
+    price: 80,
     image:
       "https://images.pexels.com/photos/3737692/pexels-photo-3737692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "紅豆與水的絕妙搭配，甜而不膩",
@@ -242,7 +242,7 @@ const products = [
   {
     name: "productsItem31",
     category: "dessert",
-    price: 30,
+    price: 120,
     image:
       "https://images.pexels.com/photos/1543800/pexels-photo-1543800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "京都抹茶粉製成，蛋糕鬆軟",
@@ -250,7 +250,7 @@ const products = [
   {
     name: "productsItem32",
     category: "drinks",
-    price: 20,
+    price: 80,
     image:
       "https://images.pexels.com/photos/11009223/pexels-photo-11009223.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "京都抹茶粉製成，香醇濃郁",
@@ -258,7 +258,7 @@ const products = [
   {
     name: "productsItem33",
     category: "drinks",
-    price: 10,
+    price: 60,
     image:
       "https://images.pexels.com/photos/7113858/pexels-photo-7113858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "靜岡產地直送，清香回甘",
@@ -266,7 +266,7 @@ const products = [
   {
     name: "productsItem34",
     category: "drinks",
-    price: 10,
+    price: 60,
     image:
       "https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "玄米焙香與綠茶完美結合",
@@ -274,7 +274,7 @@ const products = [
   {
     name: "productsItem35",
     category: "drinks",
-    price: 50,
+    price: 100,
     image:
       "https://images.pexels.com/photos/18510255/pexels-photo-18510255/free-photo-of-a-drink-in-a-glass-bottle-and-small-cups-on-the-bar-counter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description: "獨特香回甘持久",
