@@ -19,7 +19,7 @@ const categories = [
 
 const Order = () => {
   const { t, i18n } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState("all"); // 使用英文key
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [products, setProducts] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
