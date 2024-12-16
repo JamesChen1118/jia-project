@@ -2,9 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/lang.js";
 import defaultImage from "@/assets/images/home/banner-1.png";
 
-const Banner = ({
-  backgroundImage = "/src/assets/images/home/banner-1.png",
-}) => {
+const Banner = ({ backgroundImage = defaultImage }) => {
   const { language } = useUserStore();
   const { t } = useTranslation();
   return (
