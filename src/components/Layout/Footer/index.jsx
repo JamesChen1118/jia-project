@@ -8,13 +8,19 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="py-3 h-[120px] text-lg text-main-color-yellow bg-[rgb(26,26,26)] 
-                     flex justify-around items-center">
-      <h2 className="font-verdana font-bold text-3xl text-main-color-yellow">
+    <footer
+      className="py-3 h-[120px] text-lg text-main-color-yellow bg-[rgb(26,26,26)] 
+                     flex justify-around items-center flex-nowrap"
+    >
+      <h2 className="font-verdana font-bold text-3xl lg:text-3xl md:text-2xl sm:text-xl text-main-color-yellow whitespace-nowrap">
         J I A
       </h2>
-      <p className="text-base">
-        &copy; JIA 2024 - Modern Creative Izakaya
+
+      <p className="whitespace-nowrap text-sm md:text-base">
+        <span className="block sm:hidden">© JIA 2024</span>
+        <span className="hidden sm:block">
+          © JIA 2024 - Modern Creative Izakaya
+        </span>
       </p>
       <div className="flex justify-center">
         <Link
@@ -43,4 +49,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

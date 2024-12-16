@@ -175,7 +175,7 @@ const Header = () => {
             z-20
           `}
         >
-          <ul className="flex flex-col items-center justify-evenly min-h-[300px] py-6">
+          <ul className="flex flex-col items-center justify-center min-h-[300px] py-6">
             {navItems.map((item, index) => (
               <li
                 key={item.name}

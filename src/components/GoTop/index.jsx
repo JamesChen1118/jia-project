@@ -27,7 +27,7 @@ const GoTop = () => {
 
   return (
     <motion.div
-      className={`fixed bottom-4 right-4 bg-main-color-yellow rounded-full p-3 
+      className={`fixed bottom-20 right-4 bg-main-color-yellow rounded-full p-3 
                   cursor-pointer transition-opacity duration-300 z-[9999]
                   ${isVisible ? "opacity-50 hover:opacity-100" : "opacity-0"}`}
       onClick={scrollToTop}
