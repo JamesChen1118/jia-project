@@ -13,19 +13,6 @@ const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const imageAnimation = {
-    initial: { opacity: 0, x: -50, scale: 0.8 },
-    whileInView: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut",
-      },
-    },
-  };
-
   const textAnimation = {
     hidden: { opacity: 0 },
     visible: {
@@ -143,17 +130,25 @@ const Home = () => {
       </div>
 
       <div
-        className="relative mx-auto mb-[120px] min-h-[50vh] w-full font-georgia font-semibold 
-                    text-2xl md:text-3xl lg:text-4xl flex justify-center items-center"
+        className="relative mx-auto mb-[120px] 
+                   min-h-[50vh] md:min-h-[40vh] lg:min-h-[50vh] 
+                   w-[95%] md:w-[90%] lg:w-[80%] 
+                   font-georgia font-semibold 
+                   text-2xl md:text-3xl lg:text-4xl 
+                   flex justify-center items-center
+                   px-4 md:px-0"
       >
         <div
-          className="absolute inset-0 z-[-1]"
+          className="absolute inset-0 z-[-1] rounded-xl overflow-hidden"
           style={{
             backgroundImage: `url(${Izakaya_2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundAttachment: "fixed",
+            backgroundAttachment: "scroll",
             opacity: 0.5,
+            "@media (min-width: 768px)": {
+              backgroundAttachment: "fixed",
+            },
           }}
         />
 
@@ -184,16 +179,22 @@ const Home = () => {
       >
         <div
           className="w-full lg:w-[500px] 
-                  leading-[2] lg:leading-[2.5] 
+                  leading-[1.8] md:leading-[2] lg:leading-[2.5] 
                   text-main-color-yellow 
-                  tracking-[3px] lg:tracking-[5px] font-georgia 
-                  text-lg md:text-xl 
-                  mx-4 lg:mx-[50px] 
+                  tracking-[1px] md:tracking-[2px] lg:tracking-[3px] 
+                  font-georgia 
+                  text-base md:text-lg lg:text-xl 
+                  mx-2 md:mx-4 lg:mx-[50px] 
                   my-3 lg:my-[30px] 
                   text-center"
         >
           <motion.p
-            className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
+            className="border-b border-dotted border-main-color-yellow 
+                       py-3 md:py-4 lg:py-5 
+                       px-2 md:px-4 
+                       whitespace-nowrap 
+                       overflow-x-auto 
+                       scrollbar-hide"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
@@ -202,7 +203,12 @@ const Home = () => {
             {t("home.contact.address")}
           </motion.p>
           <motion.p
-            className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
+            className="border-b border-dotted border-main-color-yellow 
+                       py-3 md:py-4 lg:py-5 
+                       px-2 md:px-4 
+                       whitespace-nowrap 
+                       overflow-x-auto 
+                       scrollbar-hide"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
@@ -211,7 +217,12 @@ const Home = () => {
             {t("home.contact.phone")}
           </motion.p>
           <motion.p
-            className="border-b border-dotted border-main-color-yellow py-2 lg:py-0"
+            className="border-b border-dotted border-main-color-yellow 
+                       py-3 md:py-4 lg:py-5 
+                       px-2 md:px-4 
+                       whitespace-nowrap 
+                       overflow-x-auto 
+                       scrollbar-hide"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
