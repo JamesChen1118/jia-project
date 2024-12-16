@@ -1,16 +1,24 @@
 import express from "express";
 import dotenv from "dotenv";
 import { fileURLToPath } from 'url';
+import path from 'path'
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
+
+const publicPath = path.join(__dirname, '../dist')
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(express.static(publicPath))
 app.use('/api', router);
+app.get('*', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'))
+})
 
 app.use((err, req, res, next) => {
     console.error('Server error:', err);
