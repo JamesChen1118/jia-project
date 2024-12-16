@@ -1,201 +1,221 @@
 .img-box {
-    display: flex;
-    justify-content: center;
-    margin: -150px auto 150px;
-    gap: 5px;
-    perspective: 960px;
+  display: flex;
+  justify-content: center;
+  margin: -150px auto 150px;
+  gap: 5px;
+  perspective: 960px;
 }
 
 .img {
-    width: 80px;
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    position: relative;
-    filter: blur(.5px);
-    transition:
-        transform 1.25s var(--transition),
-        filter 3s var(--transition),
-        width 0.3s var(--transition);
-    will-change: transform, filter;
-    border-radius: 10px;
-    overflow: hidden;
+  width: 80px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  filter: blur(0.5px);
+  transition: transform 1.25s var(--transition), filter 3s var(--transition),
+    width 0.3s var(--transition);
+  will-change: transform, filter;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .img:hover {
-    transform: translateZ(278px);
-    filter: inherit;
+  transform: translateZ(278px);
+  filter: inherit;
 }
 
 .img::before,
 .img::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 100%;
-    right: -20px;
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  right: -20px;
 }
 
 .img::after {
-    left: -20px;
+  left: -20px;
 }
 
-.img:hover+* {
-    transform: translateZ(236.32px) rotateY(35deg);
-    filter: grayscale(0.2) brightness(0.9);
-    z-index: -1;
+.img:hover + * {
+  transform: translateZ(236.32px) rotateY(35deg);
+  filter: grayscale(0.2) brightness(0.9);
+  z-index: -1;
 }
 
-.img:hover+*+* {
-    transform: translateZ(155.68px) rotateY(40deg);
-    filter: grayscale(0.4) brightness(0.8);
-    z-index: -2;
+.img:hover + * + * {
+  transform: translateZ(155.68px) rotateY(40deg);
+  filter: grayscale(0.4) brightness(0.8);
+  z-index: -2;
 }
 
-.img:hover+*+*+* {
-    transform: translateZ(66.72px) rotateY(35deg);
-    filter: grayscale(0.6) brightness(0.7);
-    z-index: -3;
+.img:hover + * + * + * {
+  transform: translateZ(66.72px) rotateY(35deg);
+  filter: grayscale(0.6) brightness(0.7);
+  z-index: -3;
 }
 
-.img:hover+*+*+*+* {
-    transform: translateZ(17.6px) rotateY(25deg);
-    filter: grayscale(0.8) brightness(0.6);
-    z-index: -4;
+.img:hover + * + * + * + * {
+  transform: translateZ(17.6px) rotateY(25deg);
+  filter: grayscale(0.8) brightness(0.6);
+  z-index: -4;
 }
 
 .img:has(+ :hover) {
-    transform: translateZ(236.32px) rotateY(-35deg);
-    filter: grayscale(0.2) brightness(0.9);
+  transform: translateZ(236.32px) rotateY(-35deg);
+  filter: grayscale(0.2) brightness(0.9);
 }
 
 .img:has(+ * + :hover) {
-    transform: translateZ(155.68px) rotateY(-40deg);
-    filter: grayscale(0.4) brightness(0.8);
+  transform: translateZ(155.68px) rotateY(-40deg);
+  filter: grayscale(0.4) brightness(0.8);
 }
 
 .img:has(+ * + * + :hover) {
-    transform: translateZ(66.72px) rotateY(-35deg);
-    filter: grayscale(0.6) brightness(0.7);
+  transform: translateZ(66.72px) rotateY(-35deg);
+  filter: grayscale(0.6) brightness(0.7);
 }
 
 .img:has(+ * + * + * + :hover) {
-    transform: translateZ(17.6px) rotateY(-25deg);
-    filter: grayscale(0.8) brightness(0.6);
+  transform: translateZ(17.6px) rotateY(-25deg);
+  filter: grayscale(0.8) brightness(0.6);
 }
 
 .open {
-    width: 300px;
-    transform: translateZ(278px);
-    filter: inherit;
-    z-index: 1;
-    margin: 0 0.45vw;
-    border-radius: 10px;
+  width: 300px;
+  transform: translateZ(278px);
+  filter: inherit;
+  z-index: 1;
+  margin: 0 0.45vw;
+  border-radius: 10px;
 }
 
 .menu-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
 }
 
 .open .menu-box {
-    opacity: 1;
+  opacity: 1;
 }
 
 .menu-listTitle {
-    color: rgb(255, 170, 13);
-    font-size: 24px;
-    font-weight: bold;
-    margin: 5px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(104, 78, 78, 0.8);
-    padding: 3px;
-    border-radius: 5px;
+  color: rgb(255, 170, 13);
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(104, 78, 78, 0.8);
+  padding: 3px;
+  border-radius: 5px;
+  writing-mode: horizontal-tb;
 }
 
 .menu-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu-listImg {
-    width: 80%;
-    border-radius: 10px;
+  width: 90%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .menu-listItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .menu-listContent {
-    color: bisque;
-    font-size: 18px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    padding: 8px;
-    border-radius: 5px;
+  color: bisque;
+  font-size: 14px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  padding: 8px;
+  border-radius: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .menu-listPrice {
-    color: rgb(180, 175, 170);
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    padding: 4px 12px;
-    border-radius: 5px;
+  color: rgb(180, 175, 170);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  padding: 4px 12px;
+  border-radius: 5px;
 }
 
 .toMenu {
-    color: rgb(255, 170, 13);
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  color: rgb(255, 170, 13);
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .toMenu:hover {
-    background-color: rgba(255, 170, 13, 0.8);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 170, 13, 0.8);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 768px) {
-    .img-box {
-        margin: -100px auto 100px;
-    }
+  .img-box {
+    margin: -100px auto 100px;
+  }
 
-    .img {
-        width: 60px;
-        height: 250px;
-    }
+  .img {
+    width: 60px;
+    height: 250px;
+  }
 
-    .open {
-        width: 300px;
-        height: 350px;
-    }
+  .open {
+    width: 300px;
+    height: 350px;
+  }
+
+  .menu-listContent {
+    display: none;
+  }
+
+  .menu-listImg {
+    height: 120px;
+  }
+
+  .menu-listTitle {
+    font-size: 16px;
+  }
 }
