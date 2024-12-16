@@ -11,9 +11,6 @@ lerna-debug.log*
 node_modules
 dist
 
-# Testing
-coverage
-
 # Production
 dist
 dist-ssr
@@ -28,24 +25,5 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# System Files
 .DS_Store
-Thumbs.db
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# Local Netlify folder
-.netlify
-
-# Vite
-.vite/
+*.suo

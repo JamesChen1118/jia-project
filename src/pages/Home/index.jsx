@@ -6,6 +6,8 @@ import "@/components/Menu3D/index.css";
 import Menu3D from "@/components/Menu3D";
 import { useTranslation } from "react-i18next";
 import GoTop from "@/components/GoTop";
+import Izakaya_1 from "@/assets/images/home/Izakaya-1.png";
+import Izakaya_2 from "@/assets/images/home/Izakaya-2.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -101,7 +103,7 @@ const Home = () => {
           </motion.div>
 
           <motion.img
-            src="/src/assets/images/home/Izakaya-1.png"
+            src={Izakaya_1}
             alt=""
             className="w-[300px] md:w-[350px] lg:w-[400px] h-auto lg:h-[500px] object-cover"
             initial={{
@@ -147,7 +149,7 @@ const Home = () => {
         <div
           className="absolute inset-0 z-[-1]"
           style={{
-            backgroundImage: "url('/src/assets/images/home/Izakaya-2.jpg')",
+            backgroundImage: `url(${Izakaya_2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
