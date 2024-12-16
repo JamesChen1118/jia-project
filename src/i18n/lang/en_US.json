@@ -78,7 +78,9 @@
       "newsItem9": "Celebrate the season with our Summer Matsuri Feast, featuring special dishes and live entertainment!",
       "newsItem10": "Every Friday night is Karaoke Night! Sing your favorite songs and enjoy exclusive drink specials!"
     },
-    "viewMore": "View More"
+    "viewMore": "View More",
+    "showMore": "Show More",
+    "showLess": "Show Less"
   },
 
   "products": {

@@ -8,7 +8,7 @@ const Banner = ({
   const { language } = useUserStore();
   const { t } = useTranslation();
   return (
-    <div className="relative mt-24 mb-[150px] lg:mb-[100px] md:mb-[75px] sm:mb-[50px]">
+    <div className="relative mt-16 mb-[40px] md:mb-[50px] lg:mb-[60px]">
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 
                       w-full px-4 bg-black/20 py-8"
@@ -34,7 +34,9 @@ const Banner = ({
       <img
         src={backgroundImage}
         alt=""
-        className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] opacity-40 object-cover"
+        className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] 
+                    opacity-40 object-cover 
+                    mt-0"
       />
     </div>
   );

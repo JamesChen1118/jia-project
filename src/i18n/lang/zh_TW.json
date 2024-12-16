@@ -78,7 +78,9 @@
       "newsItem9": "慶祝夏日祭典，享用特製美食並有現場表演！",
       "newsItem10": "每週五卡拉OK之夜！盡情歡唱並享受專屬飲品優惠！"
     },
-    "viewMore": "查看更多"
+    "viewMore": "查看更多",
+    "showMore": "顯示更多",
+    "showLess": "顯示較少"
   },
 
   "products": {
@@ -342,7 +344,7 @@
   "reservation": {
     "title": "訂位資訊",
     "namePlaceholder": "請填寫姓名",
-    "selectTime": "選擇時��",
+    "selectTime": "選擇時間",
     "selectPeople": "請選擇人數",
     "peopleCount": "{{count}} 位",
     "phonePlaceholder": "請填寫手機號碼",

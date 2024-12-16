@@ -11,17 +11,10 @@ import {
   faSignOutAlt,
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { getToken, removeToken } from "@/utils/auth";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n/index.js";
 import { useUserStore } from "@/store/lang.js";
 import { useCartStore } from "@/store/shopping";
 import { useAuthStore } from "@/store/auth";
-
-const languageList = {
-  zh: "zh_TW",
-  en: "en_US",
-};
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -124,12 +117,13 @@ const Header = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
       ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <nav className="px-5 w-full h-24 flex justify-between items-center bg-black">
-        <h2 className="pl-[60px] md:pl-[30px] sm:pl-5">
+      <nav className="w-full h-24 flex justify-between items-center bg-black px-2 md:px-4 lg:px-5">
+        <h2 className="pl-2 md:pl-4 lg:pl-5">
           <button
             onClick={handleLogoClick}
             className="text-main-color-yellow no-underline font-verdana font-bold 
-                     text-4xl lg:text-3xl xl:text-4xl 
+                     text-2xl md:text-3xl lg:text-4xl 
+                     whitespace-nowrap 
                      transition-all duration-300 ease-in-out
                      hover:text-shadow-lg hover:scale-110"
           >
@@ -137,7 +131,7 @@ const Header = () => {
           </button>
         </h2>
 
-        <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+        <div className="lg:hidden absolute left-36 md:left-40">
           <button
             aria-label="toggle-menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -186,7 +180,8 @@ const Header = () => {
               <li
                 key={item.name}
                 className="w-full text-center flex items-center justify-center
-                           transform transition-all duration-500 ease-in-out"
+                          transform transition-all duration-500 ease-in-out
+                          px-8 sm:px-12 md:px-16"
                 style={{
                   transitionDelay: `${index * 100}ms`,
                   opacity: isMobileMenuOpen ? 1 : 0,
@@ -203,7 +198,7 @@ const Header = () => {
                   className={
                     item.special
                       ? "text-black bg-main-color-yellow px-8 py-2 rounded-xl text-xl w-auto mx-4 transition-all duration-300 ease-in-out hover:scale-105"
-                      : "text-main-text-white hover:text-main-color-yellow text-xl w-full py-3 transition-all duration-300 ease-in-out"
+                      : "text-main-text-white hover:text-main-color-yellow text-xl w-[240px] py-3 mx-auto transition-all duration-300 ease-in-out"
                   }
                 >
                   {t(item.translationKey)}
@@ -213,7 +208,11 @@ const Header = () => {
           </ul>
         </div>
 
-        <div className="flex items-center gap-4 pr-[60px] md:pr-[30px] sm:pr-5">
+        <div
+          className="flex items-center gap-1 md:gap-3 lg:gap-4 
+                    pr-2 md:pr-4 lg:pr-5
+                   absolute right-8 md:right-12 lg:right-16"
+        >
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown(!showDropdown)}
@@ -284,10 +283,16 @@ const Header = () => {
           </Link>
           <button
             onClick={handleLanguageChange}
-            className="text-main-text-white text-2xl p-1.5 hover:text-main-color-yellow hover:scale-110"
+            className="text-main-text-white p-1.5 hover:text-main-color-yellow hover:scale-110
+                      flex flex-col items-center justify-center"
           >
-            <FontAwesomeIcon icon={faGlobe} />
-            <span className="ml-1">{language === "zh_TW" ? "En" : "繁中"}</span>
+            <FontAwesomeIcon
+              icon={faGlobe}
+              className="text-2xl md:text-2xl lg:text-2xl"
+            />
+            <span className="text-xs md:text-sm lg:text-base mt-1">
+              {language === "zh_TW" ? "En" : "繁中"}
+            </span>
           </button>
         </div>
       </nav>

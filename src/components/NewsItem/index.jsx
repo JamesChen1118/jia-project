@@ -24,10 +24,9 @@ const NewsItem = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   const containerVariants = {
     offscreen: {
@@ -35,7 +34,7 @@ const NewsItem = () => {
       y: 50,
       opacity: 0,
       transformPerspective: 1000,
-      transformOrigin: "top"
+      transformOrigin: "top",
     },
     onscreen: {
       rotateX: 0,
@@ -44,24 +43,25 @@ const NewsItem = () => {
       transition: {
         type: "spring",
         bounce: 0.3,
-        duration: 1.5 ,
-        ease: "easeInOut"
-      }
+        duration: 1.5,
+        ease: "easeInOut",
+      },
     },
     exit: {
       rotateX: 180,
       y: -50,
       opacity: 0,
       transition: {
-        duration: 1.3
-      }
-    }
+        duration: 1.3,
+      },
+    },
   };
 
-  
   return (
-    <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] 
-                    mx-auto py-10 md:py-16 lg:py-20">
+    <div
+      className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] 
+                    mx-auto py-10 md:py-16 lg:py-20"
+    >
       <motion.div
         className="bg-transparent-dark rounded-lg shadow-custom overflow-hidden"
         initial="offscreen"
@@ -69,36 +69,44 @@ const NewsItem = () => {
         viewport={{ once: true, amount: 0.5 }}
         variants={containerVariants}
       >
-        {newsItems.map((item, index) => (
-          <div
-            key={item._id || index}
-            className="px-4 py-4 sm:px-6 lg:px-8
-                     border-b border-main-color-yellow
-                     hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300
-                     flex flex-col lg:flex-row items-start lg:items-center
-                     gap-2 lg:gap-6"
-          >
-            <div className="text-news-text-gray
-                        whitespace-nowrap
-                        w-[120px]
-                        text-sm lg:text-base">
-              {new Date(item.date).toLocaleDateString()}
+        {newsItems
+          .slice(0, isMobile && !isExpanded ? 3 : newsItems.length)
+          .map((item, index) => (
+            <div
+              key={item._id || index}
+              className="px-4 py-4 sm:px-6 lg:px-8
+                       border-b border-main-color-yellow
+                       hover:bg-[rgba(230,149,57,0.1)] transition-all duration-300
+                       flex flex-col lg:flex-row items-start lg:items-center
+                       gap-2 lg:gap-6"
+            >
+              <div
+                className="text-news-text-gray
+                          whitespace-nowrap
+                          w-[120px]
+                          text-sm lg:text-base"
+              >
+                {new Date(item.date).toLocaleDateString()}
+              </div>
+              <div
+                className="text-main-color-yellow font-bold
+                          whitespace-nowrap
+                          w-[180px]
+                          text-base lg:text-lg
+                          mb-2 lg:mb-0"
+              >
+                {t(`news.newsTitle.newsItem${index + 1}`)}
+              </div>
+              <div
+                className="text-main-text-white
+                          w-full lg:flex-1
+                          text-sm lg:text-base
+                          break-words"
+              >
+                {t(`news.content.newsItem${index + 1}`)}
+              </div>
             </div>
-            <div className="text-main-color-yellow font-bold
-                        whitespace-nowrap
-                        w-[180px]
-                        text-base lg:text-lg
-                        mb-2 lg:mb-0">
-              {t(`news.newsTitle.newsItem${index + 1}`)}
-            </div>
-            <div className="text-main-text-white
-                        w-full lg:flex-1
-                        text-sm lg:text-base
-                        break-words">
-              {t(`news.content.newsItem${index + 1}`)}
-            </div>
-          </div>
-        ))}
+          ))}
 
         {isMobile && newsItems.length > 3 && (
           <div className="p-4 text-center">
@@ -107,7 +115,7 @@ const NewsItem = () => {
               className="text-main-color-yellow hover:text-white
                        transition-colors duration-300 flex items-center mx-auto"
             >
-              {isExpanded ? t("news.showLess") : t("news.showMore")}
+              {t(isExpanded ? "news.showLess" : "news.showMore")}
               <svg
                 className={`w-4 h-4 ml-2 transform transition-transform duration-300
                           ${isExpanded ? "rotate-180" : ""}`}
@@ -131,4 +139,3 @@ const NewsItem = () => {
 };
 
 export default NewsItem;
-          
