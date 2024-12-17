@@ -156,27 +156,18 @@ const Reservation = () => {
       <GoTop />
       <ScrollToContent />
       <div className="container mx-auto px-4">
-        <button
-          onClick={() => navigate("/")}
-          className="absolute top-8 left-8 px-6 py-2.5 text-lg text-main-color-yellow 
-                   border-2 border-main-color-yellow rounded-lg
-                   transition-all duration-300
-                   hover:bg-main-color-yellow hover:text-black
-                   active:scale-95"
-        >
-          {t("common.backToHome") || "回到首頁"}
-        </button>
-
         <div
-          className="box-border w-[80%] mx-auto mt-[100px] mb-[300px] flex justify-evenly items-center 
+          className="box-border w-[80%] mx-auto mt-[100px] mb-[300px] flex flex-col justify-evenly items-center 
                      rounded-[20px] shadow-reservation bg-reservation-gradient
                      lg:w-[85%] md:w-[90%] sm:w-[95%]
                      lg:flex-row md:flex-col sm:flex-col
                      lg:gap-0 md:gap-[30px] sm:gap-[30px]"
         >
           <div
-            className="w-[400px] text-main-color-yellow font-bold text-xl flex flex-col 
-                          px-8 lg:w-[400px] md:w-full sm:w-full md:max-w-[500px]"
+            className="w-[400px] box-border text-main-color-yellow leading-8 font-verdana 
+                       font-bold text-xl flex flex-col justify-evenly bg-transparent 
+                       px-8  lg:ml-24 md:ml-0 sm:ml-0  
+                       lg:w-[400px] md:w-full sm:w-full md:max-w-[500px] sm:max-w-[500px]"
           >
             <h1
               className="text-center tracking-[10px] text-reservation font-bold text-shadow-reservation 
@@ -260,8 +251,8 @@ const Reservation = () => {
             </button>
           </div>
 
-          <div className="flex flex-col items-center w-full max-w-[500px]">
-            <div className="grid grid-cols-2 gap-6 w-full bg-black/10 p-8 rounded-[20px]">
+          <div className="flex flex-col items-center w-full max-w-[500px] mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-6 w-full p-6 rounded-[20px] text-main-color-yellow">
               {tableList.map((tableId) => (
                 <button
                   key={tableId}
@@ -281,7 +272,9 @@ const Reservation = () => {
                         : "opacity-80"
                     }`}
                   />
-                  <span className="ml-3 font-bold text-2xl">{tableId}</span>
+                  <span className="ml-3 font-bold text-2xl text-ma">
+                    {tableId}
+                  </span>
                 </button>
               ))}
             </div>
