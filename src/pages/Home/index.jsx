@@ -132,19 +132,19 @@ const Home = () => {
       <div
         className="relative mx-auto mb-[120px] 
                    min-h-[50vh] md:min-h-[40vh] lg:min-h-[50vh] 
-                   w-[95%] md:w-[90%] lg:w-[80%] 
+                   w-full 
                    font-georgia font-semibold 
                    text-2xl md:text-3xl lg:text-4xl 
                    flex justify-center items-center
                    px-4 md:px-0"
       >
         <div
-          className="absolute inset-0 z-[-1] rounded-xl overflow-hidden"
+          className="absolute inset-0 z-[-1] bg-cover bg-center"
           style={{
             backgroundImage: `url(${Izakaya_2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundAttachment: "scroll",
+            backgroundAttachment: "fixed",
             opacity: 0.5,
             "@media (min-width: 768px)": {
               backgroundAttachment: "fixed",
@@ -240,8 +240,8 @@ const Home = () => {
                   transition-all duration-300 hover:scale-105
                   shadow-[0_0_10px_rgba(255,170,13,0.3)]
                   hover:shadow-[0_0_20px_rgba(255,170,13,0.5)]"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.3 }}
         >

@@ -15,13 +15,15 @@ import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/lang.js";
 import { useCartStore } from "@/store/shopping";
 import { useAuthStore } from "@/store/auth";
+import { getToken, removeToken } from "@/utils/auth";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const navigate = useNavigate();
+  const [scrollTimeout, setScrollTimeout] = useState(null);
   const { t, i18n } = useTranslation();
   const { language, setLanguage } = useUserStore();
   const cartItems = useCartStore((state) => state.cartItems);
@@ -51,13 +53,26 @@ const Header = () => {
       }
 
       setLastScrollY(currentScrollY);
+
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      setScrollTimeout(
+        setTimeout(() => {
+          setIsVisible(true);
+        }, 700)
+      );
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, scrollTimeout]);
 
   const handleLogout = () => {
     removeToken();
@@ -114,7 +129,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-in-out
       ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="w-full h-24 flex justify-between items-center bg-black px-2 md:px-4 lg:px-5">
@@ -211,7 +226,7 @@ const Header = () => {
         <div
           className="flex items-center gap-1 md:gap-3 lg:gap-4 
                     pr-2 md:pr-4 lg:pr-5
-                   absolute right-8 md:right-12 lg:right-16"
+                    right-8 md:right-12 lg:right-16"
         >
           <div className="relative" ref={dropdownRef}>
             <button
