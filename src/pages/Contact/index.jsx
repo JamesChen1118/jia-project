@@ -88,7 +88,7 @@ const Contact = () => {
     <>
       <GoTop />
       <ScrollToContent />
-      <div className="w-[70%] mx-auto mt-[120px] mb-[150px] flex flex-col lg:flex-row justify-center shadow-lg rounded-[20px] overflow-hidden">
+      <div className="w-[90%] mx-auto mt-[120px] mb-[150px] flex flex-col lg:flex-row justify-center shadow-lg rounded-[20px] overflow-hidden">
         <div className="w-full lg:w-[60%] flex flex-col bg-transparent border border-white/20 shadow-lg rounded-t-[20px] lg:rounded-l-[20px] lg:rounded-tr-none text-center items-center p-8">
           <h1 className="text-2xl md:text-3xl text-main-color-yellow font-bold tracking-[15px] mb-8 pb-2 border-b-[7px] border-double border-[rgb(255,120,0)] shadow-text">
             {t("contact.title")}
@@ -151,13 +151,13 @@ const Contact = () => {
 
         <div className="w-full lg:w-[40%] flex flex-col bg-[#292828] border border-white/20 rounded-b-[20px] lg:rounded-r-[20px] lg:rounded-bl-none p-8">
           <div className="flex flex-col gap-6 mt-12 mx-auto max-w-[80%]">
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+            <p className="text-main-color-yellow text-lg md:text-xl font-bold font-georgia text-center shadow-text">
               {t("contact.address")}
             </p>
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+            <p className="text-main-color-yellow text-lg md:text-xl font-bold font-georgia text-center shadow-text">
               {t("contact.phone_number")}
             </p>
-            <p className="text-main-color-yellow text-xl md:text-2xl font-bold font-georgia text-center shadow-text">
+            <p className="text-main-color-yellow text-lg md:text-xl font-bold font-georgia text-center shadow-text">
               {t("contact.email_address")}
             </p>
           </div>
