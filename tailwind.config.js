@@ -1,5 +1,3 @@
-const plugin = require('tailwindcss/plugin')
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -164,33 +162,4 @@ export default {
       },
     },
   },
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'text-shadow': (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme('textShadow') }
-      )
-    }),
-    require('tailwindcss/plugin')(function ({ addUtilities }) {
-      const newUtilities = {
-        '.text-shadow-reservation': {
-          textShadow: '1px 1px 3px #3a3939',
-        },
-        '.text-shadow-table': {
-          textShadow: `
-            1px 1px 0 rgba(0, 0, 0, 0.8),
-            -1px -1px 0 rgba(0, 0, 0, 0.8),
-            -1px 1px 0 rgba(0, 0, 0, 0.8),
-            1px -1px 0 rgba(0, 0, 0, 0.8),
-            2px 2px 4px rgba(0, 0, 0, 0.5)
-          `,
-        },
-      };
-      addUtilities(newUtilities);
-    }),
-  ],
 }
