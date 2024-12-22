@@ -70,7 +70,7 @@ const NewsItem = () => {
         variants={containerVariants}
       >
         {newsItems
-          .slice(0, isMobile && !isExpanded ? 3 : newsItems.length)
+          .slice(0, isMobile && !isExpanded ? 3 : 10)
           .map((item, index) => (
             <div
               key={item._id || index}
@@ -108,7 +108,7 @@ const NewsItem = () => {
             </div>
           ))}
 
-        {isMobile && newsItems.length > 3 && (
+        {isMobile && newsItems.length > 3 && newsItems.length <= 10 && (
           <div className="p-4 text-center">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
