@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
+import cors from 'cors';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
@@ -13,6 +14,12 @@ const publicPath = path.join(__dirname, '../dist')
 dotenv.config();
 const app = express();
 
+const corsOptions = {
+    origin: ['https://jia-flax.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  };
+  app.use(cors());
 app.use(express.json());
 app.use(express.static(publicPath))
 app.use('/api', router);

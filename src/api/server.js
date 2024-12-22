@@ -2,7 +2,9 @@ import axios from 'axios';
 import { getToken } from '@/utils/auth';
 
 const server = axios.create({
-    baseURL: '/'
+    baseURL: import.meta.env.NODE_ENV === 'production'
+    ? 'https://jia-flax.vercel.app/'
+    : 'http://localhost:6001'
 });
 
 server.interceptors.request.use(
