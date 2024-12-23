@@ -319,7 +319,7 @@
     "password": "請輸入密碼",
     "submit": "登入",
     "register_submit": "註冊",
-    "remember": "記帳號",
+    "remember": "記住帳號",
     "register_form": {
       "username": "請填寫帳號",
       "phone": "請填寫手機號碼",
